@@ -5,7 +5,7 @@ Created on Sun Apr 11 10:10:01 2021
 
 @author: fsvbach
 """
-
+import numpy as np
 from scipy.spatial.distance import cdist
 from scipy.optimize import linear_sum_assignment
 
@@ -13,5 +13,6 @@ from scipy.optimize import linear_sum_assignment
 # assignment = linear_sum_assignment(d)
 # print(d[assignment].sum() / n)
 
-def WS(a,b):
-    return
+def EuclideanDistanceMatrix(means):
+    norms = np.linalg.norm(means, axis=1).reshape((len(means),1))**2
+    return norms + norms.T - 2 * means@means.T

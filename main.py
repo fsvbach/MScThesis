@@ -6,7 +6,7 @@ Created on Fri Apr  9 11:15:50 2021
 @author: fsvbach
 """
 
-from Code import Simulations
+from Code import Simulations, Distances
 # from openTSNE import TSNE
 # from openTSNE.sklearn import TSNE
 from sklearn.manifold import TSNE
@@ -56,7 +56,7 @@ def tsnePlot(data, precomputed=False, prefix='TEST'):
         metric = 'precomputed'
         name   = "Wasserstein"
         
-    tsne = TSNE(metric=metric)
+    tsne = TSNE(metric=metric, square_distances=True)
     embedding = tsne.fit_transform(data)
     
     xmeans, ymeans = embedding.T
@@ -68,6 +68,6 @@ def tsnePlot(data, precomputed=False, prefix='TEST'):
 
 tsnePlot(mixture.data_means, prefix=plot)
 
-K = mixture.data_means @ mixture.data_means.T
+K = Distances.EuclideanDistanceMatrix(mixture.data_means)
 
-tsnePlot(np.abs(K), precomputed=True, prefix=plot)
+tsnePlot(K, precomputed=True, prefix=plot)
