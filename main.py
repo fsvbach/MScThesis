@@ -6,13 +6,15 @@ Created on Fri Apr  9 11:15:50 2021
 @author: fsvbach
 """
 
-from Code import Simulations, Distances, Plots
-from openTSNE import TSNE
 import numpy as np
+from Code import Simulation, Distances, Plots
+from Code.Visualization import plotHGM, plotTSNE
+# from openTSNE import TSNE
+# from openTSNE.sklearn import TSNE
+from sklearn.manifold import TSNE
+
     
-ND = Simulations.GaussianDistribution
-CV = Simulations.CovarianceMatrix
-WS = Distances.GaussianWasserstein
+experiment = "TEST"
 
 # N ~ Number of Datapoints (distributions)   
 N = 30
@@ -27,30 +29,17 @@ F = 2
 C = 3
 
 
-G = [ND(np.zeros(F), CV(F, maxstd=10)) for i in range(2)]
-
-A,B = G
-
-d = WS(A,B)
-
-
-mixture = Simulations.HierarchicalGaussian(datapoints=N, 
+mixture = Simulation.HierarchicalGaussian(datapoints=N, 
                                             samples=D, 
                                             features=F, 
                                             classes=C,
                                             ClassDistance=5,
                                             ClassVariance=30)
 
-Plots.GaussianMixturePlot(mixture)
+matrix = Distances.EuclideanDistanceMatrix(mixture.data_means)
 
+plotHGM(mixture)
 
+plotTSNE(TSNE, mixture.data_means, prefix=experiment)
 
-# tsne = TSNE()
-
-# embedding = tsne.fit(mixture.data_means)
-
-# xmeans, ymeans = embedding.T
-# plt.scatter(xmeans, ymeans, s=50)
-# plt.show()
-
-
+plotTSNE(TSNE, matrix, precomputed=True, prefix=experiment)

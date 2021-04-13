@@ -20,4 +20,9 @@ def GaussianWasserstein(N1, N2):
     tmp = cov2.sqrt() @ cov1.array() @ cov2.sqrt()
     s, P = np.linalg.eig(tmp)
     tmp = cov1.array() + cov2.array() - 2 * P @ np.diag(np.sqrt(s)) @ P.T 
-    return np.linalg.norm(N1.mean - N2.mean)**2 + np.sum(np.diag(tmp))
+    return np.linalg.norm(m1 - m2)**2 + np.sum(np.diag(tmp))
+
+def EuclideanDistanceMatrix(means):
+    norms = np.linalg.norm(means, axis=1).reshape((len(means),1))**2
+    return norms + norms.T - 2 * means@means.T
+

@@ -10,8 +10,7 @@ import random
 import matplotlib.pyplot as plt
 from matplotlib.patches import Ellipse
    
-
-def GaussianMixturePlot(mixture):
+def plotHGM(mixture, prefix='TEST'):
     
     classcolor = 'red'
     datacolor = 'blue'
@@ -41,5 +40,22 @@ def GaussianMixturePlot(mixture):
     xmeans, ymeans = mixture.samples.T
     plt.scatter(xmeans, ymeans, s=5, c=samplecolor)
     
-    plt.savefig("Plots/GaussianMixture.eps")
+    plt.savefig(f"Plots/{prefix}_HierachicalGaussianMixture.eps")
     plt.show()
+    
+def plotTSNE(TSNE, data, precomputed=False, prefix='TEST'):
+    metric = 'euclidean'
+    name   = "Euclidean"
+    if precomputed:
+        metric = 'precomputed'
+        name   = "Wasserstein"
+        
+    tsne = TSNE(metric=metric, square_distances=True)
+    embedding = tsne.fit_transform(data)
+    
+    xmeans, ymeans = embedding.T
+    plt.title(f"{name} embedding")
+    plt.scatter(xmeans, ymeans, s=50)
+    plt.savefig(f"Plots/{prefix}_{name}.eps")
+    plt.show()
+    plt.close()
