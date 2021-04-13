@@ -7,9 +7,13 @@ Created on Fri Apr  9 11:15:50 2021
 """
 
 from Code import Simulations
-from openTSNE import TSNE
+# from openTSNE import TSNE
+# from openTSNE.sklearn import TSNE
+from sklearn.manifold import TSNE
 import numpy as np
 import matplotlib.pyplot as plt
+
+plot = "TEST"
 
 # N ~ Number of Datapoints (distributions)   
 N = 100
@@ -27,8 +31,8 @@ mixture = Simulations.HierarchicalGaussian(datapoints=N,
                                            samples=D, 
                                            features=F, 
                                            classes=C,
-                                           maxClassVariance=1,
-                                           maxDataVariance=1)
+                                           maxClassVariance=500,
+                                           maxDataVariance=100)
 
 fig = plt.figure(figsize=(16,16))
 
@@ -41,16 +45,29 @@ plt.scatter(xmeans, ymeans, s=50)
 xmeans, ymeans = mixture.datapoints.T
 plt.scatter(xmeans, ymeans, s=5)
 
-plt.savefig("Plots/GaussianMixture.eps")
+plt.savefig(f"Plots/{plot}_HierachicalGaussianMixture.eps")
 plt.show()
 plt.close()
 
-tsne = TSNE()
+def tsnePlot(data, precomputed=False, prefix='TEST'):
+    metric = 'euclidean'
+    name   = "Euclidean"
+    if precomputed:
+        metric = 'precomputed'
+        name   = "Wasserstein"
+        
+    tsne = TSNE(metric=metric)
+    embedding = tsne.fit_transform(data)
+    
+    xmeans, ymeans = embedding.T
+    plt.title(f"{name} embedding")
+    plt.scatter(xmeans, ymeans, s=50)
+    plt.savefig(f"Plots/{prefix}_{name}.eps")
+    plt.show()
+    plt.close()
 
-embedding = tsne.fit(mixture.data_means)
+tsnePlot(mixture.data_means, prefix=plot)
 
-xmeans, ymeans = embedding.T
-plt.scatter(xmeans, ymeans, s=50)
-plt.show()
+K = mixture.data_means @ mixture.data_means.T
 
-
+tsnePlot(np.abs(K), precomputed=True, prefix=plot)
