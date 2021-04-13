@@ -7,38 +7,41 @@ Created on Fri Apr  9 11:15:50 2021
 """
 
 import numpy as np
-from Code import Simulation, Distances, Plots
+from Code import Simulation, Distances
 from Code.Visualization import plotHGM, plotTSNE
 # from openTSNE import TSNE
 # from openTSNE.sklearn import TSNE
 from sklearn.manifold import TSNE
 
     
-experiment = "TEST"
-
-# N ~ Number of Datapoints (distributions)   
-N = 30
-
-# D ~ Average samples of each distribution
-D = 50
-
-# F ~ Number of Features of each sample
-F = 2
+experiment = "FAIL"
 
 # C ~ Number of classes
 C = 3
 
+# N ~ Number of distributions per class (datapoints)   
+N = 50
+
+# D ~ Samples per Distribution
+D = 10
+
+# F ~ Number of Features of each sample
+F = 2
 
 mixture = Simulation.HierarchicalGaussian(datapoints=N, 
                                             samples=D, 
                                             features=F, 
                                             classes=C,
-                                            ClassDistance=5,
-                                            ClassVariance=30)
+                                            ClassDistance=50,
+                                            ClassVariance=40,
+                                            DataVariance=40)
 
-matrix = Distances.EuclideanDistanceMatrix(mixture.data_means)
+# matrix = Distances.EuclideanDistanceMatrix(mixture.data_means)
+# matrix -= matrix.min()
 
-plotHGM(mixture)
+matrix = Distances.WassersteinDistanceMatrix(mixture.data)
+
+plotHGM(mixture, prefix=experiment)
 
 plotTSNE(TSNE, mixture.data_means, prefix=experiment)
 

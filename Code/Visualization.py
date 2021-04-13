@@ -40,6 +40,7 @@ def plotHGM(mixture, prefix='TEST'):
     xmeans, ymeans = mixture.samples.T
     plt.scatter(xmeans, ymeans, s=5, c=samplecolor)
     
+    plt.title(f"{prefix} Hierarchical Gaussian Mixture")
     plt.savefig(f"Plots/{prefix}_HierachicalGaussianMixture.eps")
     plt.show()
     
@@ -50,7 +51,7 @@ def plotTSNE(TSNE, data, precomputed=False, prefix='TEST'):
         metric = 'precomputed'
         name   = "Wasserstein"
         
-    tsne = TSNE(metric=metric, square_distances=True)
+    tsne = TSNE(metric=metric)#, square_distances=True)
     embedding = tsne.fit_transform(data)
     
     xmeans, ymeans = embedding.T

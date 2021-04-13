@@ -19,7 +19,6 @@ class UniformDistribution:
         samples = generator.random((size,self.dim)) - 0.5 
         return 2*samples*self.scale
         
-    
 class GaussianDistribution:
     def __init__(self, mean, cov):
         self.mean = mean
@@ -41,7 +40,7 @@ class CovarianceMatrix:
             self.P, self.s = params
         else:
             self.P = ortho_group.rvs(dim=dim)
-            self.s = generator.random(size=dim) * maxstd
+            self.s = (generator.random(size=dim) * maxstd)**2
 
     def array(self):
         return self.P@np.diag(self.s)@self.P.T

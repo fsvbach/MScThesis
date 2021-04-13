@@ -22,7 +22,14 @@ def GaussianWasserstein(N1, N2):
     tmp = cov1.array() + cov2.array() - 2 * P @ np.diag(np.sqrt(s)) @ P.T 
     return np.linalg.norm(m1 - m2)**2 + np.sum(np.diag(tmp))
 
-def EuclideanDistanceMatrix(means):
-    norms = np.linalg.norm(means, axis=1).reshape((len(means),1))**2
-    return norms + norms.T - 2 * means@means.T
+def EuclideanDistanceMatrix(X):
+    norms = np.linalg.norm(X, axis=1, ord=2).reshape((len(X),1))**2
+    return norms + norms.T - 2 * X@X.T
 
+def WassersteinDistanceMatrix(X):
+    N = len(X)
+    K = np.zeros((N,N))
+    for i in range(N):
+        for j in range(i+1,N):
+            K[i,j] = GaussianWasserstein(X[i], X[j])
+    return K + K.T
