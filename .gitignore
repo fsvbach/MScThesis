@@ -8,4 +8,5 @@ __pycache__/
 .spyderproject
 .spyproject
 
+# Non-Important stuff
 MISC/*
