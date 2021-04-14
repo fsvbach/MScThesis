@@ -14,7 +14,7 @@ from Code.Visualization import plotHGM, plotTSNE
 from sklearn.manifold import TSNE
 
     
-experiment = "FAIL"
+experiment = "TEST"
 
 # C ~ Number of classes
 C = 3
@@ -23,7 +23,7 @@ C = 3
 N = 50
 
 # D ~ Samples per Distribution
-D = 10
+D = 50
 
 # F ~ Number of Features of each sample
 F = 2
@@ -33,8 +33,8 @@ mixture = Simulation.HierarchicalGaussian(datapoints=N,
                                             features=F, 
                                             classes=C,
                                             ClassDistance=50,
-                                            ClassVariance=40,
-                                            DataVariance=40)
+                                            ClassVariance=50,
+                                            DataVariance=5)
 
 # matrix = Distances.EuclideanDistanceMatrix(mixture.data_means)
 # matrix -= matrix.min()
