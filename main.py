@@ -14,7 +14,7 @@ from Code.Visualization import plotHGM, plotTSNE
 from sklearn.manifold import TSNE
 
     
-experiment = "TEST"
+experiment = "TEST2"
 
 # C ~ Number of classes
 C = 3
@@ -37,7 +37,6 @@ mixture = Simulation.HierarchicalGaussian(datapoints=N,
                                             DataVariance=5)
 
 # matrix = Distances.EuclideanDistanceMatrix(mixture.data_means)
-# matrix -= matrix.min()
 
 matrix = Distances.WassersteinDistanceMatrix(mixture.data)
 

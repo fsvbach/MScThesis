@@ -46,12 +46,15 @@ def plotHGM(mixture, prefix='TEST'):
     
 def plotTSNE(TSNE, data, precomputed=False, prefix='TEST'):
     metric = 'euclidean'
+    # neighbors = 'auto'
     name   = "Euclidean"
     if precomputed:
         metric = 'precomputed'
+        # neighbors = 'exact'
         name   = "Wasserstein"
         
-    tsne = TSNE(metric=metric)#, square_distances=True)
+    tsne = TSNE(metric=metric)#, neighbors=neighbors)#, square_distances=True)
+    # embedding = tsne.fit(data)
     embedding = tsne.fit_transform(data)
     
     xmeans, ymeans = embedding.T
