@@ -10,26 +10,26 @@ Created on Fri Apr  9 11:15:50 2021
 # start = time.perf_counter()
 
 from openTSNE import TSNE
-from Code import Simulation, Distances
+from Code.Distances import WassersteinDistanceMatrix
+from Code.Simulation import HierarchicalGaussianMixture
 from Code.Visualization import plotHGM, plotTSNE
 
-experiment = "TEST2"
+experiment = "MEDIUM"
 
-mixture = Simulation.HierarchicalGaussian(seed=11,
+mixture = HierarchicalGaussianMixture(seed=11,
                                           datapoints=50, 
                                           samples=20, 
                                           features=2, 
-                                          classes=3,
-                                          ClassDistance=50,
-                                          ClassVariance=50,
-                                          DataVariance=5)
-
-euclid = Distances.EuclideanDistanceMatrix(mixture.data_means())
-wasser = Distances.WassersteinDistanceMatrix(mixture.datapoints)
+                                          classes=4,
+                                          ClassDistance=25,
+                                          ClassVariance=25,
+                                          DataVariance=25)
 
 plotHGM(mixture, prefix=experiment)
-plotTSNE(TSNE, euclid, name='Euclidean', prefix=experiment)
-plotTSNE(TSNE, wasser, name='Wasserstein', prefix=experiment)
+
+import numpy as np
+for w in np.linspace(0,1,4):
+    plotTSNE(TSNE, mixture, metric=WassersteinDistanceMatrix, w=np.round(w,2), prefix=experiment)
 
 # stop = time.perf_counter()
 # print(f'Succesfully finished code in {stop-start} seconds.')

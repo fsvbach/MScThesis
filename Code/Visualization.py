@@ -19,6 +19,12 @@ def plotHGM(mixture, prefix='TEST'):
     fig = plt.figure(figsize=(16,16))
     ax = plt.subplot(111, aspect='equal')
 
+    xmeans, ymeans = mixture.data.reshape((-1,2)).T
+    plt.scatter(xmeans, ymeans, s=5, c=samplecolor)
+    
+    xmeans, ymeans = mixture.data_means().T
+    plt.scatter(xmeans, ymeans, s=100, c=datacolor)
+
     for i in range(mixture.C):
         GaussianClass = mixture.classes[i]
         
@@ -36,25 +42,29 @@ def plotHGM(mixture, prefix='TEST'):
         ell = Ellipse(xy=mean, width=width, height=height, angle=angle, 
                    edgecolor=datacolor, facecolor='none', linewidth=2 )
         ax.add_artist(ell)
-        
-    xmeans, ymeans = mixture.data_means().T
-    plt.scatter(xmeans, ymeans, s=100, c=datacolor)
 
-    xmeans, ymeans = mixture.data.reshape((-1,2)).T
-    plt.scatter(xmeans, ymeans, s=5, c=samplecolor)
-    
-    plt.title(f"{prefix} Hierarchical Gaussian Mixture")
+    ax.text(0, 1, mixture._info(), transform=ax.transAxes, fontsize=15, verticalalignment='top')
+    plt.title(f"Hierarchical Gaussian Mixture ({prefix})")
     plt.savefig(f"Plots/{prefix}_{mixture.seed}_HGM.eps")
     plt.show()
     
-def plotTSNE(TSNE, matrix, name, prefix='TEST'):
-
+def plotTSNE(TSNE, mixture, metric, w=0.5, prefix='TEST'):
+    name='Wasserstein'
+    if w == 1:
+        name='Euclidean'
+        
+    matrix = metric(mixture, w=w)
+    
     tsne = TSNE(metric='precomputed', initialization='spectral', negative_gradient_method='bh')
     embedding = tsne.fit(matrix)
     
-    xmeans, ymeans = embedding.T
-    plt.title(f"{name} embedding")
-    plt.scatter(xmeans, ymeans, s=50)
-    plt.savefig(f"Plots/{prefix}_{name}.eps")
+    N = mixture.N
+    for i in range(mixture.C):
+        points = embedding[N*i:N*(i+1)]
+        xmeans, ymeans = points.T
+        plt.scatter(xmeans, ymeans, s=50)
+    
+    plt.title(f"{name} embedding (w={w})")
+    plt.savefig(f"Plots/{prefix}_{name}_{w}.eps")
     plt.show()
     plt.close()
