@@ -19,43 +19,38 @@ def plotHGM(mixture, prefix='TEST'):
     fig = plt.figure(figsize=(16,16))
     ax = plt.subplot(111, aspect='equal')
 
-    xmeans, ymeans = mixture.class_means.T
-    plt.scatter(xmeans, ymeans, s=400, c=classcolor)
-
-    for c in mixture.classes:
-        mean, (width,height), angle = c.shape()
+    for i in range(mixture.C):
+        GaussianClass = mixture.classes[i]
+        
+        xmean, ymean = GaussianClass.mean.T
+        plt.scatter(xmean, ymean, s=400, c=classcolor)
+        
+        mean, width, height, angle = GaussianClass.shape()
         ell = Ellipse(xy=mean, width=width, height=height, angle=angle, 
-                   edgecolor=classcolor, facecolor='none', linewidth=1, linestyle='--')
+                      edgecolor=classcolor, facecolor='none', linewidth=1, linestyle='--')
         ax.add_artist(ell)
         
-    xmeans, ymeans = mixture.data_means.T
-    plt.scatter(xmeans, ymeans, s=100, c=datacolor)
-    
-    for d in mixture.examples:
-        mean, (width,height), angle = d.shape()
+        GaussianData = mixture.datapoints[i*mixture.N]
+        
+        mean, width, height, angle = GaussianData.shape()
         ell = Ellipse(xy=mean, width=width, height=height, angle=angle, 
                    edgecolor=datacolor, facecolor='none', linewidth=2 )
         ax.add_artist(ell)
         
-    xmeans, ymeans = mixture.samples.T
+    xmeans, ymeans = mixture.data_means().T
+    plt.scatter(xmeans, ymeans, s=100, c=datacolor)
+
+    xmeans, ymeans = mixture.data.reshape((-1,2)).T
     plt.scatter(xmeans, ymeans, s=5, c=samplecolor)
     
     plt.title(f"{prefix} Hierarchical Gaussian Mixture")
-    plt.savefig(f"Plots/{prefix}_HierachicalGaussianMixture.eps")
+    plt.savefig(f"Plots/{prefix}_{mixture.seed}_HGM.eps")
     plt.show()
     
-def plotTSNE(TSNE, data, precomputed=False, prefix='TEST'):
-    metric = 'euclidean'
-    # neighbors = 'auto'
-    name   = "Euclidean"
-    if precomputed:
-        metric = 'precomputed'
-        # neighbors = 'exact'
-        name   = "Wasserstein"
-        
-    tsne = TSNE(metric=metric)#, neighbors=neighbors)#, square_distances=True)
-    # embedding = tsne.fit(data)
-    embedding = tsne.fit_transform(data)
+def plotTSNE(TSNE, matrix, name, prefix='TEST'):
+
+    tsne = TSNE(metric='precomputed', initialization='spectral', negative_gradient_method='bh')
+    embedding = tsne.fit(matrix)
     
     xmeans, ymeans = embedding.T
     plt.title(f"{name} embedding")
