@@ -48,16 +48,20 @@ def plotHGM(mixture, prefix='TEST'):
     plt.savefig(f"Plots/{prefix}_{mixture.seed}_HGM.eps")
     plt.show()
     
-def plotTSNE(TSNE, mixture, metric, w=0.5, prefix='TEST'):
+def plotTSNE(TSNE, mixture, metric, w=0.5, prefix='TEST', sklearn=False):
     name='Wasserstein'
     if w == 1:
         name='Euclidean'
         
     matrix = metric(mixture, w=w)
     
-    tsne = TSNE(metric='precomputed', initialization='spectral', negative_gradient_method='bh')
-    embedding = tsne.fit(matrix)
-    
+    if sklearn:
+        tsne = TSNE(metric='precomputed', square_distances=True)
+        embedding = tsne.fit_transform(matrix)
+    else:
+        tsne = TSNE(metric='precomputed', initialization='spectral', negative_gradient_method='bh')
+        embedding = tsne.fit(matrix)
+
     N = mixture.N
     for i in range(mixture.C):
         points = embedding[N*i:N*(i+1)]
