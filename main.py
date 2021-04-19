@@ -22,7 +22,7 @@ from Code.Simulation import HierarchicalGaussianMixture
 from Code.Visualization import plotHGM, plotHGM2, plotTSNE
 
 
-mixture = HierarchicalGaussianMixture(seed=99,
+mixture = HierarchicalGaussianMixture(seed=7,
                                           datapoints=50, 
                                           samples=20, 
                                           features=2, 
@@ -34,7 +34,7 @@ mixture = HierarchicalGaussianMixture(seed=99,
 plotHGM(mixture, prefix=experiment)
 plotHGM2(mixture, prefix=experiment)
 
-for w in [0.25, 0.5, 0.75, 1]:
+for w in [0, 0.25, 0.5, 0.75]:
     plotTSNE(TSNE, mixture, WassersteinDistanceMatrix, w=w, prefix=experiment, sklearn=sklearn)
 
 # stop = time.perf_counter()

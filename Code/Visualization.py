@@ -6,12 +6,13 @@ Created on Mon Apr 12 16:12:56 2021
 @author: fsvbach
 """
 
-import random
+eps = ""
+
 import matplotlib.pyplot as plt
 from matplotlib.patches import Ellipse
    
 def plotHGM(mixture, prefix='TEST'):
-    
+        
     classcolor = 'C1'
     datacolor = 'C0'
     samplecolor = 'C2'
@@ -44,8 +45,12 @@ def plotHGM(mixture, prefix='TEST'):
         plt.scatter(xmean, ymean, s=400, c=classcolor)
 
     plt.title(mixture._info(), fontsize=25)
-    plt.savefig(f"Plots/{prefix}_{mixture.seed}_HGM.eps")
+    
+    name = f"Plots/{prefix}_{mixture.seed}_HGM"
+    plt.savefig(f"{name}.eps")
+    plt.savefig(f"{name}.png")
     plt.show()
+    plt.close()
     
 def plotHGM2(mixture, prefix='TEST'):
     
@@ -79,13 +84,16 @@ def plotHGM2(mixture, prefix='TEST'):
         plt.scatter(xmean, ymean, s=100, c='black')
         
     plt.title(mixture._info(), fontsize=25)
-    plt.savefig(f"Plots/{prefix}_{mixture.seed}_HGM2.eps")
+    name = f"Plots/{prefix}_{mixture.seed}_HGM2"
+    plt.savefig(f"{name}.eps")
+    plt.savefig(f"{name}.png")
     plt.show()
+    plt.close()
     
     
 def plotTSNE(TSNE, mixture, metric, w=0.5, prefix='TEST', sklearn=False):
     name='Wasserstein'
-    if w == 1:
+    if w == 0:
         name='Euclidean'
         
     matrix = metric(mixture, w=w)
@@ -104,6 +112,8 @@ def plotTSNE(TSNE, mixture, metric, w=0.5, prefix='TEST', sklearn=False):
         plt.scatter(xmeans, ymeans, s=50)
     
     plt.title(f"{name} embedding (w={w})")
-    plt.savefig(f"Plots/{prefix}_{name}_{w}.eps")
+    name = f"Plots/{prefix}_{name}_{100*w}"
+    plt.savefig(f"{name}.eps")
+    plt.savefig(f"{name}.png")
     plt.show()
     plt.close()
