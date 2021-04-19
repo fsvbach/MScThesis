@@ -71,19 +71,7 @@ class HierarchicalGaussianMixture:
         self.data = self.generate_data()
 
     def _info(self):
-        return f'''    
-    INFO:
-            
-    {self.C} classes with
-    {self.N} datapoints with each
-    {self.D} samples in
-    {self.F} dimensions.
-            
-    ClassDistance: {self.config['ClassDistance']}
-    ClassVariance: {self.config['ClassVariance']},
-    DataVariance: {self.config['DataVariance']}
-            
-    Random seed: {self.seed}'''
+        return f'''{self.C} classes à {self.N} datapoints with each {self.D} samples in {self.F} dimensions.\nRandom seed: {self.seed}, ClassDistance: {self.config['ClassDistance']}, ClassVariance: {self.config['ClassVariance']}, DataVariance: {self.config['DataVariance']}'''
         
     def generate_data(self):
         class_means = self.generator.UniformVector(self.F, self.C, self.config['ClassDistance'])

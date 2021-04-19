@@ -12,9 +12,9 @@ from matplotlib.patches import Ellipse
    
 def plotHGM(mixture, prefix='TEST'):
     
-    classcolor = 'red'
-    datacolor = 'blue'
-    samplecolor = 'green'
+    classcolor = 'C1'
+    datacolor = 'C0'
+    samplecolor = 'C2'
     
     fig = plt.figure(figsize=(16,16))
     ax = plt.subplot(111, aspect='equal')
@@ -27,10 +27,7 @@ def plotHGM(mixture, prefix='TEST'):
 
     for i in range(mixture.C):
         GaussianClass = mixture.classes[i]
-        
-        xmean, ymean = GaussianClass.mean.T
-        plt.scatter(xmean, ymean, s=400, c=classcolor)
-        
+                
         mean, width, height, angle = GaussianClass.shape()
         ell = Ellipse(xy=mean, width=width, height=height, angle=angle, 
                       edgecolor=classcolor, facecolor='none', linewidth=1, linestyle='--')
@@ -42,11 +39,49 @@ def plotHGM(mixture, prefix='TEST'):
         ell = Ellipse(xy=mean, width=width, height=height, angle=angle, 
                    edgecolor=datacolor, facecolor='none', linewidth=2 )
         ax.add_artist(ell)
+        
+        xmean, ymean = GaussianClass.mean.T
+        plt.scatter(xmean, ymean, s=400, c=classcolor)
 
-    ax.text(0, 1, mixture._info(), transform=ax.transAxes, fontsize=15, verticalalignment='top')
-    plt.title(f"Hierarchical Gaussian Mixture ({prefix})")
+    plt.title(mixture._info(), fontsize=25)
     plt.savefig(f"Plots/{prefix}_{mixture.seed}_HGM.eps")
     plt.show()
+    
+def plotHGM2(mixture, prefix='TEST'):
+    
+    fig = plt.figure(figsize=(16,16))
+    ax = plt.subplot(111, aspect='equal')
+
+    xmeans, ymeans = mixture.data.reshape((-1,2)).T
+    plt.scatter(xmeans, ymeans, s=1, c='grey')
+    
+    for i, data in enumerate(mixture.data):
+        color = "C"+str(i)
+        
+        GaussianClass = mixture.classes[i]
+        
+        mean, width, height, angle = GaussianClass.shape()
+        ell = Ellipse(xy=mean, width=width, height=height, angle=angle, 
+                      edgecolor='black', facecolor='none', linewidth=1, linestyle='--')
+        ax.add_artist(ell)
+        
+        GaussianData = mixture.datapoints[i*mixture.N]
+        
+        mean, width, height, angle = GaussianData.shape()
+        ell = Ellipse(xy=mean, width=width, height=height, angle=angle, 
+                    edgecolor=color, facecolor='none', linewidth=3 )
+        ax.add_artist(ell)
+        
+        xmeans, ymeans = data.mean(axis=1).T
+        plt.scatter(xmeans, ymeans, s=30, c=color)
+
+        xmean, ymean = GaussianClass.mean.T
+        plt.scatter(xmean, ymean, s=100, c='black')
+        
+    plt.title(mixture._info(), fontsize=25)
+    plt.savefig(f"Plots/{prefix}_{mixture.seed}_HGM2.eps")
+    plt.show()
+    
     
 def plotTSNE(TSNE, mixture, metric, w=0.5, prefix='TEST', sklearn=False):
     name='Wasserstein'
