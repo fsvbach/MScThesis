@@ -101,8 +101,21 @@ class HierarchicalGaussianMixture:
         return np.array(cdata)
     
     def data_means(self):
-        means = np.mean(self.data, axis=2)
-        return means.reshape((self.C*self.N, self.F))
+        data = self.data.reshape((-1,self.D, self.F))
+        return np.mean(data, axis=1)
     
     def data_covs(self):
-        pass
+        data = self.data.reshape((-1,self.D, self.F))
+        data = (data.transpose([1,0,2]) - self.data_means()).transpose([1,0,2])
+        return np.matmul(data.transpose([0,2,1]),data)
+
+    def data_estimates(self):
+        means = self.data_means()
+        covs  = self.data_covs()
+        Gaussians = []
+        for m,C in zip(means, covs):
+            s, P = np.linalg.eig(C)
+            Gaussians.append(GaussianDistribution(m, CovarianceMatrix(P, s)))
+        return Gaussians
+    
+        

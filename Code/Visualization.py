@@ -91,13 +91,13 @@ def plotHGM2(mixture, prefix='TEST'):
     plt.close()
     
     
-def plotTSNE(TSNE, mixture, metric, w=0.5, prefix='TEST', sklearn=False):
-    name='Wasserstein'
-    if w == 0:
-        name='Euclidean'
-        
-    matrix = metric(mixture, w=w)
+def plotTSNE(TSNE, matrix, info, sklearn=False):
+    C, N, w, prefix = info
     
+    metric='Wasserstein'
+    if w == 0:
+        metric='Euclidean'
+
     if sklearn:
         tsne = TSNE(metric='precomputed', square_distances=True)
         embedding = tsne.fit_transform(matrix)
@@ -105,14 +105,35 @@ def plotTSNE(TSNE, mixture, metric, w=0.5, prefix='TEST', sklearn=False):
         tsne = TSNE(metric='precomputed', initialization='spectral', negative_gradient_method='bh')
         embedding = tsne.fit(matrix)
 
-    N = mixture.N
-    for i in range(mixture.C):
+    for i in range(C):
         points = embedding[N*i:N*(i+1)]
         xmeans, ymeans = points.T
-        plt.scatter(xmeans, ymeans, s=50)
+        plt.scatter(xmeans, ymeans, s=1)
     
-    plt.title(f"{name} embedding (w={w})")
-    name = f"Plots/{prefix}_{name}_{100*w}"
+    name = f"Plots/{prefix}_{metric}TSNE_{int(100*w)}"
+    plt.title(f"{metric} embedding (w={w})")
+    plt.savefig(f"{name}.eps")
+    plt.savefig(f"{name}.png")
+    plt.show()
+    plt.close()
+    
+def plotMDS(MDS, matrix, info):
+    C, N, w, prefix = info
+    
+    metric='Wasserstein'
+    if w == 0:
+        metric='Euclidean'
+
+    mds = MDS(dissimilarity='precomputed')
+    embedding = mds.fit_transform(matrix)
+
+    for i in range(C):
+        points = embedding[N*i:N*(i+1)]
+        xmeans, ymeans = points.T
+        plt.scatter(xmeans, ymeans, s=1)
+    
+    name = f"Plots/{prefix}_{metric}MDS_{int(100*w)}"
+    plt.title(f"{metric} embedding (w={w})")
     plt.savefig(f"{name}.eps")
     plt.savefig(f"{name}.png")
     plt.show()
