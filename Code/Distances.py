@@ -35,9 +35,9 @@ def EuclideanDistanceMatrix(X):
 def WassersteinDistanceMatrix(X, w=0.5):
     N = len(X)
     K = np.zeros((N,N))
-    K2 = np.zeros((N,N))
+    # K2 = np.zeros((N,N))
     for i in range(N):
         for j in range(i+1,N):
             K[i,j] = GaussianWasserstein(X[i], X[j], w=w)
-            K2[i,j] = AlternativeGaussianWasserstein(X[i], X[j], w=w)
-    return K + K.T, K2 + K2.T
+            # K2[i,j] = AlternativeGaussianWasserstein(X[i], X[j], w=w)
+    return K + K.T

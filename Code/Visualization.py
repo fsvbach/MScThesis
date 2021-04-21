@@ -111,7 +111,7 @@ def plotTSNE(TSNE, matrix, info, sklearn=False):
         plt.scatter(xmeans, ymeans, s=1)
     
     name = f"Plots/{prefix}_{metric}TSNE_{int(100*w)}"
-    plt.title(f"{metric} embedding (w={w})")
+    plt.title(f"{metric}TSNE embedding (w={w})")
     plt.savefig(f"{name}.eps")
     plt.savefig(f"{name}.png")
     plt.show()
@@ -133,7 +133,7 @@ def plotMDS(MDS, matrix, info):
         plt.scatter(xmeans, ymeans, s=1)
     
     name = f"Plots/{prefix}_{metric}MDS_{int(100*w)}"
-    plt.title(f"{metric} embedding (w={w})")
+    plt.title(f"{metric}MDS embedding (w={w})")
     plt.savefig(f"{name}.eps")
     plt.savefig(f"{name}.png")
     plt.show()

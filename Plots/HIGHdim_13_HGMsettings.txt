@@ -1,0 +1,20 @@
+9 classes à 100 datapoints with each 30 samples in 20 dimensions.
+Random seed: 13, ClassDistance: 40, ClassVariance: 80, DataVariance: 5
+
+Created data in 0.6628723569999693 seconds.
+Computed matrix with w=0 in 33.626807491000136 seconds.
+Done TSNE in 38.375827338000136 seconds.
+Done MDS in 62.35128810700007 seconds.
+Computed matrix with w=0.25 in 94.78735716599999 seconds.
+Done TSNE in 99.21058190300005 seconds.
+Done MDS in 126.89038557699996 seconds.
+Computed matrix with w=0.5 in 158.9677677520001 seconds.
+Done TSNE in 162.94871681600011 seconds.
+Done MDS in 189.1596581020001 seconds.
+Computed matrix with w=0.75 in 224.342414684 seconds.
+Done TSNE in 229.8968745950001 seconds.
+Done MDS in 259.152242354 seconds.
+Computed matrix with w=1 in 290.7518549229999 seconds.
+Done TSNE in 293.978296065 seconds.
+Done MDS in 313.53196352099985 seconds.
+Succesfully finished code in 313.5320930759999 seconds.

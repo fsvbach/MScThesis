@@ -6,12 +6,15 @@ Created on Fri Apr  9 11:15:50 2021
 @author: fsvbach
 """
 
-import time
-start = time.perf_counter()
+
+from Code.Distances import WassersteinDistanceMatrix
+from Code.Simulation import HierarchicalGaussianMixture
+from Code.Visualization import plotHGM, plotHGM2, plotTSNE, plotMDS
 
 w_range    = [0, 0.25, 0.5, 0.75, 1]
-w_range    = [0.5]
-experiment = "TEST"
+# w_range    = [0.5]
+experiment = "HIGHdim"
+seed       = 13
 sklearn    = True
 
 if sklearn:
@@ -19,28 +22,31 @@ if sklearn:
 else:
     from openTSNE import TSNE
     
-from Code.Distances import WassersteinDistanceMatrix
-from Code.Simulation import HierarchicalGaussianMixture
-from Code.Visualization import plotHGM, plotHGM2, plotTSNE, plotMDS
+mixture = HierarchicalGaussianMixture(seed=seed,
+                                    datapoints=100, 
+                                    samples=30, 
+                                    features=20, 
+                                    classes=9,
+                                    ClassDistance=40,
+                                    ClassVariance=80,
+                                    DataVariance=5)
 
+if mixture.F == 2:
+    plotHGM(mixture, prefix=experiment)
+    plotHGM2(mixture, prefix=experiment)
 
-mixture = HierarchicalGaussianMixture(seed=13,
-                                          datapoints=100, 
-                                          samples=30, 
-                                          features=2, 
-                                          classes=3,
-                                          ClassDistance=40,
-                                          ClassVariance=80,
-                                          DataVariance=5)
-
-plotHGM(mixture, prefix=experiment)
-plotHGM2(mixture, prefix=experiment)
+print(f'{mixture._info()}\nCreated data in {time.perf_counter()-start} seconds.')
 
 for w in w_range:
-    matrix = WassersteinDistanceMatrix(mixture.data_estimates(), w=w)
-    # info   = (mixture.C, mixture.N, w, experiment)
-    # plotTSNE(TSNE, matrix, info=info, sklearn=sklearn)
-    # plotMDS(MDS, matrix, info=info)
+    info   = (mixture.C, mixture.N, w, experiment)
     
-stop = time.perf_counter()
-print(f'Succesfully finished code in {stop-start} seconds.')
+    matrix = WassersteinDistanceMatrix(mixture.data_estimates(), w=w)
+    print(f'Computed matrix with w={w} in {time.perf_counter()-start} seconds.')
+    
+    plotTSNE(TSNE, matrix, info=info, sklearn=sklearn)
+    print(f'Done TSNE in { time.perf_counter()-start} seconds.')
+    
+    plotMDS(MDS, matrix, info=info)
+    print(f'Done MDS in { time.perf_counter()-start} seconds.')
+
+print(f'Succesfully finished code in {time.perf_counter()-start} seconds.')
