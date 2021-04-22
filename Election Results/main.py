@@ -14,5 +14,5 @@ data = pd.read_csv('Data/BW/Kreise.csv', delimiter=';', encoding='ISO-8859-1')
 
 parties = data.columns[9:]
 
-
+parties
 

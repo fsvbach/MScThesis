@@ -33,9 +33,9 @@ class GaussianDistribution:
         self.mean = mean
         self.cov  = cov
     
-    def shape(self):
+    def shape(self, std=1):
         angle         = np.degrees(np.arctan2(*self.cov.P[:,0][::-1]))
-        width, height = np.sqrt(self.cov.s)*4
+        width, height = np.sqrt(self.cov.s)*2*std
         return self.mean, width, height, angle
 
 
@@ -117,5 +117,8 @@ class HierarchicalGaussianMixture:
             s, P = np.linalg.eig(C)
             Gaussians.append(GaussianDistribution(m, CovarianceMatrix(P, s)))
         return Gaussians
+    
+    def labels(self):
+        return np.hstack([np.ones(self.N) * i for i in range(self.C)]) + 1 
     
         

@@ -7,16 +7,16 @@ Created on Wed Apr 21 10:20:51 2021
 """
 
 import time
-
 class Timer:
-    def __init__(self, name, dec=3):
+    def __init__(self, name, dec=3, output=True):
         self.name      = name
         self.dec       = 3
+        self.output    = output
         self.start     = self.time()
         self.last_time = self.start
         self.date      = self.date()
         self.log       = [f"Started '{name}' at {self.date}\n"]
-    
+  
     def date(self):
         t = time.localtime()
         return time.strftime("%m-%d-%H-%M-%S", t)
@@ -37,10 +37,13 @@ class Timer:
     def finish(self):
         infomsg = f"Succesfully finished '{self.name}' in {self.total_time()}s"
         print(infomsg)
-        for msg in reversed(self.log):
-            infomsg = msg + '\n' + infomsg
-        file = open(f"Plots/.{self.name} {self.date}.txt", "a")
-        file.write(infomsg)
-        file.close() 
         
+        if self.output:
+            for msg in reversed(self.log):
+                infomsg = msg + '\n' + infomsg
+            file = open(f"Plots/.{self.name}.txt", "a")
+            file.write(infomsg)
+            file.write("\n\n{'-'*75}\n")
+            file.close() 
         
+    

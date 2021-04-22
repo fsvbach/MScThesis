@@ -11,7 +11,7 @@ eps = ""
 import matplotlib.pyplot as plt
 from matplotlib.patches import Ellipse
    
-def plotHGM(mixture, prefix='TEST'):
+def plotHGMdata(mixture, prefix='TEST', std=1):
         
     classcolor = 'C1'
     datacolor = 'C0'
@@ -21,38 +21,45 @@ def plotHGM(mixture, prefix='TEST'):
     ax = plt.subplot(111, aspect='equal')
 
     xmeans, ymeans = mixture.data.reshape((-1,2)).T
-    plt.scatter(xmeans, ymeans, s=5, c=samplecolor)
+    plt.scatter(xmeans, ymeans, s=1, c=samplecolor, label='samples')
     
     xmeans, ymeans = mixture.data_means().T
-    plt.scatter(xmeans, ymeans, s=100, c=datacolor)
+    plt.scatter(xmeans, ymeans, s=30, c=datacolor, label='datapoints')
 
+    covlabel = f'{std}-σ class covariances'
+    meanlabel = 'class means'
     for i in range(mixture.C):
         GaussianClass = mixture.classes[i]
                 
-        mean, width, height, angle = GaussianClass.shape()
+        mean, width, height, angle = GaussianClass.shape(std=std)
         ell = Ellipse(xy=mean, width=width, height=height, angle=angle, 
-                      edgecolor=classcolor, facecolor='none', linewidth=1, linestyle='--')
-        ax.add_artist(ell)
+                      edgecolor=classcolor, facecolor='none', linewidth=3, 
+                      label=covlabel, linestyle='--')
+        ax.add_patch(ell)
+               
         
-        GaussianData = mixture.datapoints[i*mixture.N]
+        # GaussianData = mixture.datapoints[i*mixture.N]
         
-        mean, width, height, angle = GaussianData.shape()
-        ell = Ellipse(xy=mean, width=width, height=height, angle=angle, 
-                   edgecolor=datacolor, facecolor='none', linewidth=2 )
-        ax.add_artist(ell)
+        # mean, width, height, angle = GaussianData.shape(std=std)
+        # ell = Ellipse(xy=mean, width=width, height=height, angle=angle, 
+        #             edgecolor=datacolor, facecolor='none', linewidth=2 )
+        # ax.add_artist(ell)
         
         xmean, ymean = GaussianClass.mean.T
-        plt.scatter(xmean, ymean, s=400, c=classcolor)
+        plt.scatter(xmean, ymean, s=100, c=classcolor, label=meanlabel)
+        
+        covlabel = meanlabel = None
 
+    plt.legend()
     plt.title(mixture._info(), fontsize=25)
     
-    name = f"Plots/{prefix}_{mixture.seed}_HGM"
-    plt.savefig(f"{name}.eps")
+    name = f"Plots/{prefix}_HGMdata"
+    # plt.savefig(f"{name}.eps")
     plt.savefig(f"{name}.png")
     plt.show()
     plt.close()
     
-def plotHGM2(mixture, prefix='TEST'):
+def plotHGMclasses(mixture, prefix='TEST', std=1, n=3):
     
     fig = plt.figure(figsize=(16,16))
     ax = plt.subplot(111, aspect='equal')
@@ -63,43 +70,48 @@ def plotHGM2(mixture, prefix='TEST'):
     for i, data in enumerate(mixture.data):
         color = "C"+str(i)
         
-        GaussianClass = mixture.classes[i]
+        # GaussianClass = mixture.classes[i]
         
-        mean, width, height, angle = GaussianClass.shape()
-        ell = Ellipse(xy=mean, width=width, height=height, angle=angle, 
-                      edgecolor='black', facecolor='none', linewidth=1, linestyle='--')
-        ax.add_artist(ell)
+        # mean, width, height, angle = GaussianClass.shape(std=std)
+        # ell = Ellipse(xy=mean, width=width, height=height, angle=angle, 
+        #               edgecolor='black', facecolor='none', linewidth=1, 
+        #               linestyle='--')
+        # ax.add_artist(ell)
         
-        GaussianData = mixture.datapoints[i*mixture.N]
+        label=f'class {i+1}'
+        for j in range(n):
+            GaussianData = mixture.datapoints[i*mixture.N+j]
+            
+            mean, width, height, angle = GaussianData.shape(std=std)
+            ell = Ellipse(xy=mean, width=width, height=height, angle=angle, 
+                        edgecolor=color, facecolor='none', linewidth=3, label=label)
+            ax.add_patch(ell)
+            
+            xmeans, ymeans = data.mean(axis=1).T
+            plt.scatter(xmeans, ymeans, s=30, c=color)
+            label=None
+    
+        # xmean, ymean = GaussianClass.mean.T
+        # plt.scatter(xmean, ymean, s=100, c='black')
         
-        mean, width, height, angle = GaussianData.shape()
-        ell = Ellipse(xy=mean, width=width, height=height, angle=angle, 
-                    edgecolor=color, facecolor='none', linewidth=3 )
-        ax.add_artist(ell)
-        
-        xmeans, ymeans = data.mean(axis=1).T
-        plt.scatter(xmeans, ymeans, s=30, c=color)
-
-        xmean, ymean = GaussianClass.mean.T
-        plt.scatter(xmean, ymean, s=100, c='black')
-        
+    plt.legend(title=f'{std}-σ data covariances')
     plt.title(mixture._info(), fontsize=25)
-    name = f"Plots/{prefix}_{mixture.seed}_HGM2"
-    plt.savefig(f"{name}.eps")
+    name = f"Plots/{prefix}_HGMlabels"
+    # plt.savefig(f"{name}.eps")
     plt.savefig(f"{name}.png")
     plt.show()
     plt.close()
     
     
 def plotTSNE(TSNE, matrix, info, sklearn=False):
-    C, N, w, prefix = info
+    C, N, w, seed, prefix = info
     
     metric='Wasserstein'
     if w == 0:
         metric='Euclidean'
 
     if sklearn:
-        tsne = TSNE(metric='precomputed', square_distances=True)
+        tsne = TSNE(metric='precomputed', square_distances=True, random_state=seed)
         embedding = tsne.fit_transform(matrix)
     else:
         tsne = TSNE(metric='precomputed', initialization='spectral', negative_gradient_method='bh')
@@ -110,12 +122,14 @@ def plotTSNE(TSNE, matrix, info, sklearn=False):
         xmeans, ymeans = points.T
         plt.scatter(xmeans, ymeans, s=1)
     
-    name = f"Plots/{prefix}_{metric}TSNE_{int(100*w)}"
+    name = f"Plots/{prefix}_TSNE_{int(100*w)}"
     plt.title(f"{metric}TSNE embedding (w={w})")
-    plt.savefig(f"{name}.eps")
+    # plt.savefig(f"{name}.eps")
     plt.savefig(f"{name}.png")
     plt.show()
     plt.close()
+    
+    return embedding
     
 def plotMDS(MDS, matrix, info):
     C, N, w, prefix = info
@@ -132,9 +146,40 @@ def plotMDS(MDS, matrix, info):
         xmeans, ymeans = points.T
         plt.scatter(xmeans, ymeans, s=1)
     
-    name = f"Plots/{prefix}_{metric}MDS_{int(100*w)}"
+    name = f"Plots/{prefix}_MDS_{int(100*w)}"
     plt.title(f"{metric}MDS embedding (w={w})")
-    plt.savefig(f"{name}.eps")
+    # plt.savefig(f"{name}.eps")
     plt.savefig(f"{name}.png")
     plt.show()
     plt.close()
+    
+    
+from sklearn.metrics import accuracy_score
+from sklearn.neighbors import KNeighborsClassifier
+
+class plotAccuracy:
+    def __init__(self, labels, params, prefix, k=10):
+        self.labels = labels
+        self.prefix = prefix
+        self.params = params
+        self.list = []
+        self.kNN    = KNeighborsClassifier(k)
+    
+    def append(self, embedding):
+        self.kNN.fit(embedding, self.labels)
+        test = self.kNN.predict(embedding)
+        acc  = accuracy_score(test, self.labels)
+        self.list.append(acc)
+        return acc
+    
+    def plot(self):
+        name = f"Plots/{self.prefix}_Accuracy"
+        
+        plt.plot(self.params, self.list)
+        plt.xlabel('w')
+        plt.ylabel('%')
+        plt.title("kNN Accuracies")
+        # plt.savefig(f"{name}.eps")
+        plt.savefig(f"{name}.png")
+        plt.show()
+        plt.close()
