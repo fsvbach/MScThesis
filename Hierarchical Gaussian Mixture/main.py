@@ -11,9 +11,9 @@ from Code.utils import Timer
 w_range    = [0, 0.25, 0.5, 0.75, 1]
 # w_range    = [0.5]
 seed       = 13
-experiment = "LOW"
+experiment = "TEST"
 sklearn    = True
-timer      = Timer(experiment, output=True)
+timer      = Timer(experiment, output=False)
 
 if sklearn:
     from sklearn.manifold import TSNE, MDS
@@ -25,7 +25,7 @@ from Code.Simulation import HierarchicalGaussianMixture
 from Code.Visualization import plotHGMdata, plotHGMclasses, plotTSNE, plotMDS, plotAccuracy
 
 mixture = HierarchicalGaussianMixture(seed=seed,
-                                    datapoints=300, 
+                                    datapoints=50, 
                                     samples=30, 
                                     features=2, 
                                     classes=7,
