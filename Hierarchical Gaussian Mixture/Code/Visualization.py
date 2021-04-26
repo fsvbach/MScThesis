@@ -111,10 +111,15 @@ def plotTSNE(TSNE, matrix, info, sklearn=False):
         metric='Euclidean'
 
     if sklearn:
-        tsne = TSNE(metric='precomputed', square_distances=True, random_state=seed)
+        tsne = TSNE(metric='precomputed', 
+                    square_distances=True, 
+                    random_state=seed)
         embedding = tsne.fit_transform(matrix)
     else:
-        tsne = TSNE(metric='precomputed', initialization='spectral', negative_gradient_method='bh')
+        tsne = TSNE(metric='precomputed', 
+                    initialization='random', 
+                    negative_gradient_method='bh',
+                    random_state=seed)
         embedding = tsne.fit(matrix)
 
     for i in range(C):
@@ -158,24 +163,25 @@ from sklearn.metrics import accuracy_score
 from sklearn.neighbors import KNeighborsClassifier
 
 class plotAccuracy:
-    def __init__(self, labels, params, prefix, k=10):
+    def __init__(self, labels, prefix, k=10):
         self.labels = labels
         self.prefix = prefix
-        self.params = params
-        self.list = []
+        self.params = []
+        self.values = []
         self.kNN    = KNeighborsClassifier(k)
     
-    def append(self, embedding):
+    def append(self, embedding, w):
         self.kNN.fit(embedding, self.labels)
         test = self.kNN.predict(embedding)
         acc  = accuracy_score(test, self.labels)
-        self.list.append(acc)
+        self.values.append(acc)
+        self.params.append(w)
         return acc
     
     def plot(self):
         name = f"Plots/{self.prefix}_Accuracy"
         
-        plt.plot(self.params, self.list)
+        plt.plot(self.params, self.values)
         plt.xlabel('w')
         plt.ylabel('%')
         plt.title("kNN Accuracies")

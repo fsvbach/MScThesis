@@ -1,0 +1,184 @@
+Started '2DIM' at 04-26-11-31-34
+
+6 classes à 400 datapoints with each 5 samples in 2 dimensions.
+Random seed: 13, ClassDistance: 4, ClassVariance: 5, DataVariance: 6
+
+Created data in 3.101s. (Total: 3.101s)
+
+Computed distance matrices in 0.315s. (Total: 3.416s)
+
+Computed matrix with w=0.0 in 0.042s. (Total: 3.458s)
+
+Done TSNE in 11.438s. (Total: 14.896s)
+
+Accuracy: 0.53625% in 0.162s. (Total: 15.058s)
+
+Computed matrix with w=0.1111111111111111 in 0.041s. (Total: 15.099s)
+
+Done TSNE in 10.6s. (Total: 25.699s)
+
+Accuracy: 0.68375% in 0.121s. (Total: 25.82s)
+
+Computed matrix with w=0.2222222222222222 in 0.041s. (Total: 25.861s)
+
+Done TSNE in 11.662s. (Total: 37.524s)
+
+Accuracy: 0.71% in 0.208s. (Total: 37.731s)
+
+Computed matrix with w=0.3333333333333333 in 0.054s. (Total: 37.785s)
+
+Done TSNE in 10.66s. (Total: 48.445s)
+
+Accuracy: 0.725% in 0.238s. (Total: 48.683s)
+
+Computed matrix with w=0.4444444444444444 in 0.143s. (Total: 48.826s)
+
+Done TSNE in 13.045s. (Total: 61.871s)
+
+Accuracy: 0.72875% in 0.137s. (Total: 62.008s)
+
+Computed matrix with w=0.5555555555555556 in 0.076s. (Total: 62.084s)
+
+Done TSNE in 13.116s. (Total: 75.2s)
+
+Accuracy: 0.73125% in 0.148s. (Total: 75.348s)
+
+Computed matrix with w=0.6666666666666666 in 0.094s. (Total: 75.442s)
+
+Done TSNE in 11.13s. (Total: 86.572s)
+
+Accuracy: 0.72875% in 0.144s. (Total: 86.716s)
+
+Computed matrix with w=0.7777777777777778 in 0.064s. (Total: 86.78s)
+
+Done TSNE in 10.682s. (Total: 97.462s)
+
+Accuracy: 0.7275% in 0.143s. (Total: 97.605s)
+
+Computed matrix with w=0.8888888888888888 in 0.058s. (Total: 97.663s)
+
+Done TSNE in 10.831s. (Total: 108.494s)
+
+Accuracy: 0.70875% in 0.195s. (Total: 108.689s)
+
+Computed matrix with w=1.0 in 0.043s. (Total: 108.732s)
+
+Done TSNE in 11.532s. (Total: 120.264s)
+
+Accuracy: 0.6225% in 0.116s. (Total: 120.38s)
+
+Succesfully finished '2DIM' in 120.697s
+
+---------------------------------------------------------------------------
+Started '2DIM' at 04-26-11-40-49
+
+6 classes à 300 datapoints with each 5 samples in 2 dimensions.
+Random seed: 13, ClassDistance: 4, ClassVariance: 4, DataVariance: 5
+
+Created data in 2.229s. (Total: 2.229s)
+
+Computed distance matrices in 0.275s. (Total: 2.504s)
+
+Done TSNE in 7.797s. (Total: 10.301s)
+
+Accuracy (w=0.0): 0.5722222222222222% in 0.129s. (Total: 10.43s)
+
+Done TSNE in 7.6s. (Total: 18.03s)
+
+Accuracy (w=0.1): 0.7383333333333333% in 0.073s. (Total: 18.103s)
+
+Done TSNE in 7.91s. (Total: 26.013s)
+
+Accuracy (w=0.2): 0.7677777777777778% in 0.087s. (Total: 26.1s)
+
+Done TSNE in 7.606s. (Total: 33.706s)
+
+Accuracy (w=0.3): 0.79% in 0.113s. (Total: 33.819s)
+
+Done TSNE in 7.608s. (Total: 41.427s)
+
+Accuracy (w=0.4): 0.8016666666666666% in 0.131s. (Total: 41.558s)
+
+Done TSNE in 7.519s. (Total: 49.077s)
+
+Accuracy (w=0.5): 0.8011111111111111% in 0.112s. (Total: 49.189s)
+
+Done TSNE in 7.999s. (Total: 57.188s)
+
+Accuracy (w=0.6): 0.7944444444444444% in 0.175s. (Total: 57.363s)
+
+Done TSNE in 8.474s. (Total: 65.837s)
+
+Accuracy (w=0.7): 0.8066666666666666% in 0.07s. (Total: 65.907s)
+
+Done TSNE in 7.942s. (Total: 73.849s)
+
+Accuracy (w=0.8): 0.7977777777777778% in 0.055s. (Total: 73.904s)
+
+Done TSNE in 7.659s. (Total: 81.563s)
+
+Accuracy (w=0.9): 0.8016666666666666% in 0.13s. (Total: 81.693s)
+
+Done TSNE in 8.101s. (Total: 89.794s)
+
+Accuracy (w=1.0): 0.6922222222222222% in 0.068s. (Total: 89.862s)
+
+Succesfully finished '2DIM' in 90.002s
+
+---------------------------------------------------------------------------
+Started '2DIM' at 04-26-11-51-31
+
+7 classes à 300 datapoints with each 5 samples in 2 dimensions.
+Random seed: 13, ClassDistance: 4, ClassVariance: 5, DataVariance: 6
+
+Created data in 3.074s. (Total: 3.074s)
+
+Computed distance matrices in 0.281s. (Total: 3.355s)
+
+Done TSNE in 9.601s. (Total: 12.956s)
+
+Accuracy (w=0.0): 0.6304761904761905% in 0.109s. (Total: 13.065s)
+
+Done TSNE in 9.702s. (Total: 22.767s)
+
+Accuracy (w=0.1): 0.8061904761904762% in 0.061s. (Total: 22.828s)
+
+Done TSNE in 9.081s. (Total: 31.909s)
+
+Accuracy (w=0.2): 0.8323809523809523% in 0.069s. (Total: 31.978s)
+
+Done TSNE in 9.115s. (Total: 41.093s)
+
+Accuracy (w=0.3): 0.8357142857142857% in 0.061s. (Total: 41.154s)
+
+Done TSNE in 8.982s. (Total: 50.136s)
+
+Accuracy (w=0.4): 0.8376190476190476% in 0.064s. (Total: 50.2s)
+
+Done TSNE in 9.122s. (Total: 59.322s)
+
+Accuracy (w=0.5): 0.8419047619047619% in 0.063s. (Total: 59.385s)
+
+Done TSNE in 9.112s. (Total: 68.497s)
+
+Accuracy (w=0.6): 0.8357142857142857% in 0.069s. (Total: 68.566s)
+
+Done TSNE in 9.85s. (Total: 78.416s)
+
+Accuracy (w=0.7): 0.8457142857142858% in 0.124s. (Total: 78.54s)
+
+Done TSNE in 9.077s. (Total: 87.617s)
+
+Accuracy (w=0.8): 0.8333333333333334% in 0.121s. (Total: 87.738s)
+
+Done TSNE in 9.35s. (Total: 97.088s)
+
+Accuracy (w=0.9): 0.8261904761904761% in 0.095s. (Total: 97.183s)
+
+Done TSNE in 8.982s. (Total: 106.165s)
+
+Accuracy (w=1.0): 0.7480952380952381% in 0.185s. (Total: 106.35s)
+
+Succesfully finished '2DIM' in 106.536s
+
+---------------------------------------------------------------------------

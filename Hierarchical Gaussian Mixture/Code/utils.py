@@ -43,7 +43,7 @@ class Timer:
                 infomsg = msg + '\n' + infomsg
             file = open(f"Plots/.{self.name}.txt", "a")
             file.write(infomsg)
-            file.write("\n\n{'-'*75}\n")
+            file.write(f"\n\n{'-'*75}\n")
             file.close() 
         
     

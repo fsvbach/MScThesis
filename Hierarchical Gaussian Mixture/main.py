@@ -8,11 +8,10 @@ Created on Fri Apr  9 11:15:50 2021
 
 from Code.utils import Timer
 
-w_range    = [0, 0.25, 0.5, 0.75, 1]
-# w_range    = [0.5]
+n_plots    = 11
 seed       = 13
-experiment = "TEST"
-sklearn    = True
+experiment = "2DIM"
+sklearn    = False
 timer      = Timer(experiment, output=False)
 
 if sklearn:
@@ -20,41 +19,41 @@ if sklearn:
 else:
     from openTSNE import TSNE
     
-from Code.Distances import WassersteinDistanceMatrix
+from Code.Distances import GaussianWassersteinDistance
 from Code.Simulation import HierarchicalGaussianMixture
 from Code.Visualization import plotHGMdata, plotHGMclasses, plotTSNE, plotMDS, plotAccuracy
 
 mixture = HierarchicalGaussianMixture(seed=seed,
-                                    datapoints=50, 
-                                    samples=30, 
+                                    datapoints=200, 
+                                    samples=10, 
                                     features=2, 
-                                    classes=7,
-                                    ClassDistance=4,
-                                    ClassVariance=6,
-                                    DataVariance=5)
+                                    classes=10,
+                                    ClassDistance=5,
+                                    ClassVariance=5,
+                                    DataVariance=1)
 
 if mixture.F == 2:
-    plotHGMdata(mixture, prefix=experiment, std=3)
-    plotHGMclasses(mixture, prefix=experiment, std=1, n=1)
+    plotHGMdata(mixture, prefix=experiment, std=1)
+    plotHGMclasses(mixture, prefix=experiment, std=4, n=1)
 
 timer.add(f'{mixture._info()}\n\nCreated data')
 
 accuracies = plotAccuracy(labels=mixture.labels(), 
-                          params=w_range, 
                           prefix=experiment, 
                           k=10)
 
-for w in w_range:
+WSDM = GaussianWassersteinDistance(mixture.data_estimates())
+timer.add('Computed distance matrices')
+
+for w in range(n_plots):
+    w      = round(w/(n_plots-1),2)
     info   = (mixture.C, mixture.N, w, seed, experiment)
     
-    matrix = WassersteinDistanceMatrix(mixture.data_estimates(), w=w)
-    timer.add(f'Computed matrix with w={w}')
-    
-    embedding = plotTSNE(TSNE, matrix, info=info, sklearn=sklearn)
+    embedding = plotTSNE(TSNE, WSDM.matrix(w=w), info=info, sklearn=sklearn)
     timer.add('Done TSNE')
     
-    acc = accuracies.append(embedding)
-    timer.add(f'Accuracy: {acc}%')
+    acc = accuracies.append(embedding, w)
+    timer.add(f'Accuracy (w={w}): {acc}%')
     # plotMDS(MDS, matrix, info=info)
     # timer.add('Done MDS')
 
