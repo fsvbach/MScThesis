@@ -10,9 +10,9 @@ from Code.utils import Timer
 
 n_plots    = 11
 seed       = 13
-experiment = "2DIM"
-sklearn    = False
-timer      = Timer(experiment, output=False)
+experiment = "FEW"
+sklearn    = True
+timer      = Timer(experiment, output=True)
 
 if sklearn:
     from sklearn.manifold import TSNE, MDS
@@ -24,17 +24,17 @@ from Code.Simulation import HierarchicalGaussianMixture
 from Code.Visualization import plotHGMdata, plotHGMclasses, plotTSNE, plotMDS, plotAccuracy
 
 mixture = HierarchicalGaussianMixture(seed=seed,
-                                    datapoints=200, 
-                                    samples=10, 
+                                    datapoints=400, 
+                                    samples=5, 
                                     features=2, 
-                                    classes=10,
-                                    ClassDistance=5,
+                                    classes=6,
+                                    ClassDistance=4,
                                     ClassVariance=5,
-                                    DataVariance=1)
+                                    DataVariance=6)
 
 if mixture.F == 2:
-    plotHGMdata(mixture, prefix=experiment, std=1)
-    plotHGMclasses(mixture, prefix=experiment, std=4, n=1)
+    plotHGMdata(mixture, prefix=experiment, std=2)
+    plotHGMclasses(mixture, prefix=experiment, std=1, n=1)
 
 timer.add(f'{mixture._info()}\n\nCreated data')
 
@@ -50,7 +50,7 @@ for w in range(n_plots):
     info   = (mixture.C, mixture.N, w, seed, experiment)
     
     embedding = plotTSNE(TSNE, WSDM.matrix(w=w), info=info, sklearn=sklearn)
-    timer.add('Done TSNE')
+    timer.add(f'Done TSNE with sklearn={sklearn}')
     
     acc = accuracies.append(embedding, w)
     timer.add(f'Accuracy (w={w}): {acc}%')

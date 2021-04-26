@@ -1,0 +1,56 @@
+Started 'FEW' at 04-26-15-08-58
+
+6 classes à 400 datapoints with each 5 samples in 2 dimensions.
+Random seed: 13, ClassDistance: 4, ClassVariance: 5, DataVariance: 6
+
+Created data in 1.754s. (Total: 1.754s)
+
+Computed distance matrices in 0.164s. (Total: 1.918s)
+
+Done TSNE in 58.143s. (Total: 60.061s)
+
+Accuracy (w=0.0): 0.5416666666666666% in 0.051s. (Total: 60.112s)
+
+Done TSNE in 63.112s. (Total: 123.224s)
+
+Accuracy (w=0.1): 0.68% in 0.05s. (Total: 123.274s)
+
+Done TSNE in 63.868s. (Total: 187.142s)
+
+Accuracy (w=0.2): 0.7029166666666666% in 0.053s. (Total: 187.195s)
+
+Done TSNE in 64.296s. (Total: 251.491s)
+
+Accuracy (w=0.3): 0.7104166666666667% in 0.053s. (Total: 251.544s)
+
+Done TSNE in 65.48s. (Total: 317.024s)
+
+Accuracy (w=0.4): 0.7175% in 0.076s. (Total: 317.1s)
+
+Done TSNE in 62.006s. (Total: 379.106s)
+
+Accuracy (w=0.5): 0.7245833333333334% in 0.056s. (Total: 379.162s)
+
+Done TSNE in 67.213s. (Total: 446.375s)
+
+Accuracy (w=0.6): 0.7245833333333334% in 0.054s. (Total: 446.429s)
+
+Done TSNE in 62.933s. (Total: 509.362s)
+
+Accuracy (w=0.7): 0.7116666666666667% in 0.051s. (Total: 509.413s)
+
+Done TSNE in 76.463s. (Total: 585.876s)
+
+Accuracy (w=0.8): 0.7170833333333333% in 0.058s. (Total: 585.934s)
+
+Done TSNE in 61.112s. (Total: 647.046s)
+
+Accuracy (w=0.9): 0.71375% in 0.052s. (Total: 647.098s)
+
+Done TSNE in 64.063s. (Total: 711.162s)
+
+Accuracy (w=1.0): 0.6233333333333333% in 0.053s. (Total: 711.214s)
+
+Succesfully finished 'FEW' in 711.33s
+
+---------------------------------------------------------------------------
