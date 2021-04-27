@@ -1,0 +1,24 @@
+Started 'TEST' at 04-27-13-23-46
+
+6 classes à 400 datapoints with each 5 samples in 2 dimensions.
+Random seed: 13, ClassDistance: 4, ClassVariance: 5, DataVariance: 6
+
+Created data in 2.539s. (Total: 2.539s)
+
+Computed distance matrices in 0.388s. (Total: 2.927s)
+
+Done TSNE with sklearn=True in 9.393s. (Total: 12.32s)
+
+Accuracy (w=0.0): 0.5416666666666666% in 0.103s. (Total: 12.423s)
+
+Done TSNE with sklearn=True in 11.051s. (Total: 23.474s)
+
+Accuracy (w=0.5): 0.7245833333333334% in 0.102s. (Total: 23.576s)
+
+Done TSNE with sklearn=True in 10.903s. (Total: 34.479s)
+
+Accuracy (w=1.0): 0.6233333333333333% in 0.203s. (Total: 34.682s)
+
+Succesfully finished 'TEST' in 34.856s
+
+---------------------------------------------------------------------------

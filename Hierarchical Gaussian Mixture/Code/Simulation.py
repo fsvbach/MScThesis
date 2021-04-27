@@ -18,8 +18,7 @@ class Generator:
         return 2*samples*limit
     
     def UniformCovariance(self, dim, maxstd):
-        seed = self.generator.integers(10000)
-        P = ortho_group.rvs(dim=dim, random_state=seed)
+        P = ortho_group.rvs(dim=dim, random_state=self.NewSeed())
         s = (self.generator.random(size=dim) * maxstd)**2
         return CovarianceMatrix(P,s)
         
@@ -27,6 +26,8 @@ class Generator:
         return self.generator.multivariate_normal(mean = Gaussian.mean, 
                                                   cov  = Gaussian.cov.array(),
                                                   size = size)
+    def NewSeed(self):
+        return self.generator.integers(10000)
         
 class GaussianDistribution:
     def __init__(self, mean, cov):
