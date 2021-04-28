@@ -1,0 +1,116 @@
+Started 'REDCLASS' at 04-28-14-06-23
+
+6 classes à 400 datapoints with each 5 samples in 2 dimensions.
+Random seed: 13, ClassDistance: 4, ClassVariance: 5, DataVariance: 6
+
+Created data in 2.773s. (Total: 2.773s)
+
+Computed distance matrices in 0.374s. (Total: 3.147s)
+
+Done TSNE with sklearn=False in 10.344s. (Total: 13.491s)
+
+Accuracy (w=0.0): 0.53625% in 0.084s. (Total: 13.575s)
+
+Done TSNE with sklearn=False in 10.347s. (Total: 23.922s)
+
+Accuracy (w=0.1): 0.68125% in 0.077s. (Total: 23.999s)
+
+Done TSNE with sklearn=False in 10.358s. (Total: 34.357s)
+
+Accuracy (w=0.2): 0.70375% in 0.069s. (Total: 34.426s)
+
+Done TSNE with sklearn=False in 10.349s. (Total: 44.775s)
+
+Accuracy (w=0.3): 0.7125% in 0.07s. (Total: 44.845s)
+
+Done TSNE with sklearn=False in 10.456s. (Total: 55.301s)
+
+Accuracy (w=0.4): 0.73% in 0.07s. (Total: 55.371s)
+
+Done TSNE with sklearn=False in 11.715s. (Total: 67.086s)
+
+Accuracy (w=0.5): 0.7204166666666667% in 0.068s. (Total: 67.154s)
+
+Done TSNE with sklearn=False in 11.108s. (Total: 78.262s)
+
+Accuracy (w=0.6): 0.7208333333333333% in 0.073s. (Total: 78.335s)
+
+Done TSNE with sklearn=False in 10.477s. (Total: 88.812s)
+
+Accuracy (w=0.7): 0.7220833333333333% in 0.077s. (Total: 88.889s)
+
+Done TSNE with sklearn=False in 10.266s. (Total: 99.155s)
+
+Accuracy (w=0.8): 0.7133333333333334% in 0.069s. (Total: 99.224s)
+
+Done TSNE with sklearn=False in 10.366s. (Total: 109.59s)
+
+Accuracy (w=0.9): 0.7104166666666667% in 0.07s. (Total: 109.66s)
+
+Done TSNE with sklearn=False in 10.131s. (Total: 119.791s)
+
+Accuracy (w=1.0): 0.6225% in 0.069s. (Total: 119.86s)
+
+Done Final Plot in 1.07s. (Total: 120.93s)
+
+Succesfully finished 'MESS' in 120.93s
+
+---------------------------------------------------------------------------
+Started 'MESS' at 04-28-14-15-50
+
+7 classes à 300 datapoints with each 5 samples in 2 dimensions.
+Random seed: 13, ClassDistance: 4, ClassVariance: 6, DataVariance: 5
+
+Created data in 1.893s. (Total: 1.893s)
+
+Computed distance matrices in 0.431s. (Total: 2.324s)
+
+Done TSNE with sklearn=False in 8.596s. (Total: 10.92s)
+
+Accuracy (w=0.0): 0.6252380952380953% in 0.06s. (Total: 10.98s)
+
+Done TSNE with sklearn=False in 8.512s. (Total: 19.492s)
+
+Accuracy (w=0.1): 0.8% in 0.061s. (Total: 19.553s)
+
+Done TSNE with sklearn=False in 8.798s. (Total: 28.351s)
+
+Accuracy (w=0.2): 0.819047619047619% in 0.093s. (Total: 28.444s)
+
+Done TSNE with sklearn=False in 8.801s. (Total: 37.245s)
+
+Accuracy (w=0.3): 0.8242857142857143% in 0.07s. (Total: 37.315s)
+
+Done TSNE with sklearn=False in 9.777s. (Total: 47.092s)
+
+Accuracy (w=0.4): 0.8352380952380952% in 0.109s. (Total: 47.201s)
+
+Done TSNE with sklearn=False in 9.603s. (Total: 56.804s)
+
+Accuracy (w=0.5): 0.8342857142857143% in 0.059s. (Total: 56.863s)
+
+Done TSNE with sklearn=False in 8.935s. (Total: 65.798s)
+
+Accuracy (w=0.6): 0.8357142857142857% in 0.059s. (Total: 65.857s)
+
+Done TSNE with sklearn=False in 8.464s. (Total: 74.321s)
+
+Accuracy (w=0.7): 0.8342857142857143% in 0.067s. (Total: 74.388s)
+
+Done TSNE with sklearn=False in 8.926s. (Total: 83.314s)
+
+Accuracy (w=0.8): 0.8304761904761905% in 0.07s. (Total: 83.384s)
+
+Done TSNE with sklearn=False in 9.218s. (Total: 92.602s)
+
+Accuracy (w=0.9): 0.8271428571428572% in 0.059s. (Total: 92.661s)
+
+Done TSNE with sklearn=False in 8.46s. (Total: 101.121s)
+
+Accuracy (w=1.0): 0.7461904761904762% in 0.061s. (Total: 101.182s)
+
+Done Final Plot in 0.967s. (Total: 102.149s)
+
+Succesfully finished 'MESS' in 102.149s
+
+---------------------------------------------------------------------------

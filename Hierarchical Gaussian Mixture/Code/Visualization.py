@@ -21,19 +21,18 @@ class HandlerEllipse(HandlerPatch):
         p.set_transform(trans)
         return [p]
 
-def plotHGM(mixture, prefix='TEST', std=1):
+def plotHGM(mixture, prefix='TEST', std=1, X=20, Y=15, r=5):
     C = mixture.C
-    
     fig, (ax, info) = plt.subplots(1,2, 
-                                   figsize=(15,10),
-                                   gridspec_kw={'width_ratios': [3, 1],
+                                   figsize=(X,Y),
+                                   gridspec_kw={'width_ratios': [r, 1],
                                                 'wspace':0, 'hspace':0})
     
     # plotting grey samples
     xmeans, ymeans = mixture.data.reshape((-1,2)).T
     ax.scatter(xmeans, ymeans, s=1, c='grey', label='Samples')
     
-    dist = 0
+    maxstd = 0
     datlabel = 'Datapoints (Distributions)'
     for i, data in enumerate(mixture.data):
         
@@ -45,9 +44,14 @@ def plotHGM(mixture, prefix='TEST', std=1):
         # calculating largest data-covariance
         GaussianData = mixture.datapoints[i*mixture.N]
         _, width, height, _ = GaussianData.shape(std=1)
-        dist = max(dist, max(width, height))
-        
-    covlabel = f'{std}-σ class covariances'
+        maxstd = max(maxstd, max(width, height))
+    
+    # calculate geometry for info axis
+    maxstd *= 7/6
+    ratio = ax.get_data_ratio()
+    ymax  = maxstd*ratio*r
+    
+    covlabel = f'{std}-σ class covariance'
     for i, data in enumerate(mixture.data):
     
         # plotting black class covariances
@@ -55,7 +59,7 @@ def plotHGM(mixture, prefix='TEST', std=1):
         mean, width, height, angle = GaussianClass.shape(std=std)
         ell = Ellipse(xy=mean, width=width, height=height, angle=angle, 
                       edgecolor='black', facecolor='none', 
-                      linewidth=1, linestyle='--', 
+                      linewidth=2, linestyle='--', 
                       label=covlabel)
         ax.add_patch(ell)
         covlabel=None
@@ -63,100 +67,56 @@ def plotHGM(mixture, prefix='TEST', std=1):
         # plotting legend data covariances
         GaussianData = mixture.datapoints[i*mixture.N]   
         _, width, height, angle = GaussianData.shape(std=1)
-        ell = Ellipse(xy=(0,(C-i-0.5)*dist), width=width, height=height, angle=angle, 
+        ell = Ellipse(xy=(0,(i+0.5)*ymax/C), width=width, height=height, angle=angle, 
                       edgecolor="C"+str(i), facecolor='none', 
                       linewidth=3, 
                       label='class'+str(i+1))
         info.add_patch(ell)
         # plt.axis('off')
     
+    info.yaxis.tick_right()
+    info.set(xbound=(-maxstd/2,maxstd/2),
+             ybound=(0,ymax))
+    # info.set_aspect(2/C*ratio)
+    
+    ax.spines['right'].set(visible=False)
+    info.spines['left'].set(linestyle=':', linewidth=0.5)
+    
+    axhandles, axlabels = ax.get_legend_handles_labels()
+    infhandles, inflabels = info.get_legend_handles_labels()
+    
+    # axhandles[2].set_color('black')
+    # infhandles[0].set_color('black')
+    
+    handles = [axhandles[1], axhandles[2], infhandles[0],axhandles[0]]
+    labels = [axlabels[1], axlabels[2], '1-σ data covariance', axlabels[0]]
+    ax.legend(handles, labels, 
+                handler_map={Ellipse: HandlerEllipse()})
+                # loc='lower left', bbox_to_anchor=(-0.5,1.05))
     
     fig.suptitle(mixture._info(), fontsize=24)
-    
-    info.set(xbound=(-dist,dist),
-             ybound=(0,C*dist))
-            # yticks=np.linspace(0,(n-1)*dist,num=n),
-            # xticklabels=xlabel,
-            # yticks=np.linspace(-2*dist/3,2*dist/3,num=5))
-    info.yaxis.tick_right()
-    info.legend(title='1-σ data covariances',
-                handler_map={Ellipse: HandlerEllipse()})
-    
-    ax.legend(title='General HGM structure',
-              handler_map={Ellipse: HandlerEllipse()})
-            
-    name = f"Plots/{prefix}_HGM"
-    fig.savefig(f"{name}.svg")
+
+    fig.savefig(f"Plots/{prefix}_HGM.svg")
     plt.show()
     plt.close()
+        
     
-    
-def plotTSNE(TSNE, matrix, info, sklearn=False):
-    C, N, w, seed, prefix = info
-    
-    metric='Wasserstein'
-    if w == 0:
-        metric='Euclidean'
-
-    if sklearn:
-        tsne = TSNE(metric='precomputed', 
-                    square_distances=True, 
-                    random_state=seed)
-        embedding = tsne.fit_transform(matrix)
-    else:
-        tsne = TSNE(metric='precomputed', 
-                    initialization='random', 
-                    negative_gradient_method='bh',
-                    random_state=seed)
-        embedding = tsne.fit(matrix)
-
-    for i in range(C):
-        points = embedding[N*i:N*(i+1)]
-        xmeans, ymeans = points.T
-        plt.scatter(xmeans, ymeans, s=1)
-    
-    name = f"Plots/{prefix}_TSNE_{int(100*w)}"
-    plt.title(f"{metric}TSNE embedding (w={w})")
-    # plt.savefig(f"{name}.eps")
-    plt.savefig(f"{name}.png")
-    plt.show()
-    plt.close()
-    
-    return embedding
-    
-def plotMDS(MDS, matrix, info):
-    C, N, w, prefix = info
-    
-    metric='Wasserstein'
-    if w == 0:
-        metric='Euclidean'
-
-    mds = MDS(dissimilarity='precomputed')
-    embedding = mds.fit_transform(matrix)
-
-    for i in range(C):
-        points = embedding[N*i:N*(i+1)]
-        xmeans, ymeans = points.T
-        plt.scatter(xmeans, ymeans, s=1)
-    
-    name = f"Plots/{prefix}_MDS_{int(100*w)}"
-    plt.title(f"{metric}MDS embedding (w={w})")
-    # plt.savefig(f"{name}.eps")
-    plt.savefig(f"{name}.png")
-    plt.show()
-    plt.close()
-    
-    
+import numpy as np
 from sklearn.metrics import accuracy_score
 from sklearn.neighbors import KNeighborsClassifier
 
-class plotAccuracy:
+class plotTSNE:
     def __init__(self, labels, prefix, k=10):
         self.labels = labels
         self.prefix = prefix
         self.params = []
         self.values = []
+        self.embeddings = []
+        self.classes = np.unique(labels)
+        self.wplot  = [0, 0.5, 1]
+        self.names  = ['Euclidean', 'Wasserstein', 'Covariance']
         self.kNN    = KNeighborsClassifier(k)
+        self.k      = k
     
     def append(self, embedding, w):
         self.kNN.fit(embedding, self.labels)
@@ -164,16 +124,30 @@ class plotAccuracy:
         acc  = accuracy_score(test, self.labels)
         self.values.append(acc)
         self.params.append(w)
+        if w in self.wplot:
+            self.embeddings.append(embedding)
         return acc
     
     def plot(self):
-        name = f"Plots/{self.prefix}_Accuracy"
+        fig, axes  = plt.subplots(ncols=4, figsize=(20,5))
         
-        plt.plot(self.params, self.values)
-        plt.xlabel('w')
-        plt.ylabel('%')
-        plt.title("kNN Accuracies")
-        # plt.savefig(f"{name}.eps")
-        plt.savefig(f"{name}.png")
+        for ax, embedding, name, w in zip(axes[:-1], self.embeddings, self.names, self.wplot):
+            ax.set(title=f"{name} TSNE embedding (w={w})",
+                   aspect='equal')
+    
+            for c in self.classes:
+                idx = np.where(self.labels==c)
+                x, y = embedding[idx].T
+                ax.scatter(x, y, s=1, c=f'C{c}')
+        
+
+        axes[-1].plot(self.params, 100*np.array(self.values))
+        axes[-1].set(xlabel='w',
+                     ylabel='%',
+                     title =f"kNN Accuracies (k={self.k})",
+                     ybound=(0,100),
+                     xbound=(0,1))
+
+        fig.savefig(f"Plots/{self.prefix}_TSNE.svg")
         plt.show()
         plt.close()

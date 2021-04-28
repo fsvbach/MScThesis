@@ -8,52 +8,60 @@ Created on Fri Apr  9 11:15:50 2021
 
 from Code.utils import Timer
 
-n_plots    = 3
+n_plots    = 11
 seed       = 13
 experiment = "TEST"
 sklearn    = True
 timer      = Timer(experiment, output=True)
-
-if sklearn:
-    from sklearn.manifold import TSNE, MDS
-else:
-    from openTSNE import TSNE
-    
+      
 from Code.Distances import GaussianWassersteinDistance
 from Code.Simulation import HierarchicalGaussianMixture
-from Code.Visualization import plotHGM, plotTSNE, plotAccuracy
+from Code.Visualization import plotHGM, plotTSNE
 
 mixture = HierarchicalGaussianMixture(seed=seed,
-                                    datapoints=400, 
+                                    datapoints=300, 
                                     samples=5, 
                                     features=2, 
-                                    classes=6,
+                                    classes=7,
                                     ClassDistance=4,
-                                    ClassVariance=5,
-                                    DataVariance=6)
+                                    ClassVariance=6,
+                                    DataVariance=5)
 
 if mixture.F == 2:
     plotHGM(mixture, prefix=experiment, std=2)
-
 timer.add(f'{mixture._info()}\n\nCreated data')
-
-accuracies = plotAccuracy(labels=mixture.labels(), 
-                          prefix=experiment, 
-                          k=10)
 
 WSDM = GaussianWassersteinDistance(mixture.data_estimates())
 timer.add('Computed distance matrices')
+
+
+figure = plotTSNE(labels=mixture.labels(), 
+                  prefix=experiment, 
+                  k=5)
 
 for w in range(n_plots):
     w      = round(w/(n_plots-1),2)
     info   = (mixture.C, mixture.N, w, seed, experiment)
     
-    embedding = plotTSNE(TSNE, WSDM.matrix(w=w), info=info, sklearn=sklearn)
+    if sklearn:
+        from sklearn.manifold import TSNE
+        tsne = TSNE(metric='precomputed', 
+                    square_distances=True, 
+                    random_state=seed)
+        embedding = tsne.fit_transform(WSDM.matrix(w=w))
+    else:
+        from openTSNE import TSNE
+        tsne = TSNE(metric='precomputed', 
+                    initialization='random', 
+                    negative_gradient_method='bh',
+                    random_state=seed)
+        embedding = tsne.fit(WSDM.matrix(w=w))
     timer.add(f'Done TSNE with sklearn={sklearn}')
     
-    acc = accuracies.append(embedding, w)
+    acc = figure.append(embedding, w)
     timer.add(f'Accuracy (w={w}): {acc}%')
 
-accuracies.plot()
+figure.plot()
+timer.add('Done Final Plot')
 
 timer.finish()

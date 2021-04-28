@@ -120,6 +120,6 @@ class HierarchicalGaussianMixture:
         return Gaussians
     
     def labels(self):
-        return np.hstack([np.ones(self.N) * i for i in range(self.C)]) + 1 
+        return np.hstack([np.ones(self.N,dtype=np.int) * i for i in range(self.C)]) 
     
         
