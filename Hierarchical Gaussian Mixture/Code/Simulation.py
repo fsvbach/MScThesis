@@ -42,6 +42,14 @@ class GaussianDistribution:
 
 class CovarianceMatrix:
     def __init__(self, P, s):
+        '''
+        stores eigen-decomposition of covariance matrix
+        ----------
+        P : np.ndarray
+            orthogonal matrix.
+        s : np.array
+            eigenvalues in array.
+        '''
         self.P = P
         self.s = s
         
@@ -108,7 +116,7 @@ class HierarchicalGaussianMixture:
     def data_covs(self):
         data = self.data.reshape((-1,self.D, self.F))
         data = (data.transpose([1,0,2]) - self.data_means()).transpose([1,0,2])
-        return np.matmul(data.transpose([0,2,1]),data)
+        return np.matmul(data.transpose([0,2,1]),data) / (self.D - 1)
 
     def data_estimates(self):
         means = self.data_means()

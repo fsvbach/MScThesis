@@ -59,9 +59,9 @@ for w in range(n_plots):
     timer.add(f'Done TSNE with sklearn={sklearn}')
     
     acc = figure.append(embedding, w)
-    timer.add(f'Accuracy (w={w}): {acc}%')
+    timer.result(f'Accuracy (w={w}): {acc}%')
 
 figure.plot()
-timer.add('Done Final Plot')
+timer.result('Done Final Plot')
 
-timer.finish()
+timer.finish(f'Plots/.logfile.txt')

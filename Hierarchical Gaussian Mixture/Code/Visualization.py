@@ -151,3 +151,14 @@ class plotTSNE:
         fig.savefig(f"Plots/{self.prefix}_TSNE.svg")
         plt.show()
         plt.close()
+        
+def plotMatrix(matrices, titles, name):
+    n = len(matrices)
+    fig, axes = plt.subplots(ncols=n, figsize=(7*n,5))
+    for matrix, title, ax in zip(matrices, titles, axes):
+        m = ax.imshow(matrix)
+        ax.set(title=title)
+        plt.colorbar(m, ax=ax)
+    fig.savefig(f'Plots/Heatmaps/{name}.svg')
+    plt.show()
+    plt.close()

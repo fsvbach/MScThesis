@@ -33,15 +33,19 @@ class Timer:
         self.last_time = time
         self.log.append(msg)
         print(msg)
+    
+    def result(self, result):
+        self.log.append(result)
+        print(result)
 
-    def finish(self):
+    def finish(self, location):
         infomsg = f"Succesfully finished '{self.name}' in {self.total_time()}s"
         print(infomsg)
         
         if self.output:
             for msg in reversed(self.log):
                 infomsg = msg + '\n' + infomsg
-            file = open(f"Plots/.{self.name}.txt", "a")
+            file = open(location, "a")
             file.write(infomsg)
             file.write(f"\n\n{'-'*75}\n")
             file.close() 

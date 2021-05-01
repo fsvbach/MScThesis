@@ -31,3 +31,20 @@ class GaussianWassersteinDistance:
     def matrix(self, w=0.5):
         return (1-w)*self.EDM + w*self.CDM
     
+    
+    
+def PairwiseGaussianWasserstein(N1, N2, w=0.5):
+    m1, cov1 = N1.mean, N1.cov
+    m2, cov2 = N2.mean, N2.cov
+    tmp = cov2.sqrt() @ cov1.array() @ cov2.sqrt()
+    s, P = np.linalg.eig(tmp)
+    tmp = cov1.array() + cov2.array() - 2 * P @ np.diag(np.sqrt(s)) @ P.T 
+    return (1-w)*np.linalg.norm(m1 - m2)**2 + w*np.sum(np.diag(tmp))
+                                               
+def WassersteinMatrixLoop(X, w=0.5):
+    N = len(X)
+    K = np.zeros((N,N))
+    for i in range(N):
+        for j in range(i+1,N):
+            K[i,j] = PairwiseGaussianWasserstein(X[i], X[j], w=w)
+    return K + K.T
