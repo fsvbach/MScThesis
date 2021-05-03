@@ -6,3 +6,5 @@ Created on Mon May  3 12:15:58 2021
 @author: fsvbach
 """
 
+from openTSNE import TSNE
+
