@@ -1,6 +1,6 @@
 ## Project Description
 
-_We want to find out in which sense a "Wasserstein t-SNE" can be useful. Which datasets exists where each datum itself is a probability distribution? How are they visualized/clustered now, and which metrics on probability distributions can improve clustering?_
+_We want to find out in which sense a "Wasserstein t-SNE" can be useful. Which datasets exist where each datum itself is a probability distribution? How are they visualized/clustered now, and which metrics on probability distributions can improve clustering?_
 
 ### Datasets
 
