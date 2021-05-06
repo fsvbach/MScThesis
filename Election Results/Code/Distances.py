@@ -19,3 +19,4 @@ B = np.array([1,3,4,1,0,2]).reshape((3,2))
 d = cdist(A, B)
 assignment = linear_sum_assignment(d)
 print(d[assignment].sum() / n)
+
