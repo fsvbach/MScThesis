@@ -14,11 +14,12 @@ class HandlerEllipse(HandlerPatch):
     def create_artists(self, legend, orig_handle,
                        xdescent, ydescent, width, height, fontsize, trans):
         center = 0.5 * width - 0.5 * xdescent, 0.5 * height - 0.5 * ydescent
-        # print(center, width, height, trans, fontsize)
-        p = Ellipse(xy=center, width=width ,
-                             height=height , angle=0)
+        p = Ellipse(xy=center, width=width + xdescent,
+                             height=height + ydescent,
+                             angle=orig_handle.angle)
         self.update_prop(p, orig_handle, legend)
         p.set_transform(trans)
+        print(orig_handle.angle)
         return [p]
 
 def plotHGM(mixture, prefix='TEST', std=1, X=20, Y=15, r=5):

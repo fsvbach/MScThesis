@@ -14,7 +14,7 @@ def plotEVS(cord):
     fig, ax = plt.subplots(figsize=(20,20))
     for c, C in cord.groupby(level=0):
         ax.scatter(C['x'],C['y'], label=c)
-    ax.legend(title='Citizens from', fontsize=30, markerscale=4, 
+    ax.legend(title='NUTS2 regions from', fontsize=30, markerscale=4, 
               ncol=2, bbox_to_anchor=(1.05,1.05))
     # ax.set_title('Citizens from', fontsize=40)
     fig.savefig('Plots/tsneEVS.svg')

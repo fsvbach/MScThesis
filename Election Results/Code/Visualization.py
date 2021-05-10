@@ -59,10 +59,11 @@ class PlotElection:
                         ha='center')
             
         
-        for spine in ax.spines:
-            ax.spines[spine].set(visible=False)
-        ax.set(xticks=[],
-               yticks=[])
+        # for spine in ax.spines:
+        #     ax.spines[spine].set(visible=False)
+        ax.axis('off')
+        # ax.set(xticks=[],
+        #        yticks=[])
         ax.set_title(title, fontdict={'fontsize': 25})
         fig.savefig(f'Plots/{title}.svg')
         plt.show()
