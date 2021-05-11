@@ -7,28 +7,16 @@ Created on Fri Apr  9 11:15:50 2021
 """
 
 from .share.Timer import Timer
-
-from .share.Distances import GaussianWassersteinDistance
+from .share.Wasserstein import WassersteinTSNE
 from .share.Simulations import HierarchicalGaussianMixture
-from .share.Visualizations import plotHGM, plotTSNE
+from .share.Visualizations import plotHGM
 
 
-def run(): 
-    n_plots    = 11
-    seed       = 13
-    experiment = "TEST"
-    sklearn    = True
+def run(seed=None, n_plots=11, experiment="TEST", sklearn=False, output=True, **kwargs): 
     timer      = Timer(experiment, output=True)
           
+    mixture = HierarchicalGaussianMixture(seed=seed, **kwargs)
     
-    mixture = HierarchicalGaussianMixture(seed=seed,
-                                        datapoints=300, 
-                                        samples=5, 
-                                        features=2, 
-                                        classes=7,
-                                        ClassDistance=4,
-                                        ClassVariance=6,
-                                        DataVariance=5)
     
     if mixture.F == 2:
         plotHGM(mixture, prefix=experiment, std=2)
@@ -46,19 +34,7 @@ def run():
         w      = round(w/(n_plots-1),2)
         info   = (mixture.C, mixture.N, w, seed, experiment)
         
-        if sklearn:
-            from sklearn.manifold import TSNE
-            tsne = TSNE(metric='precomputed', 
-                        square_distances=True, 
-                        random_state=seed)
-            embedding = tsne.fit_transform(WSDM.matrix(w=w))
-        else:
-            from openTSNE import TSNE
-            tsne = TSNE(metric='precomputed', 
-                        initialization='random', 
-                        negative_gradient_method='bh',
-                        random_state=seed)
-            embedding = tsne.fit(WSDM.matrix(w=w))
+
         timer.add(f'Done TSNE with sklearn={sklearn}')
         
         acc = figure.append(embedding, w)
@@ -68,3 +44,59 @@ def run():
     timer.result('Done Final Plot')
     
     timer.finish(f'Plots/.logfile.txt')
+    
+
+import matplotlib.pyplot as plt
+import numpy as np
+from sklearn.metrics import accuracy_score
+from sklearn.neighbors import KNeighborsClassifier
+
+class plotTSNE:
+    def __init__(self, labels, prefix, k=10):
+        self.labels = labels
+        self.prefix = prefix
+        self.params = []
+        self.values = []
+        self.embeddings = []
+        self.classes = np.unique(labels)
+        self.wplot  = [0, 0.5, 1]
+        self.names  = ['Euclidean', 'Wasserstein', 'Covariance']
+        self.kNN    = KNeighborsClassifier(k)
+        self.k      = k
+    
+    def append(self, embedding, w):
+        self.kNN.fit(embedding, self.labels)
+        test = self.kNN.predict(embedding)
+        acc  = accuracy_score(test, self.labels)
+        self.values.append(acc)
+        self.params.append(w)
+        if w in self.wplot:
+            self.embeddings.append(embedding)
+        return acc
+    
+    def plot(self):
+        fig, axes  = plt.subplots(ncols=4, figsize=(20,5))
+        
+        for ax, embedding, name, w in zip(axes[:-1], self.embeddings, self.names, self.wplot):
+            ax.set(title=f"{name} TSNE embedding (w={w})",
+                   aspect='equal')
+    
+            for c in self.classes:
+                idx = np.where(self.labels==c)
+                x, y = embedding[idx].T
+                ax.scatter(x, y, s=1, c=f'C{c}')
+        
+
+        axes[-1].plot(self.params, 100*np.array(self.values))
+        axes[-1].set(xlabel='w',
+                     ylabel='%',
+                     title =f"kNN Accuracies (k={self.k})",
+                     ybound=(0,100),
+                     xbound=(0,1))
+
+        fig.savefig(f"Plots/{self.prefix}_TSNE.svg")
+        plt.show()
+        plt.close()
+
+
+

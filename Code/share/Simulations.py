@@ -7,6 +7,7 @@ Created on Fri Apr  9 11:34:16 2021
 """
 
 from scipy.stats import ortho_group
+from scipy.linalg import eigh
 import numpy as np
 
 class Generator:
@@ -42,7 +43,7 @@ class GaussianDistribution:
 
 
 class CovarianceMatrix:
-    def __init__(self, P, s):
+    def __init__(self, P=None, s=None, from_array=False):
         '''
         stores eigen-decomposition of covariance matrix
         ----------
@@ -51,6 +52,11 @@ class CovarianceMatrix:
         s : np.array
             eigenvalues in array.
         '''
+        if from_array:
+            s, P = eigh(P)
+            s[np.where(s<0)]=0
+            assert np.all(s>=0)
+            
         self.P = P
         self.s = s
         
@@ -63,17 +69,21 @@ class CovarianceMatrix:
     
 class HierarchicalGaussianMixture:
             
-    config = {'ClassDistance': 25,
+    config = {'datapoints':50, 
+              'samples' :20, 
+              'features':2,
+              'classes':3,
+              'ClassDistance': 25,
               'ClassVariance': 5,
               'DataVariance': 1}
          
-    def __init__(self, seed=None, datapoints=50, samples=20, features=2, classes=3, **kwargs):
-        self.N = datapoints
-        self.D = samples
-        self.F = features
-        self.C = classes
-        
+    def __init__(self, seed=None, **kwargs):
         self.config.update(kwargs)
+        
+        self.N = self.config['datapoints']
+        self.D = self.config['samples']
+        self.F = self.config['features']
+        self.C = self.config['classes']
         
         self.seed = seed
         self.generator = Generator(seed)
@@ -124,8 +134,7 @@ class HierarchicalGaussianMixture:
         covs  = self.data_covs()
         Gaussians = []
         for m,C in zip(means, covs):
-            s, P = np.linalg.eig(C)
-            Gaussians.append(GaussianDistribution(m, CovarianceMatrix(P, s)))
+            Gaussians.append(GaussianDistribution(m, CovarianceMatrix(C, from_array=True)))
         return Gaussians
     
     def labels(self):

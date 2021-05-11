@@ -15,7 +15,7 @@ df = pd.DataFrame(np.random.randint(0,100,size=(2000, 4)),
 
 tsne = TSNE()
 
-df  = df.to_numpy()
+# df  = df.to_numpy()
 
 try:
     tsne.fit(df[:500])
@@ -29,3 +29,4 @@ try:
 except:
     print("Whole DataFrame doesn't work.")
     
+tsne.fit(df)
