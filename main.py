@@ -8,9 +8,15 @@ Created on Mon May 10 15:07:28 2021
 
 ### run experiments by importing them and using their .run() method
 
-from Code import EVS_TSNE as experiment
-experiment.run()
 
+from Datasets.BW2021.Data import Wahlkreise as Loader
+
+
+data = Loader()
+
+from WassersteinTSNE import HGM
+
+data = HGM()
 
 
 
@@ -24,4 +30,14 @@ experiment.run()
 # from Code import HGM_TSNE as experiment
 # experiment.run(seed=13, experiment="BAD", datapoints=50)
 
-# ### ...
+# ### Figure 2 CovarianceSampling 
+# from Datasets.SyntheticData.Experiments import CovarianceSampling as experiment
+# experiment.run(seed=2, suffix="TEST")
+
+# ### Figure 3 Frobenius 
+# from Datasets.SyntheticData.Experiments import Frobenius as experiment
+# experiment.run(seed=2, suffix="FINAL")
+
+
+
+
