@@ -10,53 +10,8 @@ from scipy.stats import special_ortho_group, wishart
 from scipy.linalg import eigh
 import numpy as np
 
-class RandomGenerator:
-    def __init__(self, seed=None):
-        self.generator = np.random.default_rng(seed=seed)
-    
-    def UniformInteger(self, lower=0, upper=10000):
-        return self.generator.integers(lower, upper)
-    
-    def UniformVector(self, dim=2, upper=1, size=1):
-        samples = self.generator.random((size, dim)) - 0.5 
-        return 2*samples*upper
-    
-    def OrthogonalMatrix(self, dim=2, size=1):
-        return special_ortho_group.rvs(dim=dim, random_state=self.UniformInteger(), size=size)
-    
-    def UniformCovariance(self, dim=2, maxstd=1):
-        P = self.OrthogonalMatrix(dim=dim)
-        s = (self.generator.random(size=dim) * maxstd)**2
-        return CovarianceMatrix(P,s)
-        
-    def GaussianSamples(self, Gaussian, size):
-        return self.generator.multivariate_normal(mean = Gaussian.mean, 
-                                                  cov  = Gaussian.cov.array(),
-                                                  size = size)
-    def WishartSamples(self, Wishart, size):
-        return wishart.rvs(Wishart.nu, Wishart.scale, random_state=self.UniformInteger(), size=size)
-  
-                      
-class WishartDistribution:
-    def __init__(self, nu, scale):
-        self.nu = nu
-        self.scale  = scale
-        
-    def shape(self, std=1):
-        return self.scale.shape(std=std)
-
-
-class GaussianDistribution:
-    def __init__(self, mean, cov):
-        self.mean = mean
-        self.cov  = cov
-        
-    def shape(self, std=1):
-        width, height, angle = self.cov.shape(std=std)
-        return self.mean, width, height, angle
-    
 class CovarianceMatrix:
-    def __init__(self, P=None, s=None, from_array=False):
+    def __init__(self, P=np.array([[3,4],[-4,3]])/5, s=np.array([1,3])):
         '''
         stores eigen-decomposition of covariance matrix
         ----------
@@ -64,15 +19,10 @@ class CovarianceMatrix:
             orthogonal matrix.
         s : np.array
             eigenvalues in array.
-        '''
-        if from_array:
-            s, P = eigh(P)
-            s[np.where(s<0)]=0
-            assert np.all(s>=0)
-            
+        '''          
         self.P = P
         self.s = s
-        
+                
     def array(self):
         return self.P@np.diag(self.s)@self.P.T
     
@@ -82,5 +32,71 @@ class CovarianceMatrix:
     def shape(self, std=1):
         assert len(self.s) == 2
         angle         = np.degrees(np.arctan2(*self.P[:,0][::-1]))
-        width, height = np.sqrt(self.s)*2*std
+        width, height = np.sqrt(self.s)*std*2
         return width, height, angle
+
+def arr2cov(array):
+    s, P = eigh(array)
+    s[np.where(s<0)]=0
+    assert np.all(s>=0)
+    return CovarianceMatrix(P, s)   
+
+    
+class WishartDistribution:
+    def __init__(self, nu=2, scale=CovarianceMatrix()):
+        self.nu = nu
+        self.scale  = scale
+        
+    def shape(self, std=1):
+        return self.scale.shape(std=std)
+        
+    
+class GaussianDistribution:
+    def __init__(self, mean=np.array([1,0]), cov=CovarianceMatrix()):
+        self.mean = mean
+        self.cov  = cov
+    
+    def estimate(self, dataset):
+        self.mean = np.mean(dataset, axis=1)
+        dataset  -= self.mean
+        self.cov  = arr2cov(dataset.T @ dataset / (len(dataset) - 1))
+
+    def shape(self, std=1):
+        width, height, angle = self.cov.shape(std=std)
+        return self.mean, width, height, angle
+
+    def samples(self, size=20):
+        return np.random.default_rng().multivariate_normal(mean = self.mean, 
+                                                  cov  = self.cov.array(),
+                                                  size = size)
+
+class RandomGenerator:
+    def __init__(self, seed=None):
+        self.generator = np.random.default_rng(seed=seed)
+    
+    def RandomSeed(self):
+        return self.UniformInteger(upper=10000)[0]
+    
+    def UniformInteger(self, lower=0, upper=10, size=1):
+        return self.generator.integers(lower, upper, size)
+    
+    def UniformVector(self, dim=2, upper=1, size=1):
+        samples = self.generator.random((size, dim)) - 0.5 
+        return 2*samples*upper
+    
+    def OrthogonalMatrix(self, dim=2, size=1):
+        return special_ortho_group.rvs(dim=dim, random_state=self.RandomSeed(), size=size)
+    
+    def UniformCovariance(self, dim=2, maxstd=1):
+        P = self.OrthogonalMatrix(dim=dim)
+        s = (self.generator.random(size=dim) * maxstd)**2
+        return CovarianceMatrix(P,s)
+        
+    def GaussianSamples(self, Gaussian, size=1):
+        return self.generator.multivariate_normal(mean = Gaussian.mean, 
+                                                  cov  = Gaussian.cov.array(),
+                                                  size = size)
+    def WishartSamples(self, Wishart, size=1):
+        arrays = wishart.rvs(Wishart.nu, Wishart.scale.array(), random_state=self.RandomSeed(), size=size)
+        return [arr2cov(arr) for arr in arrays]
+
