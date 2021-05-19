@@ -17,11 +17,11 @@ from sklearn.neighbors import KNeighborsClassifier
 
 from .Distributions import GaussianDistribution, arr2cov
 
-def accuracy(embedding, labels, k=10):
+def accuracy(embedding, k=10):
     kNN    = KNeighborsClassifier(k)
-    kNN.fit(embedding, labels)
-    test = kNN.predict(embedding)
-    return accuracy_score(test, labels)
+    kNN.fit(embedding.values, embedding.index)
+    test = kNN.predict(embedding.values)
+    return accuracy_score(test, embedding.index)
  
 class WassersteinTSNE:
     def __init__(self, dataset, seed=None, sklearn=False, fast_approx=False):
@@ -29,7 +29,7 @@ class WassersteinTSNE:
         self.sklearn = sklearn
         self.seed    = seed
 
-    def fit(self, w=):
+    def fit(self, w):
         
         if self.sklearn:
             tsne = skleTSNE(metric='precomputed', 
@@ -42,11 +42,12 @@ class WassersteinTSNE:
                         negative_gradient_method='bh',
                         random_state=self.seed)
             embedding = tsne.fit(self.GWD.matrix(w=w))
-            
+        
+        # cols = [(f'w={w}','x'), (f'w={w}', 'y')]
+        embedding =  pd.DataFrame(embedding, 
+                     # columns = pd.MultiIndex.from_tuples(cols),
+                     columns = ['x','y'])
         return embedding
-    
-    def evaluate(self, w, labels):
-        coordinates = pd.DataFrame()
 
             
 class GaussianWassersteinDistance:

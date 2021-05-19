@@ -55,6 +55,7 @@ class GaussianDistribution:
         self.cov  = cov
     
     def estimate(self, data):
+        assert len(data) > 1
         self.mean = np.mean(data, axis=0)
         data     -= self.mean
         self.cov  = arr2cov(data.T @ data / (len(data) - 1))

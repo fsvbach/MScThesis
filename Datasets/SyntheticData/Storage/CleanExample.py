@@ -6,7 +6,7 @@ Created on Tue Apr 27 11:46:36 2021
 @author: fsvbach
 """
 
-import matplotlib.pyplot as plt
+
 from WassersteinTSNE import HGM 
 from WassersteinTSNE.Visualization.Synthetic import plotHGM
 

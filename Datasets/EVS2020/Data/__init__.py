@@ -17,28 +17,38 @@ class Preprocess:
               'v185', 'v186', 'v187', 'v188',                # immigration
               'v199', 'v201','v202','v203','v200'           # environment
               ]
-        
-    def __init__(self, index=['c_abrv', 'v275b_N2']):
-        
-        self.df = pd.read_stata("Datasets/EVS2020/Data/EVS.dta", 
-                           convert_categoricals=False,
-                           columns = self.questions+index)
-        
-        self.countries = self.df.c_abrv.unique()
-        
-        self.df.set_index(['c_abrv', 'v275b_N2'], drop=True, inplace=True)
-
-
-    def NUTS2(self, countries=None, questions=None):
-        if countries:
-            self.countries = countries
-        if questions:
-            self.questions = questions
-        
-        data = self.df.loc[self.countries, self.questions]
-        data[data<0] = np.NaN
-        
-        return data.dropna()
     
+    marker = ['v275b_N2', 'c_abrv']
+        
+    def __init__(self):
+        self.df        = pd.read_stata("Datasets/EVS2020/Data/EVS.dta", 
+                                       convert_categoricals=False,
+                                       columns = self.questions+self.marker)
+        self.countries = self.df.c_abrv.unique()
 
+    def NUTS2(self, countries=None, questions=None, min_entries=2):
+        if not countries:
+            countries = self.countries
+        if not questions:
+            questions = self.questions
+        
+        self.df.set_index(['c_abrv', 'v275b_N2'], inplace=True, drop=True)
+        data = self.df.loc[countries, questions]
+        
+        data[data<0] = np.NaN
+        data.dropna(inplace=True)
+        
+        ### labels
+        labels  = []
+        dataset = []
+        for n, nuts in data.groupby(level=1):
+            country = nuts.index.get_level_values(0).unique()
+            if len(country) > 1:
+                print("Labels not unique!", nuts)
+                # raise AssertionError
+            elif len(nuts) >= min_entries:
+                labels.append(country[0])
+                dataset.append(nuts.droplevel(0))
 
+        return pd.concat(dataset), labels
+        

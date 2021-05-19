@@ -6,15 +6,14 @@ Created on Wed Apr 21 14:29:45 2021
 @author: bachmafy
 """
 
-from .share.Distances import WassersteinTSNE
-from .BW2021.DataLoader import Gemeinden, Wahlkreise
-from .BW2021.Visualization import plotElection
-
+from WassersteinTSNE import NormalTSNE
+from WassersteinTSNE.Visualization.Elections import plotElection
+from Datasets.BW2021.Data import Wahlkreise
 
 def run():
     dataset = Wahlkreise(nonvoters=True)
     
-    tsne = WassersteinTSNE(load='Data/Election BW2021/KreiseEmbeddingTrue.npy')
+    tsne = NormalTSNE()
     embedding = tsne.fit(dataset.data.to_numpy())
     
     figure = plotElection(dataset)
@@ -29,3 +28,4 @@ def run():
     # figure = plotElection(dataset)
     # figure.tSNE(embedding, size=60)
 
+run()
