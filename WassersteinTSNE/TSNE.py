@@ -6,52 +6,47 @@ Created on Fri May 14 10:35:42 2021
 @author: fsvbach
 """
 
+import pandas as pd
 import numpy as np
 
 from openTSNE import TSNE as openTSNE
 from sklearn.manifold import TSNE as skleTSNE
 
+from sklearn.metrics import accuracy_score
+from sklearn.neighbors import KNeighborsClassifier
+
 from .Distributions import GaussianDistribution, arr2cov
 
+def accuracy(embedding, labels, k=10):
+    kNN    = KNeighborsClassifier(k)
+    kNN.fit(embedding, labels)
+    test = kNN.predict(embedding)
+    return accuracy_score(test, labels)
+ 
 class WassersteinTSNE:
-    def __init__(self, seed=None, sklearn=False, load=None, store=None):
+    def __init__(self, dataset, seed=None, sklearn=False, fast_approx=False):
+        self.GWD     = GaussianWassersteinDistance(dataset, fast_approx)
         self.sklearn = sklearn
         self.seed    = seed
-        self.path    = load
-        self.store   = store
 
-    def fit(self, data):
-        if self.path:
-            return np.load(self.path)
-        
-        if self.sklearn:
-            tsne = skleTSNE(random_state=self.seed)
-            embedding = tsne.fit_transform(data)
-        else:
-            tsne = openTSNE(random_state=self.seed)
-            embedding = tsne.fit(data)
-    
-        if self.store:
-            np.save(self.store, embedding)
-        
-        return embedding
-
-    def fit_precomputed(self, matrix):
+    def fit(self, w=):
         
         if self.sklearn:
             tsne = skleTSNE(metric='precomputed', 
                         square_distances=True, 
                         random_state=self.seed)
-            embedding = tsne.fit_transform(matrix)
+            embedding = tsne.fit_transform(self.GWD.matrix(w=w))
         else:
             tsne = openTSNE(metric='precomputed', 
                         initialization='random', 
                         negative_gradient_method='bh',
                         random_state=self.seed)
-            embedding = tsne.fit(matrix)
+            embedding = tsne.fit(self.GWD.matrix(w=w))
             
         return embedding
-
+    
+    def evaluate(self, w, labels):
+        coordinates = pd.DataFrame()
 
             
 class GaussianWassersteinDistance:
@@ -105,5 +100,18 @@ class GaussianWassersteinDistance:
         return (1-w)*self.EDM + w*self.CDM
     
     
-    
+class NormalTSNE:
+    def __init__(self, seed=None, sklearn=False):
+        self.sklearn = sklearn
+        self.seed    = seed
+        
+    def fit(self, data):
+        if self.sklearn:
+            tsne = skleTSNE(random_state=self.seed)
+            embedding = tsne.fit_transform(data)
+        else:
+            tsne = openTSNE(random_state=self.seed)
+            embedding = tsne.fit(data)
+            
+        return embedding   
 

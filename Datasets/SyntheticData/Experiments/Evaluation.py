@@ -6,41 +6,53 @@ Created on Fri Apr  9 11:15:50 2021
 @author: fsvbach
 """
 
-from WassersteinTSNE import Timer, WassersteinTSNE, HGM, GWD
-from WassersteinTSNE.Visualization import plotHGM
+import matplotlib.pyplot as plt
+import WassersteinTSNE as ws
+
+from WassersteinTSNE.Visualization.Synthetic import plotHGM
 
 
-def run(seed=None, n_plots=11, experiment="TEST", sklearn=False, output=True, **kwargs): 
-    timer      = Timer(experiment, output=True)
+def run(seed=None, suffix="TEST", sklearn=False, output=False, **kwargs): 
+    timer      = ws.Timer(suffix, output=output)
           
-    mixture = HGM(seed=seed, **kwargs)
-    
+    mixture = ws.HGM(seed=seed, **kwargs)
     
     if mixture.F == 2:
-        plotHGM(mixture, prefix=experiment, std=2)
+        fig, ax = plt.subplots(figsize=(15,10))
+        ax = plotHGM(ax, mixture, std=3)
+        fig.suptitle(mixture._info(), fontsize=24)
+        fig.savefig(f"Plots/Evalution{suffix}.svg")
+        plt.show()
+        plt.close()
+        
     timer.add(f'{mixture._info()}\n\nCreated data')
     
-    WSDM = GWD(mixture.data_estimates())
+    WT = ws.TSNE(mixture.data, seed=seed, fast_approx=False)
     timer.add('Computed distance matrices')
     
+    fig, axes = plt.subplots(2,3)
     
-    figure = plotTSNE(labels=mixture.labels(), 
-                      prefix=experiment, 
-                      k=5)
-    
-    for w in range(n_plots):
-        w      = round(w/(n_plots-1),2)
-        info   = (mixture.C, mixture.N, w, seed, experiment)
+    w = 0
+    for ax in axes.T.flatten()[:-1]:
         
-
+        x,y = WT.fit(w=w)
         timer.add(f'Done TSNE with sklearn={sklearn}')
         
-        acc = figure.append(embedding, w)
+        ax.set(title=f"embedding (w={w})",
+               aspect='equal')
+        
+        ax = plotEmbedding(ax, coordinates)
+        
         timer.result(f'Accuracy (w={w}): {acc}%')
+    
+    ax[2,3].plot(accuracies)
+    ax[2,3].legend()
     
     figure.plot()
     timer.result('Done Final Plot')
     
     timer.finish(f'Plots/.logfile.txt')
-    
+
+# if __name__ == "__main__":
+#     run(suffix='TEST')
 

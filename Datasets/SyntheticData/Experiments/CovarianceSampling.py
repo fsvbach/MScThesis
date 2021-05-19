@@ -6,7 +6,7 @@ Created on Tue Apr 27 09:12:59 2021
 @author: fsvbach
 """
 
-from WassersteinTSNE.Distributions import * 
+from WassersteinTSNE.Distributions import WishartDistribution, RandomGenerator, CovarianceMatrix
 from scipy.stats import wishart, ortho_group, special_ortho_group
 
 import numpy as np
@@ -36,32 +36,24 @@ def add_row(ax, CovarianceMatrices, info):
         
     for d, A, i in zip(info['xvalues'], CovarianceMatrices, range(n)):
         color = 'C'+str(i)
-        m   = np.array([i*dist,0])
+        mean   = np.array([i*dist,0])
         
         if kind == 'Uniform':
             BBB  = [generator.UniformCovariance(2, d) for i in range(info['samples'])]
         else:
-            Wishart = WishartDistribution(d, A.array())
+            Wishart = WishartDistribution(d, A)
             BBB  = generator.WishartSamples(Wishart, size=info['samples'])
             
 
         for B in BBB:
-            
-            if kind == 'Wishart':
-                s, P = np.linalg.eig(B)
-                C = GaussianDistribution(m, CovarianceMatrix(P, s))
-            else:
-                C = GaussianDistribution(m, B)
-                
-            mean, width, height, angle = C.shape(std=1)
+            width, height, angle = B.shape(std=1)
             ell = Ellipse(xy=mean, width=width, height=height, angle=angle, 
                            edgecolor='grey', facecolor='none', linewidth=1, 
                            label='c', linestyle='-')
             ax.add_patch(ell)
         
         if kind == 'Wishart':
-            C = GaussianDistribution(m, A)
-            mean, width, height, angle = C.shape(std=1)
+            width, height, angle = A.shape(std=1)
             ell = Ellipse(xy=mean, width=width, height=height, angle=angle, 
                                edgecolor=color, facecolor='none', linewidth=4, 
                                label='c', linestyle='-')
@@ -81,6 +73,7 @@ def run(**kwargs):
     _info.update(kwargs)
     
     _info['generator'] = RandomGenerator(_info['seed'])
+    generator = _info['generator']
     
     n = _info['columns']
     a = _info['stretch']
@@ -93,7 +86,7 @@ def run(**kwargs):
                  xlabels  = np.linspace(0,(n-1)*dist,num=n)/dist+2,
                  xvalues  = np.arange(2,2+n),
                  name     ='Other')
-    add_row(ax[2], [_info['generator'].UniformCovariance(2, 1)]*n, _info)
+    add_row(ax[2], [generator.UniformCovariance(2, 1)]*n, _info)
 
     
     dist = 10*a
@@ -119,7 +112,7 @@ def run(**kwargs):
 
     dist = 9*a
     s    = np.array([3,0.5])
-    OrthogonalMatrices  = _info['generator'].OrthogonalMatrix(dim=2, size=n)
+    OrthogonalMatrices  = generator.OrthogonalMatrix(dim=2, size=n)
     _info.update(distance= dist,
              xlabels  = [2]*n,
              xvalues  = [2]*n,
@@ -130,4 +123,4 @@ def run(**kwargs):
     fig.savefig(f"Plots/CovarianceSampling{_info['suffix']}.svg")
     
 if __name__ == '__main__':
-    run()
+    run(suffix='TEST')

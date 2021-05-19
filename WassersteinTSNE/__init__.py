@@ -7,7 +7,7 @@ Created on Thu May  6 15:48:46 2021
 """
 
 from .HGM import HierarchicalGaussianMixture as HGM
+from .TSNE import WassersteinTSNE as TSNE
 from .Timer import *
 from .Distributions import *
-from .TSNE import GaussianWassersteinDistance as GWD
-from .TSNE import WassersteinTSNE as wt
+

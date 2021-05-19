@@ -8,7 +8,8 @@ Created on Fri Apr 30 09:52:19 2021
 
 import numpy as np
 
-from WassersteinTSNE import Timer, GWD, HGM
+from WassersteinTSNE import Timer, HGM
+from WassersteinTSNE.TSNE import GaussianWassersteinDistance as GWD
 from WassersteinTSNE.Visualization.utils import plotMatrix
 
 def run(seed=None, n=20, output=False, suffix=''):

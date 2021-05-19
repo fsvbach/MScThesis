@@ -6,12 +6,9 @@ Created on Fri May 14 12:45:29 2021
 @author: fsvbach
 """
 
-
-
 import matplotlib.pyplot as plt
 import numpy as np
-from sklearn.metrics import accuracy_score
-from sklearn.neighbors import KNeighborsClassifier
+
 
 class plotTSNE:
     def __init__(self, labels, prefix, k=10):
@@ -59,3 +56,10 @@ class plotTSNE:
         fig.savefig(f"Plots/{self.prefix}_TSNE.svg")
         plt.show()
         plt.close()
+
+def plotEmbedding(ax, embedding, labels):
+   
+    for c in self.classes:
+        idx = np.where(self.labels==c)
+        x, y = embedding[idx].T
+        ax.scatter(x, y, s=1, c=f'C{c}')
