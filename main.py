@@ -9,16 +9,16 @@ Created on Mon May 10 15:07:28 2021
 ### run experiments by importing them and using their .run() method
 
 
-from Datasets.BW2021.Data import Wahlkreise as Loader
+# from Datasets.BW2021.Data import Wahlkreise as Loader
 
 
-data = Loader()
+# data = Loader()
 
 from WassersteinTSNE import HGM
 
-data = HGM()
+mixture = HGM(seed=13, random=True)
 
-
+data = mixture.data
 
 ############### Later ###################
 

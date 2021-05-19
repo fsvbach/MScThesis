@@ -65,7 +65,7 @@ class GaussianWassersteinDistance:
         if fast_approx:
             self.CDM = self.FrobeniusDistanceMatrix(np.stack(sqrts))
         else:
-            self.CDM = self.CovarianceDistanceLoop(covs)
+            self.CDM = self.CovarianceDistanceLoop(covs)    
     
     def EuclideanDistanceMatrix(self, X):
         norms  = np.linalg.norm(X, axis=1, ord=2).reshape((len(X),1))**2

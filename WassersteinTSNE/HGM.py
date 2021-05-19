@@ -16,10 +16,10 @@ class HierarchicalGaussianMixture:
               'samples' :20, 
               'features':2,
               'classes':4,
-              'ClassDistance': 25,
-              'ClassVariance': 5}
+              'ClassMeanDistance': 25,
+              'ClassScaleVariance': 5}
          
-    def __init__(self, seed=None, **kwargs):
+    def __init__(self, seed=None, random=True, **kwargs):
         self.config.update(kwargs)
         
         self.N = self.config['datapoints']
@@ -27,17 +27,23 @@ class HierarchicalGaussianMixture:
         self.F = self.config['features']
         self.K = self.config['classes']
         
-        self.a = self.config['ClassDistance']
-        self.b = self.config['ClassVariance']
+        self.a = self.config['ClassMeanDistance']
+        self.b = self.config['ClassScaleVariance']
         
         self.seed = seed
         self.generator = RandomGenerator(seed)
-        
-        self.set_params()
-        self.data = self.generate_data()
                 
+        if random:
+            self.info = self._info()
+            self.set_params()
+            self.generate_data()
+        else:
+            self.info = f'Custom parameters with Random seed {self.seed}'
+            self.ClassGaussians = None
+            self.ClassWisharts  = None
+                    
     def _info(self):
-        return f'''Random seed: {self.seed}, ClassDistance: {self.config['ClassDistance']}, ClassVariance: {self.config['ClassVariance']}\n{self.K} classes à {self.N} datapoints with each {self.M} samples in {self.F} dimensions'''
+        return f'''Random seed: {self.seed}, ClassMeanDistance: {self.a}, ClassScaleVariance: {self.b}\n{self.K} classes à {self.N} datapoints with each {self.M} samples in {self.F} dimensions'''
     
     def set_params(self, means=None, Lambdas=None, nus=None, Gammas=None):
         prior = lambda b: WishartDistribution(self.F, CovarianceMatrix(np.eye(self.F), b*np.ones(self.F)))
@@ -62,6 +68,7 @@ class HierarchicalGaussianMixture:
         self.ClassWisharts  = [WishartDistribution(nu, Scale) for nu, Scale in zip(nus, Lambdas)]           
         
     def generate_data(self): 
+        assert self.ClassGaussians and self.ClassWisharts  
         
         dataset = []
         
@@ -74,29 +81,12 @@ class HierarchicalGaussianMixture:
                 datapoint = GaussianDistribution(mean, cov)
                 dataset.append(self.generator.GaussianSamples(datapoint, self.M))
 
-        index = pd.MultiIndex.from_product([range(self.K), range(self.N), range(self.M)], names=["class", "datapoint", "sample"])
-        dataset = pd.DataFrame(np.vstack(dataset), index = index)
-        labels = dataset.indexA.index(0)
-        
-    
-    def data_means(self):
-        data = self.data.reshape((-1,self.D, self.F))
-        return np.mean(data, axis=1)
-    
-    def data_covs(self):
-        data = self.data.reshape((-1,self.D, self.F))
-        data = (data.transpose([1,0,2]) - self.data_means()).transpose([1,0,2])
-        return np.matmul(data.transpose([0,2,1]),data) / (self.D - 1)
-
-    def data_estimates(self):
-        means = self.data_means()
-        covs  = self.data_covs()
-        Gaussians = []
-        for m,C in zip(means, covs):
-            Gaussians.append(GaussianDistribution(m, CovarianceMatrix(C, from_array=True)))
-        return Gaussians
+        index       = pd.MultiIndex.from_product([range(self.K*self.N), range(self.M)], names=["datapoint", "sample"])
+        self.data   = pd.DataFrame(np.vstack(dataset), index = index)
+        self.labels = self.labels()
+        return self.data
     
     def labels(self):
-        return np.hstack([np.ones(self.N,dtype=np.int) * i for i in range(self.C)]) 
+        labels = np.hstack([np.ones(self.N,dtype=np.int) * i for i in range(self.K)])
+        return pd.Series(labels, dtype=np.int, name='ClassLabel' )
     
-        
