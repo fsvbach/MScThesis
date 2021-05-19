@@ -7,8 +7,11 @@ Created on Fri May 14 10:35:42 2021
 """
 
 import numpy as np
+
 from openTSNE import TSNE as openTSNE
 from sklearn.manifold import TSNE as skleTSNE
+
+from .Distributions import GaussianDistribution, arr2cov
 
 class WassersteinTSNE:
     def __init__(self, seed=None, sklearn=False, load=None, store=None):
@@ -48,25 +51,32 @@ class WassersteinTSNE:
             embedding = tsne.fit(matrix)
             
         return embedding
-            
+
+
             
 class GaussianWassersteinDistance:
-    def __init__(self, Gaussians, fast_approx=False):
+    def __init__(self, dataset, fast_approx=False):
+        sqrts = []
         means = []
         covs  = []
-        sqrts = []
-        for G in Gaussians:
+        
+        self.Gaussians = []
+        for name, data in dataset.groupby(level=0):
+            G = GaussianDistribution()
+            G.estimate(data.values)
+            self.Gaussians.append(G)
+            
             sqrts.append(G.cov.sqrt())
             covs.append(G.cov)
             means.append(G.mean)
-            
+
         self.EDM = self.EuclideanDistanceMatrix(np.stack(means))
         
         if fast_approx:
             self.CDM = self.FrobeniusDistanceMatrix(np.stack(sqrts))
         else:
-            self.CDM = self.CovarianceDistanceLoop(covs)    
-    
+            self.CDM = self.CovarianceDistanceLoop(covs)
+         
     def EuclideanDistanceMatrix(self, X):
         norms  = np.linalg.norm(X, axis=1, ord=2).reshape((len(X),1))**2
         matrix = norms + norms.T - 2 * X@X.T
@@ -79,10 +89,8 @@ class GaussianWassersteinDistance:
     
     def PairwiseCovarianceDistance(self, cov1, cov2):
         tmp = cov2.sqrt() @ cov1.array() @ cov2.sqrt()
-        # print(tmp)
-        s, P = np.linalg.eig(tmp) ##eigh 
-        s[np.where(s<0)]=0
-        tmp = cov1.array() + cov2.array() - 2 * P @ np.diag(np.sqrt(s)) @ P.T 
+        tmp = arr2cov(tmp)
+        tmp = cov1.array() + cov2.array() - 2 * tmp.sqrt()
         return np.sum(np.diag(tmp))
 
     def CovarianceDistanceLoop(self, covs):

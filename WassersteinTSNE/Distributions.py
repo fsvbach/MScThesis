@@ -41,7 +41,6 @@ def arr2cov(array):
     assert np.all(s>=0)
     return CovarianceMatrix(P, s)   
 
-    
 class WishartDistribution:
     def __init__(self, nu=2, scale=CovarianceMatrix()):
         self.nu = nu
@@ -50,16 +49,15 @@ class WishartDistribution:
     def shape(self, std=1):
         return self.scale.shape(std=std)
         
-    
 class GaussianDistribution:
     def __init__(self, mean=np.array([1,0]), cov=CovarianceMatrix()):
         self.mean = mean
         self.cov  = cov
     
-    def estimate(self, dataset):
-        self.mean = np.mean(dataset, axis=1)
-        dataset  -= self.mean
-        self.cov  = arr2cov(dataset.T @ dataset / (len(dataset) - 1))
+    def estimate(self, data):
+        self.mean = np.mean(data, axis=0)
+        data     -= self.mean
+        self.cov  = arr2cov(data.T @ data / (len(data) - 1))
 
     def shape(self, std=1):
         width, height, angle = self.cov.shape(std=std)
