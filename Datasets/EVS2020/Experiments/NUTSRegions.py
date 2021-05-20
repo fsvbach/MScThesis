@@ -10,30 +10,35 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
-from WassersteinTSNE import WassersteinTSNE
-from Datasets.EVS2020.Data import Preprocess
+from WassersteinTSNE import Dataset2Gaussians, WassersteinTSNE, GaussianWassersteinDistance
 from WassersteinTSNE.Visualization.Countries import plotEVS
+from Datasets.EVS2020.Data import Preprocess
 
+trafo = False
+NUTS  = 2
 countries = ['DE', 'SE', 'IT', 'HU', 'GB', 'RU', 'BG',  'FR', 'ES']
 
-EVS = Preprocess()
-dataset, labels = EVS.NUTS2( min_entries=2)
+EVS = Preprocess(countries=None, transform=trafo)
+dataset, labels = EVS.NUTS(NUTS=NUTS, min_entries=20)
 
 # for i, (n, nuts) in enumerate(dataset.groupby(level=0)):
 #     print(n,labels[i])
     
-WT = WassersteinTSNE(dataset)
+EVSGaussians = Dataset2Gaussians(dataset)
+WSDM = GaussianWassersteinDistance(EVSGaussians)
+WT = WassersteinTSNE(WSDM, seed=13)
 
-w = 0.5
-fig, ax = plt.subplots(figsize=(15,10))
-    
-embedding = WT.fit(w=w)
-embedding.index = labels
+fig, axes = plt.subplots(ncols=3, figsize=(45,10))
 
-plotEVS(embedding, f'embedding with w={w}', ax=ax, size = 3)
-print('Plotted subplot')
+for w, ax in zip([0,0.5,1], axes):
     
-fig.suptitle('NUTS2 regions from European countries', fontsize=30)  
-fig.savefig(f'Plots/NUTSRegions.svg')
+    embedding = WT.fit(w=w)
+    embedding.index = labels
+    embedding['sizes'] = 3
+    plotEVS(embedding, f'embedding with w={w}', ax=ax)
+    print('Plotted subplot')
+    
+fig.suptitle(f'NUTS{NUTS} regions with Logit-Transformation: {trafo}', fontsize=30)  
+fig.savefig(f'Plots/NUTS{NUTS}RegionsTrafo{trafo}.svg')
 plt.show()
 plt.close()        

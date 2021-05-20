@@ -19,10 +19,21 @@ class CovarianceMatrix:
             orthogonal matrix.
         s : np.array
             eigenvalues in array.
-        '''          
+        '''       
         self.P = P
         self.s = s
-                
+        
+    def diagonalize(self):
+        self.s  = np.diag(self.array())
+        self.P  = np.eye(len(self.s))
+        
+    def normalize(self):
+        A = self.array()
+        diagonal = np.sqrt(np.diag(A))
+        A = (A/diagonal).T / diagonal
+        self.s, self.P = eigh(A)
+        self.s[np.where(self.s<0)]=0
+            
     def array(self):
         return self.P@np.diag(self.s)@self.P.T
     

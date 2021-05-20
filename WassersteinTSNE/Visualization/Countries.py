@@ -17,13 +17,13 @@ def plotEVS(embedding, name, size=10, ax=None):
         X,Y = data['x'],data['y']
         ax.scatter(X, Y,label=country)
         flag = plt.imread(f'Datasets/EVS2020/Data/flags/w640/{country.lower()}.png')
-        for xi, yi in zip(X,Y):
+        for xi, yi, size in zip(X,Y,data['sizes']):
             im = OffsetImage(flag, zoom=size/ax.figure.dpi)
             im.image.axes = ax
             ab = AnnotationBbox(im, (xi,yi), frameon=False, pad=0.0,)
             ax.add_artist(ab)
     
-    ax.set_title(f'{name}', fontsize=10)
+    ax.set_title(f'{name}', fontsize=30)
     ax.axis('off')
 
     

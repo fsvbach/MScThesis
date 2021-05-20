@@ -17,20 +17,33 @@ from sklearn.neighbors import KNeighborsClassifier
 
 from .Distributions import GaussianDistribution, arr2cov
 
+
 def accuracy(embedding, k=10):
     kNN    = KNeighborsClassifier(k)
     kNN.fit(embedding.values, embedding.index)
     test = kNN.predict(embedding.values)
     return accuracy_score(test, embedding.index)
- 
+
+
+def Dataset2Gaussians(dataset, diagonal=False, normalize=False):
+    Gaussians = []
+    for name, data in dataset.groupby(level=0):
+        G = GaussianDistribution()
+        G.estimate(data.values)
+        if diagonal:
+            G.cov.diagonalize()
+        elif normalize:
+            G.cov.normalize()
+        Gaussians.append(G)
+    return Gaussians
+
 class WassersteinTSNE:
-    def __init__(self, dataset, seed=None, sklearn=False, fast_approx=False):
-        self.GWD     = GaussianWassersteinDistance(dataset, fast_approx)
+    def __init__(self, GWD, seed=None, sklearn=False, ):
+        self.GWD     = GWD
         self.sklearn = sklearn
         self.seed    = seed
 
     def fit(self, w):
-        
         if self.sklearn:
             tsne = skleTSNE(metric='precomputed', 
                         square_distances=True, 
@@ -51,17 +64,12 @@ class WassersteinTSNE:
 
             
 class GaussianWassersteinDistance:
-    def __init__(self, dataset, fast_approx=False):
+    def __init__(self, Gaussians, fast_approx=False):
         sqrts = []
         means = []
         covs  = []
         
-        self.Gaussians = []
-        for name, data in dataset.groupby(level=0):
-            G = GaussianDistribution()
-            G.estimate(data.values)
-            self.Gaussians.append(G)
-            
+        for G in Gaussians:            
             sqrts.append(G.cov.sqrt())
             covs.append(G.cov)
             means.append(G.mean)
