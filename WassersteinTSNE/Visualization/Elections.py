@@ -6,6 +6,7 @@ Created on Thu May  6 15:10:25 2021
 @author: fsvbach
 """
 
+import pandas as pd
 import matplotlib.pyplot as plt
 
 class plotElection:
@@ -15,58 +16,55 @@ class plotElection:
               'ystretch' : 50,
               'barwidth' : 20,
               'barheight': 3,
-              'legend'   : 3}
+              'legend'   : (3, 0, 0)}
     
-    def __init__(self, dataset):
-        self.dataset = dataset
+    def __init__(self, dataset, embedding, total):
+        self.dataset   = dataset
+        self.embedding = embedding
+        self.total     = total
 
-    def tSNE(self, embedding, **kwargs):
+        ### Loading colors
+        colors = pd.read_csv('WassersteinTSNE/Visualization/share/Parteifarben.csv', delimiter=';', encoding='utf-8', header=0)
+        self.colors = colors.iloc[0].to_dict()
+
+    def show(self, ax, **kwargs):
         self.params.update(kwargs)
         
-        X,Y    = embedding.T
-        data   = self.dataset.data
-        colors = self.dataset.colors()
-        title  = self.dataset.title()
-        
-        fig, ax = plt.subplots(figsize=(self.params['size'],
-                                        self.params['size']))
-        
+        X, Y = self.embedding['x'], self.embedding['y']
+
+
         dist = self.params['barwidth']/self.params['numparty']
         for i in range(self.params['numparty']):
-            party = data.columns[i]
-            color = colors[party]
+            party = self.dataset.columns[i]
+            color = self.colors[party]
             offset = (self.params['numparty']/2-i)*dist-dist/2
             ax.bar(self.params['xstretch']*X-offset, 
-                   self.params['barheight']*data[party], 
+                   self.params['barheight']*self.dataset[party], 
                    bottom=self.params['ystretch']*Y, 
                    width=dist, 
                    color=color, 
                    align='center')
             
-            ax.bar(self.params['xstretch']*min(X)+self.params['legend']*dist*i, 
-                   self.dataset.average[i]*self.params['barheight'], 
-                   bottom=self.params['ystretch']*min(Y),
+            ### Plot Legend at xy
+            l, xloc, yloc = self.params['legend']
+            ax.bar(xloc + self.params['xstretch']*min(X)+l*dist*i, 
+                   self.total[i]*self.params['barheight'], 
+                   bottom=self.params['ystretch']*min(Y) + yloc,
                    color=color, 
-                   width=self.params['legend']*dist, 
+                   width=l*dist, 
                    align='edge')
         
-        for name, x, y in zip(data.index, X, Y):
-            text = ' '.join(name.split(' ')[1:])
-            sub = data.loc[name].max()
+        for name, x, y in zip(self.dataset.index, X, Y):
+            # text = ' '.join(name.split(' ')[1:])
+            text = name
+            sub = self.dataset.loc[name].max()
             ax.annotate(text, 
                         (self.params['xstretch']*x-dist/2, 
                          self.params['ystretch']*y+sub*self.params['barheight']), 
                         ha='center')
-            
         
-        # for spine in ax.spines:
-        #     ax.spines[spine].set(visible=False)
         ax.axis('off')
-        # ax.set(xticks=[],
-        #        yticks=[])
-        ax.set_title(title, fontdict={'fontsize': 25})
-        fig.savefig(f'Plots/{title}.svg')
-        plt.show()
+
     
 # def plotWahlkreis(district):
 #     name = ' '.join(data.loc[district].name.split(' ')[1:])

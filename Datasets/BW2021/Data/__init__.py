@@ -37,15 +37,7 @@ class Gemeinden:
         title = f'Gemeinden of {self.head}'
         if self.nonvoters:
             title += ' with Non-Voters'
-        return title
-    
-    def colors(self):
-        colors = pd.read_csv('Datasets/BW2021/Data/Farben.csv', delimiter=';', encoding='utf-8', header=0)
-        colors = colors.iloc[0].to_dict()
-        if self.nonvoters:
-            colors['Nichtwähler'] = 'grey'
-        return colors
-        
+        return title        
 
 class Wahlkreise:
     def __init__(self, nonvoters=True):
@@ -73,12 +65,6 @@ class Wahlkreise:
         title = f'Wahlkreise of {self.head}'
         if self.nonvoters:
             title += ' with Non-Voters'
-        return title
+
     
-    def colors(self):
-        colors = pd.read_csv('Datasets/BW2021/Data/Farben.csv', delimiter=';', encoding='utf-8', header=0)
-        colors = colors.iloc[0].to_dict()
-        if self.nonvoters:
-            colors['Nichtwähler'] = 'grey'
-        return colors
-        
+

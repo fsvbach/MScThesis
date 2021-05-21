@@ -9,7 +9,7 @@ Created on Fri May  7 17:47:11 2021
 from matplotlib.offsetbox import AnnotationBbox, OffsetImage
 import matplotlib.pyplot as plt
 
-def plotEVS(embedding, name, size=10, ax=None):
+def plotEVS(embedding, ax=None):
     if not ax:
         ax = plt.gca()
         
@@ -17,13 +17,27 @@ def plotEVS(embedding, name, size=10, ax=None):
         X,Y = data['x'],data['y']
         ax.scatter(X, Y,label=country)
         flag = plt.imread(f'Datasets/EVS2020/Data/flags/w640/{country.lower()}.png')
-        for xi, yi, size in zip(X,Y,data['sizes']):
-            im = OffsetImage(flag, zoom=size/ax.figure.dpi)
-            im.image.axes = ax
-            ab = AnnotationBbox(im, (xi,yi), frameon=False, pad=0.0,)
-            ax.add_artist(ab)
-    
-    ax.set_title(f'{name}', fontsize=30)
-    ax.axis('off')
+        plotImages(X, Y, flag, data['sizes'], ax)
 
-    
+
+def plotGER(embedding, ax=None):
+    if not ax:
+        ax = plt.gca()
+        
+    for land, data in embedding.groupby(level=0):
+        X,Y = data['x'],data['y']
+        ax.scatter(X, Y,label=land)
+        flag = plt.imread(f'Datasets/GER2017/Data/flags/{land}.png')
+        plotImages(X, Y, flag, data['sizes'], ax)
+
+   
+def plotImages(x, y, image, sizes, ax=None):
+    ax = ax or plt.gca()
+
+    for xi, yi, zm in zip(x,y, sizes):
+        im = OffsetImage(image, zoom=zm/ax.figure.dpi)
+        im.image.axes = ax
+
+        ab = AnnotationBbox(im, (xi,yi), frameon=False, pad=0.0,)
+
+        ax.add_artist(ab)

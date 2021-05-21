@@ -1,0 +1,300 @@
+Nr,Gebiet,Label,Bundesland
+1,Flensburg – Schleswig,1,Schleswig-Holstein
+2,Nordfriesland – Dithmarschen Nord,1,Schleswig-Holstein
+3,Steinburg – Dithmarschen Süd,1,Schleswig-Holstein
+4,Rendsburg-Eckernförde,1,Schleswig-Holstein
+5,Kiel,1,Schleswig-Holstein
+6,Plön – Neumünster,1,Schleswig-Holstein
+7,Pinneberg,1,Schleswig-Holstein
+8,Segeberg – Stormarn-Mitte,1,Schleswig-Holstein
+9,Ostholstein – Stormarn-Nord,1,Schleswig-Holstein
+10,Herzogtum Lauenburg – Stormarn-Süd,1,Schleswig-Holstein
+11,Lübeck,1,Schleswig-Holstein
+12,Schwerin – Ludwigslust-Parchim I – Nordwestmecklenburg I,13,Mecklenburg-Vorpommern
+13,Ludwigslust-Parchim II – Nordwestmecklenburg II – Landkreis Rostock I,13,Mecklenburg-Vorpommern
+14,Rostock – Landkreis Rostock II,13,Mecklenburg-Vorpommern
+15,Vorpommern-Rügen – Vorpommern-Greifswald I,13,Mecklenburg-Vorpommern
+16,Mecklenburgische Seenplatte I – Vorpommern-Greifswald II,13,Mecklenburg-Vorpommern
+17,Mecklenburgische Seenplatte II – Landkreis Rostock III,13,Mecklenburg-Vorpommern
+18,Hamburg-Mitte,2,Hamburg
+19,Hamburg-Altona,2,Hamburg
+20,Hamburg-Eimsbüttel,2,Hamburg
+21,Hamburg-Nord,2,Hamburg
+22,Hamburg-Wandsbek,2,Hamburg
+23,Hamburg-Bergedorf – Harburg,2,Hamburg
+24,Aurich – Emden,3,Niedersachsen
+25,Unterems,3,Niedersachsen
+26,Friesland – Wilhelmshaven – Wittmund,3,Niedersachsen
+27,Oldenburg – Ammerland,3,Niedersachsen
+28,Delmenhorst – Wesermarsch – Oldenburg-Land,3,Niedersachsen
+29,Cuxhaven – Stade II,3,Niedersachsen
+30,Stade I – Rotenburg II,3,Niedersachsen
+31,Mittelems,3,Niedersachsen
+32,Cloppenburg – Vechta,3,Niedersachsen
+33,Diepholz – Nienburg I,3,Niedersachsen
+34,Osterholz – Verden,3,Niedersachsen
+35,Rotenburg I – Heidekreis,3,Niedersachsen
+36,Harburg,3,Niedersachsen
+37,Lüchow-Dannenberg – Lüneburg,3,Niedersachsen
+38,Osnabrück-Land,3,Niedersachsen
+39,Stadt Osnabrück,3,Niedersachsen
+40,Nienburg II – Schaumburg,3,Niedersachsen
+41,Stadt Hannover I,3,Niedersachsen
+42,Stadt Hannover II,3,Niedersachsen
+43,Hannover-Land I,3,Niedersachsen
+44,Celle – Uelzen,3,Niedersachsen
+45,Gifhorn – Peine,3,Niedersachsen
+46,Hameln-Pyrmont – Holzminden,3,Niedersachsen
+47,Hannover-Land II,3,Niedersachsen
+48,Hildesheim,3,Niedersachsen
+49,Salzgitter – Wolfenbüttel,3,Niedersachsen
+50,Braunschweig,3,Niedersachsen
+51,Helmstedt – Wolfsburg,3,Niedersachsen
+52,Goslar – Northeim – Osterode,3,Niedersachsen
+53,Göttingen,3,Niedersachsen
+54,Bremen I,4,Bremen
+55,Bremen II – Bremerhaven,4,Bremen
+56,Prignitz – Ostprignitz-Ruppin – Havelland I,12,Brandenburg
+57,Uckermark – Barnim I,12,Brandenburg
+58,Oberhavel – Havelland II,12,Brandenburg
+59,Märkisch-Oderland – Barnim II,12,Brandenburg
+60,Brandenburg an der Havel – Potsdam-Mittelmark I – Havelland III – Teltow-Fläming I,12,Brandenburg
+61,Potsdam – Potsdam-Mittelmark II – Teltow-Fläming II,12,Brandenburg
+62,Dahme-Spreewald – Teltow-Fläming III – Oberspreewald-Lausitz I,12,Brandenburg
+63,Frankfurt (Oder) – Oder-Spree,12,Brandenburg
+64,Cottbus – Spree-Neiße,12,Brandenburg
+65,Elbe-Elster – Oberspreewald-Lausitz II,12,Brandenburg
+66,Altmark,15,Sachsen-Anhalt
+67,Börde – Jerichower Land,15,Sachsen-Anhalt
+68,Harz,15,Sachsen-Anhalt
+69,Magdeburg,15,Sachsen-Anhalt
+70,Dessau – Wittenberg,15,Sachsen-Anhalt
+71,Anhalt,15,Sachsen-Anhalt
+72,Halle,15,Sachsen-Anhalt
+73,Burgenland – Saalekreis,15,Sachsen-Anhalt
+74,Mansfeld,15,Sachsen-Anhalt
+75,Berlin-Mitte,11,Berlin
+76,Berlin-Pankow,11,Berlin
+77,Berlin-Reinickendorf,11,Berlin
+78,Berlin-Spandau – Charlottenburg Nord,11,Berlin
+79,Berlin-Steglitz-Zehlendorf,11,Berlin
+80,Berlin-Charlottenburg-Wilmersdorf,11,Berlin
+81,Berlin-Tempelhof-Schöneberg,11,Berlin
+82,Berlin-Neukölln,11,Berlin
+83,Berlin-Friedrichshain-Kreuzberg – Prenzlauer Berg Ost,11,Berlin
+84,Berlin-Treptow-Köpenick,11,Berlin
+85,Berlin-Marzahn-Hellersdorf,11,Berlin
+86,Berlin-Lichtenberg,11,Berlin
+87,Aachen I,5,Nordrhein-Westfalen
+88,Aachen II,5,Nordrhein-Westfalen
+89,Heinsberg,5,Nordrhein-Westfalen
+90,Düren,5,Nordrhein-Westfalen
+91,Rhein-Erft-Kreis I,5,Nordrhein-Westfalen
+92,Euskirchen – Rhein-Erft-Kreis II,5,Nordrhein-Westfalen
+93,Köln I,5,Nordrhein-Westfalen
+94,Köln II,5,Nordrhein-Westfalen
+95,Köln III,5,Nordrhein-Westfalen
+96,Bonn,5,Nordrhein-Westfalen
+97,Rhein-Sieg-Kreis I,5,Nordrhein-Westfalen
+98,Rhein-Sieg-Kreis II,5,Nordrhein-Westfalen
+99,Oberbergischer Kreis,5,Nordrhein-Westfalen
+100,Rheinisch-Bergischer Kreis,5,Nordrhein-Westfalen
+101,Leverkusen – Köln IV,5,Nordrhein-Westfalen
+102,Wuppertal I,5,Nordrhein-Westfalen
+103,Solingen – Remscheid – Wuppertal II,5,Nordrhein-Westfalen
+104,Mettmann I,5,Nordrhein-Westfalen
+105,Mettmann II,5,Nordrhein-Westfalen
+106,Düsseldorf I,5,Nordrhein-Westfalen
+107,Düsseldorf II,5,Nordrhein-Westfalen
+108,Neuss I,5,Nordrhein-Westfalen
+109,Mönchengladbach,5,Nordrhein-Westfalen
+110,Krefeld I – Neuss II,5,Nordrhein-Westfalen
+111,Viersen,5,Nordrhein-Westfalen
+112,Kleve,5,Nordrhein-Westfalen
+113,Wesel I,5,Nordrhein-Westfalen
+114,Krefeld II – Wesel II,5,Nordrhein-Westfalen
+115,Duisburg I,5,Nordrhein-Westfalen
+116,Duisburg II,5,Nordrhein-Westfalen
+117,Oberhausen – Wesel III,5,Nordrhein-Westfalen
+118,Mülheim – Essen I,5,Nordrhein-Westfalen
+119,Essen II,5,Nordrhein-Westfalen
+120,Essen III,5,Nordrhein-Westfalen
+121,Recklinghausen I,5,Nordrhein-Westfalen
+122,Recklinghausen II,5,Nordrhein-Westfalen
+123,Gelsenkirchen,5,Nordrhein-Westfalen
+124,Steinfurt I – Borken I,5,Nordrhein-Westfalen
+125,Bottrop – Recklinghausen III,5,Nordrhein-Westfalen
+126,Borken II,5,Nordrhein-Westfalen
+127,Coesfeld – Steinfurt II,5,Nordrhein-Westfalen
+128,Steinfurt III,5,Nordrhein-Westfalen
+129,Münster,5,Nordrhein-Westfalen
+130,Warendorf,5,Nordrhein-Westfalen
+131,Gütersloh I,5,Nordrhein-Westfalen
+132,Bielefeld – Gütersloh II,5,Nordrhein-Westfalen
+133,Herford – Minden-Lübbecke II,5,Nordrhein-Westfalen
+134,Minden-Lübbecke I,5,Nordrhein-Westfalen
+135,Lippe I,5,Nordrhein-Westfalen
+136,Höxter – Lippe II,5,Nordrhein-Westfalen
+137,Paderborn – Gütersloh III,5,Nordrhein-Westfalen
+138,Hagen – Ennepe-Ruhr-Kreis I,5,Nordrhein-Westfalen
+139,Ennepe-Ruhr-Kreis II,5,Nordrhein-Westfalen
+140,Bochum I,5,Nordrhein-Westfalen
+141,Herne – Bochum II,5,Nordrhein-Westfalen
+142,Dortmund I,5,Nordrhein-Westfalen
+143,Dortmund II,5,Nordrhein-Westfalen
+144,Unna I,5,Nordrhein-Westfalen
+145,Hamm – Unna II,5,Nordrhein-Westfalen
+146,Soest,5,Nordrhein-Westfalen
+147,Hochsauerlandkreis,5,Nordrhein-Westfalen
+148,Siegen-Wittgenstein,5,Nordrhein-Westfalen
+149,Olpe – Märkischer Kreis I,5,Nordrhein-Westfalen
+150,Märkischer Kreis II,5,Nordrhein-Westfalen
+151,Nordsachsen,14,Sachsen
+152,Leipzig I,14,Sachsen
+153,Leipzig II,14,Sachsen
+154,Leipzig-Land,14,Sachsen
+155,Meißen,14,Sachsen
+156,Bautzen I,14,Sachsen
+157,Görlitz,14,Sachsen
+158,Sächsische Schweiz-Osterzgebirge,14,Sachsen
+159,Dresden I,14,Sachsen
+160,Dresden II – Bautzen II,14,Sachsen
+161,Mittelsachsen,14,Sachsen
+162,Chemnitz,14,Sachsen
+163,Chemnitzer Umland – Erzgebirgskreis II,14,Sachsen
+164,Erzgebirgskreis I,14,Sachsen
+165,Zwickau,14,Sachsen
+166,Vogtlandkreis,14,Sachsen
+167,Waldeck,6,Hessen
+168,Kassel,6,Hessen
+169,Werra-Meißner – Hersfeld-Rotenburg,6,Hessen
+170,Schwalm-Eder,6,Hessen
+171,Marburg,6,Hessen
+172,Lahn-Dill,6,Hessen
+173,Gießen,6,Hessen
+174,Fulda,6,Hessen
+175,Main-Kinzig – Wetterau II – Schotten,6,Hessen
+176,Hochtaunus,6,Hessen
+177,Wetterau I,6,Hessen
+178,Rheingau-Taunus – Limburg,6,Hessen
+179,Wiesbaden,6,Hessen
+180,Hanau,6,Hessen
+181,Main-Taunus,6,Hessen
+182,Frankfurt am Main I,6,Hessen
+183,Frankfurt am Main II,6,Hessen
+184,Groß-Gerau,6,Hessen
+185,Offenbach,6,Hessen
+186,Darmstadt,6,Hessen
+187,Odenwald,6,Hessen
+188,Bergstraße,6,Hessen
+189,Eichsfeld – Nordhausen – Kyffhäuserkreis,16,Thüringen
+190,Eisenach – Wartburgkreis – Unstrut-Hainich-Kreis,16,Thüringen
+191,Jena – Sömmerda – Weimarer Land I,16,Thüringen
+192,Gotha – Ilm-Kreis,16,Thüringen
+193,Erfurt – Weimar – Weimarer Land II,16,Thüringen
+194,Gera – Greiz – Altenburger Land,16,Thüringen
+195,Saalfeld-Rudolstadt – Saale-Holzland-Kreis – Saale-Orla-Kreis,16,Thüringen
+196,Suhl – Schmalkalden-Meiningen – Hildburghausen – Sonneberg,16,Thüringen
+197,Neuwied,7,Rheinland-Pfalz
+198,Ahrweiler,7,Rheinland-Pfalz
+199,Koblenz,7,Rheinland-Pfalz
+200,Mosel/Rhein-Hunsrück,7,Rheinland-Pfalz
+201,Kreuznach,7,Rheinland-Pfalz
+202,Bitburg,7,Rheinland-Pfalz
+203,Trier,7,Rheinland-Pfalz
+204,Montabaur,7,Rheinland-Pfalz
+205,Mainz,7,Rheinland-Pfalz
+206,Worms,7,Rheinland-Pfalz
+207,Ludwigshafen/Frankenthal,7,Rheinland-Pfalz
+208,Neustadt – Speyer,7,Rheinland-Pfalz
+209,Kaiserslautern,7,Rheinland-Pfalz
+210,Pirmasens,7,Rheinland-Pfalz
+211,Südpfalz,7,Rheinland-Pfalz
+212,Altötting,9,Bayern
+213,Erding – Ebersberg,9,Bayern
+214,Freising,9,Bayern
+215,Fürstenfeldbruck,9,Bayern
+216,Ingolstadt,9,Bayern
+217,München-Nord,9,Bayern
+218,München-Ost,9,Bayern
+219,München-Süd,9,Bayern
+220,München-West/Mitte,9,Bayern
+221,München-Land,9,Bayern
+222,Rosenheim,9,Bayern
+223,Bad Tölz-Wolfratshausen – Miesbach,9,Bayern
+224,Starnberg – Landsberg am Lech,9,Bayern
+225,Traunstein,9,Bayern
+226,Weilheim,9,Bayern
+227,Deggendorf,9,Bayern
+228,Landshut,9,Bayern
+229,Passau,9,Bayern
+230,Rottal-Inn,9,Bayern
+231,Straubing,9,Bayern
+232,Amberg,9,Bayern
+233,Regensburg,9,Bayern
+234,Schwandorf,9,Bayern
+235,Weiden,9,Bayern
+236,Bamberg,9,Bayern
+237,Bayreuth,9,Bayern
+238,Coburg,9,Bayern
+239,Hof,9,Bayern
+240,Kulmbach,9,Bayern
+241,Ansbach,9,Bayern
+242,Erlangen,9,Bayern
+243,Fürth,9,Bayern
+244,Nürnberg-Nord,9,Bayern
+245,Nürnberg-Süd,9,Bayern
+246,Roth,9,Bayern
+247,Aschaffenburg,9,Bayern
+248,Bad Kissingen,9,Bayern
+249,Main-Spessart,9,Bayern
+250,Schweinfurt,9,Bayern
+251,Würzburg,9,Bayern
+252,Augsburg-Stadt,9,Bayern
+253,Augsburg-Land,9,Bayern
+254,Donau-Ries,9,Bayern
+255,Neu-Ulm,9,Bayern
+256,Oberallgäu,9,Bayern
+257,Ostallgäu,9,Bayern
+258,Stuttgart I,8,Baden-Württemberg
+259,Stuttgart II,8,Baden-Württemberg
+260,Böblingen,8,Baden-Württemberg
+261,Esslingen,8,Baden-Württemberg
+262,Nürtingen,8,Baden-Württemberg
+263,Göppingen,8,Baden-Württemberg
+264,Waiblingen,8,Baden-Württemberg
+265,Ludwigsburg,8,Baden-Württemberg
+266,Neckar-Zaber,8,Baden-Württemberg
+267,Heilbronn,8,Baden-Württemberg
+268,Schwäbisch Hall – Hohenlohe,8,Baden-Württemberg
+269,Backnang – Schwäbisch Gmünd,8,Baden-Württemberg
+270,Aalen – Heidenheim,8,Baden-Württemberg
+271,Karlsruhe-Stadt,8,Baden-Württemberg
+272,Karlsruhe-Land,8,Baden-Württemberg
+273,Rastatt,8,Baden-Württemberg
+274,Heidelberg,8,Baden-Württemberg
+275,Mannheim,8,Baden-Württemberg
+276,Odenwald – Tauber,8,Baden-Württemberg
+277,Rhein-Neckar,8,Baden-Württemberg
+278,Bruchsal – Schwetzingen,8,Baden-Württemberg
+279,Pforzheim,8,Baden-Württemberg
+280,Calw,8,Baden-Württemberg
+281,Freiburg,8,Baden-Württemberg
+282,Lörrach – Müllheim,8,Baden-Württemberg
+283,Emmendingen – Lahr,8,Baden-Württemberg
+284,Offenburg,8,Baden-Württemberg
+285,Rottweil – Tuttlingen,8,Baden-Württemberg
+286,Schwarzwald-Baar,8,Baden-Württemberg
+287,Konstanz,8,Baden-Württemberg
+288,Waldshut,8,Baden-Württemberg
+289,Reutlingen,8,Baden-Württemberg
+290,Tübingen,8,Baden-Württemberg
+291,Ulm,8,Baden-Württemberg
+292,Biberach,8,Baden-Württemberg
+293,Bodensee,8,Baden-Württemberg
+294,Ravensburg,8,Baden-Württemberg
+295,Zollernalb – Sigmaringen,8,Baden-Württemberg
+296,Saarbrücken,10,Saarland
+297,Saarlouis,10,Saarland
+298,St. Wendel,10,Saarland
+299,Homburg,10,Saarland

@@ -27,6 +27,7 @@ def accuracy(embedding, k=10):
 
 def Dataset2Gaussians(dataset, diagonal=False, normalize=False):
     Gaussians = []
+    names    = []
     for name, data in dataset.groupby(level=0):
         G = GaussianDistribution()
         G.estimate(data.values)
@@ -34,14 +35,16 @@ def Dataset2Gaussians(dataset, diagonal=False, normalize=False):
             G.cov.diagonalize()
         elif normalize:
             G.cov.normalize()
+        names.append(name)
         Gaussians.append(G)
-    return Gaussians
+    return Gaussians, names
 
 class WassersteinTSNE:
-    def __init__(self, GWD, seed=None, sklearn=False, ):
+    def __init__(self, GWD, names, seed=None, sklearn=False, ):
         self.GWD     = GWD
         self.sklearn = sklearn
         self.seed    = seed
+        self.index   = names
 
     def fit(self, w):
         if self.sklearn:
@@ -58,7 +61,7 @@ class WassersteinTSNE:
         
         # cols = [(f'w={w}','x'), (f'w={w}', 'y')]
         embedding =  pd.DataFrame(embedding, 
-                     # columns = pd.MultiIndex.from_tuples(cols),
+                     index=self.index,
                      columns = ['x','y'])
         return embedding
 
@@ -114,13 +117,15 @@ class NormalTSNE:
         self.sklearn = sklearn
         self.seed    = seed
         
-    def fit(self, data):
+    def fit(self, dataset):
         if self.sklearn:
             tsne = skleTSNE(random_state=self.seed)
-            embedding = tsne.fit_transform(data)
+            embedding = tsne.fit_transform(dataset.values)
         else:
             tsne = openTSNE(random_state=self.seed)
-            embedding = tsne.fit(data)
+            embedding = tsne.fit(dataset.values)
             
-        return embedding   
+        return  pd.DataFrame(embedding,
+                             index=dataset.index,
+                             columns = ['x','y']) 
 
