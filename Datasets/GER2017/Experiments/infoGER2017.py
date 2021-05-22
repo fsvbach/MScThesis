@@ -30,7 +30,7 @@ embedding.index = index.map(labeldict)
 
 figure = plotElection(GER.data.groupby(level=0).mean(), embedding, GER.mean)
 
-size = 15
+size = 60
 
 fig, ax = plt.subplots(figsize=(size,size))
 
@@ -38,13 +38,15 @@ fig, ax = plt.subplots(figsize=(size,size))
 figure.show(ax, 
             size=size, 
             numparty=6, 
-            legend=(10,800,0),
+            legend=(2,5,700,0),
             xstretch=50,
-            ystretch=50,
-            barwidth=30)
+            ystretch=80,
+            barwidth=40,
+            barheight=2,
+            label=True)
 
 ax.set_title(title, fontdict={'fontsize': 25})
-
-fig.savefig(f'Plots/infoGER2021.svg')
+        
+fig.savefig(f'Plots/infoGER2021_meanlabel.svg')
 plt.show()
 plt.close()

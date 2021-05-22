@@ -29,7 +29,7 @@ class CovarianceMatrix:
         
     def normalize(self):
         A = self.array()
-        diagonal = np.sqrt(np.diag(A))
+        diagonal = np.sqrt(np.diag(A)) + 0.00000001
         A = (A/diagonal).T / diagonal
         self.s, self.P = eigh(A)
         self.s[np.where(self.s<0)]=0

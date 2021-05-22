@@ -16,13 +16,15 @@ class plotElection:
               'ystretch' : 50,
               'barwidth' : 20,
               'barheight': 3,
-              'legend'   : (3, 0, 0)}
+              'legend'   : (3, 3, 0, 0),
+              'label'    : True}
     
     def __init__(self, dataset, embedding, total):
         self.dataset   = dataset
         self.embedding = embedding
         self.total     = total
-
+        self.dataset.index = self.embedding.index
+        
         ### Loading colors
         colors = pd.read_csv('WassersteinTSNE/Visualization/share/Parteifarben.csv', delimiter=';', encoding='utf-8', header=0)
         self.colors = colors.iloc[0].to_dict()
@@ -46,23 +48,25 @@ class plotElection:
                    align='center')
             
             ### Plot Legend at xy
-            l, xloc, yloc = self.params['legend']
-            ax.bar(xloc + self.params['xstretch']*min(X)+l*dist*i, 
-                   self.total[i]*self.params['barheight'], 
+            lx, ly, xloc, yloc = self.params['legend']
+            ax.bar(xloc + self.params['xstretch']*min(X)+lx*dist*i, 
+                   self.total[i]*ly, 
                    bottom=self.params['ystretch']*min(Y) + yloc,
                    color=color, 
-                   width=l*dist, 
+                   width=lx*dist, 
                    align='edge')
         
-        for name, x, y in zip(self.dataset.index, X, Y):
-            # text = ' '.join(name.split(' ')[1:])
-            text = name
-            sub = self.dataset.loc[name].max()
-            ax.annotate(text, 
-                        (self.params['xstretch']*x-dist/2, 
-                         self.params['ystretch']*y+sub*self.params['barheight']), 
-                        ha='center')
+        if self.params['label']:
+            for name, x, y in zip(self.dataset.index, X, Y):
+                # text = ' '.join(name.split(' ')[1:])
+                text = name
+                sub = self.dataset.loc[name].max()
+                ax.annotate(text, 
+                            (self.params['xstretch']*x-dist/2, 
+                              self.params['ystretch']*y+sub*self.params['barheight']), 
+                            ha='center')
         
+        # ax.set_aspect('equal')
         ax.axis('off')
 
     

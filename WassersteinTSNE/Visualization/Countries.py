@@ -9,7 +9,7 @@ Created on Fri May  7 17:47:11 2021
 from matplotlib.offsetbox import AnnotationBbox, OffsetImage
 import matplotlib.pyplot as plt
 
-def plotEVS(embedding, ax=None):
+def plotEVS(embedding, title, ax=None):
     if not ax:
         ax = plt.gca()
         
@@ -19,8 +19,10 @@ def plotEVS(embedding, ax=None):
         flag = plt.imread(f'Datasets/EVS2020/Data/flags/w640/{country.lower()}.png')
         plotImages(X, Y, flag, data['sizes'], ax)
 
-
-def plotGER(embedding, ax=None):
+    ax.set(title=title)
+    ax.axis('off')
+    
+def plotGER(embedding, title, ax=None):
     if not ax:
         ax = plt.gca()
         
@@ -30,6 +32,8 @@ def plotGER(embedding, ax=None):
         flag = plt.imread(f'Datasets/GER2017/Data/flags/{land}.png')
         plotImages(X, Y, flag, data['sizes'], ax)
 
+    ax.set(title=title)
+    ax.axis('off')
    
 def plotImages(x, y, image, sizes, ax=None):
     ax = ax or plt.gca()

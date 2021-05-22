@@ -32,12 +32,9 @@ ax=axes
 embedding = WT.fit(w=w)
 index    = embedding.index.to_series()
 embedding.index = index.map(namesdict)
-embedding['sizes'] = 50
+embedding['sizes'] = 20
 
-ax.set(title=f"embedding (w={w})")
-ax.axis('off')
-
-plotGER(embedding, ax)
+plotGER(embedding, title=f"embedding (w={w})", ax=ax)
 
 w += 0.5
 
@@ -46,6 +43,6 @@ w += 0.5
 #            markerscale=5., scatterpoints=3, fontsize=15)
 # axes[1,2].axis('off')
 
-plt.savefig("Plots/GER_Wahlkreise.png")
+plt.savefig("Plots/GER_Wahlkreise.svg")
 plt.show()
 plt.close()
