@@ -26,7 +26,7 @@ class plotElection:
         self.dataset.index = self.embedding.index
         
         ### Loading colors
-        colors = pd.read_csv('WassersteinTSNE/Visualization/share/Parteifarben.csv', delimiter=';', encoding='utf-8', header=0)
+        colors = pd.read_csv('MISC/Images/parties/Parteifarben.csv', delimiter=';', encoding='utf-8', header=0)
         self.colors = colors.iloc[0].to_dict()
 
     def show(self, ax, **kwargs):

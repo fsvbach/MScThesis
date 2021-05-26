@@ -18,25 +18,25 @@ GER = Wahlbezirke()
 
 namesdict = GER.labels.Bundesland.to_dict()
  
-Gaussians, names = Dataset2Gaussians(GER.data)
+Gaussians = Dataset2Gaussians(GER.data)
 WSDM = GaussianWassersteinDistance(Gaussians)
-WT = WassersteinTSNE(WSDM, names, seed=13)
+WT = WassersteinTSNE(WSDM, seed=13)
 
 
-fig, axes = plt.subplots(1,1, figsize=(50,50))
+fig, axes = plt.subplots(1,3, figsize=(90,30))
     
 w = 0
-ax=axes
-# for ax in axes.T.flatten():
-    # 
-embedding = WT.fit(w=w)
-index    = embedding.index.to_series()
-embedding.index = index.map(namesdict)
-embedding['sizes'] = 20
 
-plotGER(embedding, title=f"embedding (w={w})", ax=ax)
-
-w += 0.5
+for ax in axes.T.flatten():
+    
+    embedding = WT.fit(w=w)
+    index    = embedding.index.to_series()
+    embedding.index = index.map(namesdict)
+    embedding['sizes'] = 15
+    
+    plotGER(embedding, title=f"embedding (w={w})", ax=ax)
+    
+    w += 0.5
 
 # h1, l1 = axes[0,0].get_legend_handles_labels()
 # fig.legend(h1, l1, loc='lower right',

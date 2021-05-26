@@ -40,7 +40,8 @@ class Preprocess:
                                        convert_categoricals=False,
                                        columns = self.questions+self.marker)
         if not countries:
-            self.countries = self.df.c_abrv.unique()
+            self.countries = self.df.c_abrv.unique().map(str.lower)
+
         
         self.df[self.df[self.questions]<0] = np.NaN
         self.df.dropna(inplace=True)

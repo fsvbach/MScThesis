@@ -37,14 +37,13 @@ def Dataset2Gaussians(dataset, diagonal=False, normalize=False):
             G.cov.normalize()
         names.append(name)
         Gaussians.append(G)
-    return Gaussians, names
+    return pd.Series(Gaussians, index=names)
 
 class WassersteinTSNE:
-    def __init__(self, GWD, names, seed=None, sklearn=False, ):
+    def __init__(self, GWD, seed=None, sklearn=False, ):
         self.GWD     = GWD
         self.sklearn = sklearn
         self.seed    = seed
-        self.index   = names
 
     def fit(self, w):
         if self.sklearn:
@@ -61,7 +60,7 @@ class WassersteinTSNE:
         
         # cols = [(f'w={w}','x'), (f'w={w}', 'y')]
         embedding =  pd.DataFrame(embedding, 
-                     index=self.index,
+                     index=self.GWD.index,
                      columns = ['x','y'])
         return embedding
 
@@ -72,11 +71,12 @@ class GaussianWassersteinDistance:
         means = []
         covs  = []
         
+        self.index = Gaussians.index
         for G in Gaussians:            
             sqrts.append(G.cov.sqrt())
             covs.append(G.cov)
             means.append(G.mean)
-
+            
         self.EDM = self.EuclideanDistanceMatrix(np.stack(means))
         
         if fast_approx:

@@ -23,7 +23,7 @@ fig, axes = plt.subplots(ncols=3, figsize=(45,10))
 
 EVSGaussians = Dataset2Gaussians(dataset)
 WSDM = GaussianWassersteinDistance(EVSGaussians)
-WT = WassersteinTSNE(WSDM)
+WT = WassersteinTSNE(WSDM, seed=13)
 embedding = WT.fit(w=w)
 embedding.index = labels
 embedding['sizes'] = 3
@@ -32,7 +32,7 @@ print('Plotted subplot')
 
 EVSGaussians = Dataset2Gaussians(dataset, diagonal=True)
 WSDM = GaussianWassersteinDistance(EVSGaussians)
-WT = WassersteinTSNE(WSDM)
+WT = WassersteinTSNE(WSDM, seed=13)
 embedding = WT.fit(w=w)
 embedding.index = labels
 embedding['sizes'] = 3
@@ -41,7 +41,7 @@ print('Plotted subplot')
 
 EVSGaussians = Dataset2Gaussians(dataset, normalize=True)
 WSDM = GaussianWassersteinDistance(EVSGaussians)
-WT = WassersteinTSNE(WSDM)
+WT = WassersteinTSNE(WSDM, seed=13)
 embedding = WT.fit(w=w)
 embedding.index = labels
 embedding['sizes'] = 3

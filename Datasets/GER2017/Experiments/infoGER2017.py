@@ -37,7 +37,7 @@ fig, ax = plt.subplots(figsize=(size,size))
 
 figure.show(ax, 
             size=size, 
-            numparty=6, 
+            numparty=10, 
             legend=(2,5,700,0),
             xstretch=50,
             ystretch=80,
@@ -47,6 +47,6 @@ figure.show(ax,
 
 ax.set_title(title, fontdict={'fontsize': 25})
         
-fig.savefig(f'Plots/infoGER2021_meanlabel.svg')
+fig.savefig(f'Plots/infoGER_manyparties.svg')
 plt.show()
 plt.close()

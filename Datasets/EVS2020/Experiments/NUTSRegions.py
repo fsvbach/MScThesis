@@ -17,14 +17,14 @@ from Datasets.EVS2020.Data import Preprocess
 def run(countries=None, trafo=False, NUTS=1, suffix=''):
 
     EVS = Preprocess(countries=countries, transform=trafo)
-    dataset, labels = EVS.NUTS(NUTS=NUTS, min_entries=20)
+    dataset, labels = EVS.NUTS(NUTS=NUTS, min_entries=2)
     
     # for i, (n, nuts) in enumerate(dataset.groupby(level=0)):
     #     print(n,labels[i])
         
-    Gaussians, names = Dataset2Gaussians(dataset)
+    Gaussians = Dataset2Gaussians(dataset)
     WSDM = GaussianWassersteinDistance(Gaussians)
-    WT = WassersteinTSNE(WSDM, names, seed=13)
+    WT = WassersteinTSNE(WSDM, seed=13)
     
     fig, axes = plt.subplots(ncols=3, figsize=(45,10))
     
@@ -42,4 +42,5 @@ def run(countries=None, trafo=False, NUTS=1, suffix=''):
     plt.close()   
 
 if __name__ == '__main__':
-    run(['DE', 'SE', 'IT', 'HU', 'GB', 'RU', 'BG',  'FR', 'ES'], suffix='TEST')
+    # run(['DE', 'SE', 'IT', 'HU', 'GB', 'RU', 'BG',  'FR', 'ES'], suffix='TEST')
+    run()

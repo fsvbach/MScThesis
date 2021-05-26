@@ -18,7 +18,7 @@ class Wahlbezirke:
     ### Creating labels
     labels  = pd.read_csv('Datasets/GER2017/Data/labels.csv',
                           index_col=0)
-
+    
     ### Merging CDU and CSU
     data['CDU'] += data['CSU']
     data.drop('CSU', axis=1, inplace=True)
@@ -37,13 +37,19 @@ class Wahlbezirke:
     data.drop('Wähler (B)', axis=1, inplace=True)
     mean = data.loc[head]
     
-    ### Durchschnitt rausnehmen und abziehen
+    ### Durchschnitt rausnehmen (und abziehen)
     data.drop(index=head, inplace=True)
-    data = (data-mean)
 
     ### etwaige Nan löschen
     data.dropna(inplace=True)
+    
+    def __init__(self, numparty=None):
+        if numparty:
+            self.data = self.data.iloc[:,:numparty]
         
+    def subtract_mean(self):
+        self.data = (self.data-self.mean)
+        return self.mean
     
 if __name__ == '__main__':
     G = Wahlbezirke()
