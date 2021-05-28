@@ -14,10 +14,10 @@ def embedFlags(embedding, title, folder, ax=None):
         ax = plt.gca()
         
     for label, data in embedding.groupby(level=0):
-        X,Y = data['x'],data['y']
-        ax.scatter(X, Y,label=label)
+        X, Y, s = data['x'], data['y'], data['sizes']
+        ax.scatter(X, Y,label=label, s=s/100)
         flag = plt.imread(f'MISC/Images/{folder}/{label}.png')
-        plotImages(X, Y, flag, data['sizes'], ax)
+        plotImages(X, Y, flag, s, ax)
 
     ax.set(title=title)
     ax.axis('off')

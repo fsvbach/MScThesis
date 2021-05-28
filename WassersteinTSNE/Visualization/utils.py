@@ -16,21 +16,11 @@ def plotMatrix(matrices, titles, name):
         m = ax.imshow(matrix)
         ax.set(title=title)
         plt.colorbar(m, ax=ax)
-    fig.savefig(f'Plots/{name}.svg')
+    # fig.savefig(f'Plots/{name}.svg')
     plt.show()
     plt.close()
 
-
-def plotHistogram(values, labels):
-    alb = df.loc[df.country == i, question]
-    alb = alb.loc[alb >= 0]
-    alb.plot.hist()
-    name = find(i)
-    plt.title(name)
-    plt.savefig(f'Plots/{name}.svg')
-    plt.show()
-    plt.close()
-    
+   
 def plotGaussians(Gaussian, size=20):
     fig, ax = plt.subplots()
     for i in range(1,4):

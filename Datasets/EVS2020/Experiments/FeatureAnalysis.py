@@ -11,18 +11,18 @@ import pandas as pd
 import numpy as np
 
 from WassersteinTSNE import Dataset2Gaussians, WassersteinTSNE, GaussianWassersteinDistance
-from WassersteinTSNE.Visualization.Countries import plotEVS
-from Datasets.EVS2020.Data import Preprocess
+from WassersteinTSNE.Visualization.Countries import embedFlags
+from Datasets.EVS2020 import Data
 
+countries=None
+trafo=False
+NUTS=1
+suffix=''
 
-EVS = Preprocess()
-dataset, labels = EVS.NUTS(min_entries=2)
-
-# for i, (n, nuts) in enumerate(dataset.groupby(level=0)):
-#     print(n,labels[i])
+dataset, labels = Data.LoadEVS(Data.overview, countries=countries, transform=trafo, NUTS=NUTS, min_entries=2)
     
 w = 0.5
-# feature = 'v38'
+
 EVSGaussians = Dataset2Gaussians(dataset)
 WSDM = GaussianWassersteinDistance(EVSGaussians)
 WT = WassersteinTSNE(WSDM, seed=13)
@@ -30,7 +30,7 @@ WT = WassersteinTSNE(WSDM, seed=13)
 embedding = WT.fit(w=w)
 embedding.index = labels
     
-for feature in EVS.questions:
+for feature in dataset.columns:
     fig, ax = plt.subplots(figsize=(15,10))
     
     sizes = dataset.groupby(level=0)[feature].mean().values
@@ -39,10 +39,9 @@ for feature in EVS.questions:
     sizes = minsize + (sizes-minval)*(maxsize-minsize)/(maxval-minval)
     embedding['sizes'] = sizes
     
-    plotEVS(embedding, f'{EVS._info[feature][0]}', ax=ax)
-    
-    # fig.suptitle('NUTS1 regions from European countries', fontsize=30)  
+    embedFlags(embedding, f'{Data.overview[feature][0]}', 'flags', ax=ax)
+  
     fig.savefig(f'Plots/Feature_{feature}.svg')
     plt.show()
     plt.close()        
-    print('PLotted Feature')
+    print('Plotted Feature')

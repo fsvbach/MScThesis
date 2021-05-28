@@ -40,7 +40,7 @@ def Dataset2Gaussians(dataset, diagonal=False, normalize=False):
     return pd.Series(Gaussians, index=names)
 
 class WassersteinTSNE:
-    def __init__(self, GWD, seed=None, sklearn=False, ):
+    def __init__(self, GWD, seed=None, sklearn=False):
         self.GWD     = GWD
         self.sklearn = sklearn
         self.seed    = seed
