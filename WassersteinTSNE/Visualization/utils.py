@@ -7,6 +7,7 @@ Created on Mon May 10 17:13:59 2021
 """
 
 import matplotlib.pyplot as plt
+from matplotlib.offsetbox import AnnotationBbox, OffsetImage
 from matplotlib.patches import Ellipse
 
 def plotMatrix(matrices, titles, name):
@@ -37,4 +38,29 @@ def plotGaussians(Gaussian, size=20):
     plt.show()
     plt.close()
 
+
+def embedFlags(embedding, title, ax=None):
+    if not ax:
+        ax = plt.gca()
+        
+    for label, data in embedding.groupby(level=0):
+        X, Y, s = data['x'], data['y'], data['sizes']
+        ax.scatter(X, Y,label=label, s=s/100)
+        flag = plt.imread(f'MISC/Images/{embedding.index.name}/{label}.png')
+        plotImages(X, Y, flag, s, ax)
+
+    ax.set_title(title, fontsize=35)
+    ax.axis('off')
+
+   
+def plotImages(x, y, image, sizes, ax=None):
+    ax = ax or plt.gca()
+
+    for xi, yi, zm in zip(x,y, sizes):
+        im = OffsetImage(image, zoom=zm/ax.figure.dpi)
+        im.image.axes = ax
+
+        ab = AnnotationBbox(im, (xi,yi), frameon=False, pad=0.0,)
+
+        ax.add_artist(ab)
 

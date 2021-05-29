@@ -83,7 +83,7 @@ def LoadEVS(topic, countries=None, transform=False, NUTS=1, min_entries=2):
     data = df.loc[countries, questions]
     
     ### labels
-    labels  = []
+    labels = {}
     dataset = []
     for n, nuts in data.groupby(level=1):
         country = nuts.index.get_level_values(0).unique()
@@ -91,7 +91,7 @@ def LoadEVS(topic, countries=None, transform=False, NUTS=1, min_entries=2):
             print("Labels not unique!", nuts)
             # raise AssertionError
         elif len(nuts) >= min_entries:
-            labels.append(country[0].lower())
+            labels[n] = country[0].lower()
             dataset.append(nuts.droplevel(0))
 
     return pd.concat(dataset), labels
