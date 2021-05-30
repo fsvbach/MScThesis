@@ -19,12 +19,13 @@ Analysis.config.update(folder='continents',
                        name='country',
                        suffix='',
                        dataset='Big5',
-                       size= (1,9))
+                       size= (1,9),
+                       w=0)
 
-Analysis.WassersteinEmbedding(dataset, labels)
+# Analysis.WassersteinEmbedding(dataset, labels)
 
 # Analysis.SpecialCovariances(dataset, labels)
 
 # Analysis.Correlations(dataset, labels, 3, 5)
 
-# Analysis.Features(dataset, labels, sizes)
+Analysis.Features(dataset, labels, sizes)
