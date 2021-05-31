@@ -6,12 +6,11 @@ Created on Thu May 27 11:43:48 2021
 @author: fsvbach
 """
 
-from Datasets.BIG5.Data import ALL
+from Datasets.BIG5.Data import Aligned
 
 import matplotlib.pyplot as plt
 
-dataset = ALL().data
-
+dataset = Aligned()
 
 fig, axes = plt.subplots(10,12,figsize=(120,100))
 
@@ -26,8 +25,7 @@ for ax, (c, data) in zip(axes.flatten(), dataset.groupby(level=0)):
 cbar = fig.colorbar(im, ax=axes.ravel().tolist())
 cbar.set_ticks([-1,0,1])
 cbar.set_ticklabels(['anti','none', 'high'])
-cbar.ax.tick_params(labelsize=60)
-# fig.suptitle('Correlation among parties', fontsize=100)  
-fig.savefig(f'Plots/BIG5_Feature_correlation.png')
+cbar.ax.tick_params(labelsize=40)
+fig.savefig(f'Plots/BIG5_Overview.png', dpi=50)
 plt.show()
 plt.close()    
