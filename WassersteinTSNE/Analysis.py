@@ -83,7 +83,7 @@ def SpecialCovariances(dataset, labeldict, **kwargs):
     plt.show()
     plt.close() 
 
-def Correlations(dataset, labeldict, rows, columns, normalize=False, selection=None, **kwargs):
+def Correlations(dataset, labeldict, rows, columns, normalize=True, selection=None, **kwargs):
     config.update(kwargs)
     
     fig, axes = plt.subplots(rows, columns, figsize=(10*columns,10*rows))

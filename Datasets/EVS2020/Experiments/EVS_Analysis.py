@@ -32,6 +32,8 @@ Analysis.WassersteinEmbedding(dataset, labels)
 
 Analysis.SpecialCovariances(dataset, labels)
 
-Analysis.Correlations(dataset, labels, 3, 5)
+A = ['v187', 'v38', 'v103', 'v106', 'v201', 'v107', 'v200', 'v102']
+B = ['v143', 'v39', 'v102', 'v104', 'v188', 'v102', 'v63', 'v186']
+Analysis.Correlations(dataset, labels, 2, 4, selection=zip(A,B), normalize=True)
 
-Analysis.Features(dataset, labels, sizes)
+Analysis.Features(dataset, labels, sizes, w=0)
