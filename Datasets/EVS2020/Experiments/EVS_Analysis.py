@@ -17,10 +17,10 @@ dataset, labels = Data.LoadEVS(Data.overview, countries=countries, transform=tra
 
 sizes = dataset.groupby(level=0).mean()
 
-Analysis.config.update(folder='flags', 
+Analysis._config.update(folder='flags', 
                        seed=13, 
                        name=f'NUTS{NUTS} regions',
-                       suffix='',
+                       description='',
                        dataset='EVS',
                        renaming= lambda name: Data.overview[name][0],
                        size= (1,9))

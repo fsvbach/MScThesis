@@ -14,22 +14,30 @@ import numpy as np
 import matplotlib.pyplot as plt
 import itertools as it
 
-config = {'folder': None,
+_config = {'folder': None,
            'dataset': None,
            'name': None,
            'w': 1,
            'size': (5,25),
            'seed': None,
+           'description': '',
            'suffix': '',
            'renaming': lambda name: name}
 
-def WassersteinEmbedding(dataset, labeldict, **kwargs):
-    config.update(kwargs)
+def get_rectangle(N):
+    A = int(np.sqrt(N))
+    B = int(N/A) + (N%A>0) 
+    return A,B
+
+def WassersteinEmbedding(dataset, labeldict, selection=None, **kwargs):
+    config = {**_config, **kwargs}
     
-    fig, axes = plt.subplots(1,3, figsize=(45,15))
-        
-    w = 0
-    for ax in axes.T.flatten():
+    if not selection:
+        selection = [0,0.5,1]
+    M, N = get_rectangle(len(selection))
+    fig, axes = plt.subplots(M,N, figsize=(15*N,15*M))
+    
+    for ax, w in zip(axes.flatten(), selection):
         Gaussians = Dataset2Gaussians(dataset)
         WSDM = GaussianWassersteinDistance(Gaussians)
         WT = WassersteinTSNE(WSDM, seed=config['seed'])
@@ -39,15 +47,13 @@ def WassersteinEmbedding(dataset, labeldict, **kwargs):
         embedFlags(embedding, title=f"embedding (w={w})", ax=ax)
         print("Plotted Embedding")
         
-        w += 0.5
-        
     fig.suptitle(f"TSNE Embedding of {config['dataset']} {config['name']}", fontsize=50)  
-    fig.savefig(f"Plots/{config['dataset']}{config['suffix']}_{config['name']}.svg")
+    fig.savefig(f"Plots/{config['dataset']}{config['description']}_{config['name']}_{config['suffix']}.svg")
     plt.show()
     plt.close() 
 
 def SpecialCovariances(dataset, labeldict, **kwargs):
-    config.update(kwargs)
+    config = {**_config, **kwargs}
     
     fig, axes = plt.subplots(ncols=3, figsize=(45,15))
     
@@ -79,35 +85,33 @@ def SpecialCovariances(dataset, labeldict, **kwargs):
     print('Plotted subplot')
 
     fig.suptitle(f"{config['dataset']} {config['name']} with Special Covariances", fontsize=50)  
-    fig.savefig(f"Plots/{config['dataset']}{config['suffix']}_SpecialCovariance.svg")
+    fig.savefig(f"Plots/{config['dataset']}{config['description']}_SpecialCovariance{config['suffix']}.svg")
     plt.show()
     plt.close() 
 
-def Correlations(dataset, labeldict, rows, columns, normalize=True, selection=None, **kwargs):
-    config.update(kwargs)
-    
-    fig, axes = plt.subplots(rows, columns, figsize=(10*columns,10*rows))
+def Correlations(dataset, labeldict, normalize=True, selection=None, **kwargs):
+    config = {**_config, **kwargs}
     
     Gaussians = Dataset2Gaussians(dataset, normalize=normalize)
     WSDM = GaussianWassersteinDistance(Gaussians)
-    
     WT = WassersteinTSNE(WSDM, seed=config['seed'])
+    
     embedding = WT.fit(w=config['w'])
     embedding.index    = embedding.index.to_series().map(labeldict)
     embedding['sizes'] = np.mean(config['size'])
 
-    axes = axes.flatten()
-    
     if not selection:
-        selection = it.combinations(dataset.columns, r=2)
-        
+        selection = list(it.combinations(dataset.columns, r=2))
+    M, N = get_rectangle(len(selection))
+    fig, axes = plt.subplots(M,N, figsize=(15*N,15*M))
+    
     for ax, (feature1, feature2) in zip(axes.flatten(), selection):    
         corr = dataset.groupby(level=0).corr().fillna(0)
         sizes = corr.swaplevel().loc[feature1, feature2].values
 
         im=ax.scatter(embedding['x'], embedding['y'],
                    c=sizes, cmap='seismic', vmax=1, vmin=-1)
-        ax.set_title(f'{feature1} with {feature2}', fontsize=25)
+        ax.set_title(f'{feature1} with {feature2}', fontsize=35)
         ax.axis('off')
         print('Plotted Correlation')
          
@@ -116,13 +120,13 @@ def Correlations(dataset, labeldict, rows, columns, normalize=True, selection=No
     cbar.set_ticklabels(['anti', 'none', 'high'])
     cbar.ax.tick_params(labelsize=60)
     
-    fig.suptitle(f"{config['dataset']} Feature Correlations", fontsize=100)  
-    fig.savefig(f"Plots/{config['dataset']}{config['suffix']}_Correlations.svg")
+    fig.suptitle(f"{config['dataset']} Feature Correlations {config['suffix']}", fontsize=100)  
+    fig.savefig(f"Plots/{config['dataset']}{config['description']}_Correlations{config['suffix']}.svg")
     plt.show()
     plt.close()    
 
 def Features(dataset, labeldict, FeatureSizes, **kwargs):
-    config.update(kwargs)
+    config = {**_config, **kwargs}
     
     Gaussians = Dataset2Gaussians(dataset)
     WSDM = GaussianWassersteinDistance(Gaussians)
@@ -139,10 +143,10 @@ def Features(dataset, labeldict, FeatureSizes, **kwargs):
         sizes = minsize + (sizes-minval)*(maxsize-minsize)/(maxval-minval)
         embedding['sizes'] = sizes
 
-        embedFlags(embedding, f"{config['dataset']} Feature: {config['renaming'](feature)}", ax=ax)
+        embedFlags(embedding, f"{config['dataset']} Feature {config['suffix']}: {config['renaming'](feature)}", ax=ax)
         print("Plotted Feature")
         
-        fig.savefig(f"Plots/{config['dataset']}{config['suffix']}_Features_{feature}.svg")
+        fig.savefig(f"Plots/{config['dataset']}{config['description']}_Features_{feature}{config['suffix']}.svg")
         plt.show()
         plt.close() 
         

@@ -17,7 +17,7 @@ fig, axes = plt.subplots(10,12,figsize=(120,100))
 for ax, (c, data) in zip(axes.flatten(), dataset.groupby(level=0)):
     C = data.corr()
     im = ax.imshow(C, vmin=-1, vmax=1, cmap='bwr')
-    ax.set_title(c, fontsize=100)
+    ax.set_title(f'{c} ({len(data)})', fontsize=75)
     ax.axis('off')
     print('Plotted Heatmap')
     
