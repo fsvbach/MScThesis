@@ -17,12 +17,12 @@ def plotMatrix(matrices, titles, name):
         m = ax.imshow(matrix)
         ax.set(title=title)
         plt.colorbar(m, ax=ax)
-    # fig.savefig(f'Plots/{name}.svg')
+    fig.savefig(f'Plots/{name}.svg')
     plt.show()
     plt.close()
 
    
-def plotGaussians(Gaussian, size=20):
+def plotGaussians(Gaussian, name, size=20):
     fig, ax = plt.subplots()
     for i in range(1,4):
         mean, width, height, angle = Gaussian.shape(std=i)
@@ -33,8 +33,8 @@ def plotGaussians(Gaussian, size=20):
     samples = Gaussian.samples(size)
     x,y = samples.T
     ax.scatter(x,y)
-    # plt.title(name)
-    # plt.savefig(f'Plots/{name}.svg')
+    plt.title(name)
+    plt.savefig(f'Plots/{name}.svg')
     plt.show()
     plt.close()
 
@@ -63,4 +63,15 @@ def plotImages(x, y, image, sizes, ax=None):
         ab = AnnotationBbox(im, (xi,yi), frameon=False, pad=0.0,)
 
         ax.add_artist(ab)
+
+def embedScatter(embedding, title, ax=None):
+    if not ax:
+        ax = plt.gca()
+        
+    for label, data in embedding.groupby(level=0):
+        X, Y = data['x'], data['y']
+        ax.scatter(X, Y,label=label)
+
+    ax.set_title(title, fontsize=35)
+
 

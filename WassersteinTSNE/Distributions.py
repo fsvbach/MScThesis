@@ -46,6 +46,10 @@ class CovarianceMatrix:
         width, height = np.sqrt(self.s)*std*2
         return width, height, angle
 
+def RotationMatrix(degree):
+    return np.array([[np.cos(degree),-np.sin(degree)],
+                     [np.sin(degree), np.cos(degree)]])    
+    
 def arr2cov(array):
     s, P = eigh(array)
     s[np.where(s<0)]=0

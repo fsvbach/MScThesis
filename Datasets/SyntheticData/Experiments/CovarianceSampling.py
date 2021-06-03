@@ -7,7 +7,6 @@ Created on Tue Apr 27 09:12:59 2021
 """
 
 from WassersteinTSNE.Distributions import WishartDistribution, RandomGenerator, CovarianceMatrix
-from scipy.stats import wishart, ortho_group, special_ortho_group
 
 import numpy as np
 import matplotlib.pyplot as plt

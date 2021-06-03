@@ -18,13 +18,6 @@ from sklearn.neighbors import KNeighborsClassifier
 from .Distributions import GaussianDistribution, arr2cov
 
 
-def accuracy(embedding, k=10):
-    kNN    = KNeighborsClassifier(k)
-    kNN.fit(embedding.values, embedding.index)
-    test = kNN.predict(embedding.values)
-    return accuracy_score(test, embedding.index)
-
-
 def Dataset2Gaussians(dataset, diagonal=False, normalize=False):
     Gaussians = []
     names    = []
@@ -63,6 +56,14 @@ class WassersteinTSNE:
                      index=self.GWD.index,
                      columns = ['x','y'])
         return embedding
+    
+    def accuracy(self, w, labeldict, n=10, k=10):
+        embedding = self.fit(w)
+        embedding.index = embedding.index.to_series().map(labeldict)
+        kNN    = KNeighborsClassifier(k)
+        kNN.fit(embedding.values, embedding.index)
+        test = kNN.predict(embedding.values)
+        return accuracy_score(test, embedding.index)
 
             
 class GaussianWassersteinDistance:

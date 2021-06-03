@@ -40,7 +40,7 @@ def plotHGM(ax, mixture, std=1):
     datlabel = 'Data'
     covlabel = f'{std}-σ class covariance'
     dataset  = mixture.data.groupby(level=0).mean()
-    dataset.index = mixture.labels
+    dataset.index = dataset.index.to_series().map(mixture.labeldict())
     
     for i, data in dataset.groupby(level=0):
         # plotting colourful datapoints

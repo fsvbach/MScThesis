@@ -48,21 +48,29 @@ class HierarchicalGaussianMixture:
     def set_params(self, means=None, Lambdas=None, nus=None, Gammas=None):
         prior = lambda b: WishartDistribution(self.F, CovarianceMatrix(np.eye(self.F), b*np.ones(self.F)))
         
-        if not means:
-            means = self.generator.UniformVector(self.F, self.a, self.K)
-        assert means.shape == (self.K, self.F)
+        try:
+            assert means.shape == (self.K, self.F)
+        except:
+            print('Sampling means')
+            means = self.generator.UniformVector(self.F, self.a, self.K)            
         
-        if not nus:
+        try:
+            assert nus.shape == (self.K,)
+        except:
+            print('Sampling nus')
             nus = self.generator.UniformInteger(lower=self.F, upper=self.F*2, size=self.K)
-        assert nus.shape == (self.K,)
         
-        if not Gammas:
+        try:
+            assert Gammas[0].array().shape == (self.F, self.F)
+        except:
+            print('Sampling Gammas')
             Gammas = self.generator.WishartSamples(prior(self.b), self.K)
-        assert Gammas[0].array().shape == (self.F, self.F)
 
-        if not Lambdas:
+        try:
+            assert Lambdas[0].array().shape == (self.F, self.F)
+        except:
+            print('Sampling Lambdas')
             Lambdas = self.generator.WishartSamples(prior(1), self.K)
-        assert Lambdas[0].array().shape == (self.F, self.F)
         
         self.ClassGaussians = [GaussianDistribution(mean, Cov) for mean, Cov in zip(means, Gammas)]
         self.ClassWisharts  = [WishartDistribution(nu, Scale) for nu, Scale in zip(nus, Lambdas)]           
@@ -81,12 +89,10 @@ class HierarchicalGaussianMixture:
                 datapoint = GaussianDistribution(mean, cov)
                 dataset.append(self.generator.GaussianSamples(datapoint, self.M))
 
-        index       = pd.MultiIndex.from_product([range(self.K*self.N), range(self.M)], names=["datapoint", "sample"])
+        index       = pd.MultiIndex.from_product([range(self.K*self.N), range(self.M)], 
+                                                 names=["Datapoint", "Sample"])
         self.data   = pd.DataFrame(np.vstack(dataset), index = index)
-        self.labels = self.labels()
         return self.data
     
-    def labels(self):
-        labels = np.hstack([np.ones(self.N,dtype=np.int) * i for i in range(self.K)])
-        return pd.Series(labels, dtype=np.int, name='ClassLabel' )
-    
+    def labeldict(self):
+        return {i: i//self.N for i in range(self.K*self.N)}
