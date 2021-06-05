@@ -22,7 +22,7 @@ Analysis._config.update(folder='wappen',
                         description='max6',
                         dataset='GER')
 
-Analysis.WassersteinEmbedding(dataset, labels)
+# Analysis.WassersteinEmbedding(dataset, labels)
 
 Analysis.WassersteinEmbedding(dataset, labels, 
                               selection=[0,0.5,0.75,0.875,0.9475,1], 
@@ -33,4 +33,4 @@ Analysis.SpecialCovariances(dataset, labels)
 Analysis.Correlations(dataset, labels)
 Analysis.Correlations(dataset, labels, normalize=False, suffix='_normalized')
 
-Analysis.Features(dataset, labels, sizes, suffix='_std')
+# Analysis.Features(dataset, labels, sizes, suffix='_std')

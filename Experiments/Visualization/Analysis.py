@@ -11,8 +11,11 @@ from WassersteinTSNE import Dataset2Gaussians, WassersteinTSNE, GaussianWasserst
 from WassersteinTSNE.Visualization.utils import embedFlags
 
 import numpy as np
-import matplotlib.pyplot as plt
+import matplotlib
 import itertools as it
+import matplotlib.pyplot as plt
+
+
 
 _config = {'folder': None,
            'dataset': None,
@@ -23,11 +26,6 @@ _config = {'folder': None,
            'description': '',
            'suffix': '',
            'renaming': lambda name: name}
-
-def get_rectangle(N):
-    A = int(np.sqrt(N))
-    B = int(N/A) + (N%A>0) 
-    return A,B
 
 def WassersteinEmbedding(dataset, labeldict, selection=None, **kwargs):
     config = {**_config, **kwargs}
@@ -48,7 +46,7 @@ def WassersteinEmbedding(dataset, labeldict, selection=None, **kwargs):
         print("Plotted Embedding")
         
     fig.suptitle(f"TSNE Embedding of {config['dataset']} {config['name']}", fontsize=50)  
-    fig.savefig(f"Plots/{config['dataset']}{config['description']}_{config['name']}_{config['suffix']}.svg")
+    fig.savefig(f"Plots/{config['dataset']}{config['description']}_{config['name']}{config['suffix']}.pdf")
     plt.show()
     plt.close() 
 
@@ -85,7 +83,7 @@ def SpecialCovariances(dataset, labeldict, **kwargs):
     print('Plotted subplot')
 
     fig.suptitle(f"{config['dataset']} {config['name']} with Special Covariances", fontsize=50)  
-    fig.savefig(f"Plots/{config['dataset']}{config['description']}_SpecialCovariance{config['suffix']}.svg")
+    fig.savefig(f"Plots/{config['dataset']}{config['description']}_SpecialCovariance{config['suffix']}.pdf")
     plt.show()
     plt.close() 
 
@@ -121,7 +119,7 @@ def Correlations(dataset, labeldict, normalize=True, selection=None, **kwargs):
     cbar.ax.tick_params(labelsize=60)
     
     fig.suptitle(f"{config['dataset']} Feature Correlations {config['suffix']}", fontsize=100)  
-    fig.savefig(f"Plots/{config['dataset']}{config['description']}_Correlations{config['suffix']}.svg")
+    fig.savefig(f"Plots/{config['dataset']}{config['description']}_Correlations{config['suffix']}.pdf")
     plt.show()
     plt.close()    
 
@@ -146,7 +144,7 @@ def Features(dataset, labeldict, FeatureSizes, **kwargs):
         embedFlags(embedding, f"{config['dataset']} Feature {config['suffix']}: {config['renaming'](feature)}", ax=ax)
         print("Plotted Feature")
         
-        fig.savefig(f"Plots/{config['dataset']}{config['description']}_Features_{feature}{config['suffix']}.svg")
+        fig.savefig(f"Plots/{config['dataset']}{config['description']}_Features_{feature}{config['suffix']}.pdf")
         plt.show()
         plt.close() 
         

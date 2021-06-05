@@ -6,7 +6,10 @@ Created on Thu May  6 15:48:46 2021
 @author: fsvbach
 """
 
-from .HGM import HierarchicalGaussianMixture
+from .HGM import *
 from .TSNE import * 
-from .Timer import Timer
+from .utils import *
 from .Distributions import *
+from .Evaluation import *
+from .Visualization import plotMixture, embedScatter
+

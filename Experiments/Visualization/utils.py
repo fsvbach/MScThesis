@@ -6,9 +6,12 @@ Created on Mon May 10 17:13:59 2021
 @author: bachmafy
 """
 
+PATH = 'Datasets/Images'
+
 import matplotlib.pyplot as plt
 from matplotlib.offsetbox import AnnotationBbox, OffsetImage
 from matplotlib.patches import Ellipse
+import numpy as np
 
 def plotMatrix(matrices, titles, name):
     n = len(matrices)
@@ -22,8 +25,10 @@ def plotMatrix(matrices, titles, name):
     plt.close()
 
    
-def plotGaussians(Gaussian, name, size=20):
-    fig, ax = plt.subplots()
+def plotGaussian(Gaussian, size=20, ax=None):
+    if not ax:
+        ax = plt.gca()
+        
     for i in range(1,4):
         mean, width, height, angle = Gaussian.shape(std=i)
         ell = Ellipse(xy=mean, width=width, height=height, angle=angle, 
@@ -33,10 +38,7 @@ def plotGaussians(Gaussian, name, size=20):
     samples = Gaussian.samples(size)
     x,y = samples.T
     ax.scatter(x,y)
-    plt.title(name)
-    plt.savefig(f'Plots/{name}.svg')
-    plt.show()
-    plt.close()
+    return ell
 
 
 def embedFlags(embedding, title, ax=None):
@@ -46,7 +48,7 @@ def embedFlags(embedding, title, ax=None):
     for label, data in embedding.groupby(level=0):
         X, Y, s = data['x'], data['y'], data['sizes']
         ax.scatter(X, Y,label=label, s=s/100)
-        flag = plt.imread(f'MISC/Images/{embedding.index.name}/{label}.png')
+        flag = plt.imread(f'{PATH}/{embedding.index.name}/{label}.png')
         plotImages(X, Y, flag, s, ax)
 
     ax.set_title(title, fontsize=35)
@@ -64,14 +66,11 @@ def plotImages(x, y, image, sizes, ax=None):
 
         ax.add_artist(ab)
 
-def embedScatter(embedding, title, ax=None):
-    if not ax:
-        ax = plt.gca()
-        
-    for label, data in embedding.groupby(level=0):
-        X, Y = data['x'], data['y']
-        ax.scatter(X, Y,label=label)
 
-    ax.set_title(title, fontsize=35)
+def get_rectangle(N):
+    A = int(np.sqrt(N))
+    B = int(N/A) + (N%A>0) 
+    return A,B
+
 
 

@@ -6,7 +6,41 @@ Created on Wed Apr 21 10:20:51 2021
 @author: fsvbach
 """
 
+from .Distributions import CovarianceMatrix, arr2cov
+from scipy.stats import special_ortho_group, wishart
+import numpy as np
 import time
+
+class RandomGenerator:
+    def __init__(self, seed=None):
+        self.generator = np.random.default_rng(seed=seed)
+    
+    def RandomSeed(self):
+        return self.UniformInteger(upper=10000)[0]
+    
+    def UniformInteger(self, lower=0, upper=10, size=1):
+        return self.generator.integers(lower, upper, size)
+    
+    def UniformVector(self, dim=2, upper=1, size=1):
+        samples = self.generator.random((size, dim)) - 0.5 
+        return 2*samples*upper
+    
+    def OrthogonalMatrix(self, dim=2, size=1):
+        return special_ortho_group.rvs(dim=dim, random_state=self.RandomSeed(), size=size)
+    
+    def UniformCovariance(self, dim=2, maxstd=1):
+        P = self.OrthogonalMatrix(dim=dim)
+        s = (self.generator.random(size=dim) * maxstd)**2
+        return CovarianceMatrix(P,s)
+        
+    def GaussianSamples(self, Gaussian, size=1):
+        return self.generator.multivariate_normal(mean = Gaussian.mean, 
+                                                  cov  = Gaussian.cov.array(),
+                                                  size = size)
+    def WishartSamples(self, Wishart, size=1):
+        arrays = wishart.rvs(Wishart.nu, Wishart.scale.array(), random_state=self.RandomSeed(), size=size)
+        return [arr2cov(arr) for arr in arrays]
+
 class Timer:
     def __init__(self, name, dec=3, output=True):
         self.name      = name

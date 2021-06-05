@@ -8,15 +8,15 @@ Created on Fri May 14 10:36:56 2021
 import numpy as np
 import pandas as pd
 
-from .Distributions import RandomGenerator, GaussianDistribution, WishartDistribution, CovarianceMatrix
+from .utils import RandomGenerator
+from .Distributions import GaussianDistribution, WishartDistribution, CovarianceMatrix, RotationMatrix
 
-class HierarchicalGaussianMixture:
-            
-    config = {'datapoints':60, 
-              'samples' :20, 
+class HierarchicalGaussianMixture:       
+    config = {'datapoints':50, 
+              'samples' :15, 
               'features':2,
-              'classes':4,
-              'ClassMeanDistance': 25,
+              'classes':5,
+              'ClassMeanDistance': 20,
               'ClassScaleVariance': 5}
          
     def __init__(self, seed=None, random=True, **kwargs):
@@ -96,3 +96,24 @@ class HierarchicalGaussianMixture:
     
     def labeldict(self):
         return {i: i//self.N for i in range(self.K*self.N)}
+
+
+def CleanExample():
+    mixture = HierarchicalGaussianMixture(  seed=13,
+                                            datapoints=100, 
+                                            samples=15, 
+                                            features=2, 
+                                            classes=4,
+                                            random=False)
+    
+    C = CovarianceMatrix(RotationMatrix(20), s=[20,1])
+    D = CovarianceMatrix(RotationMatrix(110), s=[20,1])
+    
+    mixture.set_params(means   = np.array([[30,0],[30,0],[0,0],[0,0]]),
+                       Gammas = [CovarianceMatrix(s=[5,5])]*4,
+                       nus     = np.ones(4)*4,
+                       Lambdas  = [C,D,C,D])
+    
+    mixture.generate_data()
+    return mixture
+
