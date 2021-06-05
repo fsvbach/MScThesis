@@ -8,5 +8,10 @@ __pycache__/
 .spyderproject
 .spyproject
 
+# Latex outputs
+.aux
+.log
+.gz
+
 # Non-Important stuff
 
