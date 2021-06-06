@@ -12,6 +12,11 @@ __pycache__/
 .aux
 .log
 .gz
+.dvi
+.nav
+.out
+.toc
+.snm
 
 # Non-Important stuff
 
