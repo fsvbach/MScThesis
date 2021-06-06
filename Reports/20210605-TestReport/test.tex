@@ -1,0 +1,12 @@
+\documentclass{standalone}  
+    \usepackage{import}  
+    \usepackage{graphicx}
+    \graphicspath{{../Figures/}}
+\begin{document}  
+    \begin{tabular}{c}  
+    \includegraphics[width=0.4\linewidth]{HGM/CleanExample.pdf} \\ 
+    % the above image is loaded using the graphics path above which is over 180 characters from the device root  and would be much shorter if it was entered as its absolute location
+    %the following image is automatically loaded from a texmf directory (I dont need to know where it comes from its just there)
+    \includegraphics[width=0.4\linewidth]{GER/max6embedding.pdf}  
+    \end{tabular}   
+\end{document}

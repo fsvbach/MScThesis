@@ -6,7 +6,7 @@ Created on Thu May 27 11:43:48 2021
 @author: fsvbach
 """
 
-from Datasets.BIG5.Data import Aligned
+from Datasets.BIG5 import Aligned
 
 import matplotlib.pyplot as plt
 
@@ -17,7 +17,7 @@ fig, axes = plt.subplots(10,12,figsize=(120,100))
 for ax, (c, data) in zip(axes.flatten(), dataset.groupby(level=0)):
     C = data.corr()
     im = ax.imshow(C, vmin=-1, vmax=1, cmap='bwr')
-    ax.set_title(f'{c} ({len(data)})', fontsize=75)
+    ax.set_title(f'{c.upper()} ({len(data)})', fontsize=75)
     ax.axis('off')
     print('Plotted Heatmap')
     
@@ -26,6 +26,6 @@ cbar = fig.colorbar(im, ax=axes.ravel().tolist())
 cbar.set_ticks([-1,0,1])
 cbar.set_ticklabels(['anti','none', 'high'])
 cbar.ax.tick_params(labelsize=40)
-fig.savefig(f'Plots/BIG5_Overview.svg')
-plt.show()
-plt.close()    
+fig.savefig('Plots/BIG5_Overview.svg')
+
+fig.savefig('Reports/Figures/BIG5/Overview.pdf') 

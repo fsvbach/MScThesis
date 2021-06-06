@@ -14,7 +14,7 @@ from .TSNE import Dataset2Gaussians, GaussianWassersteinDistance, WassersteinTSN
 from .utils import Timer
 
 config= {'sklearn': False, 
-         'output':  False,
+         'output':  True,
          'seed':    None,
          'n': 5,
          'k': 10}

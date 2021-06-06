@@ -1,0 +1,14 @@
+\babel@toc {english}{}
+\beamer@sectionintoc {1}{Hierarchical Gaussian Mixtures}{4}{0}{1}
+\beamer@subsectionintoc {1}{1}{Synthetic Data}{5}{0}{1}
+\beamer@subsectionintoc {1}{2}{Wasserstein tSNE}{6}{0}{1}
+\beamer@subsectionintoc {1}{3}{Questions}{9}{0}{1}
+\beamer@sectionintoc {2}{European Values Study}{10}{0}{2}
+\beamer@subsectionintoc {2}{1}{Analysis}{12}{0}{2}
+\beamer@subsectionintoc {2}{2}{Questions}{15}{0}{2}
+\beamer@sectionintoc {3}{Bundestagswahl 2017}{16}{0}{3}
+\beamer@subsectionintoc {3}{1}{Analysis}{18}{0}{3}
+\beamer@subsectionintoc {3}{2}{Questions}{21}{0}{3}
+\beamer@sectionintoc {4}{Big Five Personality Traits}{22}{0}{4}
+\beamer@subsectionintoc {4}{1}{Analysis}{24}{0}{4}
+\beamer@subsectionintoc {4}{2}{Questions}{26}{0}{4}

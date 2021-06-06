@@ -12,11 +12,11 @@ import pandas as pd
 class Wahlbezirke:
 
     head = 300
-    data = pd.read_csv('Datasets/GER2017/Data/btw17_wbz_zweitstimmen.csv', delimiter=';',
+    data = pd.read_csv('Datasets/GER2017/btw17_wbz_zweitstimmen.csv', delimiter=';',
                     encoding='ISO-8859-1', header=4, index_col=[1,0], usecols = [0,1,13]+list(range(17,51)))
      
     ### Creating labels
-    labels  = pd.read_csv('Datasets/GER2017/Data/labels.csv',
+    labels  = pd.read_csv('Datasets/GER2017/labels.csv',
                           index_col=0)
     
     ### Merging CDU and CSU

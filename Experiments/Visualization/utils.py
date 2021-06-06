@@ -6,7 +6,7 @@ Created on Mon May 10 17:13:59 2021
 @author: bachmafy
 """
 
-PATH = 'Datasets/Images'
+PATH = 'Experiments/Visualization/Images'
 
 import matplotlib.pyplot as plt
 from matplotlib.offsetbox import AnnotationBbox, OffsetImage
@@ -51,7 +51,7 @@ def embedFlags(embedding, title, ax=None):
         flag = plt.imread(f'{PATH}/{embedding.index.name}/{label}.png')
         plotImages(X, Y, flag, s, ax)
 
-    ax.set_title(title, fontsize=35)
+    ax.set_title(title, fontsize=48)
     ax.axis('off')
 
    

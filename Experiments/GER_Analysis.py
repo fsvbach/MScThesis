@@ -6,31 +6,37 @@ Created on Sat May 22 18:56:14 2021
 @author: fsvbach
 """
 
-from WassersteinTSNE import Analysis 
-from Datasets.GER2017.Data import Wahlbezirke
-
+from Experiments.Visualization import Analysis 
+from Datasets.GER2017 import Wahlbezirke
 
 GER     = Wahlbezirke(numparty=6)
 labels  = GER.labels.Bundesland.to_dict()
 dataset = GER.data
 
-sizes = GER.data.groupby(level=0).std()
-
 Analysis._config.update(folder='wappen', 
                         seed=13, 
                         name='Wahlkreise',
                         description='max6',
-                        dataset='GER')
+                        size=(5,25),
+                        dataset='GER',
+                        w=0.75)
 
-# Analysis.WassersteinEmbedding(dataset, labels)
-
-Analysis.WassersteinEmbedding(dataset, labels, 
+fig = Analysis.WassersteinEmbedding(dataset, labels, 
                               selection=[0,0.5,0.75,0.875,0.9475,1], 
-                              suffix='_long')
+                              suffix='2rows')
+fig.savefig("Reports/Figures/GER/Embedding.pdf")
 
-Analysis.SpecialCovariances(dataset, labels)
+fig = Analysis.SpecialCovariances(dataset, labels)
+fig.savefig("Reports/Figures/GER/Covariances.pdf")
 
-Analysis.Correlations(dataset, labels)
-Analysis.Correlations(dataset, labels, normalize=False, suffix='_normalized')
+fig = Analysis.Correlations(dataset, labels, normalize=False)
+fig.savefig("Reports/Figures/GER/Correlation.pdf")
 
-# Analysis.Features(dataset, labels, sizes, suffix='_std')
+features = ['CDU', 'DIE LINKE', 'GRÜNE']
+means = dataset[features].groupby(level=0).mean()
+figure = Analysis.Features(dataset, labels, means, selection=True, suffix='Means')
+figure.savefig("Reports/Figures/GER/FeatureMeans.pdf")
+
+stds = dataset[features].groupby(level=0).std()
+figure = Analysis.Features(dataset, labels, stds, selection=True, suffix='Stds')
+figure.savefig("Reports/Figures/GER/FeatureStds.pdf")

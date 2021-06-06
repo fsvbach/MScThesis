@@ -62,7 +62,7 @@ def LoadEVS(topic, countries=None, transform=False, NUTS=1, min_entries=2):
 
     questions = list(topic.keys())
         
-    df        = pd.read_stata("Datasets/EVS2020/Data/EVS.dta", 
+    df        = pd.read_stata("Datasets/EVS2020/EVS.dta", 
                                convert_categoricals=False,
                                columns = questions+marker)
     df[df[questions]<0] = np.NaN
