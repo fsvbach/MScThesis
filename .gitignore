@@ -9,14 +9,14 @@ __pycache__/
 .spyproject
 
 # Latex outputs
-.aux
-.log
-.gz
-.dvi
-.nav
-.out
-.toc
-.snm
+*.aux
+*.log
+*.gz
+*.dvi
+*.nav
+*.out
+*.toc
+*.snm
 
 # Non-Important stuff
 
