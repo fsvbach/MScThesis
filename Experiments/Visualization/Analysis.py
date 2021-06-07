@@ -8,17 +8,19 @@ Created on Sat May 29 10:39:49 2021
 
 
 from WassersteinTSNE import Dataset2Gaussians, WassersteinTSNE, GaussianWassersteinDistance
-from .utils import embedFlags, get_rectangle
+from .utils import embedFlags, get_rectangle, border
 
 import numpy as np
 import matplotlib
 import itertools as it
 import matplotlib.pyplot as plt
 
+_naming = {0: 'Euclidean', 0.5: 'Wasserstein', 1: 'Covariance'}
+
 _config = {'folder': None,
            'dataset': None,
            'name': None,
-           'w': 1,
+           'w': 0.5,
            'size': (5,30),
            'seed': None,
            'description': '',
@@ -40,7 +42,9 @@ def WassersteinEmbedding(dataset, labeldict, selection=None, **kwargs):
         embedding = WT.fit(w=w)
         embedding.index = embedding.index.to_series(name=config['folder']).map(labeldict)
         embedding['sizes'] = np.mean(config['size'])
-        embedFlags(embedding, title=f"embedding (w={w})", ax=ax)
+        embedFlags(embedding, title=f"{_naming.get(w)} embedding (w={w})", ax=ax)
+        if w == config['w']:
+            border(ax, 'red')
         print("Plotted Embedding")
         
     fig.suptitle(f"TSNE Embedding of {config['dataset']} {config['name']}", fontsize=48)  
@@ -51,7 +55,8 @@ def SpecialCovariances(dataset, labeldict, **kwargs):
     config = {**_config, **kwargs}
     
     fig, axes = plt.subplots(ncols=3, figsize=(45,15))
-    
+    fig.tight_layout()
+        
     Gaussians = Dataset2Gaussians(dataset)
     WSDM = GaussianWassersteinDistance(Gaussians)
     WT = WassersteinTSNE(WSDM, seed=config['seed'])
@@ -67,7 +72,7 @@ def SpecialCovariances(dataset, labeldict, **kwargs):
     embedding = WT.fit(w=1)
     embedding.index    = embedding.index.to_series(name=config['folder']).map(labeldict)
     embedding['sizes'] = np.mean(config['size'])
-    embedFlags(embedding, f'embedding with DIAGONAL Covariance', ax=axes[1])
+    embedFlags(embedding, f'DIAGONAL Covariance (Variance)', ax=axes[1])
     print('Plotted subplot')
     
     Gaussians = Dataset2Gaussians(dataset, normalize=True)
@@ -76,10 +81,10 @@ def SpecialCovariances(dataset, labeldict, **kwargs):
     embedding = WT.fit(w=1)
     embedding.index    = embedding.index.to_series(name=config['folder']).map(labeldict)
     embedding['sizes'] = np.mean(config['size'])
-    embedFlags(embedding, f'embedding with NORMALIZED Covariance', ax=axes[2])
+    embedFlags(embedding, f'NORMALIZED Covariance (Correlation)', ax=axes[2])
     print('Plotted subplot')
 
-    fig.suptitle(f"{config['dataset']} {config['name']} with Special Covariances", fontsize=50)  
+    # fig.suptitle(f"{config['dataset']} {config['name']} with Special Covariances", fontsize=50)  
     fig.savefig(f"Plots/{config['dataset']}{config['description']}_SpecialCovariance{config['suffix']}.svg")
     return fig
 

@@ -1,0 +1,127 @@
+\documentclass[10pt,usepdftitle=false,aspectratio=169]{beamer}
+% \documentclass[10pt,usepdftitle=false,aspectratio=169,handout]{beamer}
+
+\usepackage{subfig}
+\usepackage{graphicx}
+\graphicspath{{../Figures/}}
+
+\input{preamble_talk}
+% \input{../preamble_slides}
+\usepackage{tcolorbox}
+\usepackage{changepage}
+\usepackage{arydshln}       %for dashed lines
+
+% Assets included in preamble
+\newcommand{\assetsDIR}{assets}
+
+% Add speaker notes to talk
+% \setbeameroption{hide notes} % Only slides
+%\setbeameroption{show only notes} % Only notes
+% \setbeameroption{show notes on second screen}
+
+\usetikzlibrary{external}
+\usetikzlibrary{positioning}
+\tikzset{main node/.style={circle,fill=white,draw,minimum size=1cm,inner sep=0pt},}
+% \tikzexternalize[mode=list and make]
+% use  make -j 4 -f talk.makefile to compile with 8 parallel threads (this is what it takes to max out the machine, depsite it having 4 cores)
+\tikzset{external/force remake=false}
+\tikzsetexternalprefix{external/}
+
+\usepackage[super]{nth}
+\newcommand{\LargeFigure}[1]{\begin{figure}
+\includegraphics[width=\textwidth,height=0.95\textheight,keepaspectratio]{#1}
+\end{figure}}
+
+%\setbeamersize{text margin left=0pt,text margin right=0pt} 
+\begin{document}
+
+\tikzexternaldisable
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %                                     TITLE                                             %
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \title{{\bf Intermediate Summary of Wasserstein tSNE}\\[4mm]{}
+  \vspace*{-.7cm}}
+  \author{Fynn Bachmann \vspace{-1cm}} \date{June \nth{17}, 2021}
+
+  \vspace{-1.5cm}
+  \maketitle
+  \vspace{-1.0cm}
+
+  \begin{columns}
+    \column{0.45\textwidth}
+    \includegraphics[width=\textwidth]{\assetsDIR/UT_WBMW_Rot_RGB.pdf}\hfill
+    % \column{.45\textwidth}
+    \column{0.45\textwidth}
+    \dre{Faculty of Science\\
+    Department of Computer Science\\
+    {\small Chair for the Methods of Machine Learning}}
+    % \includegraphics[width=.8\textwidth]{\assetsDIR/MPI-IS-WortBildMarke.png}\\
+    % \includegraphics[width=.8\textwidth]{\assetsDIR/imprs-is-logo.pdf}\\
+    % \parbox[c]{.2\textwidth}{\centering\includegraphics[height=1.2cm]{\assetsDIR/ERC.png}}
+    % \parbox{.75\textwidth}{\scriptsize \color{ERC_ora}some of the presented work is supported\newline by the European Research Council.}
+  \end{columns}
+
+  \thispagestyle{empty}
+  \setcounter{framenumber}{0}
+
+  %%%%%%%%%%%%%%%% ANIMATED LOGO %%%%%%%%%%%%%%%%
+  % \tikzifexternalizing{}{%
+  % \begin{tikzpicture}[remember picture,overlay]
+  % \node[anchor=south,yshift=-5mm] at (current page.south)
+  % {\animategraphics[width=0.9995\paperwidth,autoplay,loop]{36}{\assetsDIR/logo_TU_169_}{0}{39}};
+  %   \end{tikzpicture}%
+  % }%
+  %%%%%%%%%%%%%% END OF ANIMATED LOGO %%%%%%%%%%%
+
+  %%%%%%%%%%%%%%%% STATIC LOGO %%%%%%%%%%%%%%%%%%
+  \tikzifexternalizing{}{%
+  \begin{tikzpicture}[remember picture,overlay]
+   \node[anchor=south,yshift=-5mm] at (current page.south)
+  {\includegraphics[width=0.9995\paperwidth]{\assetsDIR/logo_TU_169_1.pdf}};
+  \end{tikzpicture}%
+  }%
+  %%%%%%%%%%%%%% END OF STATIC LOGO %%%%%%%%%%%%%
+
+\end{frame}
+\tikzexternalenable
+
+\setlength{\figurewidth}{\textwidth}
+\setlength{\figureheight}{\textheight}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %                                     INTRO                                             %
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%
+
+\begin{frame}\frametitle{Topic Description}
+   \begin{prob}
+   We want to find out in which sense a "Wasserstein t-SNE" can be useful. Which datasets exist where each datum itself is a probability distribution? How are they visualized/clustered now, and which metrics on probability distributions can improve clustering?
+   \end{prob}
+\end{frame}
+
+%\begin{frame}{Overview}
+%\begin{multicols}{2}
+%\tableofcontents
+%\end{multicols}
+%\end{frame}
+
+
+\include{chapters/0-HGM}
+
+\include{chapters/1-EVS}
+
+\include{chapters/2-GER}
+
+\include{chapters/3-BIG5}
+
+
+
+
+
+
+\end{document}
+

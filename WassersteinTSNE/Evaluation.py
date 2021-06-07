@@ -13,11 +13,15 @@ from .Visualization import embedScatter, plotMixture
 from .TSNE import Dataset2Gaussians, GaussianWassersteinDistance, WassersteinTSNE
 from .utils import Timer
 
+_naming = {0: 'Euclidean', 0.5: 'Wasserstein', 1: 'Covariance'}
+
 config= {'sklearn': False, 
          'output':  True,
          'seed':    None,
          'n': 5,
-         'k': 10}
+         'k': 10,
+         'std': 3,
+         'size': 1}
     
 def AccuracyPlot(mixture, **kwargs):
     config.update(kwargs)
@@ -28,7 +32,9 @@ def AccuracyPlot(mixture, **kwargs):
           
     fig, axs = plt.subplots(2, 3, 
                              figsize=(20,10),
-                             gridspec_kw={'width_ratios': [2, 1,1]})
+                             gridspec_kw={'width_ratios': [2, 1,1],
+                                          'wspace': 0.05,
+                                          'hspace':0.15})
     
     w0, w5, w10, acc = axs[0:,1:].flatten()
     gs = axs[0, 0].get_gridspec()
@@ -37,10 +43,10 @@ def AccuracyPlot(mixture, **kwargs):
         ax.remove()
     hgm = fig.add_subplot(gs[0:, 0])
     
-    plotMixture(mixture, std=3, ax=hgm)
+    plotMixture(mixture, std=config['std'], ax=hgm)
         
-    timer.add(f'{mixture._info()}\n\nCreated data')
-    
+    timer.add(f'{mixture.info}\n\nCreated data')
+
     Gaussians = Dataset2Gaussians(mixture.data)
     WSDM = GaussianWassersteinDistance(Gaussians)
     WT = WassersteinTSNE(WSDM, seed=config['seed'], sklearn=config['sklearn'])
@@ -50,7 +56,8 @@ def AccuracyPlot(mixture, **kwargs):
     for ax, w in zip([w0,w5,w10], [0,0.5,1]):
         embedding = WT.fit(w=w)
         embedding.index = embedding.index.to_series().map(mixture.labeldict())
-        embedScatter(embedding, f"embedding (w={w})", ax)
+        embedScatter(embedding, f"{_naming.get(w)} embedding (w={w})",
+                     size=config['size'], ax=ax)
         timer.add(f"Done TSNE with sklearn={config['sklearn']}")
     
     ### Calculate Accuracies
@@ -65,9 +72,12 @@ def AccuracyPlot(mixture, **kwargs):
             ylabel=r'$\%$',
             title =f"kNN Accuracies (k={k})",
             ybound=(0,100))
+    acc.yaxis.tick_right()
+    acc.yaxis.set_label_position("right")
     
     timer.result('Done Final Plot')
     timer.finish('Plots/.logfile.txt')
     
+    # fig.tight_layout()
     return fig
 

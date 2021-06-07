@@ -25,11 +25,11 @@ def plotMatrix(matrices, titles, name):
     plt.close()
 
    
-def plotGaussian(Gaussian, size=20, ax=None):
+def plotGaussian(Gaussian, size=20, STDS=[1,2,3], ax=None):
     if not ax:
         ax = plt.gca()
         
-    for i in range(1,4):
+    for i in STDS:
         mean, width, height, angle = Gaussian.shape(std=i)
         ell = Ellipse(xy=mean, width=width, height=height, angle=angle, 
                       edgecolor='black', facecolor='none', 
@@ -73,4 +73,10 @@ def get_rectangle(N):
     return A,B
 
 
+def border(ax, color):
+    ax.axis('on')
+    ax.set_xticks([], minor=[])
+    ax.set_yticks([], minor=[])
+    for spine in ['bottom', 'top', 'left', 'right']:
+        ax.spines[spine].set_color(color)
 

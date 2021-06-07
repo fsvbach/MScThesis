@@ -19,22 +19,26 @@ matplotlib.rcParams.update({
     'text.usetex': True,
     'pgf.rcfonts': False})
 
-def embedScatter(embedding, title, ax=None):
+def embedScatter(embedding, title, size=1, ax=None):
     if not ax:
         ax = plt.gca()
         
     for label, data in embedding.groupby(level=0):
         X, Y = data['x'], data['y']
-        ax.scatter(X, Y, label=label)
-    
+        ax.scatter(X, Y, s=size, label=label)
+
+    ax.set_xticks([], minor=[])
+    ax.set_yticks([], minor=[])
+    # for spine in ['bottom', 'top', 'left', 'right']:
+    #     ax.spines[spine].set_linestyle("dashed")
     ax.set_title(title)
     
 class HandlerEllipseRotation(HandlerPatch):
     def create_artists(self, legend, orig_handle,
                        ydescent, xdescent, height, width, fontsize, trans):
         center = 0.5 * height - 0.5 * xdescent, 0.5 * width - 0.5 * ydescent
-        p = Ellipse(xy=center, width=width,
-                             height=height,
+        p = Ellipse(xy=center, width=orig_handle.width,
+                             height=orig_handle.height,
                              angle=orig_handle.angle)
         self.update_prop(p, orig_handle, legend)
         p.set_transform(trans)
@@ -92,7 +96,7 @@ def plotMixture(mixture, std=1, ax=None):
         width, height, angle = Wishart.shape(std=3)
         ell = Ellipse(xy=(0,0), width=width, height=height, angle=angle, 
                       edgecolor="C"+str(i), facecolor='none', 
-                      linewidth=3, 
+                      linewidth=1, 
                       label='class '+str(i+1))
         handles.append(ell)
         labels.append('Class ' +str(i))

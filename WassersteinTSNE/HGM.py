@@ -38,7 +38,7 @@ class HierarchicalGaussianMixture:
             self.set_params()
             self.generate_data()
         else:
-            self.info = f'Custom parameters with Random seed {self.seed}'
+            self.info = f'Custom parameters'
             self.ClassGaussians = None
             self.ClassWisharts  = None
                     

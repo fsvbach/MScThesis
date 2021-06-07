@@ -27,13 +27,13 @@ Analysis._config.update(folder='flags',
 # figure = Analysis.WassersteinEmbedding(dataset, labels)
 # figure.savefig("Reports/Figures/EVS/Embedding.pdf")
 
-# figure = Analysis.SpecialCovariances(dataset, labels)
-# figure.savefig("Reports/Figures/EVS/Covariances.pdf")
+figure = Analysis.SpecialCovariances(dataset, labels)
+figure.savefig("Reports/Figures/EVS/Covariances.pdf")
 
-A = ['v187', 'v38', 'v103', 'v106', 'v201', 'v107', 'v200', 'v102']
-B = ['v143', 'v39', 'v102', 'v104', 'v188', 'v102', 'v63', 'v186']
-figure = Analysis.Correlations(dataset, labels, selection=zip(A,B), normalize=False)
-figure.savefig("Reports/Figures/EVS/Correlation.pdf")
+# A = ['v187', 'v38', 'v103', 'v106', 'v201', 'v107', 'v200', 'v102']
+# B = ['v143', 'v39', 'v102', 'v104', 'v188', 'v102', 'v63', 'v186']
+# figure = Analysis.Correlations(dataset, labels, selection=zip(A,B), normalize=False)
+# figure.savefig("Reports/Figures/EVS/Correlation.pdf")
 
 # features = ['v186', 'v144', 'v63', 'v104']
 # means = dataset[features].groupby(level=0).mean()
