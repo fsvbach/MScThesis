@@ -186,3 +186,59 @@ Done Final Plot
 Succesfully finished 'AccuracyPlot' in 70.607s
 
 ---------------------------------------------------------------------------
+Started 'AccuracyPlot' at 06-07-17-15-22
+
+Custom parameters
+
+Created data in 0.114s. (Total: 0.114s)
+
+Computed distance matrices in 11.161s. (Total: 11.275s)
+
+Done TSNE with sklearn=False in 1.206s. (Total: 12.481s)
+
+Done TSNE with sklearn=False in 1.073s. (Total: 13.554s)
+
+Done TSNE with sklearn=False in 1.145s. (Total: 14.699s)
+
+Accuracy (w=0.0): 0.6625%
+Accuracy (w=0.1111111111111111): 0.955%
+Accuracy (w=0.2222222222222222): 0.9825%
+Accuracy (w=0.3333333333333333): 0.98%
+Accuracy (w=0.4444444444444444): 0.995%
+Accuracy (w=0.5555555555555556): 0.995%
+Accuracy (w=0.6666666666666666): 0.995%
+Accuracy (w=0.7777777777777777): 0.9975%
+Accuracy (w=0.8888888888888888): 0.9975%
+Accuracy (w=1.0): 0.615%
+Done Final Plot
+Succesfully finished 'AccuracyPlot' in 25.757s
+
+---------------------------------------------------------------------------
+Started 'AccuracyPlot' at 06-07-17-18-59
+
+Custom parameters
+
+Created data in 0.164s. (Total: 0.164s)
+
+Computed distance matrices in 11.185s. (Total: 11.349s)
+
+Done TSNE with sklearn=False in 1.19s. (Total: 12.539s)
+
+Done TSNE with sklearn=False in 1.188s. (Total: 13.727s)
+
+Done TSNE with sklearn=False in 1.168s. (Total: 14.895s)
+
+Accuracy (w=0.0): 0.6775%
+Accuracy (w=0.1111111111111111): 0.95%
+Accuracy (w=0.2222222222222222): 0.9725%
+Accuracy (w=0.3333333333333333): 0.99%
+Accuracy (w=0.4444444444444444): 0.9875%
+Accuracy (w=0.5555555555555556): 0.995%
+Accuracy (w=0.6666666666666666): 0.995%
+Accuracy (w=0.7777777777777777): 0.9975%
+Accuracy (w=0.8888888888888888): 1.0%
+Accuracy (w=1.0): 0.6075%
+Done Final Plot
+Succesfully finished 'AccuracyPlot' in 26.016s
+
+---------------------------------------------------------------------------

@@ -1,0 +1,57 @@
+\section[EVS]{European Values Study}
+
+{
+\usebackgroundtemplate{
+  \tikz[overlay,remember picture] 
+  \node[opacity=0.8, at=(current page.south east),anchor=south east,inner sep=0pt] {
+    \includegraphics[height=0.9\textheight]{assets/Europe.jpeg}};
+}
+\begin{frame}{European Values Study}\framesubtitle{Questionnaire}
+\titlemark{Picture from \url{https://www.enisa.europa.eu/}}
+ \begin{itemize}
+    \item 37688 interviews from 114 European NUTS-1 regions
+    \item 20 questions per interview with options from 1 and 10
+    \item variety of different topics \\(i.e. environment, democracy, morality)
+    \item 34 countries as labels
+\end{itemize}
+\end{frame}
+}
+
+\subsection{Embedding}
+
+\begin{frame}{t-SNE embedding of NUTS1 regions}
+\LargeFigure{EVS/Embedding.pdf}
+\end{frame}
+
+\begin{frame}{}
+\begin{figure}[!ht]
+  {\includegraphics[width=\textwidth]{EVS/FeatureMeans.pdf}}\\
+  {\includegraphics[width=\textwidth]{EVS/FeatureStds.pdf}}
+\end{figure}
+\end{frame}
+
+\subsection{Analysis}
+
+
+\begin{frame}{Covariance Analysis}
+\LargeFigure{EVS/Covariances.pdf}
+\end{frame}
+
+\begin{frame}{Correlation Analysis}
+\LargeFigure{EVS/Correlation.pdf}
+\end{frame}
+
+
+
+
+
+
+\subsection{Questions}
+
+
+\begin{frame}{Problems \& Questions}
+ \begin{itemize}
+    \item Logit Transformation doesn't make difference
+    \item Difficult to judge whether correlations improve clustering
+\end{itemize}
+\end{frame}

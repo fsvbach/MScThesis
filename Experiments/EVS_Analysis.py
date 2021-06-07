@@ -21,7 +21,7 @@ Analysis._config.update(folder='flags',
                        description='',
                        dataset='EVS',
                        renaming= lambda name: Data.overview[name][0],
-                       size= (3,7),
+                       size= (5,15),
                        w=0.5)
 
 # figure = Analysis.WassersteinEmbedding(dataset, labels)

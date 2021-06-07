@@ -1,0 +1,61 @@
+\section[BIG5]{Big Five Personality Traits}
+
+
+{
+\usebackgroundtemplate{
+  \tikz[overlay,remember picture] 
+  \node[opacity=0.8, at=(current page.south east),anchor=south east,inner sep=0pt] {
+    \includegraphics[width=0.5\textwidth]{assets/Big5.png}};
+}
+\begin{frame}{Big Five Personality Traits}\framesubtitle{Online Survey}
+\titlemark{Picture by MissLunaRose12 - Own work, CC BY-SA 4.0}
+ \begin{itemize}
+    \item 219584 survey participants from 120 countries 
+    \item 50 questions (answers options from 1 to 5)
+    \item 5 continents as labels
+\end{itemize}
+\end{frame}
+}
+
+
+\begin{frame}{Correlations per country (Overview)}
+\LargeFigure{BIG5/Overview.pdf}
+\end{frame}
+
+\subsection{Embedding}
+
+\begin{frame}{}
+\begin{figure}[!ht]
+  {\includegraphics[width=.95\textwidth]{BIG5/EmbeddingCountries.pdf}}\\
+  {\includegraphics[width=.95\textwidth]{BIG5/EmbeddingContinents.pdf}}
+\end{figure}
+\end{frame}
+
+\begin{frame}{}
+\begin{figure}[!ht]
+  {\includegraphics[width=.95\textwidth]{BIG5/FeatureMeans1.pdf}}\\
+  {\includegraphics[width=.95\textwidth]{BIG5/FeatureMeans2.pdf}}
+\end{figure}
+\end{frame}
+
+
+
+%\subsection{Analysis}
+
+
+%\begin{frame}{Covariance Analysis}
+%\begin{figure}
+%\includegraphics[width=0.95\textwidth]{BIG5/Covariances.pdf}
+%\end{figure}
+%\end{frame}
+
+
+
+\subsection{Questions}
+
+\begin{frame}{Problems \& Questions}
+ \begin{itemize}
+    \item no improvement with Wasserstein t-SNE
+    \item strong bias in an online survey (students only?)
+\end{itemize}
+\end{frame}

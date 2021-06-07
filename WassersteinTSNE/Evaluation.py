@@ -72,6 +72,7 @@ def AccuracyPlot(mixture, **kwargs):
             ylabel=r'$\%$',
             title =f"kNN Accuracies (k={k})",
             ybound=(0,100))
+    acc.tick_params(axis="y",direction="in", pad=-22)
     acc.yaxis.tick_right()
     acc.yaxis.set_label_position("right")
     

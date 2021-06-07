@@ -21,7 +21,7 @@ _config = {'folder': None,
            'dataset': None,
            'name': None,
            'w': 0.5,
-           'size': (5,30),
+           'size': (5,25),
            'seed': None,
            'description': '',
            'suffix': '',
@@ -33,7 +33,7 @@ def WassersteinEmbedding(dataset, labeldict, selection=None, **kwargs):
     if not selection:
         selection = [0,0.5,1]
     M, N = get_rectangle(len(selection))
-    fig, axes = plt.subplots(M,N, figsize=(20*N,20*M))
+    fig, axes = plt.subplots(M,N, figsize=(25*N,25*M))
     
     for ax, w in zip(axes.flatten(), selection):
         Gaussians = Dataset2Gaussians(dataset)
@@ -42,20 +42,20 @@ def WassersteinEmbedding(dataset, labeldict, selection=None, **kwargs):
         embedding = WT.fit(w=w)
         embedding.index = embedding.index.to_series(name=config['folder']).map(labeldict)
         embedding['sizes'] = np.mean(config['size'])
-        embedFlags(embedding, title=f"{_naming.get(w)} embedding (w={w})", ax=ax)
+        embedFlags(embedding, title=f"{_naming.get(w, '')} embedding (w={w})", ax=ax)
         if w == config['w']:
             border(ax, 'red')
         print("Plotted Embedding")
         
-    fig.suptitle(f"TSNE Embedding of {config['dataset']} {config['name']}", fontsize=48)  
+    # fig.suptitle(f"TSNE Embedding of {config['dataset']} {config['name']}", fontsize=48)  
+    fig.tight_layout(pad=1)
     fig.savefig(f"Plots/{config['dataset']}{config['description']}_{config['name']}{config['suffix']}.svg")
     return fig
 
 def SpecialCovariances(dataset, labeldict, **kwargs):
     config = {**_config, **kwargs}
     
-    fig, axes = plt.subplots(ncols=3, figsize=(45,15))
-    fig.tight_layout()
+    fig, axes = plt.subplots(ncols=3, figsize=(75,25))
         
     Gaussians = Dataset2Gaussians(dataset)
     WSDM = GaussianWassersteinDistance(Gaussians)
@@ -63,7 +63,7 @@ def SpecialCovariances(dataset, labeldict, **kwargs):
     embedding = WT.fit(w=1)
     embedding.index    = embedding.index.to_series(name=config['folder']).map(labeldict)
     embedding['sizes'] = np.mean(config['size'])
-    embedFlags(embedding, f'NORMAL embedding with w=1', ax=axes[0])
+    embedFlags(embedding, f'NORMAL embedding (w=1)', ax=axes[0])
     print('Plotted subplot')
     
     Gaussians = Dataset2Gaussians(dataset, diagonal=True)
@@ -85,6 +85,7 @@ def SpecialCovariances(dataset, labeldict, **kwargs):
     print('Plotted subplot')
 
     # fig.suptitle(f"{config['dataset']} {config['name']} with Special Covariances", fontsize=50)  
+    fig.tight_layout(pad=1)
     fig.savefig(f"Plots/{config['dataset']}{config['description']}_SpecialCovariance{config['suffix']}.svg")
     return fig
 
@@ -103,7 +104,8 @@ def Correlations(dataset, labeldict, normalize=True, selection=None, **kwargs):
         selection = it.combinations(dataset.columns, r=2)
     selection = list(selection)
     M, N = get_rectangle(len(selection))
-    fig, axes = plt.subplots(M,N, figsize=(15*N,15*M))
+    fig, axes = plt.subplots(M,N, figsize=(10*N,10*M))
+    # fig.tight_layout(pad=0.51)
     
     for ax, (feature1, feature2) in zip(axes.flatten(), selection):    
         corr = dataset.groupby(level=0).corr().fillna(0)
@@ -111,7 +113,7 @@ def Correlations(dataset, labeldict, normalize=True, selection=None, **kwargs):
 
         im=ax.scatter(embedding['x'], embedding['y'],
                    c=sizes, cmap='seismic', vmax=1, vmin=-1)
-        ax.set_title(f'{feature1} with {feature2}', fontsize=35)
+        ax.set_title(f'{feature1} with {feature2}', fontsize=45)
         ax.axis('off')
         print('Plotted Correlation')
          
@@ -135,7 +137,7 @@ def Features(dataset, labeldict, FeatureSizes, selection=False, **kwargs):
     
     if selection:
         N = len(FeatureSizes.columns)
-        fig, axes = plt.subplots(1,N, figsize=(15*N,15))
+        fig, axes = plt.subplots(1,N, figsize=(20*N,20))
     
         for ax, feature in zip(axes.flatten(), FeatureSizes):
             sizes = FeatureSizes[feature].values
@@ -152,7 +154,7 @@ def Features(dataset, labeldict, FeatureSizes, selection=False, **kwargs):
         return fig
     
     for feature in FeatureSizes:    
-        fig, ax = plt.subplots(figsize=(15,15))
+        fig, ax = plt.subplots(figsize=(20,20))
     
         sizes = FeatureSizes[feature].values
         minsize, maxsize = config['size']
