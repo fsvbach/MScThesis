@@ -34,10 +34,10 @@ Let $\N_1, \N_2$ be two Gaussian distributions with $\N_i = (m_i, C_i)$. The 2-W
 $$W(\N_{1}, \N_{2})^{2} :=\left\|m_{1}-m_{2}\right\|_{2}^{2}+\text { trace }\left(C_{1}+C_{2}-2\left(C_{2}^{1 / 2} C_{1} C_{2}^{1 / 2}\right)^{1 / 2}\right)$$
 \end{defi}
 
-By introducing a hyperparameter $w \in [0,1]$, we can put emphasis either on means or covariances.
+By introducing a hyperparameter $\lambda \in [0,1]$, we can put emphasis either on means or covariances.
 
 \begin{block}{Convex Generalization:}
-$$W(\N_{1}, \N_{2})^{2} := (1-w) \cdot \left\|m_{1}-m_{2}\right\|_{2}^{2}+ w \cdot  \text { trace }\left(C_{1}+C_{2}-2\left(C_{2}^{1 / 2} C_{1} C_{2}^{1 / 2}\right)^{1 / 2}\right)$$
+$$W(\N_{1}, \N_{2})^{2} := (1-\lambda) \cdot \left\|m_{1}-m_{2}\right\|_{2}^{2}+ \lambda \cdot  \text { trace }\left(C_{1}+C_{2}-2\left(C_{2}^{1 / 2} C_{1} C_{2}^{1 / 2}\right)^{1 / 2}\right)$$
 \end{block}
 \end{frame}
 
