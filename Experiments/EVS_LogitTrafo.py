@@ -6,16 +6,16 @@ Created on Sun Jun  6 10:27:24 2021
 @author: fsvbach
 """
 
+from Experiments.Visualization.Transformation import MeanStdCorr
 from Experiments.Visualization import Analysis 
 from Datasets import EVS2020 as Data
 
+import matplotlib.pyplot as plt
+
+fig, axes = plt.subplots(1,2, figsize=(10,5))
+
 countries=None
-trafo=False
 NUTS=1
-
-dataset, labels = Data.LoadEVS(Data.overview, countries=countries, transform=trafo, NUTS=NUTS, min_entries=2)
-
-sizes = dataset.groupby(level=0).mean()
 
 Analysis._config.update(folder='flags', 
                        seed=13, 
@@ -24,7 +24,16 @@ Analysis._config.update(folder='flags',
                        dataset='EVS',
                        renaming= lambda name: Data.overview[name][0],
                        size= (1,9))
+    
+for trafo, ax in zip([False,True], axes):
+    dataset, labels = Data.LoadEVS(Data.overview, countries=countries, transform=trafo, NUTS=NUTS, min_entries=2) 
+    
+    Analysis.WassersteinEmbedding(dataset, labels, 
+                                  selection=[0,0.5,1], 
+                                  suffix=f'trafo{trafo}')
+    
+    MeanStdCorr(dataset, ax)
 
-
-# fig.suptitle(f'NUTS{NUTS} regions with Logit-Transformation: {trafo}', fontsize=30)  
-# fig.savefig(f'Plots/NUTS{NUTS}RegionsTrafo{trafo}{suffix}.svg')
+fig.savefig('Plots/EVS_VarStab.svg')
+plt.show()
+plt.close()   
