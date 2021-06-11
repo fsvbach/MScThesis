@@ -33,7 +33,7 @@ class Wahlbezirke:
     data.sort_values(head, axis=1, ascending=False, inplace=True)
      
     ### In Prozent umrechnen
-    data = data.divide(data['Wähler (B)'], axis='rows')*100
+    data = data.divide(data['Wähler (B)'], axis='rows')
     data.drop('Wähler (B)', axis=1, inplace=True)
     mean = data.loc[head]
     
@@ -46,10 +46,15 @@ class Wahlbezirke:
     def __init__(self, numparty=None):
         if numparty:
             self.data = self.data.iloc[:,:numparty]
+            # self.mean = self.mean.iloc[:,:numparty]
         
     def subtract_mean(self):
         self.data = (self.data-self.mean)
         return self.mean
+    
+    def transform(self):
+        self.data = np.arcsin(np.sqrt(self.data))
+        return self.data
     
 if __name__ == '__main__':
     G = Wahlbezirke()
