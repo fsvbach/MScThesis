@@ -43,7 +43,7 @@ for ax, w in zip(axes, np.linspace(0,1,5)):
     # embedding = WT.fit(w=w)
     
     embedding.index = embedding.index.to_series().map(toy.labeldict())
-    embedScatter(embedding, rf"{_naming.get(w)} embedding ($\lambda$={w})",
+    embedScatter(embedding, rf"{_naming.get(w, '')} embedding ($\lambda$={w})",
                  size=5, ax=ax)
 
 fig.tight_layout()

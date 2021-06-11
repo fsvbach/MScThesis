@@ -26,10 +26,10 @@ Analysis._config.update(folder='wappen',
 #                               suffix='2rows')
 # fig.savefig("Reports/Figures/GER/Embedding.pdf")
 
-fig = Analysis.SpecialCovariances(dataset, labels)
-fig.savefig("Reports/Figures/GER/Covariances.pdf")
+# fig = Analysis.SpecialCovariances(dataset, labels)
+# fig.savefig("Reports/Figures/GER/Covariances.pdf")
 
-# fig = Analysis.Correlations(dataset, labels, normalize=False)
+fig = Analysis.Correlations(dataset, labels, normalize=False, w=0, suffix='Euc')
 # fig.savefig("Reports/Figures/GER/Correlation.pdf")
 
 # features = ['CDU', 'DIE LINKE', 'GRÜNE']

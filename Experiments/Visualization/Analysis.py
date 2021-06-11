@@ -7,15 +7,13 @@ Created on Sat May 29 10:39:49 2021
 """
 
 
-from WassersteinTSNE import Dataset2Gaussians, WassersteinTSNE, GaussianWassersteinDistance
+from WassersteinTSNE import Dataset2Gaussians, WassersteinTSNE, GaussianWassersteinDistance, _naming
 from .utils import embedFlags, get_rectangle, border
 
 import numpy as np
 import matplotlib
 import itertools as it
 import matplotlib.pyplot as plt
-
-_naming = {0: 'Euclidean', 0.5: 'Wasserstein', 1: 'Covariance'}
 
 _config = {'folder': None,
            'dataset': None,

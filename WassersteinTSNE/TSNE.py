@@ -46,7 +46,7 @@ class WassersteinTSNE:
             embedding = tsne.fit_transform(self.GWD.matrix(w=w))
         else:
             tsne = openTSNE(metric='precomputed', 
-                        initialization='spectral', 
+                        initialization='random', 
                         negative_gradient_method='bh',
                         random_state=self.seed)
             embedding = tsne.fit(self.GWD.matrix(w=w))
