@@ -1,0 +1,19 @@
+Bilder Flags (flagepedia?)
+
+Bilder Wappen (WIkipedia)
+
+Bilder Cotinents (Search)
+
+Bilder Europe/Germany/BIG5
+
+Formel Wasserstein (Give proof why convex generealization is norm)
+
+Formel tsne (cite tsne paper)
+
+Cite GESIS (for data)
+
+Cite openTSNE
+
+Data openPsychomeida
+
+Data Bundeswahlleiter
