@@ -242,3 +242,318 @@ Done Final Plot
 Succesfully finished 'AccuracyPlot' in 26.016s
 
 ---------------------------------------------------------------------------
+Started 'AccuracyPlot' at 06-11-12-34-31
+
+Custom parameters
+
+Created data in 0.216s. (Total: 0.216s)
+
+Computed distance matrices in 12.078s. (Total: 12.294s)
+
+Done TSNE with sklearn=False in 1.247s. (Total: 13.541s)
+
+Done TSNE with sklearn=False in 1.091s. (Total: 14.632s)
+
+Done TSNE with sklearn=False in 1.156s. (Total: 15.788s)
+
+Accuracy (w=0.0): 0.67%
+Accuracy (w=0.1111111111111111): 0.9575%
+Accuracy (w=0.2222222222222222): 0.9825%
+Accuracy (w=0.3333333333333333): 0.9875%
+Accuracy (w=0.4444444444444444): 0.9925%
+Accuracy (w=0.5555555555555556): 0.9925%
+Accuracy (w=0.6666666666666666): 0.995%
+Accuracy (w=0.7777777777777777): 0.9975%
+Accuracy (w=0.8888888888888888): 0.9975%
+Accuracy (w=1.0): 0.6125%
+Done Final Plot
+Succesfully finished 'AccuracyPlot' in 31.104s
+
+---------------------------------------------------------------------------
+Started 'AccuracyPlot' at 06-11-13-25-42
+
+Random seed: 1, ClassMeanDistance: 2, ClassScaleVariance: 1
+3 classes à 20 datapoints with each 5 samples in 2 dimensions
+
+Created data in 0.217s. (Total: 0.217s)
+
+Computed distance matrices in 0.464s. (Total: 0.681s)
+
+Done TSNE with sklearn=False in 0.332s. (Total: 1.013s)
+
+Done TSNE with sklearn=False in 0.234s. (Total: 1.247s)
+
+Done TSNE with sklearn=False in 0.265s. (Total: 1.512s)
+
+Accuracy (w=0.0): 0.8833333333333333%
+Accuracy (w=0.1111111111111111): 0.8833333333333333%
+Accuracy (w=0.2222222222222222): 0.85%
+Accuracy (w=0.3333333333333333): 0.8833333333333333%
+Accuracy (w=0.4444444444444444): 0.8833333333333333%
+Accuracy (w=0.5555555555555556): 0.9%
+Accuracy (w=0.6666666666666666): 0.8833333333333333%
+Accuracy (w=0.7777777777777777): 0.8833333333333333%
+Accuracy (w=0.8888888888888888): 0.8833333333333333%
+Accuracy (w=1.0): 0.7833333333333333%
+Done Final Plot
+Succesfully finished 'AccuracyPlot' in 4.365s
+
+---------------------------------------------------------------------------
+Started 'AccuracyPlot' at 06-11-13-26-28
+
+Random seed: 1, ClassMeanDistance: 2, ClassScaleVariance: 1
+3 classes à 20 datapoints with each 5 samples in 2 dimensions
+
+Created data in 0.323s. (Total: 0.323s)
+
+Computed distance matrices in 0.421s. (Total: 0.744s)
+
+Done TSNE with sklearn=False in 0.284s. (Total: 1.028s)
+
+Done TSNE with sklearn=False in 0.357s. (Total: 1.385s)
+
+Done TSNE with sklearn=False in 0.248s. (Total: 1.633s)
+
+Accuracy (w=0.1): 0.8666666666666667%
+Accuracy (w=0.9): 0.8833333333333333%
+Done Final Plot
+Succesfully finished 'AccuracyPlot' in 2.105s
+
+---------------------------------------------------------------------------
+Started 'AccuracyPlot' at 06-11-13-27-10
+
+Random seed: 1, ClassMeanDistance: 2, ClassScaleVariance: 1
+3 classes à 20 datapoints with each 5 samples in 2 dimensions
+
+Created data in 0.204s. (Total: 0.204s)
+
+Computed distance matrices in 0.267s. (Total: 0.471s)
+
+Done TSNE with sklearn=False in 0.254s. (Total: 0.725s)
+
+Done TSNE with sklearn=False in 0.246s. (Total: 0.971s)
+
+Done TSNE with sklearn=False in 0.244s. (Total: 1.215s)
+
+Accuracy (w=0.1): 0.8333333333333334%
+Accuracy (w=0.9): 0.8833333333333333%
+Done Final Plot
+Succesfully finished 'AccuracyPlot' in 1.696s
+
+---------------------------------------------------------------------------
+Started 'AccuracyPlot' at 06-11-13-28-33
+
+Random seed: 1, ClassMeanDistance: 2, ClassScaleVariance: 1
+3 classes à 20 datapoints with each 5 samples in 2 dimensions
+
+Created data in 0.212s. (Total: 0.212s)
+
+Computed distance matrices in 0.244s. (Total: 0.456s)
+
+Done TSNE with sklearn=False in 0.261s. (Total: 0.717s)
+
+Done TSNE with sklearn=False in 0.251s. (Total: 0.968s)
+
+Done TSNE with sklearn=False in 0.252s. (Total: 1.22s)
+
+Accuracy (w=0.1): 0.8666666666666667%
+Accuracy (w=0.9): 0.8833333333333333%
+Done Final Plot
+Succesfully finished 'AccuracyPlot' in 1.705s
+
+---------------------------------------------------------------------------
+Started 'AccuracyPlot' at 06-11-13-29-16
+
+Custom parameters
+
+Created data in 0.226s. (Total: 0.226s)
+
+Computed distance matrices in 12.107s. (Total: 12.333s)
+
+Done TSNE with sklearn=False in 1.327s. (Total: 13.66s)
+
+Done TSNE with sklearn=False in 1.362s. (Total: 15.022s)
+
+Done TSNE with sklearn=False in 1.286s. (Total: 16.308s)
+
+Accuracy (w=0.1): 0.9325%
+Accuracy (w=0.9): 1.0%
+Done Final Plot
+Succesfully finished 'AccuracyPlot' in 18.524s
+
+---------------------------------------------------------------------------
+Started 'AccuracyPlot' at 06-11-13-33-00
+
+Custom parameters
+
+Created data in 0.128s. (Total: 0.128s)
+
+Computed distance matrices in 10.82s. (Total: 10.948s)
+
+Done TSNE with sklearn=False in 1.2s. (Total: 12.148s)
+
+Done TSNE with sklearn=False in 1.093s. (Total: 13.241s)
+
+Done TSNE with sklearn=False in 1.15s. (Total: 14.391s)
+
+Accuracy (w=0.0): 0.67%
+Accuracy (w=0.1111111111111111): 0.95%
+Accuracy (w=0.2222222222222222): 0.9725%
+Accuracy (w=0.3333333333333333): 0.9875%
+Accuracy (w=0.4444444444444444): 0.99%
+Accuracy (w=0.5555555555555556): 0.995%
+Accuracy (w=0.6666666666666666): 0.9975%
+Accuracy (w=0.7777777777777777): 1.0%
+Accuracy (w=0.8888888888888888): 0.9975%
+Accuracy (w=1.0): 0.6275%
+Done Final Plot
+Succesfully finished 'AccuracyPlot' in 26.183s
+
+---------------------------------------------------------------------------
+Started 'AccuracyPlot' at 06-11-13-42-34
+
+Random seed: 1, ClassMeanDistance: 2, ClassScaleVariance: 1
+3 classes à 50 datapoints with each 5 samples in 2 dimensions
+
+Created data in 0.379s. (Total: 0.379s)
+
+Computed distance matrices in 2.231s. (Total: 2.61s)
+
+Done TSNE with sklearn=False in 0.548s. (Total: 3.158s)
+
+Done TSNE with sklearn=False in 0.499s. (Total: 3.657s)
+
+Done TSNE with sklearn=False in 0.607s. (Total: 4.264s)
+
+Accuracy (w=0.1): 0.86%
+Accuracy (w=0.9): 0.96%
+Done Final Plot
+Succesfully finished 'AccuracyPlot' in 5.689s
+
+---------------------------------------------------------------------------
+Started 'AccuracyPlot' at 06-11-13-42-57
+
+Random seed: 13, ClassMeanDistance: 2, ClassScaleVariance: 1
+3 classes à 50 datapoints with each 5 samples in 2 dimensions
+
+Created data in 0.159s. (Total: 0.159s)
+
+Computed distance matrices in 2.034s. (Total: 2.193s)
+
+Done TSNE with sklearn=False in 0.758s. (Total: 2.951s)
+
+Done TSNE with sklearn=False in 0.463s. (Total: 3.414s)
+
+Done TSNE with sklearn=False in 0.609s. (Total: 4.023s)
+
+Accuracy (w=0.1): 0.8266666666666667%
+Accuracy (w=0.9): 0.8666666666666667%
+Done Final Plot
+Succesfully finished 'AccuracyPlot' in 4.962s
+
+---------------------------------------------------------------------------
+Started 'AccuracyPlot' at 06-11-13-43-15
+
+Random seed: 13, ClassMeanDistance: 2, ClassScaleVariance: 1
+3 classes à 50 datapoints with each 5 samples in 2 dimensions
+
+Created data in 0.457s. (Total: 0.457s)
+
+Computed distance matrices in 1.615s. (Total: 2.072s)
+
+Done TSNE with sklearn=False in 0.476s. (Total: 2.548s)
+
+Done TSNE with sklearn=False in 0.505s. (Total: 3.053s)
+
+Done TSNE with sklearn=False in 0.47s. (Total: 3.523s)
+
+Accuracy (w=0.1): 0.8266666666666667%
+Accuracy (w=0.9): 0.8666666666666667%
+Done Final Plot
+Succesfully finished 'AccuracyPlot' in 4.521s
+
+---------------------------------------------------------------------------
+Started 'AccuracyPlot' at 06-11-13-44-08
+
+Random seed: 13, ClassMeanDistance: 2, ClassScaleVariance: 1
+3 classes à 50 datapoints with each 5 samples in 2 dimensions
+
+Created data in 0.178s. (Total: 0.178s)
+
+Computed distance matrices in 1.659s. (Total: 1.837s)
+
+Done TSNE with sklearn=False in 0.507s. (Total: 2.344s)
+
+Done TSNE with sklearn=False in 0.478s. (Total: 2.822s)
+
+Done TSNE with sklearn=False in 0.47s. (Total: 3.292s)
+
+Accuracy (w=0.1): 0.8266666666666667%
+Accuracy (w=0.9): 0.9066666666666666%
+Done Final Plot
+Succesfully finished 'AccuracyPlot' in 4.252s
+
+---------------------------------------------------------------------------
+Started 'AccuracyPlot' at 06-11-13-45-25
+
+Random seed: 13, ClassMeanDistance: 2, ClassScaleVariance: 1
+3 classes à 50 datapoints with each 5 samples in 2 dimensions
+
+Created data in 0.223s. (Total: 0.223s)
+
+Computed distance matrices in 1.675s. (Total: 1.898s)
+
+Done TSNE with sklearn=False in 0.541s. (Total: 2.439s)
+
+Done TSNE with sklearn=False in 0.67s. (Total: 3.109s)
+
+Done TSNE with sklearn=False in 0.646s. (Total: 3.755s)
+
+Accuracy (w=0.1): 0.8133333333333334%
+Accuracy (w=0.9): 0.8733333333333333%
+Done Final Plot
+Succesfully finished 'AccuracyPlot' in 4.917s
+
+---------------------------------------------------------------------------
+Started 'AccuracyPlot' at 06-11-13-45-35
+
+Random seed: 13, ClassMeanDistance: 2, ClassScaleVariance: 1
+3 classes à 50 datapoints with each 5 samples in 2 dimensions
+
+Created data in 0.313s. (Total: 0.313s)
+
+Computed distance matrices in 1.94s. (Total: 2.253s)
+
+Done TSNE with sklearn=False in 0.503s. (Total: 2.756s)
+
+Done TSNE with sklearn=False in 0.476s. (Total: 3.232s)
+
+Done TSNE with sklearn=False in 0.456s. (Total: 3.688s)
+
+Accuracy (w=0.1): 0.8133333333333334%
+Accuracy (w=0.9): 0.8733333333333333%
+Done Final Plot
+Succesfully finished 'AccuracyPlot' in 4.622s
+
+---------------------------------------------------------------------------
+Started 'AccuracyPlot' at 06-11-13-48-34
+
+Random seed: 13, ClassMeanDistance: 2, ClassScaleVariance: 1
+3 classes à 50 datapoints with each 5 samples in 2 dimensions
+
+Created data in 0.334s. (Total: 0.334s)
+
+Computed distance matrices in 2.041s. (Total: 2.376s)
+
+Done TSNE with sklearn=True in 1.477s. (Total: 3.852s)
+
+Done TSNE with sklearn=True in 0.643s. (Total: 4.495s)
+
+Done TSNE with sklearn=True in 0.706s. (Total: 5.201s)
+
+Accuracy (w=0.1): 0.8133333333333334%
+Accuracy (w=0.9): 0.8666666666666667%
+Done Final Plot
+Succesfully finished 'AccuracyPlot' in 6.306s
+
+---------------------------------------------------------------------------
