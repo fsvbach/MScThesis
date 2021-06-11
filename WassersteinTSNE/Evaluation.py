@@ -11,22 +11,18 @@ import numpy as np
 
 from .Visualization import embedScatter, plotMixture
 from .TSNE import Dataset2Gaussians, GaussianWassersteinDistance, WassersteinTSNE
-from .utils import Timer
+from .utils import Timer, _naming
 
-_naming = {0: 'Euclidean', 0.5: 'Wasserstein', 1: 'Covariance'}
-
-config= {'sklearn': False, 
+_config= {'sklearn': False, 
          'output':  True,
          'seed':    None,
-         'n': 5,
+         'lambdas': np.linspace(0,1,10),
          'k': 10,
          'std': 3,
          'size': 1}
     
 def AccuracyPlot(mixture, **kwargs):
-    config.update(kwargs)
-    
-    n, k = config['n'], config['k']
+    config = {**_config, **kwargs}
     
     timer     = Timer('AccuracyPlot', output=config['output'])
           
@@ -56,29 +52,30 @@ def AccuracyPlot(mixture, **kwargs):
     for ax, w in zip([w0,w5,w10], [0,0.5,1]):
         embedding = WT.fit(w=w)
         embedding.index = embedding.index.to_series().map(mixture.labeldict())
-        embedScatter(embedding, f"{_naming.get(w)} embedding (w={w})",
+        embedScatter(embedding, rf"{_naming.get(w)} embedding ($\lambda$={w})",
                      size=config['size'], ax=ax)
         timer.add(f"Done TSNE with sklearn={config['sklearn']}")
     
     ### Calculate Accuracies
     accuracies = []
-    for w in np.linspace(0,1,n):
-        accuracy = WT.accuracy(w, mixture.labeldict(), k=k, n=n)
+    for w in config['lambdas']:
+        accuracy = WT.accuracy(w, mixture.labeldict(), k=config['k'])
         accuracies.append(accuracy*100) 
         timer.result(f'Accuracy (w={w}): {accuracy}%')
     
-    acc.plot(np.linspace(0,1,n), accuracies)
-    acc.set(xlabel='w',
+    acc.plot(config['lambdas'], accuracies, marker='o')
+    acc.set(xlabel=r'$\lambda$',
             ylabel=r'$\%$',
-            title =f"kNN Accuracies (k={k})",
-            ybound=(0,100))
-    acc.tick_params(axis="y",direction="in", pad=-22)
+            title =f"kNN Accuracies (k={config['k']})",
+            ybound=(0,105),
+            yticks=np.linspace(10,100,10))
+    # # acc.tick_params(axis="y",direction="in", pad=-22)
     acc.yaxis.tick_right()
     acc.yaxis.set_label_position("right")
-    
+        
     timer.result('Done Final Plot')
     timer.finish('Plots/.logfile.txt')
     
-    # fig.tight_layout()
+    fig.tight_layout()
     return fig
 

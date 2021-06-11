@@ -46,7 +46,7 @@ class WassersteinTSNE:
             embedding = tsne.fit_transform(self.GWD.matrix(w=w))
         else:
             tsne = openTSNE(metric='precomputed', 
-                        initialization='random', 
+                        initialization='spectral', 
                         negative_gradient_method='bh',
                         random_state=self.seed)
             embedding = tsne.fit(self.GWD.matrix(w=w))
@@ -57,7 +57,7 @@ class WassersteinTSNE:
                      columns = ['x','y'])
         return embedding
     
-    def accuracy(self, w, labeldict, n=10, k=10):
+    def accuracy(self, w, labeldict, k=10):
         embedding = self.fit(w)
         embedding.index = embedding.index.to_series().map(labeldict)
         kNN    = KNeighborsClassifier(k)

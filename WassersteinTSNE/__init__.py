@@ -8,7 +8,7 @@ Created on Thu May  6 15:48:46 2021
 
 from .HGM import *
 from .TSNE import * 
-from .utils import *
+from .utils import _naming, Timer, RandomGenerator
 from .Distributions import *
 from .Evaluation import *
 from .Visualization import plotMixture, embedScatter
