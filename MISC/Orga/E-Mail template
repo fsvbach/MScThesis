@@ -1,0 +1,10 @@
+Dear Prof. XY,
+
+currently I'm writing my Master Thesis with Dmitry Kobak about a variant of t-SNE. I am reaching out to you for some medical data sets that I could use for the analysis of the algorithm. The data however has to be designed in "hierarchical structure": We want to embed a high dimensional dataset X, where each datapoint X_i is a probability distribution from which we have an arbitrary amount of samples. These samples can be used to compute the mean, but also other moments such as covariance etc.
+
+Example: 1000 patients have 100-200 cells each. Each cell is defined by a set of features (shape, size). Now we want to cluster/ visualize the patients to find structure within the dataset. Rather than taking the mean of the cells as feature vector for each patient, we also take into account their feature covariances etc.
+
+Are you aware of (or possess) any suitible dataset, that fulfills this required structure (and also might contain some information within the covariances)? I would be very thankful for your advice.
+
+With kind regards,
+Fynn Bachmann
