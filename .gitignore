@@ -21,3 +21,6 @@ __pycache__/
 
 # Non-Important stuff
 
+
+# AML Dataset
+Datasets/ALL/*
