@@ -42,7 +42,7 @@ def WassersteinEmbedding(dataset, labeldict, selection=None, **kwargs):
         embedding = WT.fit(w=w)
         embedding.index = embedding.index.to_series(name=config['folder']).map(labeldict)
         embedding['sizes'] = np.mean(config['size'])
-        embedFlags(embedding, title=f"{_naming.get(w, '')} embedding (w={w})", ax=ax)
+        embedFlags(embedding, title=rf"{_naming.get(w, '')} embedding ($\lambda$={w})", ax=ax)
         if w == config['w']:
             border(ax, 'red')
         print("Plotted Embedding")
@@ -63,7 +63,7 @@ def SpecialCovariances(dataset, labeldict, **kwargs):
     embedding = WT.fit(w=1)
     embedding.index    = embedding.index.to_series(name=config['folder']).map(labeldict)
     embedding['sizes'] = np.mean(config['size'])
-    embedFlags(embedding, f'NORMAL embedding (w=1)', ax=axes[0])
+    embedFlags(embedding, rf'FULL Covariance embedding ($\lambda$=1)', ax=axes[0])
     print('Plotted subplot')
     
     Gaussians = Dataset2Gaussians(dataset, diagonal=True)
@@ -149,7 +149,7 @@ def Features(dataset, labeldict, FeatureSizes, selection=False, **kwargs):
             embedFlags(embedding, f"{config['renaming'](feature)}", ax=ax)
             print("Plotted Feature")
             
-        fig.suptitle(f"{config['dataset']} Feature {config['suffix']} with embedding w={config['w']}", fontsize=50) 
+        fig.suptitle(fr"{config['dataset']} Feature {config['suffix']} with embedding $\lambda$={config['w']}", fontsize=50) 
         fig.savefig(f"Plots/{config['dataset']}{config['description']}_Features{config['suffix']}.svg")
         return fig
     
