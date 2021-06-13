@@ -29,14 +29,14 @@ Analysis._config.update(folder='wappen',
 # fig = Analysis.SpecialCovariances(dataset, labels)
 # fig.savefig("Reports/Figures/GER/Covariances.pdf")
 
-fig = Analysis.Correlations(dataset, labels, normalize=False, w=0, suffix='Euc')
+# fig = Analysis.Correlations(dataset, labels, normalize=False)
 # fig.savefig("Reports/Figures/GER/Correlation.pdf")
 
-# features = ['CDU', 'DIE LINKE', 'GRÜNE']
-# means = dataset[features].groupby(level=0).mean()
-# figure = Analysis.Features(dataset, labels, means, selection=True, suffix='Means')
-# figure.savefig("Reports/Figures/GER/FeatureMeans.pdf")
+features = ['CDU', 'DIE LINKE', 'GRÜNE']
+means = dataset[features].groupby(level=0).mean()
+figure = Analysis.Features(dataset, labels, means, selection=True, suffix='Means')
+figure.savefig("Reports/Figures/GER/FeatureMeans.pdf")
 
-# stds = dataset[features].groupby(level=0).std()
-# figure = Analysis.Features(dataset, labels, stds, selection=True, suffix='Stds')
-# figure.savefig("Reports/Figures/GER/FeatureStds.pdf")
+stds = dataset[features].groupby(level=0).std()
+figure = Analysis.Features(dataset, labels, stds, selection=True, suffix='Stds')
+figure.savefig("Reports/Figures/GER/FeatureStds.pdf")

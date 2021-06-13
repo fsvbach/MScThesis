@@ -5,41 +5,53 @@ Created on Wed Jan 20 08:26:24 2021
 @author: fsvbach
 """
 
+from Datasets import EVS2020 as Data
+from Experiments.Visualization.utils import code2name
+from scipy.stats import norm
+import matplotlib.mlab as mlab
 import matplotlib.pyplot as plt
-import pandas as pd
-import numpy as np
 
-def run():
-    question = 'v102'
-    group = 'v275b_N2'
-    
-    df = pd.read_stata("Data/EVS.dta", convert_categoricals=False)
-    cn = pd.read_csv("Data/countries.csv")
-    
-    countries = []
-    stats     = []
-    for code in df.country.unique():
-        dim1 = df.loc[df.country == code, question]
-        dim1 = dim1.loc[dim1 >= 0]
-        stats.append([dim1.mean(), dim1.std()])
-        countries.append(cn.loc[cn['Numeric code'] == code, 'English short name lower case'].to_string().split(" ")[-1])
-        # plt.scatter(dim1.mean(), dim1.std(), label=countries[-1])
-    X,Y = np.array(stats).T
-    
-    plt.scatter(X,Y, label='Europe')
-    for i, txt in enumerate(df.c_abrv.unique()):
-        plt.annotate(txt, (X[i], Y[i]))    
-    plt.xlabel('mean')
-    plt.ylabel('std')
-    
+fullnames = code2name()
+
+feature = 'v102'
+selection=['AL', 'GB', 'DE', 'NL']
+NUTS=1
+
+normal, labels = Data.LoadEVS(Data.overview,
+                               countries=selection, 
+                               transform=False, 
+                               NUTS=NUTS, 
+                               min_entries=40) 
+trafo, _ = Data.LoadEVS(Data.overview,
+                               countries=selection, 
+                               transform=True, 
+                               NUTS=NUTS, 
+                               min_entries=40) 
+countries = normal.index.to_series().map(labels)
+trafo.index  = countries.map(str.upper)
+normal.index = countries.map(str.upper)
+
+for country in selection:
+    fig, axes = plt.subplots(1,2, figsize=(8,4))
+
+    for dataset, ax, xlabel in zip([normal, trafo], axes, ['Score', 'Logits']):
+        data = dataset.loc[country, feature]
         
-    germ = df.loc[df.country == 276, question]
-    germ = germ.loc[germ >= 0]
-    plt.scatter(germ.mean(), germ.std(), label='Germany')
-    plt.legend()
-    plt.title('where are you on a scale from left=1 to right=10?')
-    plt.savefig('Plots/political_landscape.svg')
+        # the histogram of the data
+        _, bins, _ = ax.hist(data, 18, density=1, alpha=0.5)
+        
+        # add a 'best fit' line
+        mu, sigma = norm.fit(data)
+        best_fit_line = norm.pdf(bins, mu, sigma)
+        ax.plot(bins, best_fit_line)
+        
+        #plot
+        ax.set(xlabel = xlabel,
+                ylabel= 'Probability',
+                title = f'{fullnames[country]}: '+r'$\mu=%.3f,\ \sigma=%.3f$' %(mu, sigma))
+
+    fig.tight_layout()
+    fig.savefig(f'Plots/EVS_HistoTrafo_{country}.pdf')
+    fig.savefig(f'Reports/Figures/EVS/HistoTrafo_{country}.pdf')
     plt.show()
     plt.close()
-
-

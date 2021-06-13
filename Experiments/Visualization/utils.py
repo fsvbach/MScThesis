@@ -11,7 +11,17 @@ PATH = 'Experiments/Visualization/Images'
 import matplotlib.pyplot as plt
 from matplotlib.offsetbox import AnnotationBbox, OffsetImage
 from matplotlib.patches import Ellipse
+import matplotlib
 import numpy as np
+import pandas as pd
+
+# matplotlib.use("pgf")
+matplotlib.rcParams.update({
+    "pgf.texsystem": "pdflatex",
+    'font.family': 'serif',
+    'font.size' : 12,
+    'text.usetex': True,
+    'pgf.rcfonts': False})
 
 def plotMatrix(matrices, titles, name):
     n = len(matrices)
@@ -51,7 +61,7 @@ def embedFlags(embedding, title, ax=None):
         flag = plt.imread(f'{PATH}/{embedding.index.name}/{label}.png')
         plotImages(X, Y, flag, s, ax)
 
-    ax.set_title(title, fontsize=48)
+    ax.set_title(title, fontsize=75)
     ax.axis('off')
 
    
@@ -66,7 +76,18 @@ def plotImages(x, y, image, sizes, ax=None):
 
         ax.add_artist(ab)
 
-
+def MeanStdCorr(dataset, title='', ax=None):
+    groups = dataset.groupby(level=0)
+    a = groups.mean().stack()
+    a.name = 'mean'
+    b = groups.std().stack()
+    b.name = 'std'
+    embedding = pd.concat([a,b], axis=1)
+    x,y = embedding.values.T
+    ax.scatter(x,y, s=0.5)
+    ax.set(xlabel='mean', ylabel='std', title=title)
+    
+    
 def get_rectangle(N):
     A = int(np.sqrt(N))
     B = int(N/A) + (N%A>0) 
@@ -80,3 +101,8 @@ def border(ax, color):
     for spine in ['bottom', 'top', 'left', 'right']:
         ax.spines[spine].set_color(color)
 
+def code2name():
+    labels = pd.read_csv('Experiments/Visualization/Images/countries.csv',
+                index_col=1)
+    return labels['English short name lower case'].to_dict()
+    

@@ -7,7 +7,7 @@ Created on Fri Jun 11 10:34:04 2021
 """
 
 from Experiments.Visualization import Analysis 
-from Experiments.Visualization.Transformation import MeanStdCorr
+from Experiments.utils import MeanStdCorr
 from Datasets.GER2017 import Wahlbezirke
 
 import matplotlib.pyplot as plt
@@ -15,10 +15,12 @@ import matplotlib.pyplot as plt
 fig, (ax1, ax2) = plt.subplots(1,2, figsize=(10,5))
 
 GER     = Wahlbezirke(numparty=6)
-MeanStdCorr(GER.data, ax1)
-MeanStdCorr(GER.transform(), ax2)
+MeanStdCorr(GER.data, ax=ax1, title='Without transformation')
+MeanStdCorr(GER.transform(), ax=ax2, title='After transformation')
 
+fig.tight_layout()
 fig.savefig('Plots/GER_VarStab.svg')
+fig.savefig('Reports/Figures/GER/MeanStdCorr.pdf')
 plt.show()
 plt.close()
 
@@ -35,4 +37,5 @@ Analysis._config.update(folder='wappen',
 fig = Analysis.WassersteinEmbedding(GER.data, labels, 
                               selection=[0,0.5,0.75,0.875,0.9475,1], 
                               suffix='trafo')
+fig.savefig('Reports/Figures/GER/Transformation.pdf')
 plt.show()

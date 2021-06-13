@@ -20,22 +20,22 @@ from WassersteinTSNE import AccuracyPlot, plotMixture, CleanExample
 # figure.savefig("Plots/SyntheticHGM_CleanExample.svg")
 # figure.savefig("Reports/Figures/HGM/CleanExample.pdf")
 
-# mixture = HGM(seed=1, 
-#               datapoints=100, 
-#               classes=7,
-#               features=2,
-#               samples=15,
-#               ClassScaleVariance=1,
-#               ClassMeanDistance=2)
-# figure = AccuracyPlot(mixture, k=15, size=0.7, seed=13)
-# figure.savefig("Plots/SyntheticHGM_RandomExample.svg")
-# figure.savefig("Reports/Figures/HGM/RandomExample.pdf")
-
-toy = HGM(seed=13, 
-              datapoints=50, 
-              classes=3,
+mixture = HGM(seed=1, 
+              datapoints=100, 
+              classes=7,
               features=2,
-              samples=5,
+              samples=15,
               ClassScaleVariance=1,
               ClassMeanDistance=2)
-figure = AccuracyPlot(toy, lambdas=[0.1,0.9], size=2, seed=13, sklearn=True)
+figure = AccuracyPlot(mixture, k=15, size=0.7, seed=13)
+figure.savefig("Plots/SyntheticHGM_RandomExample.svg")
+figure.savefig("Reports/Figures/HGM/RandomExample.pdf")
+
+# toy = HGM(seed=13, 
+#               datapoints=50, 
+#               classes=3,
+#               features=2,
+#               samples=5,
+#               ClassScaleVariance=1,
+#               ClassMeanDistance=2)
+# figure = AccuracyPlot(toy, lambdas=[0.1,0.9], size=2, seed=13, sklearn=True)
