@@ -19,14 +19,14 @@
 
 \subsection{Embedding}
 
-\begin{frame}{t-SNE embedding of NUTS1 regions}
+\begin{frame}{Wasserstein t-SNE embeddings of NUTS1 regions}
 \LargeFigure{EVS/Embedding.pdf}
 \end{frame}
 
 \begin{frame}{}
-\begin{figure}[!ht]
-  {\includegraphics[width=\textwidth]{EVS/FeatureMeans.pdf}}\\
-  {\includegraphics[width=\textwidth]{EVS/FeatureStds.pdf}}
+\begin{figure}
+\includegraphics[width=\textwidth,height=\figureheight,keepaspectratio]{EVS/FeatureMeans.pdf}\\
+\includegraphics[width=\textwidth,height=\figureheight,keepaspectratio]{EVS/FeatureStds.pdf}
 \end{figure}
 \end{frame}
 
@@ -37,21 +37,24 @@
 \LargeFigure{EVS/Covariances.pdf}
 \end{frame}
 
-\begin{frame}{Correlation Analysis}
-\LargeFigure{EVS/Correlation.pdf}
+%\begin{frame}{Correlation Analysis}
+%\LargeFigure{EVS/Correlation.pdf}
+%\end{frame}
+
+
+\subsection{Transformation}
+
+
+\begin{frame}{Logit transformation}
+		\begin{center}
+		\includegraphics[width=0.45\textwidth]{EVS/HistoTrafo_DE.pdf}
+		\includegraphics[width=0.45\textwidth]{EVS/HistoTrafo_AL.pdf}
+		\end{center}
+        \begin{proposition}
+ If $Y\sim \N$ (Normal distribution), and $\sigma(Y)$ is the standard logistic function, then $X = \sigma(Y)$ has a logit-normal distribution; likewise, if $X$ is logit-normally distributed, then $Y = \log (\frac{X}{(1-X})$ is normally distributed. It is also known as the logistic normal distribution.
+        \end{proposition}
 \end{frame}
 
-
-
-
-
-
-\subsection{Questions}
-
-
-\begin{frame}{Problems \& Questions}
- \begin{itemize}
-    \item Logit Transformation doesn't make difference
-    \item Difficult to judge whether correlations improve clustering
-\end{itemize}
+\begin{frame}{Wasserstein t-SNE embedding of NUTS1-regions}\framesubtitle{With Logit transformation}
+\LargeFigure{EVS/Transformation.pdf}
 \end{frame}

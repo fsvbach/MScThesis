@@ -41,10 +41,18 @@
 \end{frame}
 
 
-\subsection{Questions}
+\subsection{Transformation}
 
-\begin{frame}{Problems \& Questions}
- \begin{itemize}
-    \item Feature mean correlates with Feature variance
-\end{itemize}
+\begin{frame}{Variance Stabilization}\framesubtitle{Data means correlate with data variance}
+		\begin{center}
+		\includegraphics[height=0.5\textheight]{GER/MeanStdCorr.pdf}
+		\end{center}
+        \begin{proposition}
+        If $Y\sim B(n, p)$ (Binominal distribution), then $T(Y) = \sqrt{n} \arcsin(\sqrt{\frac{Y}{n}})$ is a variance stabilizing transformation with $\var(T(Y)) \approx \frac{1}{4}$
+        \end{proposition}
+\end{frame}
+
+
+\begin{frame}{Embedding after transformation}
+\LargeFigure{GER/Transformation.pdf}
 \end{frame}
