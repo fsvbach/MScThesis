@@ -47,7 +47,7 @@ for country in selection:
         
         #plot
         ax.set(xlabel = xlabel,
-                ylabel= 'Probability',
+                ylabel= 'Probability Density',
                 title = f'{fullnames[country]}: '+r'$\mu=%.3f,\ \sigma=%.3f$' %(mu, sigma))
 
     fig.tight_layout()
