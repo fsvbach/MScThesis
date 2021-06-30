@@ -36,6 +36,28 @@ overview =  {'v38': ('I have complete control over my life', UP),
              'v202': ('Others should start to protect the environment', down),
              'v203': ('Environmental threats are exaggerated', down) } # environment      
 
+
+small    =  {'v38': ('I have complete control over my life', UP),
+             # 'v39': ('I am satisfied with my life', UP), #free choice
+             'v63': (' God is important in my life', UP),# religion
+             'v102': ("I consider myself 'on the right'", UP), # political landscape
+             # 'v103': ('Everyone is responible for him/herself', DOWN),
+             # 'v104': ('The unemployed should take ANY job', DOWN),
+             # 'v105': ('Competition is good', DOWN),
+             # 'v106': ('Incomes should be made equal', DOWN),
+             # 'v107': ('Private ownership should be increased', DOWN),  # social welfare
+             # 'v143': ('My country is governed democratically', UP),
+             'v144': ('I am satisfied with the government', UP),        # satisfaction with status quo
+             # 'v185': ("'Immigrants take jobs away!'", DOWN), 
+             'v186': ("'Immigrants make crime problems'", DOWN), 
+             # 'v187': ('Immigration is a strain on welfare system', DOWN),
+             # 'v188': ('Immigrans should maintain their tradtions', DOWN), # immigration
+             # 'v199': ('I would give money for environment', down),
+             # 'v200': ("Someone like me can do much for environment", up),
+             'v201': ('There are more important things than environment', down),
+             # 'v202': ('Others should start to protect the environment', down),
+             # 'v203': ('Environmental threats are exaggerated', down) } # environment      
+             }
 # democracy = {'v133': 'Governments tax the rich and subsidize the poor'
 # Religious authorities ultimately
 # interpret the laws
