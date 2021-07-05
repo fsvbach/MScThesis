@@ -7,25 +7,23 @@ Created on Thu May 20 08:24:39 2021
 """
 
 from Experiments.Visualization import Analysis 
-from Datasets import EVS2020 as Data
+from Datasets.EVS2020 import EuropeanValueStudy
 
-countries=None
-trafo=False
-NUTS=1
-
-dataset, labels = Data.LoadEVS(Data.overview, countries=countries, transform=trafo, NUTS=NUTS, min_entries=2)
+EVS = EuropeanValueStudy()
+dataset = EVS.data
+labels  = EVS.labels
 
 Analysis._config.update(folder='flags', 
                        seed=13, 
-                       name=f'NUTS{NUTS} regions',
+                       name='NUTS regions',
                        description='',
                        dataset='EVS',
-                       renaming= lambda name: Data.overview[name][0],
+                       renaming= lambda name: EVS.small[name][0],
                        size= (3,15),
                        w=0.5)
 
 figure = Analysis.WassersteinEmbedding(dataset, labels)
-figure.savefig("Reports/Figures/EVS/Embedding.pdf")
+# figure.savefig("Reports/Figures/EVS/Embedding.pdf")
 
 # figure = Analysis.SpecialCovariances(dataset, labels)
 # figure.savefig("Reports/Figures/EVS/Covariances.pdf")
