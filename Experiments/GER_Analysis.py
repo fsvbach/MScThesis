@@ -7,10 +7,10 @@ Created on Sat May 22 18:56:14 2021
 """
 
 from Experiments.Visualization import Analysis 
-from Datasets.GER2017 import Wahlbezirke
+from Datasets.GER2017 import Bundestagswahl
 
-GER     = Wahlbezirke(numparty=6)
-labels  = GER.labels.Bundesland.to_dict()
+GER     = Bundestagswahl(numparty=6)
+labels  = GER.labels()
 dataset = GER.data
 
 Analysis._config.update(folder='wappen', 

@@ -9,16 +9,11 @@ Created on Fri May 14 13:02:33 2021
 import numpy as np
 import pandas as pd
 
-class Wahlbezirke:
-
+class Bundestagswahl:
     head = 300
     data = pd.read_csv('Datasets/GER2017/btw17_wbz_zweitstimmen.csv', delimiter=';',
                     encoding='ISO-8859-1', header=4, index_col=[1,0], usecols = [0,1,13]+list(range(17,51)))
-     
-    ### Creating labels
-    labels  = pd.read_csv('Datasets/GER2017/labels.csv',
-                          index_col=0)
-    
+         
     ### Merging CDU and CSU
     data['CDU'] += data['CSU']
     data.drop('CSU', axis=1, inplace=True)
@@ -56,6 +51,11 @@ class Wahlbezirke:
         self.data = np.arcsin(np.sqrt(self.data))
         return self.data
     
+    def labels(self, column='Bundesland'):
+        labels = pd.read_csv('Datasets/GER2017/labels.csv',
+                          index_col=0)
+        return labels[column].to_dict()
+    
 if __name__ == '__main__':
-    G = Wahlbezirke()
+    G = Bundestagswahl()
     print(np.any(G.data.isna()))

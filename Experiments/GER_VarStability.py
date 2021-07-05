@@ -8,13 +8,13 @@ Created on Fri Jun 11 10:34:04 2021
 
 from Experiments.Visualization import Analysis 
 from Experiments.utils import MeanStdCorr
-from Datasets.GER2017 import Wahlbezirke
+from Datasets.GER2017 import Bundestagswahl
 
 import matplotlib.pyplot as plt
 
 fig, (ax1, ax2) = plt.subplots(1,2, figsize=(10,5))
 
-GER     = Wahlbezirke(numparty=6)
+GER     = Bundestagswahl(numparty=6)
 MeanStdCorr(GER.data, ax=ax1, title='Without transformation')
 MeanStdCorr(GER.transform(), ax=ax2, title='After transformation')
 
@@ -25,7 +25,7 @@ plt.show()
 plt.close()
 
 
-labels  = GER.labels.Bundesland.to_dict()
+labels  = GER.labels()
 Analysis._config.update(folder='wappen', 
                         seed=13, 
                         name='Wahlkreise',

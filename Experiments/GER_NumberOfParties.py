@@ -12,14 +12,14 @@ import numpy as np
 
 from WassersteinTSNE import Dataset2Gaussians, WassersteinTSNE, GaussianWassersteinDistance
 from WassersteinTSNE.Visualization.Countries import plotGER, plotImages
-from Datasets.GER2017.Data import Wahlbezirke
+from Datasets.GER2017 import Bundestagswahl
 
 
 fig, axes = plt.subplots(1,3, figsize=(90,30))
 
 for i, number in enumerate([10, 20, 30]):
-    GER = Wahlbezirke(numparty=number)
-    namesdict = GER.labels.Bundesland.to_dict()
+    GER = Bundestagswahl(numparty=number)
+    namesdict = GER.labels()
  
     Gaussians = Dataset2Gaussians(GER.data, normalize=True)
     WSDM = GaussianWassersteinDistance(Gaussians)
