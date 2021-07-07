@@ -28,7 +28,8 @@ class Bundestagswahl:
     data.sort_values(head, axis=1, ascending=False, inplace=True)
      
     ### In Prozent umrechnen
-    data = data.divide(data['Wähler (B)'], axis='rows')
+    size = data['Wähler (B)']
+    data = data.divide(size, axis='rows')
     data.drop('Wähler (B)', axis=1, inplace=True)
     mean = data.loc[head]
     
@@ -48,10 +49,10 @@ class Bundestagswahl:
         return self.mean
     
     def transform(self):
-        self.data = np.arcsin(np.sqrt(self.data))
+        self.data = np.arcsin(np.sqrt(self.data)).divide(np.sqrt(self.size), axis='rows')
         return self.data
     
-    def labels(self, column='Bundesland'):
+    def labeldict(self, column='Bundesland'):
         labels = pd.read_csv('Datasets/GER2017/labels.csv',
                           index_col=0)
         return labels[column].to_dict()
