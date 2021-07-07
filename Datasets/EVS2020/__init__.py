@@ -102,7 +102,7 @@ class EuropeanValueStudy:
         
         ### labels
         data = pd.concat([de,df])
-        labels = data.c_abrv.to_dict()
+        self.labels = data.c_abrv.map(str.lower).to_dict()
         data.drop('c_abrv', axis=1, inplace=True)
         
         sizes = data.groupby(level=0).size() 

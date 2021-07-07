@@ -17,7 +17,6 @@ from sklearn.neighbors import KNeighborsClassifier
 
 from .Distributions import GaussianDistribution, arr2cov
 
-
 def Dataset2Gaussians(dataset, diagonal=False, normalize=False):
     Gaussians = []
     names    = []

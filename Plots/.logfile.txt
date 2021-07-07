@@ -1,0 +1,99 @@
+Started 'Exact  Wasserstein' at 07-01-10-22-36
+
+Computed 50x50 distance matrix in 1.136s. (Total: 1.136s)
+
+Created 100x2500 constraint matrix in 0.004s. (Total: 1.14s)
+
+Computed Wasserstein distance: 0.7744602724876634 in 0.051s. (Total: 1.191s)
+
+Succesfully finished 'Exact  Wasserstein' in 1.192s
+
+---------------------------------------------------------------------------
+Started 'Exact  Wasserstein' at 07-01-10-22-59
+
+Computed 100x50 distance matrix in 1.493s. (Total: 1.493s)
+
+Created 150x5000 constraint matrix in 0.007s. (Total: 1.5s)
+
+Computed Wasserstein distance: 0.768815038436325 in 0.144s. (Total: 1.644s)
+
+Succesfully finished 'Exact  Wasserstein' in 1.644s
+
+---------------------------------------------------------------------------
+Started 'Exact  Wasserstein' at 07-01-10-23-11
+
+Computed 200x50 distance matrix in 1.639s. (Total: 1.639s)
+
+Created 250x10000 constraint matrix in 0.032s. (Total: 1.671s)
+
+Computed Wasserstein distance: 0.7322171909114158 in 0.235s. (Total: 1.906s)
+
+Succesfully finished 'Exact  Wasserstein' in 1.906s
+
+---------------------------------------------------------------------------
+Started 'Exact  Wasserstein' at 07-01-10-23-24
+
+Computed 200x100 distance matrix in 1.616s. (Total: 1.616s)
+
+Created 300x20000 constraint matrix in 0.066s. (Total: 1.682s)
+
+Computed Wasserstein distance: 0.7219505492640209 in 0.648s. (Total: 2.33s)
+
+Succesfully finished 'Exact  Wasserstein' in 2.33s
+
+---------------------------------------------------------------------------
+Started 'Exact  Wasserstein' at 07-01-10-23-32
+
+Computed 200x200 distance matrix in 1.513s. (Total: 1.513s)
+
+Created 400x40000 constraint matrix in 0.308s. (Total: 1.821s)
+
+Computed Wasserstein distance: 0.6837299515343483 in 1.584s. (Total: 3.406s)
+
+Succesfully finished 'Exact  Wasserstein' in 3.406s
+
+---------------------------------------------------------------------------
+Started 'Exact  Wasserstein' at 07-01-10-24-27
+
+Computed 242x300 distance matrix in 1.537s. (Total: 1.537s)
+
+Created 542x72600 constraint matrix in 1.161s. (Total: 2.7s)
+
+Computed Wasserstein distance: 0.6932477913704403 in 5.556s. (Total: 8.254s)
+
+Succesfully finished 'Exact  Wasserstein' in 8.254s
+
+---------------------------------------------------------------------------
+Started 'Exact  Wasserstein' at 07-01-10-25-40
+
+Computed 242x995 distance matrix in 1.533s. (Total: 1.533s)
+
+Created 1237x240790 constraint matrix in 25.427s. (Total: 26.961s)
+
+Computed Wasserstein distance: 0.6950110489749279 in 203.209s. (Total: 230.169s)
+
+Succesfully finished 'Exact  Wasserstein' in 230.171s
+
+---------------------------------------------------------------------------
+Started 'Exact  Wasserstein' at 07-07-11-01-03
+
+Computed 242x281 distance matrix in 1.374s. (Total: 1.374s)
+
+Created 523x68002 constraint matrix in 0.604s. (Total: 1.978s)
+
+Computed Wasserstein distance: 7.11376428567474 in 4.183s. (Total: 6.161s)
+
+Succesfully finished 'Exact  Wasserstein' in 6.162s
+
+---------------------------------------------------------------------------
+Started 'Exact  Wasserstein' at 07-07-11-03-03
+
+Computed 400x281 distance matrix in 1.1s. (Total: 1.1s)
+
+Created 681x112400 constraint matrix in 2.222s. (Total: 3.323s)
+
+Computed Wasserstein distance: 8.96778930536381 in 11.091s. (Total: 14.413s)
+
+Succesfully finished 'Exact  Wasserstein' in 14.414s
+
+---------------------------------------------------------------------------

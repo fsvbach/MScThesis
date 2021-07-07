@@ -10,39 +10,32 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.optimize import linprog
 from scipy.stats import wasserstein_distance
-from Datasets import EVS2020 as Data
+from Datasets.EVS2020 import EuropeanValueStudy
+from WassersteinTSNE.utils import Timer
+from WassersteinTSNE.Wasserstein import EuclideanDistance, ConstraintMatrix
 
-def EuclideanDistance(A,B):
-    N1 = np.linalg.norm(A, ord=2, axis=1).reshape(-1,1)**2 
-    N2 = np.linalg.norm(B, ord=2, axis=1).reshape(1,-1)**2 
-    N3 = -2 * np.inner(A,B)
-    D  = N1 + N2 + N3
-    D[np.where(D<0)] = 0
-    return np.sqrt(D)
-    
-def ConstraintMatrix(n,m):
-    N = np.repeat(np.identity(n), m, axis=1)
-    M = np.hstack([np.identity(m)]*n)
-    return np.vstack([N,M])
-    
-dataset, labels = Data.LoadEVS(Data.small, 
-                               countries=None,
-                               transform=False, 
-                               NUTS=1,
-                               min_entries=40) 
+timer = Timer('Exact  Wasserstein')
 
-A = dataset.loc['DE1'].values[:200]
-B = dataset.loc['AL0'].values[:50]
+EVS = EuropeanValueStudy(max_entries=2000)
+labels  = EVS.labeldict()
+dataset = EVS.data
+
+A = dataset.loc['DK01'].values[:400]
+B = dataset.loc['IS00'].values[:500]
 
 D = EuclideanDistance(A, B)
-plt.imshow(D)
-plt.show()
-
 n, m = len(A), len(B)
+
+timer.add(f'Computed {n}x{m} distance matrix')
 
 A = ConstraintMatrix(n,m)
 b = np.concatenate([np.ones(n)/n, np.ones(m)/m])
 c = D.reshape(-1)
 
-opt_res = linprog(-b, A.T, c, bounds=[None, None])
+timer.add(f'Created {n+m}x{n*m} constraint matrix')
+
+opt_res = linprog(-b, A.T, c, bounds=[None, None], method='highs')
 emd = -opt_res.fun
+
+timer.add(f'Computed Wasserstein distance: {emd}')
+timer.finish('Plots/.logfile.txt')
