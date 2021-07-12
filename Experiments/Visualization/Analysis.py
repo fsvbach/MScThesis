@@ -164,7 +164,7 @@ def Features(dataset, labeldict, FeatureSizes, selection=False, **kwargs):
         sizes = minsize + (sizes-minval)*(maxsize-minsize)/(maxval-minval)
         embedding['sizes'] = sizes
 
-        embedFlags(embedding, f"{config['dataset']} Feature {config['suffix']}: {config['renaming'](feature)}", ax=ax)
+        embedFlags(embedding, f"{config['renaming'](feature)}", ax=ax)
         print("Plotted Feature")
         
         fig.savefig(f"Plots/{config['dataset']}{config['description']}_Features_{feature}{config['suffix']}.svg")

@@ -11,7 +11,6 @@ import matplotlib.pyplot as plt
 
 class plotElection:
     params = {'size'     : 15,
-              'numparty' : 6,
               'xstretch' : 30,
               'ystretch' : 50,
               'barwidth' : 20,
@@ -26,7 +25,7 @@ class plotElection:
         self.dataset.index = self.embedding.index
         
         ### Loading colors
-        colors = pd.read_csv('MISC/Images/parties/Parteifarben.csv', delimiter=';', encoding='utf-8', header=0)
+        colors = pd.read_csv('Experiments/Visualization/Images/parties/Parteifarben.csv', delimiter=';', encoding='utf-8', header=0)
         self.colors = colors.iloc[0].to_dict()
 
     def show(self, ax, **kwargs):
@@ -34,12 +33,12 @@ class plotElection:
         
         X, Y = self.embedding['x'], self.embedding['y']
 
-
-        dist = self.params['barwidth']/self.params['numparty']
-        for i in range(self.params['numparty']):
+        n = len(self.dataset.columns)
+        dist = self.params['barwidth']/n
+        for i in range(n):
             party = self.dataset.columns[i]
             color = self.colors[party]
-            offset = (self.params['numparty']/2-i)*dist-dist/2
+            offset = (n/2-i)*dist-dist/2
             ax.bar(self.params['xstretch']*X-offset, 
                    self.params['barheight']*self.dataset[party], 
                    bottom=self.params['ystretch']*Y, 

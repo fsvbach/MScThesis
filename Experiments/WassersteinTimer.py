@@ -20,8 +20,8 @@ EVS = EuropeanValueStudy(max_entries=2000)
 labels  = EVS.labeldict()
 dataset = EVS.data
 
-A = dataset.loc['DK01'].values[:400]
-B = dataset.loc['IS00'].values[:500]
+A = dataset.loc['DK01'].values[:100]
+B = dataset.loc['IS00'].values[:100]
 
 D = EuclideanDistance(A, B)
 n, m = len(A), len(B)

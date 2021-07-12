@@ -97,3 +97,14 @@ Computed Wasserstein distance: 8.96778930536381 in 11.091s. (Total: 14.413s)
 Succesfully finished 'Exact  Wasserstein' in 14.414s
 
 ---------------------------------------------------------------------------
+Started 'Exact  Wasserstein' at 07-12-11-19-12
+
+Computed 100x100 distance matrix in 1.512s. (Total: 1.512s)
+
+Created 200x10000 constraint matrix in 0.01s. (Total: 1.522s)
+
+Computed Wasserstein distance: 9.3395540064228 in 0.218s. (Total: 1.74s)
+
+Succesfully finished 'Exact  Wasserstein' in 1.74s
+
+---------------------------------------------------------------------------

@@ -27,7 +27,7 @@ def plotMatrix(matrices, titles, name):
     n = len(matrices)
     fig, axes = plt.subplots(ncols=n, figsize=(7*n,5))
     for matrix, title, ax in zip(matrices, titles, axes):
-        m = ax.imshow(matrix)
+        m = ax.imshow(matrix, cmap='Greens')
         ax.set(title=title)
         plt.colorbar(m, ax=ax)
     fig.savefig(f'Plots/{name}.svg')
@@ -35,19 +35,22 @@ def plotMatrix(matrices, titles, name):
     plt.close()
 
    
-def plotGaussian(Gaussian, size=20, STDS=[1,2,3], ax=None):
+def plotGaussian(Gaussian, size=20, STDS=[1,2,3], color='black', ax=None):
     if not ax:
         ax = plt.gca()
         
     for i in STDS:
         mean, width, height, angle = Gaussian.shape(std=i)
         ell = Ellipse(xy=mean, width=width, height=height, angle=angle, 
-                      edgecolor='black', facecolor='none', 
+                      edgecolor=color, facecolor='none', 
                       linewidth=2, linestyle='--')
         ax.add_patch(ell)
-    samples = Gaussian.samples(size)
-    x,y = samples.T
-    ax.scatter(x,y)
+        
+    if size:
+        samples = Gaussian.samples(size)
+        x,y = samples.T
+        ax.scatter(x,y)
+        
     return ell
 
 
@@ -61,7 +64,7 @@ def embedFlags(embedding, title, ax=None):
         flag = plt.imread(f'{PATH}/{embedding.index.name}/{label}.png')
         plotImages(X, Y, flag, s, ax)
 
-    ax.set_title(title, fontsize=75)
+    ax.set_title(title, fontsize=50)
     ax.axis('off')
 
    

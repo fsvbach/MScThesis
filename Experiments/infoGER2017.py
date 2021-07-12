@@ -11,42 +11,41 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from WassersteinTSNE import Dataset2Gaussians, WassersteinTSNE, GaussianWassersteinDistance
-from WassersteinTSNE.Visualization.Elections import plotElection
-from Datasets.GER2017.Data import Wahlbezirke
+from Experiments.Visualization.ElectionPlot import plotElection
+from Datasets.GER2017 import Bundestagswahl
 
-GER = Wahlbezirke()
 
-labeldict = GER.labels.Gebiet.to_dict()
+GER = Bundestagswahl(numparty=6)
+labels  = GER.labeldict('Gebiet')
+dataset = GER.data
 
-Gaussians, Names = Dataset2Gaussians(GER.data)
-
+Gaussians = Dataset2Gaussians(dataset)
 WSDM = GaussianWassersteinDistance(Gaussians)
+WT = WassersteinTSNE(WSDM, seed=13)
+embedding = WT.fit(w=0.75)
 
-WT = WassersteinTSNE(WSDM, Names, seed=13)
-
-embedding = WT.fit(w=0)
 index    = embedding.index.to_series()
-embedding.index = index.map(labeldict)
+embedding.index = index.map(labels)
 
-figure = plotElection(GER.data.groupby(level=0).mean(), embedding, GER.mean)
+mean = GER.subtract_mean()
+
+figure = plotElection(GER.data.groupby(level=0).mean(), embedding, mean)
 
 size = 60
 
 fig, ax = plt.subplots(figsize=(size,size))
 
-
 figure.show(ax, 
-            size=size, 
-            numparty=10, 
-            legend=(2,5,700,0),
+            size=size,
+            legend=(2,5,700,20),
             xstretch=50,
             ystretch=80,
-            barwidth=40,
-            barheight=2,
+            barwidth=20,
+            barheight=100,
             label=True)
 
-ax.set_title(title, fontdict={'fontsize': 25})
+ax.set_title(title, fontdict={'fontsize': 100})
         
-fig.savefig(f'Plots/infoGER_manyparties.svg')
+fig.savefig(f'Plots/infoGER_transform.svg')
 plt.show()
 plt.close()

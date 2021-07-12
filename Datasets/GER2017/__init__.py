@@ -21,6 +21,9 @@ class Bundestagswahl:
     ### Get rid of MultiIndex
     data = data.droplevel(0)
     
+    ### Entferne leere Wahlkreise
+    data = data.loc[data['Wähler (B)'] > 0]
+    
     ### Durchschnitt berechnen
     data = data.append(pd.Series(data.sum(), name=head))
     
@@ -35,14 +38,15 @@ class Bundestagswahl:
     
     ### Durchschnitt rausnehmen (und abziehen)
     data.drop(index=head, inplace=True)
-
+    size.drop(index=head, inplace=True)
+    
     ### etwaige Nan löschen
     data.dropna(inplace=True)
     
     def __init__(self, numparty=None):
         if numparty:
             self.data = self.data.iloc[:,:numparty]
-            # self.mean = self.mean.iloc[:,:numparty]
+            self.mean = self.mean.iloc[:numparty]
         
     def subtract_mean(self):
         self.data = (self.data-self.mean)
