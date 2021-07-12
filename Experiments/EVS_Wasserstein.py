@@ -34,19 +34,20 @@ for i in range(N):
         D = EuclideanDistance(U, V)
         n, m = len(U), len(V)
     
-        timer.add(f'Computed {n}x{m} distance matrix of {nuts[i]} and {nuts[j]}')
+        # timer.add(f'Computed {n}x{m} distance matrix of {nuts[i]} and {nuts[j]}')
         
         A = ConstraintMatrix(n,m)
         b = np.concatenate([np.ones(n)/n, np.ones(m)/m])
         c = D.reshape(-1)
         
-        timer.add(f'Created {n+m}x{n*m} constraint matrix')
+        # timer.add(f'Created {n+m}x{n*m} constraint matrix')
         
         opt_res = linprog(-b, A.T, c, bounds=[None, None], method='highs')
         emd = -opt_res.fun
         
-        timer.add(f'Computed Wasserstein distance: {emd}')
         K[i,j] = emd
+        
+    timer.add(f'Computed Wasserstein distance: {emd}')
 
 K = K + K.T
 
