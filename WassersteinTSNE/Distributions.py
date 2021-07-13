@@ -8,6 +8,7 @@ Created on Fri Apr  9 11:34:16 2021
 
 from scipy.linalg import eigh
 import numpy as np
+import pandas as pd
 
 def RotationMatrix(degree):
     degree = np.deg2rad(degree)
@@ -83,3 +84,17 @@ class GaussianDistribution:
         return np.random.default_rng().multivariate_normal(mean = self.mean, 
                                                   cov  = self.cov.array(),
                                                   size = size) 
+
+def Dataset2Gaussians(dataset, diagonal=False, normalize=False):
+    Gaussians = []
+    names    = []
+    for name, data in dataset.groupby(level=0):
+        G = GaussianDistribution()
+        G.estimate(data.values)
+        if diagonal:
+            G.cov.diagonalize()
+        elif normalize:
+            G.cov.normalize()
+        names.append(name)
+        Gaussians.append(G)
+    return pd.Series(Gaussians, index=names)

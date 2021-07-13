@@ -6,17 +6,18 @@ Created on Wed Jun 30 12:50:27 2021
 @author: fsvbach
 """
 
+import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.optimize import linprog
 from scipy.stats import wasserstein_distance
 from Datasets.EVS2020 import EuropeanValueStudy
 from WassersteinTSNE.utils import Timer
-from WassersteinTSNE.Wasserstein import EuclideanDistance, ConstraintMatrix
+from WassersteinTSNE.Distances import EuclideanDistance, ConstraintMatrix
 
 timer = Timer('EVS Exact Wasserstein')
 
-EVS = EuropeanValueStudy(max_entries=100)
+EVS = EuropeanValueStudy(max_entries=2000)
 labels  = EVS.labeldict()
 dataset = EVS.data
 
@@ -25,6 +26,7 @@ N = len(nuts)
 
 K = np.zeros((N,N))
 
+k = 0
 for i in range(N):
     for j in range(i+1, N):
         
@@ -47,10 +49,20 @@ for i in range(N):
         
         K[i,j] = emd
         
-    timer.add(f'Computed Wasserstein distance: {emd}')
+        k+=1
+        print(f'{k} of {N*(N-1)/2}')
+        timer.add(f'Computed {n}x{m} Wasserstein distance: {emd}')
 
 K = K + K.T
 
-np.save('Datasets/EVS2020/Precomputed Distances/small', K)  
+A = pd.DataFrame(K, 
+                     index=nuts,
+                     columns =nuts
+                     )
+
+A.to_csv('Datasets/EVS2020/Distances/big.csv')
+
+np.save('Datasets/EVS2020/Distances/big', K)  
+
 timer.finish('Plots/.logfile.txt')
-        
+

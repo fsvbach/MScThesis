@@ -10,7 +10,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from .Visualization import embedScatter, plotMixture
-from .TSNE import Dataset2Gaussians, GaussianWassersteinDistance, WassersteinTSNE
+from .TSNE import GaussianTSNE as TSNE
+from .Distances import GaussianWassersteinDistance
+from .Distributions import Dataset2Gaussians
 from .utils import Timer, _naming
 
 _config= {'sklearn': False, 
@@ -45,7 +47,7 @@ def AccuracyPlot(mixture, **kwargs):
 
     Gaussians = Dataset2Gaussians(mixture.data)
     WSDM = GaussianWassersteinDistance(Gaussians)
-    WT = WassersteinTSNE(WSDM, seed=config['seed'], sklearn=config['sklearn'])
+    WT = TSNE(WSDM, seed=config['seed'], sklearn=config['sklearn'])
     timer.add('Computed distance matrices')
      
     ### Embed three ScatterPlots
