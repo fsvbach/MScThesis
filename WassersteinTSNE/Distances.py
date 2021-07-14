@@ -8,6 +8,7 @@ Created on Wed Jul  7 10:57:05 2021
 
 import pandas as pd
 import numpy as np
+import scipy.sparse as sp
 
 from scipy.optimize import linprog
 from .Distributions import arr2cov
@@ -21,9 +22,18 @@ def EuclideanDistance(A,B):
     return np.sqrt(D)
     
 def ConstraintMatrix(n,m):
-    N = np.repeat(np.identity(n), m, axis=1)
-    M = np.hstack([np.identity(m)]*n)
+    N = np.repeat(np.identity(n,dtype=int), m, axis=1)
+    M = np.hstack([np.identity(m, dtype=int)]*n)
     return np.vstack([N,M])
+
+def SparseConstraint(n,m):
+    row  = np.repeat(np.arange(n), m)
+    col  = np.arange(n*m) 
+    data = np.ones(n*m, dtype=int)
+    N = sp.csr_matrix((data, (row, col)), 
+                   shape=(n, n*m))
+    M = sp.hstack([sp.dia_matrix((np.ones(m, dtype=int), 0), shape=(m,m))]*n)
+    return sp.vstack([N,M], format='csr')
 
 def WassersteinDistanceMatrix(dataset):
     data = dataset.index.unique()

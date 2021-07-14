@@ -30913,3 +30913,675 @@ Computed 42x46 Wasserstein distance: 8.69367377032308 in 0.011s. (Total: 3781.81
 Succesfully finished 'EVS Exact Wasserstein' in 3781.839s
 
 ---------------------------------------------------------------------------
+Started 'Exact  Wasserstein' at 07-14-15-11-31
+
+Computed 100x100 distance matrix in 0.322s. (Total: 0.322s)
+
+Created 200x10000 constraint matrix in 0.004s. (Total: 0.327s)
+
+Computed Wasserstein distance: 11.722646315973556 in 0.097s. (Total: 0.423s)
+
+Succesfully finished 'Exact  Wasserstein' in 0.423s
+
+---------------------------------------------------------------------------
+Started 'EVS Exact Wasserstein' at 07-14-15-15-15
+
+Computed 41x42 Wasserstein distance: 13.01600380159068 in 0.315s. (Total: 0.315s)
+
+Computed 41x48 Wasserstein distance: 13.528618791509238 in 0.022s. (Total: 0.337s)
+
+Computed 41x43 Wasserstein distance: 13.229274067017876 in 0.011s. (Total: 0.348s)
+
+Computed 41x46 Wasserstein distance: 12.433328750556953 in 0.01s. (Total: 0.358s)
+
+Computed 41x41 Wasserstein distance: 9.290380973076036 in 0.008s. (Total: 0.366s)
+
+Computed 41x46 Wasserstein distance: 11.012840630379765 in 0.01s. (Total: 0.376s)
+
+Computed 41x42 Wasserstein distance: 10.243356508127926 in 0.007s. (Total: 0.383s)
+
+Computed 41x45 Wasserstein distance: 10.811398128494648 in 0.009s. (Total: 0.392s)
+
+Computed 41x43 Wasserstein distance: 10.374519789801667 in 0.008s. (Total: 0.4s)
+
+Computed 41x43 Wasserstein distance: 9.25672707311771 in 0.007s. (Total: 0.407s)
+
+Computed 41x48 Wasserstein distance: 9.1983759368713 in 0.01s. (Total: 0.417s)
+
+Computed 41x46 Wasserstein distance: 10.736428958141094 in 0.009s. (Total: 0.426s)
+
+Computed 41x47 Wasserstein distance: 11.930310583445385 in 0.009s. (Total: 0.435s)
+
+Computed 41x49 Wasserstein distance: 11.14689845338463 in 0.01s. (Total: 0.445s)
+
+Computed 41x46 Wasserstein distance: 10.609754070631581 in 0.01s. (Total: 0.455s)
+
+Computed 41x47 Wasserstein distance: 12.652277144734771 in 0.009s. (Total: 0.464s)
+
+Computed 41x48 Wasserstein distance: 10.019291461632301 in 0.01s. (Total: 0.474s)
+
+Computed 41x44 Wasserstein distance: 9.580995861292124 in 0.009s. (Total: 0.483s)
+
+Computed 41x43 Wasserstein distance: 9.65382769643405 in 0.009s. (Total: 0.492s)
+
+Computed 41x48 Wasserstein distance: 9.18443064747007 in 0.011s. (Total: 0.503s)
+
+Computed 41x47 Wasserstein distance: 10.292754485067801 in 0.011s. (Total: 0.514s)
+
+Computed 41x42 Wasserstein distance: 9.841064216061936 in 0.008s. (Total: 0.522s)
+
+Computed 41x46 Wasserstein distance: 9.705335771053832 in 0.01s. (Total: 0.532s)
+
+Computed 42x48 Wasserstein distance: 9.919729308830155 in 0.01s. (Total: 0.542s)
+
+Computed 42x43 Wasserstein distance: 8.681834264726072 in 0.008s. (Total: 0.55s)
+
+Computed 42x46 Wasserstein distance: 11.543692605557615 in 0.009s. (Total: 0.559s)
+
+Computed 42x41 Wasserstein distance: 10.821822719940542 in 0.008s. (Total: 0.567s)
+
+Computed 42x46 Wasserstein distance: 10.872750657454986 in 0.01s. (Total: 0.577s)
+
+Computed 42x42 Wasserstein distance: 12.017370463313851 in 0.008s. (Total: 0.585s)
+
+Computed 42x45 Wasserstein distance: 10.75706243645801 in 0.009s. (Total: 0.594s)
+
+Computed 42x43 Wasserstein distance: 11.772754140092085 in 0.008s. (Total: 0.602s)
+
+Computed 42x43 Wasserstein distance: 11.646213651540723 in 0.008s. (Total: 0.61s)
+
+Computed 42x48 Wasserstein distance: 11.208717765923302 in 0.011s. (Total: 0.621s)
+
+Computed 42x46 Wasserstein distance: 10.189562270929706 in 0.009s. (Total: 0.63s)
+
+Computed 42x47 Wasserstein distance: 12.143189777962853 in 0.01s. (Total: 0.64s)
+
+Computed 42x49 Wasserstein distance: 10.080377691011682 in 0.011s. (Total: 0.651s)
+
+Computed 42x46 Wasserstein distance: 11.289812357092103 in 0.009s. (Total: 0.66s)
+
+Computed 42x47 Wasserstein distance: 12.747669583963766 in 0.011s. (Total: 0.671s)
+
+Computed 42x48 Wasserstein distance: 11.70118642366907 in 0.012s. (Total: 0.683s)
+
+Computed 42x44 Wasserstein distance: 11.351288675730297 in 0.01s. (Total: 0.693s)
+
+Computed 42x43 Wasserstein distance: 10.895145547134804 in 0.008s. (Total: 0.701s)
+
+Computed 42x48 Wasserstein distance: 11.544428261367242 in 0.011s. (Total: 0.712s)
+
+Computed 42x47 Wasserstein distance: 12.65602143606218 in 0.01s. (Total: 0.722s)
+
+Computed 42x42 Wasserstein distance: 12.129471415060523 in 0.008s. (Total: 0.73s)
+
+Computed 42x46 Wasserstein distance: 12.221489055769625 in 0.009s. (Total: 0.739s)
+
+Computed 48x43 Wasserstein distance: 8.664595437869767 in 0.01s. (Total: 0.749s)
+
+Computed 48x46 Wasserstein distance: 11.245243601689785 in 0.011s. (Total: 0.76s)
+
+Computed 48x41 Wasserstein distance: 11.827161698605536 in 0.01s. (Total: 0.77s)
+
+Computed 48x46 Wasserstein distance: 12.486245982102345 in 0.011s. (Total: 0.781s)
+
+Computed 48x42 Wasserstein distance: 12.10397268245099 in 0.011s. (Total: 0.792s)
+
+Computed 48x45 Wasserstein distance: 11.750024715973796 in 0.011s. (Total: 0.803s)
+
+Computed 48x43 Wasserstein distance: 12.05685710649592 in 0.01s. (Total: 0.813s)
+
+Computed 48x43 Wasserstein distance: 11.749628024174784 in 0.011s. (Total: 0.824s)
+
+Computed 48x48 Wasserstein distance: 11.380657688066064 in 0.013s. (Total: 0.837s)
+
+Computed 48x46 Wasserstein distance: 11.436566731869025 in 0.011s. (Total: 0.848s)
+
+Computed 48x47 Wasserstein distance: 12.889281177975747 in 0.011s. (Total: 0.859s)
+
+Computed 48x49 Wasserstein distance: 10.890962872746762 in 0.011s. (Total: 0.87s)
+
+Computed 48x46 Wasserstein distance: 10.963181216610879 in 0.011s. (Total: 0.881s)
+
+Computed 48x47 Wasserstein distance: 10.39978154819283 in 0.01s. (Total: 0.891s)
+
+Computed 48x48 Wasserstein distance: 11.597451359885099 in 0.011s. (Total: 0.902s)
+
+Computed 48x44 Wasserstein distance: 11.218350836494857 in 0.011s. (Total: 0.913s)
+
+Computed 48x43 Wasserstein distance: 11.242632268034486 in 0.011s. (Total: 0.924s)
+
+Computed 48x48 Wasserstein distance: 11.418224225239332 in 0.013s. (Total: 0.937s)
+
+Computed 48x47 Wasserstein distance: 11.600389564293005 in 0.01s. (Total: 0.947s)
+
+Computed 48x42 Wasserstein distance: 11.720885242377483 in 0.01s. (Total: 0.957s)
+
+Computed 48x46 Wasserstein distance: 11.611636166986965 in 0.01s. (Total: 0.967s)
+
+Computed 43x46 Wasserstein distance: 11.377395930374957 in 0.009s. (Total: 0.976s)
+
+Computed 43x41 Wasserstein distance: 11.278250255553191 in 0.008s. (Total: 0.984s)
+
+Computed 43x46 Wasserstein distance: 11.543454807589603 in 0.011s. (Total: 0.995s)
+
+Computed 43x42 Wasserstein distance: 11.686728915699529 in 0.008s. (Total: 1.003s)
+
+Computed 43x45 Wasserstein distance: 11.296497353360408 in 0.01s. (Total: 1.013s)
+
+Computed 43x43 Wasserstein distance: 11.594014549582777 in 0.008s. (Total: 1.021s)
+
+Computed 43x43 Wasserstein distance: 11.27210392951496 in 0.009s. (Total: 1.03s)
+
+Computed 43x48 Wasserstein distance: 11.235689607736632 in 0.01s. (Total: 1.04s)
+
+Computed 43x46 Wasserstein distance: 10.567531384599597 in 0.01s. (Total: 1.05s)
+
+Computed 43x47 Wasserstein distance: 11.751530422399664 in 0.01s. (Total: 1.06s)
+
+Computed 43x49 Wasserstein distance: 10.1330543654708 in 0.01s. (Total: 1.07s)
+
+Computed 43x46 Wasserstein distance: 10.756103338317264 in 0.01s. (Total: 1.08s)
+
+Computed 43x47 Wasserstein distance: 10.861108254487943 in 0.01s. (Total: 1.09s)
+
+Computed 43x48 Wasserstein distance: 11.060352488340373 in 0.01s. (Total: 1.1s)
+
+Computed 43x44 Wasserstein distance: 11.412897556307392 in 0.009s. (Total: 1.109s)
+
+Computed 43x43 Wasserstein distance: 10.599165185117867 in 0.009s. (Total: 1.119s)
+
+Computed 43x48 Wasserstein distance: 11.271461753681312 in 0.012s. (Total: 1.13s)
+
+Computed 43x47 Wasserstein distance: 11.751245443432522 in 0.011s. (Total: 1.141s)
+
+Computed 43x42 Wasserstein distance: 11.868072177017918 in 0.008s. (Total: 1.149s)
+
+Computed 43x46 Wasserstein distance: 11.533349483424583 in 0.01s. (Total: 1.159s)
+
+Computed 46x41 Wasserstein distance: 10.986679507676218 in 0.009s. (Total: 1.168s)
+
+Computed 46x46 Wasserstein distance: 12.812597824276178 in 0.011s. (Total: 1.179s)
+
+Computed 46x42 Wasserstein distance: 11.42546779018761 in 0.01s. (Total: 1.189s)
+
+Computed 46x45 Wasserstein distance: 11.151767853767955 in 0.01s. (Total: 1.199s)
+
+Computed 46x43 Wasserstein distance: 12.11897286491016 in 0.009s. (Total: 1.208s)
+
+Computed 46x43 Wasserstein distance: 10.541099969126842 in 0.01s. (Total: 1.218s)
+
+Computed 46x48 Wasserstein distance: 10.581715767772288 in 0.011s. (Total: 1.229s)
+
+Computed 46x46 Wasserstein distance: 11.462581736870854 in 0.011s. (Total: 1.24s)
+
+Computed 46x47 Wasserstein distance: 12.477103052358027 in 0.009s. (Total: 1.249s)
+
+Computed 46x49 Wasserstein distance: 11.088900637883807 in 0.012s. (Total: 1.261s)
+
+Computed 46x46 Wasserstein distance: 11.144605285074453 in 0.01s. (Total: 1.271s)
+
+Computed 46x47 Wasserstein distance: 12.186852947457469 in 0.009s. (Total: 1.28s)
+
+Computed 46x48 Wasserstein distance: 11.154884717343641 in 0.011s. (Total: 1.291s)
+
+Computed 46x44 Wasserstein distance: 11.234740324241061 in 0.01s. (Total: 1.301s)
+
+Computed 46x43 Wasserstein distance: 10.67504977661397 in 0.009s. (Total: 1.31s)
+
+Computed 46x48 Wasserstein distance: 11.160152567888497 in 0.013s. (Total: 1.323s)
+
+Computed 46x47 Wasserstein distance: 11.67778852058894 in 0.009s. (Total: 1.332s)
+
+Computed 46x42 Wasserstein distance: 11.23376473044093 in 0.01s. (Total: 1.342s)
+
+Computed 46x46 Wasserstein distance: 11.639719569550959 in 0.012s. (Total: 1.354s)
+
+Computed 41x46 Wasserstein distance: 9.941646068272648 in 0.009s. (Total: 1.363s)
+
+Computed 41x42 Wasserstein distance: 9.871824731192024 in 0.007s. (Total: 1.37s)
+
+Computed 41x45 Wasserstein distance: 8.921527228786552 in 0.009s. (Total: 1.379s)
+
+Computed 41x43 Wasserstein distance: 9.985614942109306 in 0.009s. (Total: 1.388s)
+
+Computed 41x43 Wasserstein distance: 8.945893524358484 in 0.009s. (Total: 1.397s)
+
+Computed 41x48 Wasserstein distance: 8.860162858274736 in 0.01s. (Total: 1.407s)
+
+Computed 41x46 Wasserstein distance: 9.40078381780648 in 0.009s. (Total: 1.416s)
+
+Computed 41x47 Wasserstein distance: 10.841960099054274 in 0.009s. (Total: 1.425s)
+
+Computed 41x49 Wasserstein distance: 9.361489818761893 in 0.01s. (Total: 1.435s)
+
+Computed 41x46 Wasserstein distance: 9.60961014826652 in 0.009s. (Total: 1.444s)
+
+Computed 41x47 Wasserstein distance: 12.237645514662127 in 0.009s. (Total: 1.453s)
+
+Computed 41x48 Wasserstein distance: 9.697384817669311 in 0.01s. (Total: 1.463s)
+
+Computed 41x44 Wasserstein distance: 9.033299403587856 in 0.009s. (Total: 1.472s)
+
+Computed 41x43 Wasserstein distance: 8.920102482913732 in 0.007s. (Total: 1.479s)
+
+Computed 41x48 Wasserstein distance: 9.247437341969237 in 0.01s. (Total: 1.489s)
+
+Computed 41x47 Wasserstein distance: 10.530659010431883 in 0.01s. (Total: 1.499s)
+
+Computed 41x42 Wasserstein distance: 9.987860425050634 in 0.007s. (Total: 1.506s)
+
+Computed 41x46 Wasserstein distance: 9.91422872231594 in 0.01s. (Total: 1.516s)
+
+Computed 46x42 Wasserstein distance: 10.976070538929614 in 0.011s. (Total: 1.527s)
+
+Computed 46x45 Wasserstein distance: 10.244133901896872 in 0.009s. (Total: 1.536s)
+
+Computed 46x43 Wasserstein distance: 10.196659532921528 in 0.01s. (Total: 1.546s)
+
+Computed 46x43 Wasserstein distance: 10.976434353791944 in 0.01s. (Total: 1.556s)
+
+Computed 46x48 Wasserstein distance: 11.241513339572222 in 0.012s. (Total: 1.568s)
+
+Computed 46x46 Wasserstein distance: 9.815819636117652 in 0.01s. (Total: 1.578s)
+
+Computed 46x47 Wasserstein distance: 10.19076663613113 in 0.01s. (Total: 1.588s)
+
+Computed 46x49 Wasserstein distance: 9.894214759913337 in 0.012s. (Total: 1.6s)
+
+Computed 46x46 Wasserstein distance: 10.692918492624631 in 0.011s. (Total: 1.611s)
+
+Computed 46x47 Wasserstein distance: 13.347391896357399 in 0.009s. (Total: 1.62s)
+
+Computed 46x48 Wasserstein distance: 10.393797291609934 in 0.01s. (Total: 1.63s)
+
+Computed 46x44 Wasserstein distance: 10.826352372144948 in 0.01s. (Total: 1.64s)
+
+Computed 46x43 Wasserstein distance: 10.154194590555974 in 0.009s. (Total: 1.649s)
+
+Computed 46x48 Wasserstein distance: 10.968475681316457 in 0.011s. (Total: 1.66s)
+
+Computed 46x47 Wasserstein distance: 11.050281936281408 in 0.009s. (Total: 1.669s)
+
+Computed 46x42 Wasserstein distance: 11.001132349145848 in 0.01s. (Total: 1.679s)
+
+Computed 46x46 Wasserstein distance: 10.86604466335161 in 0.01s. (Total: 1.689s)
+
+Computed 42x45 Wasserstein distance: 10.176749457682211 in 0.009s. (Total: 1.698s)
+
+Computed 42x43 Wasserstein distance: 10.185673828230767 in 0.007s. (Total: 1.705s)
+
+Computed 42x43 Wasserstein distance: 9.538922867509628 in 0.007s. (Total: 1.712s)
+
+Computed 42x48 Wasserstein distance: 9.591947234252594 in 0.011s. (Total: 1.723s)
+
+Computed 42x46 Wasserstein distance: 10.663593710392615 in 0.01s. (Total: 1.733s)
+
+Computed 42x47 Wasserstein distance: 11.349766787580139 in 0.01s. (Total: 1.743s)
+
+Computed 42x49 Wasserstein distance: 10.76218076672943 in 0.011s. (Total: 1.754s)
+
+Computed 42x46 Wasserstein distance: 10.174020577819611 in 0.01s. (Total: 1.764s)
+
+Computed 42x47 Wasserstein distance: 11.776602284569341 in 0.01s. (Total: 1.774s)
+
+Computed 42x48 Wasserstein distance: 9.589957866260352 in 0.011s. (Total: 1.785s)
+
+Computed 42x44 Wasserstein distance: 9.500525027676279 in 0.009s. (Total: 1.794s)
+
+Computed 42x43 Wasserstein distance: 9.287697644125732 in 0.007s. (Total: 1.802s)
+
+Computed 42x48 Wasserstein distance: 9.60198736153208 in 0.011s. (Total: 1.812s)
+
+Computed 42x47 Wasserstein distance: 9.40572041373507 in 0.01s. (Total: 1.822s)
+
+Computed 42x42 Wasserstein distance: 9.324660623237454 in 0.008s. (Total: 1.83s)
+
+Computed 42x46 Wasserstein distance: 9.393942904232444 in 0.009s. (Total: 1.839s)
+
+Computed 45x43 Wasserstein distance: 9.873334960802003 in 0.009s. (Total: 1.848s)
+
+Computed 45x43 Wasserstein distance: 9.60735126534248 in 0.008s. (Total: 1.856s)
+
+Computed 45x48 Wasserstein distance: 9.73027394500195 in 0.011s. (Total: 1.867s)
+
+Computed 45x46 Wasserstein distance: 9.724125886811064 in 0.009s. (Total: 1.876s)
+
+Computed 45x47 Wasserstein distance: 11.186607248168206 in 0.01s. (Total: 1.886s)
+
+Computed 45x49 Wasserstein distance: 9.51905121928508 in 0.012s. (Total: 1.898s)
+
+Computed 45x46 Wasserstein distance: 9.844487748089623 in 0.009s. (Total: 1.907s)
+
+Computed 45x47 Wasserstein distance: 12.247833130031113 in 0.01s. (Total: 1.917s)
+
+Computed 45x48 Wasserstein distance: 9.89845656069677 in 0.01s. (Total: 1.927s)
+
+Computed 45x44 Wasserstein distance: 9.336386848000046 in 0.01s. (Total: 1.937s)
+
+Computed 45x43 Wasserstein distance: 9.412750820748865 in 0.009s. (Total: 1.946s)
+
+Computed 45x48 Wasserstein distance: 10.103678655856479 in 0.011s. (Total: 1.957s)
+
+Computed 45x47 Wasserstein distance: 10.538220289553777 in 0.01s. (Total: 1.967s)
+
+Computed 45x42 Wasserstein distance: 10.178231047439303 in 0.01s. (Total: 1.977s)
+
+Computed 45x46 Wasserstein distance: 10.43887486650495 in 0.009s. (Total: 1.986s)
+
+Computed 43x43 Wasserstein distance: 9.59441847890668 in 0.01s. (Total: 1.996s)
+
+Computed 43x48 Wasserstein distance: 10.106090578996467 in 0.01s. (Total: 2.006s)
+
+Computed 43x46 Wasserstein distance: 9.883280599495963 in 0.01s. (Total: 2.016s)
+
+Computed 43x47 Wasserstein distance: 10.321872921388135 in 0.01s. (Total: 2.026s)
+
+Computed 43x49 Wasserstein distance: 9.903387385126347 in 0.012s. (Total: 2.038s)
+
+Computed 43x46 Wasserstein distance: 10.05439730077143 in 0.009s. (Total: 2.047s)
+
+Computed 43x47 Wasserstein distance: 11.773974746241667 in 0.01s. (Total: 2.057s)
+
+Computed 43x48 Wasserstein distance: 9.626951895232587 in 0.01s. (Total: 2.067s)
+
+Computed 43x44 Wasserstein distance: 9.336558973490048 in 0.008s. (Total: 2.075s)
+
+Computed 43x43 Wasserstein distance: 8.918579352875055 in 0.009s. (Total: 2.084s)
+
+Computed 43x48 Wasserstein distance: 9.458489258259151 in 0.011s. (Total: 2.095s)
+
+Computed 43x47 Wasserstein distance: 9.791501265153908 in 0.011s. (Total: 2.106s)
+
+Computed 43x42 Wasserstein distance: 9.407310593167525 in 0.008s. (Total: 2.114s)
+
+Computed 43x46 Wasserstein distance: 9.48401827272395 in 0.009s. (Total: 2.123s)
+
+Computed 43x48 Wasserstein distance: 8.0996714308226 in 0.011s. (Total: 2.134s)
+
+Computed 43x46 Wasserstein distance: 9.97666309779529 in 0.011s. (Total: 2.145s)
+
+Computed 43x47 Wasserstein distance: 10.748061771909914 in 0.01s. (Total: 2.155s)
+
+Computed 43x49 Wasserstein distance: 9.748905083680448 in 0.011s. (Total: 2.166s)
+
+Computed 43x46 Wasserstein distance: 9.747736091331841 in 0.01s. (Total: 2.176s)
+
+Computed 43x47 Wasserstein distance: 11.108531129524907 in 0.01s. (Total: 2.186s)
+
+Computed 43x48 Wasserstein distance: 8.758107503057852 in 0.011s. (Total: 2.197s)
+
+Computed 43x44 Wasserstein distance: 8.608072342695431 in 0.008s. (Total: 2.205s)
+
+Computed 43x43 Wasserstein distance: 8.445344193435218 in 0.009s. (Total: 2.214s)
+
+Computed 43x48 Wasserstein distance: 8.57964237364539 in 0.01s. (Total: 2.224s)
+
+Computed 43x47 Wasserstein distance: 9.650292731281786 in 0.01s. (Total: 2.234s)
+
+Computed 43x42 Wasserstein distance: 8.656704751390295 in 0.008s. (Total: 2.242s)
+
+Computed 43x46 Wasserstein distance: 9.263017388245789 in 0.009s. (Total: 2.251s)
+
+Computed 48x46 Wasserstein distance: 10.230869476378258 in 0.011s. (Total: 2.262s)
+
+Computed 48x47 Wasserstein distance: 11.420400965644376 in 0.011s. (Total: 2.273s)
+
+Computed 48x49 Wasserstein distance: 10.341343461158088 in 0.011s. (Total: 2.284s)
+
+Computed 48x46 Wasserstein distance: 9.63904406554618 in 0.011s. (Total: 2.295s)
+
+Computed 48x47 Wasserstein distance: 11.100065137155482 in 0.01s. (Total: 2.305s)
+
+Computed 48x48 Wasserstein distance: 9.04166550041081 in 0.011s. (Total: 2.316s)
+
+Computed 48x44 Wasserstein distance: 8.488453682125407 in 0.01s. (Total: 2.326s)
+
+Computed 48x43 Wasserstein distance: 8.69073802617476 in 0.011s. (Total: 2.337s)
+
+Computed 48x48 Wasserstein distance: 8.38052764153187 in 0.012s. (Total: 2.349s)
+
+Computed 48x47 Wasserstein distance: 9.490924511060928 in 0.011s. (Total: 2.36s)
+
+Computed 48x42 Wasserstein distance: 8.885540570215674 in 0.011s. (Total: 2.371s)
+
+Computed 48x46 Wasserstein distance: 9.285306390051783 in 0.011s. (Total: 2.382s)
+
+Computed 46x47 Wasserstein distance: 10.201093081502403 in 0.011s. (Total: 2.393s)
+
+Computed 46x49 Wasserstein distance: 8.969076800833543 in 0.012s. (Total: 2.405s)
+
+Computed 46x46 Wasserstein distance: 10.020217947374414 in 0.011s. (Total: 2.416s)
+
+Computed 46x47 Wasserstein distance: 11.772675131591635 in 0.01s. (Total: 2.426s)
+
+Computed 46x48 Wasserstein distance: 10.060642307200107 in 0.011s. (Total: 2.437s)
+
+Computed 46x44 Wasserstein distance: 9.822987817053999 in 0.009s. (Total: 2.446s)
+
+Computed 46x43 Wasserstein distance: 9.487337613876806 in 0.011s. (Total: 2.457s)
+
+Computed 46x48 Wasserstein distance: 9.891077341117931 in 0.01s. (Total: 2.467s)
+
+Computed 46x47 Wasserstein distance: 10.668967862752341 in 0.009s. (Total: 2.476s)
+
+Computed 46x42 Wasserstein distance: 10.42463982348368 in 0.01s. (Total: 2.486s)
+
+Computed 46x46 Wasserstein distance: 10.252099694606528 in 0.011s. (Total: 2.497s)
+
+Computed 47x49 Wasserstein distance: 9.769983723467622 in 0.011s. (Total: 2.508s)
+
+Computed 47x46 Wasserstein distance: 10.538457654023091 in 0.009s. (Total: 2.517s)
+
+Computed 47x47 Wasserstein distance: 12.680393909380115 in 0.011s. (Total: 2.528s)
+
+Computed 47x48 Wasserstein distance: 10.402593503598862 in 0.01s. (Total: 2.538s)
+
+Computed 47x44 Wasserstein distance: 10.895775921352593 in 0.012s. (Total: 2.55s)
+
+Computed 47x43 Wasserstein distance: 10.400578399481832 in 0.01s. (Total: 2.56s)
+
+Computed 47x48 Wasserstein distance: 10.922471987873687 in 0.011s. (Total: 2.571s)
+
+Computed 47x47 Wasserstein distance: 11.405744343257913 in 0.012s. (Total: 2.583s)
+
+Computed 47x42 Wasserstein distance: 10.937408292991469 in 0.011s. (Total: 2.594s)
+
+Computed 47x46 Wasserstein distance: 10.612514933416476 in 0.01s. (Total: 2.604s)
+
+Computed 49x46 Wasserstein distance: 9.630675461552295 in 0.012s. (Total: 2.616s)
+
+Computed 49x47 Wasserstein distance: 11.375004382345795 in 0.011s. (Total: 2.627s)
+
+Computed 49x48 Wasserstein distance: 9.862106522700081 in 0.011s. (Total: 2.638s)
+
+Computed 49x44 Wasserstein distance: 9.851315744788955 in 0.01s. (Total: 2.648s)
+
+Computed 49x43 Wasserstein distance: 9.646759212060207 in 0.011s. (Total: 2.659s)
+
+Computed 49x48 Wasserstein distance: 10.238046048215981 in 0.01s. (Total: 2.669s)
+
+Computed 49x47 Wasserstein distance: 11.001266112462346 in 0.013s. (Total: 2.682s)
+
+Computed 49x42 Wasserstein distance: 10.583464052204825 in 0.011s. (Total: 2.693s)
+
+Computed 49x46 Wasserstein distance: 10.62711878756753 in 0.011s. (Total: 2.704s)
+
+Computed 46x47 Wasserstein distance: 11.129389031046939 in 0.009s. (Total: 2.713s)
+
+Computed 46x48 Wasserstein distance: 9.473701997430114 in 0.011s. (Total: 2.724s)
+
+Computed 46x44 Wasserstein distance: 9.350941114831977 in 0.008s. (Total: 2.732s)
+
+Computed 46x43 Wasserstein distance: 9.291053411259517 in 0.011s. (Total: 2.743s)
+
+Computed 46x48 Wasserstein distance: 9.296444194526353 in 0.012s. (Total: 2.755s)
+
+Computed 46x47 Wasserstein distance: 9.853523588120845 in 0.01s. (Total: 2.765s)
+
+Computed 46x42 Wasserstein distance: 9.746329570097734 in 0.01s. (Total: 2.775s)
+
+Computed 46x46 Wasserstein distance: 9.87491559821035 in 0.011s. (Total: 2.786s)
+
+Computed 47x48 Wasserstein distance: 11.216005281450071 in 0.011s. (Total: 2.797s)
+
+Computed 47x44 Wasserstein distance: 10.967477763946048 in 0.01s. (Total: 2.807s)
+
+Computed 47x43 Wasserstein distance: 11.0606685127273 in 0.01s. (Total: 2.817s)
+
+Computed 47x48 Wasserstein distance: 10.869236777071897 in 0.01s. (Total: 2.827s)
+
+Computed 47x47 Wasserstein distance: 11.206944619521586 in 0.01s. (Total: 2.837s)
+
+Computed 47x42 Wasserstein distance: 11.486817408090646 in 0.011s. (Total: 2.848s)
+
+Computed 47x46 Wasserstein distance: 11.305813775638516 in 0.009s. (Total: 2.857s)
+
+Computed 48x44 Wasserstein distance: 9.042409801665407 in 0.011s. (Total: 2.868s)
+
+Computed 48x43 Wasserstein distance: 8.687129421145482 in 0.01s. (Total: 2.878s)
+
+Computed 48x48 Wasserstein distance: 8.53137068194725 in 0.012s. (Total: 2.89s)
+
+Computed 48x47 Wasserstein distance: 9.483452500632177 in 0.011s. (Total: 2.901s)
+
+Computed 48x42 Wasserstein distance: 8.829532554919261 in 0.01s. (Total: 2.911s)
+
+Computed 48x46 Wasserstein distance: 9.236204612853905 in 0.011s. (Total: 2.922s)
+
+Computed 44x43 Wasserstein distance: 8.234508297111105 in 0.008s. (Total: 2.93s)
+
+Computed 44x48 Wasserstein distance: 7.8914900235641126 in 0.011s. (Total: 2.941s)
+
+Computed 44x47 Wasserstein distance: 8.675054212004817 in 0.011s. (Total: 2.952s)
+
+Computed 44x42 Wasserstein distance: 8.45558484988569 in 0.009s. (Total: 2.961s)
+
+Computed 44x46 Wasserstein distance: 8.473696098334676 in 0.01s. (Total: 2.971s)
+
+Computed 43x48 Wasserstein distance: 8.164258585093352 in 0.011s. (Total: 2.982s)
+
+Computed 43x47 Wasserstein distance: 9.014301245212863 in 0.011s. (Total: 2.993s)
+
+Computed 43x42 Wasserstein distance: 8.408682925451311 in 0.008s. (Total: 3.001s)
+
+Computed 43x46 Wasserstein distance: 8.674117455766957 in 0.011s. (Total: 3.012s)
+
+Computed 48x47 Wasserstein distance: 8.87973216589962 in 0.009s. (Total: 3.021s)
+
+Computed 48x42 Wasserstein distance: 8.474032934886282 in 0.01s. (Total: 3.031s)
+
+Computed 48x46 Wasserstein distance: 8.381994428034462 in 0.011s. (Total: 3.042s)
+
+Computed 47x42 Wasserstein distance: 8.363907738051063 in 0.01s. (Total: 3.052s)
+
+Computed 47x46 Wasserstein distance: 8.662115687383114 in 0.01s. (Total: 3.062s)
+
+Computed 42x46 Wasserstein distance: 8.69367377032308 in 0.01s. (Total: 3.072s)
+
+Succesfully finished 'EVS Exact Wasserstein' in 3.095s
+
+---------------------------------------------------------------------------
+Started 'Exact  Wasserstein' at 07-14-15-25-51
+
+Computed 300x300 distance matrix in 0.281s. (Total: 0.281s)
+
+Created 600x90000 constraint matrix in 0.419s. (Total: 0.7s)
+
+Computed Wasserstein distance: 10.743485262837556 in 2.459s. (Total: 3.159s)
+
+Succesfully finished 'Exact  Wasserstein' in 3.159s
+
+---------------------------------------------------------------------------
+Started 'Exact  Wasserstein' at 07-14-15-27-51
+
+Computed 300x300 distance matrix in 0.269s. (Total: 0.269s)
+
+Created 600x90000 constraint matrix in 0.142s. (Total: 0.411s)
+
+Computed dense Wasserstein distance: 10.743485262837556 in 2.858s. (Total: 3.269s)
+
+Created sparse constraint matrix in 0.413s. (Total: 3.682s)
+
+Created sparse constraint matrix in 96.026s. (Total: 99.708s)
+
+Computed sparse Wasserstein distance: 10.743485262837556 in 2.412s. (Total: 102.12s)
+
+Succesfully finished 'Exact  Wasserstein' in 102.12s
+
+---------------------------------------------------------------------------
+Started 'Exact  Wasserstein' at 07-14-15-29-59
+
+Computed 400x400 distance matrix in 0.267s. (Total: 0.267s)
+
+Created 800x160000 constraint matrix in 0.338s. (Total: 0.605s)
+
+Computed dense Wasserstein distance: 10.802225422271958 in 8.154s. (Total: 8.759s)
+
+Created sparse constraint matrix in 0.972s. (Total: 9.731s)
+
+Computed sparse Wasserstein distance: 10.802225422271958 in 7.031s. (Total: 16.762s)
+
+Succesfully finished 'Exact  Wasserstein' in 16.763s
+
+---------------------------------------------------------------------------
+Started 'Exact  Wasserstein' at 07-14-15-30-30
+
+Computed 500x500 distance matrix in 0.276s. (Total: 0.276s)
+
+Created 1000x250000 constraint matrix in 0.649s. (Total: 0.925s)
+
+Computed dense Wasserstein distance: 10.634015527969463 in 16.47s. (Total: 17.395s)
+
+Created sparse constraint matrix in 1.891s. (Total: 19.286s)
+
+Computed sparse Wasserstein distance: 10.634015527969463 in 14.675s. (Total: 33.961s)
+
+Succesfully finished 'Exact  Wasserstein' in 33.961s
+
+---------------------------------------------------------------------------
+Started 'Exact  Wasserstein' at 07-14-16-02-14
+
+Computed 925x1000 distance matrix in 0.259s. (Total: 0.259s)
+
+Created 1925x925000 constraint matrix in 7.732s. (Total: 7.992s)
+
+Created sparse constraint matrix in 1.795s. (Total: 9.786s)
+
+Computed sparse Wasserstein distance: 10.064128530026103 in 166.449s. (Total: 176.235s)
+
+Succesfully finished 'Exact  Wasserstein' in 176.235s
+
+---------------------------------------------------------------------------
+Started 'Exact  Wasserstein' at 07-14-16-07-20
+
+Computed 600x600 distance matrix in 0.385s. (Total: 0.385s)
+
+Created 1200x360000 constraint matrix in 1.076s. (Total: 1.461s)
+
+Computed dense Wasserstein distance: 10.493259460690874 in 32.89s. (Total: 34.351s)
+
+Created sparse constraint matrix in 0.082s. (Total: 34.433s)
+
+Computed sparse Wasserstein distance: 10.493259460690874 in 29.588s. (Total: 64.021s)
+
+Succesfully finished 'Exact  Wasserstein' in 64.021s
+
+---------------------------------------------------------------------------
+Started 'Exact  Wasserstein' at 07-14-16-11-10
+
+Computed 925x1384 distance matrix in 0.316s. (Total: 0.316s)
+
+Created sparse constraint matrix in 4.83s. (Total: 5.146s)
+
+Computed sparse Wasserstein distance: 9.961368811671967 in 288.608s. (Total: 293.754s)
+
+Succesfully finished 'Exact  Wasserstein' in 293.754s
+
+---------------------------------------------------------------------------
+Started 'EVS Exact Wasserstein' at 07-14-16-31-47
+
+500 of 595.0 in 7.941s. (Total: 7.941s)
+
+Succesfully finished 'EVS Exact Wasserstein' in 9.492s
+
+---------------------------------------------------------------------------
