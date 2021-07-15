@@ -31585,3 +31585,190 @@ Started 'EVS Exact Wasserstein' at 07-14-16-31-47
 Succesfully finished 'EVS Exact Wasserstein' in 9.492s
 
 ---------------------------------------------------------------------------
+Started 'EVS Exact Wasserstein' at 07-14-16-33-33
+
+Completed 0 of 22578.0 in 0.396s. (Total: 0.396s)
+
+Completed 250 of 22578.0 in 57.695s. (Total: 58.091s)
+
+Completed 500 of 22578.0 in 92.616s. (Total: 150.707s)
+
+Completed 750 of 22578.0 in 113.087s. (Total: 263.794s)
+
+Completed 1000 of 22578.0 in 88.892s. (Total: 352.686s)
+
+Completed 1250 of 22578.0 in 267.132s. (Total: 619.818s)
+
+Completed 1500 of 22578.0 in 233.068s. (Total: 852.886s)
+
+Completed 1750 of 22578.0 in 305.127s. (Total: 1158.013s)
+
+Completed 2000 of 22578.0 in 41.042s. (Total: 1199.055s)
+
+Completed 2250 of 22578.0 in 389.116s. (Total: 1588.171s)
+
+Completed 2500 of 22578.0 in 141.092s. (Total: 1729.263s)
+
+Completed 2750 of 22578.0 in 816.938s. (Total: 2546.201s)
+
+Completed 3000 of 22578.0 in 760.768s. (Total: 3306.969s)
+
+Completed 3250 of 22578.0 in 332.314s. (Total: 3639.283s)
+
+Completed 3500 of 22578.0 in 41.15s. (Total: 3680.433s)
+
+Completed 3750 of 22578.0 in 57.888s. (Total: 3738.321s)
+
+Completed 4000 of 22578.0 in 47.644s. (Total: 3785.965s)
+
+Completed 4250 of 22578.0 in 42.816s. (Total: 3828.781s)
+
+Completed 4500 of 22578.0 in 38.671s. (Total: 3867.452s)
+
+Completed 4750 of 22578.0 in 32.552s. (Total: 3900.004s)
+
+Completed 5000 of 22578.0 in 152.095s. (Total: 4052.099s)
+
+Completed 5250 of 22578.0 in 479.542s. (Total: 4531.641s)
+
+Completed 5500 of 22578.0 in 352.81s. (Total: 4884.451s)
+
+Completed 5750 of 22578.0 in 148.856s. (Total: 5033.307s)
+
+Completed 6000 of 22578.0 in 84.253s. (Total: 5117.56s)
+
+Completed 6250 of 22578.0 in 41.689s. (Total: 5159.249s)
+
+Completed 6500 of 22578.0 in 341.685s. (Total: 5500.934s)
+
+Completed 6750 of 22578.0 in 416.772s. (Total: 5917.706s)
+
+Completed 7000 of 22578.0 in 835.82s. (Total: 6753.526s)
+
+Completed 7250 of 22578.0 in 347.901s. (Total: 7101.427s)
+
+Completed 7500 of 22578.0 in 2402.889s. (Total: 9504.316s)
+
+Completed 7750 of 22578.0 in 543.46s. (Total: 10047.776s)
+
+Completed 8000 of 22578.0 in 329.329s. (Total: 10377.105s)
+
+Completed 8250 of 22578.0 in 166.284s. (Total: 10543.389s)
+
+Completed 8500 of 22578.0 in 114.376s. (Total: 10657.765s)
+
+Completed 8750 of 22578.0 in 157.66s. (Total: 10815.425s)
+
+Completed 9000 of 22578.0 in 119.363s. (Total: 10934.789s)
+
+Completed 9250 of 22578.0 in 188.34s. (Total: 11123.128s)
+
+Completed 9500 of 22578.0 in 296.382s. (Total: 11419.51s)
+
+Completed 9750 of 22578.0 in 973.139s. (Total: 12392.649s)
+
+Completed 10000 of 22578.0 in 1409.787s. (Total: 13802.436s)
+
+Completed 10250 of 22578.0 in 171.074s. (Total: 13973.51s)
+
+Completed 10500 of 22578.0 in 235.847s. (Total: 14209.357s)
+
+Completed 10750 of 22578.0 in 216.229s. (Total: 14425.586s)
+
+Completed 11000 of 22578.0 in 166.961s. (Total: 14592.547s)
+
+Completed 11250 of 22578.0 in 164.512s. (Total: 14757.059s)
+
+Completed 11500 of 22578.0 in 2339.879s. (Total: 17096.938s)
+
+Completed 11750 of 22578.0 in 2489.086s. (Total: 19586.024s)
+
+Completed 12000 of 22578.0 in 656.261s. (Total: 20242.285s)
+
+Completed 12250 of 22578.0 in 1482.667s. (Total: 21724.952s)
+
+Completed 12500 of 22578.0 in 329.025s. (Total: 22053.977s)
+
+Completed 12750 of 22578.0 in 310.742s. (Total: 22364.719s)
+
+Completed 13000 of 22578.0 in 60.25s. (Total: 22424.969s)
+
+Completed 13250 of 22578.0 in 70.704s. (Total: 22495.673s)
+
+Completed 13500 of 22578.0 in 59.446s. (Total: 22555.119s)
+
+Completed 13750 of 22578.0 in 67.594s. (Total: 22622.713s)
+
+Completed 14000 of 22578.0 in 69.73s. (Total: 22692.443s)
+
+Completed 14250 of 22578.0 in 142.391s. (Total: 22834.835s)
+
+Completed 14500 of 22578.0 in 616.704s. (Total: 23451.538s)
+
+Completed 14750 of 22578.0 in 1147.641s. (Total: 24599.179s)
+
+Completed 15000 of 22578.0 in 116.749s. (Total: 24715.928s)
+
+Completed 15250 of 22578.0 in 181.864s. (Total: 24897.792s)
+
+Completed 15500 of 22578.0 in 100.773s. (Total: 24998.565s)
+
+Completed 15750 of 22578.0 in 1706.962s. (Total: 26705.527s)
+
+Completed 16000 of 22578.0 in 1174.977s. (Total: 27880.504s)
+
+Completed 16250 of 22578.0 in 129.303s. (Total: 28009.807s)
+
+Completed 16500 of 22578.0 in 82.91s. (Total: 28092.717s)
+
+Completed 16750 of 22578.0 in 43.295s. (Total: 28136.012s)
+
+Completed 17000 of 22578.0 in 157.432s. (Total: 28293.444s)
+
+Completed 17250 of 22578.0 in 57.842s. (Total: 28351.286s)
+
+Completed 17500 of 22578.0 in 618.586s. (Total: 28969.872s)
+
+Completed 17750 of 22578.0 in 741.873s. (Total: 29711.745s)
+
+Completed 18000 of 22578.0 in 33.674s. (Total: 29745.419s)
+
+Completed 18250 of 22578.0 in 130.139s. (Total: 29875.558s)
+
+Completed 18500 of 22578.0 in 338.843s. (Total: 30214.401s)
+
+Completed 18750 of 22578.0 in 167.765s. (Total: 30382.166s)
+
+Completed 19000 of 22578.0 in 213.95s. (Total: 30596.116s)
+
+Completed 19250 of 22578.0 in 53.232s. (Total: 30649.348s)
+
+Completed 19500 of 22578.0 in 34.541s. (Total: 30683.889s)
+
+Completed 19750 of 22578.0 in 41.497s. (Total: 30725.386s)
+
+Completed 20000 of 22578.0 in 32.502s. (Total: 30757.888s)
+
+Completed 20250 of 22578.0 in 55.195s. (Total: 30813.083s)
+
+Completed 20500 of 22578.0 in 232.606s. (Total: 31045.689s)
+
+Completed 20750 of 22578.0 in 98.407s. (Total: 31144.096s)
+
+Completed 21000 of 22578.0 in 126.676s. (Total: 31270.772s)
+
+Completed 21250 of 22578.0 in 229.018s. (Total: 31499.79s)
+
+Completed 21500 of 22578.0 in 244.275s. (Total: 31744.065s)
+
+Completed 21750 of 22578.0 in 466.978s. (Total: 32211.043s)
+
+Completed 22000 of 22578.0 in 219.14s. (Total: 32430.183s)
+
+Completed 22250 of 22578.0 in 151.442s. (Total: 32581.625s)
+
+Completed 22500 of 22578.0 in 463.274s. (Total: 33044.899s)
+
+Succesfully finished 'EVS Exact Wasserstein' in 33047.044s
+
+---------------------------------------------------------------------------
