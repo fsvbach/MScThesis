@@ -35,27 +35,42 @@ def SparseConstraint(n,m):
     M = sp.hstack([sp.dia_matrix((np.ones(m, dtype=int), 0), shape=(m,m))]*n)
     return sp.vstack([N,M], format='csr')
 
-def WassersteinDistanceMatrix(dataset):
+def WassersteinDistanceMatrix(dataset, timer=None):
     data = dataset.index.unique()
     N = len(data)
     K = np.zeros((N,N))
     
+    k = 0
     for i in range(N):
         for j in range(i+1, N):
+            
             U = dataset.loc[data[i]]
             V = dataset.loc[data[j]]
-
+            
             D = EuclideanDistance(U, V)
             n, m = len(U), len(V)
-
-            A = ConstraintMatrix(n,m)
+        
+            # timer.add(f'Computed {n}x{m} distance matrix of {nuts[i]} and {nuts[j]}')
+            
+            A = SparseConstraint(n,m)
             b = np.concatenate([np.ones(n)/n, np.ones(m)/m])
             c = D.reshape(-1)
+            
+            # timer.add(f'Created {n+m}x{n*m} constraint matrix')
+            
+            opt_res = linprog(-b, A.T, c, bounds=[None, None], method='highs')
+            emd = -opt_res.fun
+            
+            K[i,j] = emd
+            
+            if k%250 == 0 and timer:
+                timer.add(f'Completed {k} of {N*(N-1)/2}')
+            k+=1
+    
+    K = K + K.T
+    
+    return pd.DataFrame(K, index=data, columns=data)
 
-            opt_res = linprog(-b, A.T, c, bounds=[None, None], method='highs')      
-            K[i,j] = -opt_res.fun
-        
-    return K + K.T
 
 class GaussianWassersteinDistance:
     def __init__(self, Gaussians, fast_approx=False):

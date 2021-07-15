@@ -14,7 +14,7 @@ from Datasets.EVS2020 import EuropeanValueStudy
 from WassersteinTSNE.utils import Timer
 from WassersteinTSNE.Distances import EuclideanDistance, ConstraintMatrix, SparseConstraint
 
-timer = Timer('Exact  Wasserstein')
+timer = Timer('Exact Wasserstein')
 
 EVS = EuropeanValueStudy(max_entries=2000)
 labels  = EVS.labeldict()

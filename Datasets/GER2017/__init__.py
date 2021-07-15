@@ -53,8 +53,8 @@ class Bundestagswahl:
         return self.mean
     
     def transform(self):
-        self.data = np.arcsin(np.sqrt(self.data)).divide(np.sqrt(self.size), axis='rows')
-        return self.data
+        data = np.arcsin(np.sqrt(self.data)).multiply(np.sqrt(self.size), axis='rows')
+        return data
     
     def labeldict(self, column='Bundesland'):
         labels = pd.read_csv('Datasets/GER2017/labels.csv',

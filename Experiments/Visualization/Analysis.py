@@ -7,7 +7,7 @@ Created on Sat May 29 10:39:49 2021
 """
 
 
-from WassersteinTSNE import Dataset2Gaussians, WassersteinTSNE, GaussianWassersteinDistance, _naming
+from WassersteinTSNE import Dataset2Gaussians, GaussianTSNE, GaussianWassersteinDistance, _naming
 from .utils import embedFlags, get_rectangle, border
 
 import numpy as np
@@ -36,7 +36,7 @@ def WassersteinEmbedding(dataset, labeldict, selection=None, **kwargs):
     for ax, w in zip(axes.flatten(), selection):
         Gaussians = Dataset2Gaussians(dataset)
         WSDM = GaussianWassersteinDistance(Gaussians)
-        WT = WassersteinTSNE(WSDM, seed=config['seed'])
+        WT = GaussianTSNE(WSDM, seed=config['seed'])
         embedding = WT.fit(w=w)
         embedding.index = embedding.index.to_series(name=config['folder']).map(labeldict)
         embedding['sizes'] = np.mean(config['size'])
@@ -57,7 +57,7 @@ def SpecialCovariances(dataset, labeldict, **kwargs):
         
     Gaussians = Dataset2Gaussians(dataset)
     WSDM = GaussianWassersteinDistance(Gaussians)
-    WT = WassersteinTSNE(WSDM, seed=config['seed'])
+    WT = GaussianTSNE(WSDM, seed=config['seed'])
     embedding = WT.fit(w=1)
     embedding.index    = embedding.index.to_series(name=config['folder']).map(labeldict)
     embedding['sizes'] = np.mean(config['size'])
@@ -66,7 +66,7 @@ def SpecialCovariances(dataset, labeldict, **kwargs):
     
     Gaussians = Dataset2Gaussians(dataset, diagonal=True)
     WSDM = GaussianWassersteinDistance(Gaussians)
-    WT = WassersteinTSNE(WSDM, seed=config['seed'])
+    WT = GaussianTSNE(WSDM, seed=config['seed'])
     embedding = WT.fit(w=1)
     embedding.index    = embedding.index.to_series(name=config['folder']).map(labeldict)
     embedding['sizes'] = np.mean(config['size'])
@@ -75,7 +75,7 @@ def SpecialCovariances(dataset, labeldict, **kwargs):
     
     Gaussians = Dataset2Gaussians(dataset, normalize=True)
     WSDM = GaussianWassersteinDistance(Gaussians)
-    WT = WassersteinTSNE(WSDM, seed=config['seed'])
+    WT = GaussianTSNE(WSDM, seed=config['seed'])
     embedding = WT.fit(w=1)
     embedding.index    = embedding.index.to_series(name=config['folder']).map(labeldict)
     embedding['sizes'] = np.mean(config['size'])
@@ -92,7 +92,7 @@ def Correlations(dataset, labeldict, normalize=True, selection=None, **kwargs):
     
     Gaussians = Dataset2Gaussians(dataset, normalize=normalize)
     WSDM = GaussianWassersteinDistance(Gaussians)
-    WT = WassersteinTSNE(WSDM, seed=config['seed'])
+    WT = GaussianTSNE(WSDM, seed=config['seed'])
     
     embedding = WT.fit(w=config['w'])
     embedding.index    = embedding.index.to_series().map(labeldict)
@@ -130,7 +130,7 @@ def Features(dataset, labeldict, FeatureSizes, selection=False, **kwargs):
     
     Gaussians = Dataset2Gaussians(dataset)
     WSDM = GaussianWassersteinDistance(Gaussians)
-    WT = WassersteinTSNE(WSDM, seed=config['seed'])
+    WT = GaussianTSNE(WSDM, seed=config['seed'])
     embedding = WT.fit(w=config['w'])
     embedding.index    = embedding.index.to_series(name=config['folder']).map(labeldict)
     

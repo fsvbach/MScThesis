@@ -19,7 +19,7 @@ class EuropeanValueStudy:
     overview =  {'v38': ('I have complete control over my life', UP),
                  'v39': ('I am satisfied with my life', UP), #free choice
                  'v63': (' God is important in my life', UP),# religion
-                 # 'v102': ("I consider myself 'on the right'", UP), # political landscape
+                 'v102': ("I consider myself 'on the right'", UP), # political landscape
                  'v103': ('Everyone is responible for him/herself', DOWN),
                  'v104': ('The unemployed should take ANY job', DOWN),
                  'v105': ('Competition is good', DOWN),
@@ -35,12 +35,11 @@ class EuropeanValueStudy:
                  'v200': ("Someone like me can do much for environment", up),
                  'v201': ('There are more important things than environment', down),
                  'v202': ('Others should start to protect the environment', down),
-                 'v203': ('Environmental threats are exaggerated', down) } # environment      
-    
-    morals = {'v149':	('do you justify: claiming state benefits', UP),
-              'v159':	('do you justify: avoiding a fare on public transport', UP),
-              'v150':	('do you justify: cheating on tax', UP),
-              'v152':	('do you justify: accepting a bribe', UP),
+                 'v203': ('Environmental threats are exaggerated', down),
+                'v149':	('do you justify: claiming state benefits', UP),
+                'v159':	('do you justify: avoiding a fare on public transport', UP),
+                'v150':	('do you justify: cheating on tax', UP),
+                'v152':	('do you justify: accepting a bribe', UP),
                 'v153':	('do you justify: homosexuality', UP),
                 'v160':	('do you justify: prostitution', UP),
                 'v154':	('do you justify: abortion', UP),
@@ -52,19 +51,19 @@ class EuropeanValueStudy:
 
     marker    = ['v275b_N2', 'c_abrv', 'v275b_N1']
 
-    def __init__(self, min_entries=40, max_entries=4000, morals=False, countries=None):
+    def __init__(self, min_entries=40, max_entries=4000):
         
 
         questions = list(self.overview.keys())
-        if morals:
-            questions = list(self.morals.keys())
             
         df        = pd.read_stata("Datasets/EVS2020/EVS.dta", 
                                    convert_categoricals=False,
                                    columns = questions+self.marker)
         
+        print(f"Loaded {len(df)} questionaires")
         df[df[questions]<0] = np.NaN
         df.dropna(inplace=True)
+        print(f"Kept {len(df)} non-empty questionaires")
     
         ### germany has different structure
         de = df.loc[df.c_abrv == 'DE']
