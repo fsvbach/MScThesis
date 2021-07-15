@@ -1,0 +1,63 @@
+Started 'BIG Exact Wasserstein' at 07-15-15-48-01
+
+Completed 0 of 7140.0 in 0.601s. (Total: 0.601s)
+
+Completed 250 of 7140.0 in 9.282s. (Total: 9.883s)
+
+Completed 500 of 7140.0 in 9.155s. (Total: 19.038s)
+
+Completed 750 of 7140.0 in 8.886s. (Total: 27.924s)
+
+Completed 1000 of 7140.0 in 8.885s. (Total: 36.809s)
+
+Completed 1250 of 7140.0 in 9.667s. (Total: 46.476s)
+
+Completed 1500 of 7140.0 in 10.431s. (Total: 56.907s)
+
+Completed 1750 of 7140.0 in 9.86s. (Total: 66.767s)
+
+Completed 2000 of 7140.0 in 10.023s. (Total: 76.79s)
+
+Completed 2250 of 7140.0 in 9.923s. (Total: 86.713s)
+
+Completed 2500 of 7140.0 in 9.546s. (Total: 96.259s)
+
+Completed 2750 of 7140.0 in 10.027s. (Total: 106.286s)
+
+Completed 3000 of 7140.0 in 10.018s. (Total: 116.304s)
+
+Completed 3250 of 7140.0 in 10.337s. (Total: 126.642s)
+
+Completed 3500 of 7140.0 in 10.466s. (Total: 137.107s)
+
+Completed 3750 of 7140.0 in 10.124s. (Total: 147.231s)
+
+Completed 4000 of 7140.0 in 9.874s. (Total: 157.105s)
+
+Completed 4250 of 7140.0 in 9.489s. (Total: 166.594s)
+
+Completed 4500 of 7140.0 in 10.431s. (Total: 177.025s)
+
+Completed 4750 of 7140.0 in 9.645s. (Total: 186.67s)
+
+Completed 5000 of 7140.0 in 10.003s. (Total: 196.673s)
+
+Completed 5250 of 7140.0 in 9.894s. (Total: 206.567s)
+
+Completed 5500 of 7140.0 in 10.235s. (Total: 216.802s)
+
+Completed 5750 of 7140.0 in 10.096s. (Total: 226.898s)
+
+Completed 6000 of 7140.0 in 9.399s. (Total: 236.297s)
+
+Completed 6250 of 7140.0 in 9.188s. (Total: 245.485s)
+
+Completed 6500 of 7140.0 in 9.243s. (Total: 254.728s)
+
+Completed 6750 of 7140.0 in 9.163s. (Total: 263.891s)
+
+Completed 7000 of 7140.0 in 9.112s. (Total: 273.003s)
+
+Succesfully finished 'BIG Exact Wasserstein' in 307.558s
+
+---------------------------------------------------------------------------

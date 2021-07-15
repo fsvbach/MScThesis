@@ -10,18 +10,16 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.optimize import linprog
 from scipy.stats import wasserstein_distance
-from Datasets.EVS2020 import EuropeanValueStudy
+from Datasets.BIG5 import BIG
 from WassersteinTSNE.utils import Timer
 from WassersteinTSNE.Distances import EuclideanDistance, ConstraintMatrix, SparseConstraint
 
 timer = Timer('Exact Wasserstein')
 
-EVS = EuropeanValueStudy(max_entries=2000)
-labels  = EVS.labeldict()
-dataset = EVS.data
+dataset = BIG(maxnum=2000)
 
-A = dataset.loc['BABIH'].values
-B = dataset.loc['IS00'].values
+A = dataset.loc['us'].values
+B = dataset.loc['au'].values
 
 D = EuclideanDistance(A, B)
 n, m = len(A), len(B)

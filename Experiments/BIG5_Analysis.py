@@ -7,9 +7,9 @@ Created on Sat May 29 10:19:26 2021
 """
 
 from Experiments.Visualization import Analysis 
-from Datasets.BIG5 import Complete, Labels, Questions
+from Datasets.BIG5 import BIG, Labels, Questions
 
-dataset = Complete()
+dataset = BIG()
 labels  = Labels()
 
 sizes = dataset.groupby(level=0).mean()

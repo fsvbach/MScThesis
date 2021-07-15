@@ -11,10 +11,16 @@ import pandas as pd
 def US():
     return pd.read_csv('Datasets/BIG5/BIG5-US.csv', header=0, index_col=0)
 
-def Complete():
-    return pd.read_csv('Datasets/BIG5/BIG5.csv', header=0, index_col=0)
-
-def Aligned():
+def BIG(maxnum=12000):
+    data = pd.read_csv('Datasets/BIG5/BIG5.csv', header=0, index_col=0)
+    datacut = []
+    for c, d in data.groupby(level=0):
+        if len(d) > maxnum:
+            d = d.sample(maxnum, axis=0)
+        datacut.append(d)
+    return pd.concat(datacut)
+    
+def AlignedBIG():
     data = pd.read_csv('Datasets/BIG5/BIG5.csv', header=0, index_col=0)
     info = pd.read_csv('Datasets/BIG5/labels.csv', header=0, index_col=0)
     return data.multiply(info.direction)
