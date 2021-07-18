@@ -16,7 +16,7 @@ class EuropeanValueStudy:
     up   = (1, 5)
     down = (5, 1)
     
-    overview =  {'v38': ('I have complete control over my life', UP),
+    legend =  {'v38': ('I have complete control over my life', UP),
                  'v39': ('I am satisfied with my life', UP), #free choice
                  'v63': (' God is important in my life', UP),# religion
                  'v102': ("I consider myself 'on the right'", UP), # political landscape
@@ -54,7 +54,7 @@ class EuropeanValueStudy:
     def __init__(self, min_entries=40, max_entries=4000):
         
 
-        questions = list(self.overview.keys())
+        questions = list(self.legend.keys())
             
         df        = pd.read_stata("Datasets/EVS2020/EVS.dta", 
                                    convert_categoricals=False,

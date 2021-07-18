@@ -8,15 +8,9 @@ Created on Mon May 10 15:07:28 2021
 
 ### run experiments by importing them and using their .run() method
 
-from WassersteinTSNE.Evaluation import AccuracyPlot
-from Datasets.SyntheticData import CleanExamples
+from Experiments.EVS_ExactWasserstein import calculate
 
-name='DoubleCross'
-# name='Distinct'
-name='Random'
-mixture = CleanExamples.Load(name)
-mixture.Visualize()
-AccuracyPlot(mixture, suffix=name, n=10)
+calculate('complete')
 
 ############### Later ###################
 

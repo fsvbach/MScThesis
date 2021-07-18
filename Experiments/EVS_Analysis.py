@@ -18,7 +18,7 @@ Analysis._config.update(folder='flags',
                        name='NUTS regions',
                        description='',
                        dataset='EVS',
-                       renaming= lambda name: EVS.overview[name][0],
+                       renaming= lambda name: EVS.legend[name][0],
                        size= (3,15),
                        w=0.5)
 
