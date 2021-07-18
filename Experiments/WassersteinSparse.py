@@ -16,7 +16,7 @@ from WassersteinTSNE.Distances import EuclideanDistance, ConstraintMatrix, Spars
 
 timer = Timer('Exact Wasserstein')
 
-dataset = BIG(maxnum=2000)
+dataset = BIG(maxnum=1000)
 
 A = dataset.loc['us'].values
 B = dataset.loc['au'].values
@@ -29,24 +29,26 @@ timer.add(f'Computed {n}x{m} distance matrix')
 b = np.concatenate([np.ones(n)/n, np.ones(m)/m])
 c = D.reshape(-1)
 
-try:
-    A = ConstraintMatrix(n,m)
-    timer.add(f'Created {n+m}x{n*m} constraint matrix')
-except:
-    print('Cannot allocate disk space for constraint')
+# try:
+#     A = ConstraintMatrix(n,m)
+#     timer.add(f'Created {n+m}x{n*m} constraint matrix')
+# except:
+#     print('Cannot allocate disk space for constraint')
 
-try:
-    opt_res = linprog(-b, A.T, c, bounds=[None, None], options={"tol": 1e-4}, method='highs')
-    emd = -opt_res.fun
-    timer.add(f'Computed dense Wasserstein distance: {emd}')
-except:
-    print("Cannot solve linprog")
+# try:
+#     opt_res = linprog(-b, A.T, c, bounds=[None, None], options={"tol": 1e-4}, method='highs')
+#     emd = -opt_res.fun
+#     timer.add(f'Computed dense Wasserstein distance: {emd}')
+# except:
+#     print("Cannot solve linprog")
 
 A = SparseConstraint(n,m)
 
 timer.add(f'Created sparse constraint matrix')
 
-opt_res = linprog(-b, A.T, c, bounds=[None, None], method='highs', options={"sparse":True,"tol": 1e-4})
+opt_res = linprog(-b, A.T, c, bounds=[None, None], method='highs', options={'ipm_optimality_tolerance': 1e-3,
+                                                                            'primal_feasibility_tolerance': 1e-3,
+                                                                            'dual_feasibility_tolerance':1e-3})
 emd = -opt_res.fun
 
 timer.add(f'Computed sparse Wasserstein distance: {emd}')

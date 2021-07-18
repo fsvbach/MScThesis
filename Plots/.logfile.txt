@@ -61,3 +61,153 @@ Completed 7000 of 7140.0 in 9.112s. (Total: 273.003s)
 Succesfully finished 'BIG Exact Wasserstein' in 307.558s
 
 ---------------------------------------------------------------------------
+Started 'Exact Wasserstein' at 07-17-11-44-17
+
+Computed 500x500 distance matrix in 0.522s. (Total: 0.522s)
+
+Created 1000x250000 constraint matrix in 0.654s. (Total: 1.176s)
+
+Computed dense Wasserstein distance: 7.586614904766292 in 16.87s. (Total: 18.046s)
+
+Created sparse constraint matrix in 0.066s. (Total: 18.112s)
+
+Computed sparse Wasserstein distance: 7.586614904766292 in 15.017s. (Total: 33.13s)
+
+Succesfully finished 'Exact Wasserstein' in 33.13s
+
+---------------------------------------------------------------------------
+Started 'Exact Wasserstein' at 07-17-11-46-04
+
+Computed 1000x1000 distance matrix in 0.447s. (Total: 0.447s)
+
+Created 2000x1000000 constraint matrix in 13.863s. (Total: 14.31s)
+
+Created sparse constraint matrix in 3.09s. (Total: 17.4s)
+
+Computed sparse Wasserstein distance: 7.379395640627153 in 232.593s. (Total: 249.993s)
+
+Succesfully finished 'Exact Wasserstein' in 249.993s
+
+---------------------------------------------------------------------------
+Started 'Exact Wasserstein' at 07-17-12-00-42
+
+Computed 600x600 distance matrix in 4.182s. (Total: 4.182s)
+
+Created 1200x360000 constraint matrix in 1.139s. (Total: 5.321s)
+
+Computed dense Wasserstein distance: 7.614447226541105 in 33.33s. (Total: 38.651s)
+
+Created sparse constraint matrix in 0.083s. (Total: 38.734s)
+
+Computed sparse Wasserstein distance: 7.614447226541105 in 29.199s. (Total: 67.933s)
+
+Succesfully finished 'Exact Wasserstein' in 67.933s
+
+---------------------------------------------------------------------------
+Started 'Exact Wasserstein' at 07-17-12-09-20
+
+Computed 600x600 distance matrix in 4.172s. (Total: 4.172s)
+
+Created sparse constraint matrix in 0.084s. (Total: 4.256s)
+
+Computed sparse Wasserstein distance: 7.50268188329937 in 27.877s. (Total: 32.133s)
+
+Succesfully finished 'Exact Wasserstein' in 32.133s
+
+---------------------------------------------------------------------------
+Started 'Exact Wasserstein' at 07-17-12-12-30
+
+Computed 1000x1000 distance matrix in 0.437s. (Total: 0.437s)
+
+Created sparse constraint matrix in 0.156s. (Total: 0.593s)
+
+Computed sparse Wasserstein distance: 7.370778424009154 in 229.74s. (Total: 230.333s)
+
+Succesfully finished 'Exact Wasserstein' in 230.333s
+
+---------------------------------------------------------------------------
+Started 'Exact Wasserstein' at 07-17-12-24-06
+
+Computed 1000x1000 distance matrix in 0.391s. (Total: 0.391s)
+
+Created sparse constraint matrix in 0.162s. (Total: 0.553s)
+
+Computed sparse Wasserstein distance: -0.0 in 0.465s. (Total: 1.018s)
+
+Succesfully finished 'Exact Wasserstein' in 1.018s
+
+---------------------------------------------------------------------------
+Started 'Exact Wasserstein' at 07-17-12-24-33
+
+Computed 1000x1000 distance matrix in 0.39s. (Total: 0.39s)
+
+Created sparse constraint matrix in 0.841s. (Total: 1.231s)
+
+Computed sparse Wasserstein distance: -0.0 in 0.446s. (Total: 1.677s)
+
+Succesfully finished 'Exact Wasserstein' in 1.677s
+
+---------------------------------------------------------------------------
+Started 'BIG Exact Wasserstein' at 07-17-12-41-52
+
+Completed 0 of 7140.0 in 10.069s. (Total: 10.069s)
+
+Completed 250 of 7140.0 in 1584.299s. (Total: 1594.369s)
+
+Completed 500 of 7140.0 in 1472.785s. (Total: 3067.153s)
+
+Completed 750 of 7140.0 in 1983.343s. (Total: 5050.496s)
+
+Completed 1000 of 7140.0 in 845.756s. (Total: 5896.252s)
+
+Completed 1250 of 7140.0 in 1291.688s. (Total: 7187.94s)
+
+Completed 1500 of 7140.0 in 1293.399s. (Total: 8481.339s)
+
+Completed 1750 of 7140.0 in 1123.188s. (Total: 9604.527s)
+
+Completed 2000 of 7140.0 in 529.228s. (Total: 10133.755s)
+
+Completed 2250 of 7140.0 in 1671.928s. (Total: 11805.683s)
+
+Completed 2500 of 7140.0 in 2527.441s. (Total: 14333.124s)
+
+Completed 2750 of 7140.0 in 1830.13s. (Total: 16163.254s)
+
+Completed 3000 of 7140.0 in 2305.202s. (Total: 18468.456s)
+
+Completed 3250 of 7140.0 in 1111.269s. (Total: 19579.725s)
+
+Completed 3500 of 7140.0 in 2376.041s. (Total: 21955.766s)
+
+Completed 3750 of 7140.0 in 1646.67s. (Total: 23602.436s)
+
+Completed 4000 of 7140.0 in 1585.605s. (Total: 25188.041s)
+
+Completed 4250 of 7140.0 in 1121.883s. (Total: 26309.924s)
+
+Completed 4500 of 7140.0 in 1425.639s. (Total: 27735.563s)
+
+Completed 4750 of 7140.0 in 2261.398s. (Total: 29996.961s)
+
+Completed 5000 of 7140.0 in 1374.711s. (Total: 31371.672s)
+
+Completed 5250 of 7140.0 in 1349.476s. (Total: 32721.148s)
+
+Completed 5500 of 7140.0 in 1739.883s. (Total: 34461.031s)
+
+Completed 5750 of 7140.0 in 1321.203s. (Total: 35782.234s)
+
+Completed 6000 of 7140.0 in 785.423s. (Total: 36567.657s)
+
+Completed 6250 of 7140.0 in 617.122s. (Total: 37184.779s)
+
+Completed 6500 of 7140.0 in 1986.619s. (Total: 39171.398s)
+
+Completed 6750 of 7140.0 in 1852.27s. (Total: 41023.668s)
+
+Completed 7000 of 7140.0 in 1798.17s. (Total: 42821.838s)
+
+Succesfully finished 'BIG Exact Wasserstein' in 43532.589s
+
+---------------------------------------------------------------------------

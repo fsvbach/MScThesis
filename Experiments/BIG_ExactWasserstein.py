@@ -16,10 +16,10 @@ from WassersteinTSNE.TSNE import WassersteinTSNE
 from Experiments.Visualization import utils
 
 ########### CALCULATING ################
-name  = 'max1000'
+name  = 'max500'
 timer = Timer('BIG Exact Wasserstein')
 
-dataset = BIG(maxnum=1000)
+dataset = BIG(maxnum=500)
 labels = Labels()
 
 K = WassersteinDistanceMatrix(dataset, timer=timer)
