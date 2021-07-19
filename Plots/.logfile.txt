@@ -236,3 +236,10 @@ Completed 0 of 136.0 in 0.943s. (Total: 0.943s)
 Succesfully finished 'EVS Exact Wasserstein' in 3.68s
 
 ---------------------------------------------------------------------------
+Started 'EVS Exact Wasserstein' at 07-19-07-29-59
+
+Completed 0 of 136.0 in 1.129s. (Total: 1.129s)
+
+Succesfully finished 'EVS Exact Wasserstein' in 3.963s
+
+---------------------------------------------------------------------------

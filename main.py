@@ -13,7 +13,7 @@ from Experiments.EVS_ExactWasserstein import calculate
 import argparse
 
 parser = argparse.ArgumentParser(description='Process some integers.')
-parser.add_argument('maxnum', help='an integer for the accumulator')
+parser.add_argument('maxnum', type=int, help='an integer for the accumulator')
 args = parser.parse_args()
 
 print(args.maxnum)
