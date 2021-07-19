@@ -10,7 +10,15 @@ Created on Mon May 10 15:07:28 2021
 
 from Experiments.EVS_ExactWasserstein import calculate
 
-calculate('complete')
+import argparse
+
+parser = argparse.ArgumentParser(description='Process some integers.')
+parser.add_argument('maxnum', help='an integer for the accumulator')
+args = parser.parse_args()
+
+print(args.maxnum)
+
+calculate('complete', args.maxnum)
 
 ############### Later ###################
 
