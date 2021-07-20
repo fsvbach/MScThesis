@@ -25,7 +25,7 @@ Analysis._config.update(folder='flags',
 figure = Analysis.WassersteinEmbedding(dataset, labels)
 # figure.savefig("Reports/Figures/EVS/Embedding.pdf")
 
-# figure = Analysis.SpecialCovariances(dataset, labels)
+figure = Analysis.SpecialCovariances(dataset, labels)
 # figure.savefig("Reports/Figures/EVS/Covariances.pdf")
 
 # A = ['v187', 'v38', 'v103', 'v106', 'v201', 'v107', 'v200', 'v102']
