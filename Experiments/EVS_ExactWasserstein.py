@@ -44,3 +44,6 @@ def calculate(name, maxnum=10000):
     utils.embedFlags(embedding, 'Exact Wasserstein embedding', ax=ax)
     fig.savefig(f'Plots/EVS_{name}_ExactWasserstein.svg')
     plt.show()
+    
+if __name__ == '__main__':
+    calculate('test')

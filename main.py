@@ -18,7 +18,7 @@ args = parser.parse_args()
 
 print(args.maxnum)
 
-calculate('complete', args.maxnum)
+calculate('test', args.maxnum)
 
 ############### Later ###################
 
