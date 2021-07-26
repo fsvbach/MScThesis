@@ -1,0 +1,58 @@
+\section[GER]{Bundestagswahl 2017}
+
+{
+\usebackgroundtemplate{
+  \tikz[overlay,remember picture] 
+  \node[opacity=0.8, at=(current page.south east),anchor=south east,inner sep=0pt] {
+    \includegraphics[height=0.9\textheight]{assets/Germany.png}};
+}
+\begin{frame}{Bundestagswahl 2017}\framesubtitle{German Election}\titlemark{Picture by Dimitri Averni, CC BY-SA 3.0}
+ \begin{itemize}
+    \item 88499 Wahlbezirke from 299 Wahlkreise 
+    \item 6 features (voting results of major parties)
+    \item 16 federal states as labels
+\end{itemize}
+\end{frame}
+}
+
+\subsection{Embedding}
+
+\begin{frame}{Wasserstein t-SNE Embedding}
+\LargeFigure{GER/Embedding.pdf}
+\end{frame}
+
+\begin{frame}{}
+\begin{figure}[!ht]
+  {\includegraphics[width=.95\textwidth]{GER/FeatureMeans.pdf}}\\
+  {\includegraphics[width=.95\textwidth]{GER/FeatureStds.pdf}}
+\end{figure}
+\end{frame}
+
+\subsection{Analysis}
+
+
+\begin{frame}{Covariance Analysis}
+\LargeFigure{GER/Covariances.pdf}
+\end{frame}
+
+
+\begin{frame}{Correlation Analysis}
+\LargeFigure{GER/Correlation.pdf}
+\end{frame}
+
+
+\subsection{Transformation}
+
+\begin{frame}{Variance Stabilization}\framesubtitle{Data means correlate with data variance}
+		\begin{center}
+		\includegraphics[height=0.5\textheight]{GER/MeanStdCorr.pdf}
+		\end{center}
+        \begin{proposition}
+        If $Y\sim B(n, p)$ (Binominal distribution), then $T(Y) = \sqrt{n} \arcsin(\sqrt{\frac{Y}{n}})$ is a variance stabilizing transformation with $\var(T(Y)) \approx \frac{1}{4}$
+        \end{proposition}
+\end{frame}
+
+
+\begin{frame}{Embedding after transformation}
+\LargeFigure{GER/Transformation.pdf}
+\end{frame}
