@@ -42,9 +42,9 @@ fig, axes = plt.subplots(2,3, figsize=(13,5),
                                       'height_ratios': (1,4)})
 [ax.set_axis_off() for ax in axes.ravel()]
 
-axes[0,1].bar(np.arange(n), 1, color='C0', alpha=0.5)
+axes[0,1].bar(np.arange(n), 1/n, color='C0', alpha=0.5)
 axes[0,1].set(xlim=(-0.5,n-0.5))
-axes[1,0].barh(np.arange(m), 1, color='C1', alpha=0.5)
+axes[1,0].barh(np.arange(m), 1/m, color='C1', alpha=0.5)
 axes[1,0].set(ylim=(-0.5,m-0.5))
 axes[1,0].invert_xaxis()
 axes[1,0].invert_yaxis()
