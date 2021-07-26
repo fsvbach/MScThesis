@@ -35,6 +35,16 @@ def SparseConstraint(n,m):
     M = sp.hstack([sp.dia_matrix((np.ones(m, dtype=int), 0), shape=(m,m))]*n)
     return sp.vstack([N,M], format='csr')
 
+def linprogSolver(U, V):
+    D = EuclideanDistance(U, V)
+    n, m = len(U), len(V)
+  
+    A = SparseConstraint(n,m)
+    b = np.concatenate([np.ones(n)/n, np.ones(m)/m])
+    c = D.reshape(-1)
+    
+    return linprog(-b, A.T, c, bounds=[None, None], method='highs')
+    
 def WassersteinDistanceMatrix(dataset, timer=None):
     data = dataset.index.unique()
     N = len(data)
@@ -43,25 +53,9 @@ def WassersteinDistanceMatrix(dataset, timer=None):
     k = 0
     for i in range(N):
         for j in range(i+1, N):
-            
-            U = dataset.loc[data[i]]
-            V = dataset.loc[data[j]]
-            
-            D = EuclideanDistance(U, V)
-            n, m = len(U), len(V)
-        
-            # timer.add(f'Computed {n}x{m} distance matrix of {nuts[i]} and {nuts[j]}')
-            
-            A = SparseConstraint(n,m)
-            b = np.concatenate([np.ones(n)/n, np.ones(m)/m])
-            c = D.reshape(-1)
-            
-            # timer.add(f'Created {n+m}x{n*m} constraint matrix')
-            
-            opt_res = linprog(-b, A.T, c, bounds=[None, None], method='highs')
-            emd = -opt_res.fun
-            
-            K[i,j] = emd
+            opt_res = linprogSolver(dataset.loc[data[i]], 
+                                    dataset.loc[data[j]])
+            K[i,j] = -opt_res.fun
             
             if k%250 == 0 and timer:
                 timer.add(f'Completed {k} of {N*(N-1)/2}')
