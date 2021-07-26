@@ -38,4 +38,4 @@ cbar.set_ticklabels(['anti','none', 'high'])
 cbar.ax.tick_params(labelsize=40)
 fig.savefig('Plots/BIG5_Overview_small.png')
 
-fig.savefig('Reports/Figures/BIG5/Overview.pdf') 
+# fig.savefig('Reports/Figures/BIG5/Overview.pdf') 

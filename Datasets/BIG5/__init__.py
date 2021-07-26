@@ -20,13 +20,16 @@ def BIG(maxnum=12000):
         datacut.append(d)
     return pd.concat(datacut)
     
-def AlignedBIG():
+def Aligned():
     data = pd.read_csv('Datasets/BIG5/BIG5.csv', header=0, index_col=0)
     info = pd.read_csv('Datasets/BIG5/labels.csv', header=0, index_col=0)
-    return data.multiply(info.direction)
+    return data.multiply(info.direction) - 3 * (info.direction - 1)
     
 def Merged():
-    pass
+    data = Aligned()
+    data.columns = [s[:3] for s in data.columns]
+    return data.groupby(level=0, axis=1).mean() 
+    
 
 def Questions():
     info = pd.read_csv('Datasets/BIG5/labels.csv', header=0, index_col=0)

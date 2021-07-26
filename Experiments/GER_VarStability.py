@@ -16,6 +16,7 @@ fig, axes = plt.subplots(2,2, figsize=(10,10))
 
 GER     = Bundestagswahl(numparty=6)
 
+
 utils.MeanStdCorr(GER.data.multiply((GER.size), axis='rows'), ax=axes[0,0], title=r'Absolute votes ($Y$)')
 utils.MeanStdCorr(GER.data, ax=axes[0,1], title=r'Percentages ($\frac{Y}{n}$)')
 utils.MeanStdCorr(GER.transform().divide(np.sqrt(GER.size), axis='rows'), ax=axes[1,0], title=r'$T(Y) = \arcsin(\sqrt{\frac{Y}{n}})$')
@@ -42,3 +43,4 @@ plt.close()
 #                               suffix='trafo')
 # fig.savefig('Reports/Figures/GER/Transformation.pdf')
 # plt.show()
+
