@@ -36,8 +36,9 @@ for cc, ax in zip(coun, axes):
 
     G = GaussianDistribution()
     G.estimate(dataset.loc[cc, (val1,val2)])
-    utils.plotGaussian(G, size=0, color='red', STDS=[1], ax=ax)
+    utils.plotGaussian(G, size=0, color='red', STDS=[2], ax=ax)
 
-fig.savefig(f"Plots/Correlation_{''.join(coun+corr)}.svg")
+# fig.savefig(f"Plots/Correlation_{''.join(coun+corr)}.svg")
+fig.savefig(f"Reports/Figures/GER/Correlation_{''.join(coun+corr)}.pdf")
 plt.show()
 plt.close()

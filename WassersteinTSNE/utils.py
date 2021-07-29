@@ -11,7 +11,7 @@ from scipy.stats import special_ortho_group, wishart
 import numpy as np
 import time
 
-_naming = {0: 'Euclidean', 0.5: 'Wasserstein', 1: 'Covariance'}
+_naming = {0: 'Euclidean', 0.5: 'Wasserstein', 1: 'Covariance'} 
 
 class RandomGenerator:
     def __init__(self, seed=None):

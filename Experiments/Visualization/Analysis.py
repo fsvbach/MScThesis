@@ -25,19 +25,22 @@ _config = {'folder': None,
            'suffix': '',
            'renaming': lambda name: name}
 
-def WassersteinEmbedding(dataset, labeldict, selection=None, **kwargs):
+def WassersteinEmbedding(dataset, labeldict, selection=None, angles=None, **kwargs):
     config = {**_config, **kwargs}
     
     if not selection:
         selection = [0,0.5,1]
+    if not angles:
+        angles = np.zeros(len(selection))
+        
     M, N = get_rectangle(len(selection))
     fig, axes = plt.subplots(M,N, figsize=(25*N,25*M))
     
-    for ax, w in zip(axes.flatten(), selection):
+    for ax, w, d in zip(axes.flatten(), selection, angles):
         Gaussians = Dataset2Gaussians(dataset)
         WSDM = GaussianWassersteinDistance(Gaussians)
         WT = GaussianTSNE(WSDM, seed=config['seed'])
-        embedding = WT.fit(w=w)
+        embedding = WT.fit(w=w, angle=d)
         embedding.index = embedding.index.to_series(name=config['folder']).map(labeldict)
         embedding['sizes'] = np.mean(config['size'])
         embedFlags(embedding, title=rf"{_naming.get(w, '')} embedding ($\lambda$={w})", ax=ax)

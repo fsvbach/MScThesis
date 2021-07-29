@@ -38,5 +38,6 @@ ax.set(xticks=space,
 ax.legend()
 
 fig.savefig('Plots/WassersteinExperiments1D.svg')
+fig.savefig('Reports/Figures/Wasserstein/Experiments1D.pdf')
 plt.show()
 plt.close()

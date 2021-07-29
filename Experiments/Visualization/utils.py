@@ -43,7 +43,7 @@ def plotGaussian(Gaussian, size=20, STDS=[1,2,3], color='black', ax=None):
         mean, width, height, angle = Gaussian.shape(std=i)
         ell = Ellipse(xy=mean, width=width, height=height, angle=angle, 
                       edgecolor=color, facecolor='none', 
-                      linewidth=2, linestyle='--')
+                      linewidth=4, linestyle='--')
         ax.add_patch(ell)
         
     if size:

@@ -21,7 +21,7 @@ names = utils.code2name()
 
 coun = ['pl', 'ch']
 corr = ['v143', 'v187']
-corr = ['v103', 'v107']
+# corr = ['v103', 'v107']
 
 def GaussHistogram(cc, val1, val2):
     H, _, _ = np.histogram2d(dataset.loc[cc, val1], dataset.loc[cc, val2])
@@ -29,15 +29,15 @@ def GaussHistogram(cc, val1, val2):
     G.estimate(dataset.loc[cc, (val1, val2)])
     return H, G
 
-Analysis._config.update(folder='flags', 
-                        seed=13, 
-                        name='NUTS',
-                        description='overview',
-                        dataset='EVS',
-                        renaming= lambda name: EVS.overview[name][0],
-                        size= (3,15),
-                        w=0.5)
-# 
+# Analysis._config.update(folder='flags', 
+#                         seed=13, 
+#                         name='NUTS',
+#                         description='overview',
+#                         dataset='EVS',
+#                         renaming= lambda name: EVS.overview[name][0],
+#                         size= (3,15),
+#                         w=0.5)
+# # 
 # figure = Analysis.WassersteinEmbedding(dataset, labels)
 
 # A = ['v187', 'v38', 'v103', 'v106', 'v201', 'v107', 'v200', 'v102']
@@ -54,12 +54,13 @@ for cc, ax in zip(coun, axes):
 
     m = ax.imshow(H.T, cmap='Greens', origin='lower')
     ax.set(title=names[cc.upper()],
-           xlabel=EVS.overview[val1][0],
-           ylabel=EVS.overview[val2][0])
+           xlabel=EVS.legend[val1][0],
+           ylabel=EVS.legend[val2][0])
     plt.colorbar(m, ax=ax)
 
     utils.plotGaussian(G, size=0, color='red', STDS=[1], ax=ax)
 
 fig.savefig(f"Plots/Correlation_{''.join(coun+corr)}.svg")
+fig.savefig(f"Reports/Figures/EVS/Correlation_{''.join(coun+corr)}.pdf")
 plt.show()
 plt.close()

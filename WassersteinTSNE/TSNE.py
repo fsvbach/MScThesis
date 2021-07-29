@@ -15,13 +15,15 @@ from sklearn.manifold import TSNE as skleTSNE
 from sklearn.metrics import accuracy_score
 from sklearn.neighbors import KNeighborsClassifier
 
+from .Distributions import RotationMatrix
+
 class GaussianTSNE:
     def __init__(self, GWD, seed=None, sklearn=False):
         self.GWD     = GWD
         self.sklearn = sklearn
         self.seed    = seed
 
-    def fit(self, w):
+    def fit(self, w, angle=0):
         if self.sklearn:
             tsne = skleTSNE(metric='precomputed', 
                         square_distances=True, 
@@ -35,7 +37,7 @@ class GaussianTSNE:
             embedding = tsne.fit(self.GWD.matrix(w=w))
         
         # cols = [(f'w={w}','x'), (f'w={w}', 'y')]
-        embedding =  pd.DataFrame(embedding, 
+        embedding =  pd.DataFrame( embedding @ RotationMatrix(angle), 
                      index=self.GWD.index,
                      columns = ['x','y'])
         return embedding

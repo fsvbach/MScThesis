@@ -11,7 +11,7 @@ from Datasets.GER2017 import Bundestagswahl
 
 GER     = Bundestagswahl(numparty=6)
 labels  = GER.labeldict()
-dataset = GER.transform()
+dataset = GER.data
 
 Analysis._config.update(folder='wappen', 
                         seed=13, 
@@ -21,10 +21,17 @@ Analysis._config.update(folder='wappen',
                         dataset='GER',
                         w=0.75)
 
-fig = Analysis.WassersteinEmbedding(dataset, labels, 
-                              selection=[0,0.5,0.75,0.875,0.9475,1], 
-                              suffix='2rows')
+# fig = Analysis.WassersteinEmbedding(dataset, labels, 
+#                               selection=[0,0.5,0.75,0.875,0.9475,1], 
+#                               suffix='2rows')
 # fig.savefig("Reports/Figures/GER/Embedding.pdf")
+
+fig = Analysis.WassersteinEmbedding(dataset, labels, 
+                              selection=[0,0.75,1], 
+                              angles=[180,0,0],
+                              suffix='')
+fig.savefig("Reports/Figures/GER/Embedding_small.pdf")
+
 
 # fig = Analysis.SpecialCovariances(dataset, labels)
 # fig.savefig("Reports/Figures/GER/Covariances.pdf")

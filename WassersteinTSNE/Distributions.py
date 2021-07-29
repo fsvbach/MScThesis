@@ -13,7 +13,7 @@ import pandas as pd
 def RotationMatrix(degree):
     degree = np.deg2rad(degree)
     return np.array([[np.cos(degree),-np.sin(degree)],
-                     [np.sin(degree), np.cos(degree)]])  
+                     [np.sin(degree), np.cos(degree)]]) 
 
 class CovarianceMatrix:
     def __init__(self, P=RotationMatrix(45), s=np.array([1,4])):
