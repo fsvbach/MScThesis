@@ -102,6 +102,33 @@
    
 \end{frame}
 
+
+\subsection{BIG5}
+
+
+{
+\usebackgroundtemplate{
+  \tikz[overlay,remember picture] 
+  \node[opacity=0.8, at=(current page.south east),anchor=south east,inner sep=0pt] {
+    \includegraphics[width=0.5\textwidth]{assets/Big5.png}};
+}
+\begin{frame}{Big Five Personality Traits}\framesubtitle{Online Survey}
+\titlemark{Picture by MissLunaRose12 - Own work, CC BY-SA 4.0}
+ \begin{itemize}
+    \item 219584 survey participants from 120 countries 
+    \item 50 questions (answers options from 1 to 5)
+    \item 5 continents as labels
+\end{itemize}
+\end{frame}
+}
+
+\begin{frame}{}
+\begin{figure}[!ht]
+  {\includegraphics[width=.95\textwidth]{BIG5/FeatureCountry.pdf}}\\
+  {\includegraphics[width=.95\textwidth]{BIG5/FeatureContinent.pdf}}
+\end{figure}
+\end{frame}
+
 \subsection{HGM}
 
 \begin{frame}{Wasserstein t-SNE}
@@ -124,6 +151,21 @@ $$W(\N_{1}, \N_{2})^{2} := (1-\lambda) \cdot \left\|m_{1}-m_{2}\right\|_{2}^{2}+
 
 \section{GER}
 
+{
+\usebackgroundtemplate{
+  \tikz[overlay,remember picture] 
+  \node[opacity=0.8, at=(current page.south east),anchor=south east,inner sep=0pt] {
+    \includegraphics[height=0.9\textheight]{assets/Germany.png}};
+}
+\begin{frame}{Bundestagswahl 2017}\framesubtitle{German Election}\titlemark{Picture by Dimitri Averni, CC BY-SA 3.0}
+ \begin{itemize}
+    \item 88499 Wahlbezirke from 299 Wahlkreise 
+    \item 6 features (voting results of major parties)
+    \item 16 federal states as labels
+\end{itemize}
+\end{frame}
+}
+
 \begin{frame}{Wasserstein t-SNE Embedding}\framesubtitle{German Federal Election 2017}
 \LargeFigure{GER/Embedding_small.pdf}
 \end{frame}
@@ -137,6 +179,23 @@ $$W(\N_{1}, \N_{2})^{2} := (1-\lambda) \cdot \left\|m_{1}-m_{2}\right\|_{2}^{2}+
 \end{frame}
 
 \section{EVS}
+
+{
+\usebackgroundtemplate{
+  \tikz[overlay,remember picture] 
+  \node[opacity=0.8, at=(current page.south east),anchor=south east,inner sep=0pt] {
+    \includegraphics[height=0.9\textheight]{assets/Europe.jpeg}};
+}
+\begin{frame}{European Values Study}\framesubtitle{Questionnaire}
+\titlemark{Picture from \url{https://www.enisa.europa.eu/}}
+ \begin{itemize}
+    \item 37688 interviews from 114 European NUTS-1 regions
+    \item 20 questions per interview with options from 1 and 10
+    \item variety of different topics \\(i.e. environment, democracy, morality)
+    \item 34 countries as labels
+\end{itemize}
+\end{frame}
+}
 
 \begin{frame}{Wasserstein t-SNE Embedding}\framesubtitle{European Values Study}
 \LargeFigure{EVS/Embedding.pdf}
@@ -167,13 +226,13 @@ $$W(\N_{1}, \N_{2})^{2} := (1-\lambda) \cdot \left\|m_{1}-m_{2}\right\|_{2}^{2}+
 \end{frame}
 
 
-
-\begin{frame}\frametitle{Questions}
-\begin{itemize}
-\item Can Exact Wasserstein Distance can be computed for continuous distributions as well?
-\item Which experiments should be added to make the story complete?
+\begin{frame}{Outlook}\framesubtitle{for future work}
+ \begin{itemize}
+    \item Can we simplify the exact Wasserstein Distance Computation?
+    \item Which other datasets exist, where this method improves visualization (e.g. medical data)?
 \end{itemize}
 \end{frame}
+
 
 \end{document}
 

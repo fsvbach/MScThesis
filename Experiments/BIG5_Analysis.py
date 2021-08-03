@@ -40,9 +40,10 @@ Analysis._config.update(folder='continents',
 features = ['OPN9', 'EXT6', 'EST7']
 means = dataset[features].groupby(level=0).mean()
 figure = Analysis.Features(dataset, labels, means, selection=True, suffix='Means')
-figure.savefig("Reports/Figures/BIG5/FeatureMeans1.pdf")
+figure.savefig("Reports/Figures/BIG5/FeatureContinent.pdf")
 
+identity = {cn: cn for cn in dataset.index.unique()}
 features = ['AGR2', 'CSN7', 'OPN8']
 means = dataset[features].groupby(level=0).mean()
-figure = Analysis.Features(dataset, labels, means, selection=True, suffix='Means')
-figure.savefig("Reports/Figures/BIG5/FeatureMeans2.pdf")
+figure = Analysis.Features(dataset, identity, means, selection=True, folder='flags', suffix='Means')
+figure.savefig("Reports/Figures/BIG5/FeatureCountry.pdf")
