@@ -19,7 +19,7 @@ Analysis._config.update(folder='continents',
                        name='countries',
                        description='',
                        dataset='Big5',
-                       size= (1,10),
+                       size= (3,13),
                        w=0, 
                        renaming= lambda name: Questions()[name])
 
@@ -37,13 +37,13 @@ Analysis._config.update(folder='continents',
 # fig = Analysis.Correlations(dataset, labels, normalize=False)
 # fig.savefig("Reports/Figures/GER/Correlation.pdf")
 
-features = ['OPN9', 'EXT6', 'EST7']
+features = ['OPN9', 'EXT6', 'AGR2']
 means = dataset[features].groupby(level=0).mean()
-figure = Analysis.Features(dataset, labels, means, selection=True, suffix='Means')
-figure.savefig("Reports/Figures/BIG5/FeatureContinent.pdf")
+fig = Analysis.Features(dataset, labels, means, selection=True, suffix='MeansContinent')
+fig.savefig("Reports/Figures/BIG5/FeatureContinent.pdf")
 
 identity = {cn: cn for cn in dataset.index.unique()}
-features = ['AGR2', 'CSN7', 'OPN8']
+features = ['EST7', 'CSN7', 'OPN8']
 means = dataset[features].groupby(level=0).mean()
-figure = Analysis.Features(dataset, identity, means, selection=True, folder='flags', suffix='Means')
-figure.savefig("Reports/Figures/BIG5/FeatureCountry.pdf")
+fig = Analysis.Features(dataset, identity, means, selection=True, folder='flags', suffix='MeansCountry')
+fig.savefig("Reports/Figures/BIG5/FeatureCountry.pdf")

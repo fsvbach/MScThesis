@@ -123,8 +123,8 @@ def Correlations(dataset, labeldict, normalize=True, selection=None, **kwargs):
     cbar.set_ticklabels(['anti', 'none', 'high'])
     cbar.ax.tick_params(labelsize=60)
     
-    fig.suptitle(rf"{config['dataset']} Feature Correlations {config['suffix']} with embedding $\lambda$={config['w']}",
-                 fontsize=100)  
+    # fig.suptitle(rf"{config['dataset']} Feature Correlations {config['suffix']} with embedding $\lambda$={config['w']}",
+    #              fontsize=100)  
     fig.savefig(f"Plots/{config['dataset']}{config['description']}_Correlations{config['suffix']}.svg")
     return fig  
 
@@ -149,11 +149,11 @@ def Features(dataset, labeldict, FeatureSizes, selection=False, **kwargs):
             embedding['sizes'] = sizes
     
             embedFlags(embedding, title='', ax=ax)
-            ax.set_title(f"{config['renaming'](feature)}", fontsize=50)
+            ax.set_title(f"{config['renaming'](feature)}", fontsize=75)
             print("Plotted Feature")
             
-        fig.suptitle(fr"{config['dataset']} Feature {config['suffix']}", 
-                      fontsize=100) 
+        # fig.suptitle(fr"{config['dataset']} Feature {config['suffix']}", 
+        #               fontsize=100) 
         fig.tight_layout(pad=1.0)
         fig.savefig(f"Plots/{config['dataset']}{config['description']}_Features{config['suffix']}.svg")
         return fig

@@ -17,7 +17,7 @@ Analysis._config.update(folder='wappen',
                         seed=13, 
                         name='Wahlkreise',
                         description='max6',
-                        size=(10,30),
+                        size=(5,35),
                         dataset='GER',
                         w=0.75)
 
@@ -26,11 +26,11 @@ Analysis._config.update(folder='wappen',
 #                               suffix='2rows')
 # fig.savefig("Reports/Figures/GER/Embedding.pdf")
 
-fig = Analysis.WassersteinEmbedding(dataset, labels, 
-                              selection=[0,0.75,1], 
-                              angles=[180,0,0],
-                              suffix='')
-fig.savefig("Reports/Figures/GER/Embedding_small.pdf")
+# fig = Analysis.WassersteinEmbedding(dataset, labels, 
+#                               selection=[0,0.75,1], 
+#                               angles=[180,0,0],
+#                               suffix='')
+# fig.savefig("Reports/Figures/GER/Embedding_small.pdf")
 
 
 # fig = Analysis.SpecialCovariances(dataset, labels)
@@ -39,10 +39,10 @@ fig.savefig("Reports/Figures/GER/Embedding_small.pdf")
 # fig = Analysis.Correlations(dataset, labels, normalize=False)
 # fig.savefig("Reports/Figures/GER/Correlation.pdf")
 
-# features = ['CDU', 'DIE LINKE', 'GRÜNE']
-# means = dataset[features].groupby(level=0).mean()
-# figure = Analysis.Features(dataset, labels, means, selection=True, suffix='Means')
-# figure.savefig("Reports/Figures/GER/FeatureMeans.pdf")
+features = ['CDU', 'AfD', 'GRÜNE']
+means = dataset[features].groupby(level=0).mean()
+figure = Analysis.Features(dataset, labels, means, selection=True, suffix='Means')
+figure.savefig("Reports/Figures/GER/FeatureMeans.pdf")
 
 # stds = dataset[features].groupby(level=0).std()
 # figure = Analysis.Features(dataset, labels, stds, selection=True, suffix='Stds')
