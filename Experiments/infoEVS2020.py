@@ -6,20 +6,29 @@ Created on Thu Jul 15 12:04:56 2021
 @author: bachmafy
 """
 
+import pandas as pd
 import matplotlib.pyplot as plt
 
 from Experiments.Visualization.utils import embedFlags
-from WassersteinTSNE import Dataset2Gaussians, GaussianTSNE, GaussianWassersteinDistance
+from WassersteinTSNE import Dataset2Gaussians, GaussianTSNE, WassersteinTSNE, GaussianWassersteinDistance
 from Datasets.EVS2020 import EuropeanValueStudy
+
+name = 'complete'
+kind = 'exact'
 
 EVS = EuropeanValueStudy()
 dataset = EVS.data
 labels  = EVS.labels
 
-Gaussians = Dataset2Gaussians(dataset)
-WSDM = GaussianWassersteinDistance(Gaussians)
-WT = GaussianTSNE(WSDM, seed=13)
-embedding = WT.fit(w=0.5)
+if kind != 'exact':
+    Gaussians = Dataset2Gaussians(dataset)
+    WSDM = GaussianWassersteinDistance(Gaussians)
+    WT = GaussianTSNE(WSDM, seed=13)
+    embedding = WT.fit(w=0.5)
+else:
+    A = pd.read_csv(f'Datasets/EVS2020/Distances/EVS_{name}.csv', index_col=0)
+    tsne = WassersteinTSNE(seed=13)
+    embedding = tsne.fit(A)
 
 index    = embedding.index.to_series(name='flags')
 embedding.index = index.map(labels)
@@ -36,6 +45,6 @@ for x, y, text in zip(embedding['x'], embedding['y'], embedding['name']):
     ax.text(x, y, text)
     print(text)
 
-fig.savefig(f'Plots/EVS_info.svg')
+fig.savefig(f'Plots/EVS_info_{name}.svg')
 plt.show()
 plt.close()
