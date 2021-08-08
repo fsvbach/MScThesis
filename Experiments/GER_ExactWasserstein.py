@@ -24,14 +24,14 @@ dataset = GER.data
 
 def calculate():
     ########### CALCULATING ################
-    timer = Timer('EVS Exact Wasserstein')
+    timer = Timer('GER Exact Wasserstein')
     K = WassersteinDistanceMatrix(dataset, timer=timer)
-    K.to_csv(f'Datasets/GER2017/ExactDistanceMatrix.csv')
+    K.to_csv(f'Experiments/Distances/GER_ExactWasserstein.csv')
     timer.finish("Plots/.logfile.txt")
     
 def embed():
     ############## PLOTTING #################
-    A = pd.read_csv(f'Datasets/GER2017/ExactDistanceMatrix.csv', index_col=0)
+    A = pd.read_csv(f'Experiments/Distances/GER_ExactWasserstein.csv', index_col=0)
     
     tsne =WassersteinTSNE(seed=13)
     embedding = tsne.fit(A)
@@ -45,16 +45,14 @@ def embed():
     plt.show()
     
 
-def comparison():
+def compare():
     fig, (ax1, ax2) = plt.subplots(1,2, figsize=(40,20))
     
-    A = pd.read_csv(f'Datasets/GER2017/ExactDistanceMatrix.csv', index_col=0)
-    
+    A = pd.read_csv(f'Experiments/Distances/GER_ExactWasserstein.csv', index_col=0)
     tsne =WassersteinTSNE(seed=13)
     embedding = tsne.fit(A)
     embedding['sizes'] = 20
     embedding.index =embedding.index.to_series(name='wappen').map(labels)
-    
     utils.embedFlags(embedding, 'Exact Wasserstein embedding', ax=ax1)
     
     w=0.75
@@ -62,16 +60,14 @@ def comparison():
     WSDM = GaussianWassersteinDistance(Gaussians)
     WT = GaussianTSNE(WSDM, seed=13)
     embedding = WT.fit(w=w, angle=180)
-    
-    embedding.index = embedding.index.to_series(name='flags').map(labeldict)
-    embedding['sizes'] = 5
-    
-
+    embedding.index = embedding.index.to_series(name='wappen').map(labels)
+    embedding['sizes'] = 20
     utils.embedFlags(embedding, title=rf"Gaussian embedding ($\lambda$={w})", ax=ax2)
  
-    fig.savefig(f'Plots/EVS_{name}_WassersteinComparison.svg')
-    fig.savefig(f'Reports/Figures/EVS/WassersteinComparison.pdf')
+    fig.savefig(f'Plots/GER_WassersteinComparison.svg')
+    fig.savefig(f'Reports/Figures/GER/WassersteinComparison.pdf')
     plt.show()
     
 if __name__ == '__main__':
+    calculate()
     embed()

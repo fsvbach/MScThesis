@@ -16,7 +16,7 @@ from WassersteinTSNE.Distances import EuclideanDistance, ConstraintMatrix, Spars
 
 timer = Timer('Exact Wasserstein')
 
-dataset = BIG(maxnum=1000)
+dataset = BIG(maxnum=350)
 
 A = dataset.loc['us'].values
 B = dataset.loc['au'].values

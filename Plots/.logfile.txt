@@ -405,3 +405,14 @@ Completed 18500 of 18528.0 in 309.612s. (Total: 18432.694s)
 Succesfully finished 'EVS Exact Wasserstein' in 18433.545s
 
 ---------------------------------------------------------------------------
+Started 'Exact Wasserstein' at 08-08-22-26-30
+
+Computed 350x350 distance matrix in 1.662s. (Total: 1.662s)
+
+Created sparse constraint matrix in 0.088s. (Total: 1.75s)
+
+Computed sparse Wasserstein distance: 7.8109992019755845 in 9.128s. (Total: 10.878s)
+
+Succesfully finished 'Exact Wasserstein' in 10.878s
+
+---------------------------------------------------------------------------
