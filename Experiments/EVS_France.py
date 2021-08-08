@@ -6,6 +6,7 @@ Created on Fri Aug  6 14:09:34 2021
 @author: fsvbach
 """
 
+import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -20,10 +21,28 @@ EVS = EuropeanValueStudy()
 dataset = EVS.data
 labels  = EVS.labels
 
-A = pd.read_csv(f'Datasets/EVS2020/Distances/EVS_{name}.csv', index_col=0)
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(20,7))
 
-FR = A.index.str.contains('DE')
+A = pd.read_csv(f'Experiments/Distances/EVS_{name}.csv', index_col=0)
+idxA = A.index.str.contains('FR')
+FA = A.loc[idxA,idxA]
+im = ax1.imshow(FA)
+plt.colorbar(im, ax=ax1)
+ax1.set_title('Exact Wasserstein')
 
-F = A.loc[FR,FR]
+Gaussians = Dataset2Gaussians(dataset)
+WSDM = GaussianWassersteinDistance(Gaussians)
+B = pd.DataFrame(WSDM.matrix(w=0.5), index=WSDM.index, columns=WSDM.index)
+idxB = WSDM.index.str.contains('FR')
+FB = B.loc[idxB,idxB]
+im = ax2.imshow(FB)
+plt.colorbar(im, ax=ax2)
+ax2.set_title('Gaussian Wasserstein')
 
-plt.imshow(F)
+fig.savefig('Plots/EVS_France.svg')
+plt.show()
+plt.close()
+
+allA = A.loc['FRL0'].sort_values()
+allB = B.loc['FRL0'].sort_values()
+

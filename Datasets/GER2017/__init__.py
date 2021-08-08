@@ -22,7 +22,7 @@ class Bundestagswahl:
     data = data.droplevel(0)
     
     ### Entferne leere Wahlkreise
-    data = data.loc[data['Wähler (B)'] > 0]
+    data = data.loc[data['Wähler (B)'] > 20]
     
     ### Durchschnitt berechnen
     data = data.append(pd.Series(data.sum(), name=head))

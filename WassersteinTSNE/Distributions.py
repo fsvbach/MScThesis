@@ -69,7 +69,7 @@ class GaussianDistribution:
     def __init__(self, mean=np.array([1,0]), cov=CovarianceMatrix()):
         self.mean = mean
         self.cov  = cov
-    
+
     def estimate(self, data):
         assert len(data) > 1
         self.mean = np.mean(data, axis=0)
@@ -80,8 +80,8 @@ class GaussianDistribution:
         width, height, angle = self.cov.shape(std=std)
         return self.mean, width, height, angle
 
-    def samples(self, size=20):
-        return np.random.default_rng().multivariate_normal(mean = self.mean, 
+    def samples(self, size=20, seed=None):
+        return np.random.default_rng(seed=seed).multivariate_normal(mean = self.mean, 
                                                   cov  = self.cov.array(),
                                                   size = size) 
 

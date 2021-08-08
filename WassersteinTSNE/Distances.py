@@ -36,7 +36,7 @@ def SparseConstraint(n,m):
     return sp.vstack([N,M], format='csr')
 
 def linprogSolver(U, V):
-    D = EuclideanDistance(U, V)
+    D = EuclideanDistance(U, V)**2
     n, m = len(U), len(V)
   
     A = SparseConstraint(n,m)
@@ -61,7 +61,7 @@ def WassersteinDistanceMatrix(dataset, timer=None):
                 timer.add(f'Completed {k} of {N*(N-1)/2}')
             k+=1
     
-    K = K + K.T
+    K = np.sqrt(K + K.T)
     
     return pd.DataFrame(K, index=data, columns=data)
 
@@ -96,9 +96,13 @@ class GaussianWassersteinDistance:
         return matrix - matrix.min()
     
     def PairwiseCovarianceDistance(self, cov1, cov2):
+        print(cov1.array(),'\n', cov2.array())
         tmp = cov2.sqrt() @ cov1.array() @ cov2.sqrt()
+        print('tmp\n',tmp)
         tmp = arr2cov(tmp)
+        print(tmp.array())
         tmp = cov1.array() + cov2.array() - 2 * tmp.sqrt()
+        print(tmp)
         return np.sum(np.diag(tmp))
 
     def CovarianceDistanceLoop(self, covs):
@@ -110,6 +114,6 @@ class GaussianWassersteinDistance:
         return K + K.T
     
     def matrix(self, w=0.5):
-        return (1-w)*self.EDM + w*self.CDM
+        return np.sqrt(2-4*(w-0.5)**2)*np.sqrt((1-w)*self.EDM + w*self.CDM)
     
     
