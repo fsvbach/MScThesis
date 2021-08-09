@@ -416,3 +416,107 @@ Computed sparse Wasserstein distance: 7.8109992019755845 in 9.128s. (Total: 10.8
 Succesfully finished 'Exact Wasserstein' in 10.878s
 
 ---------------------------------------------------------------------------
+Started 'Gaussian Wasserstein' at 08-09-13-53-03
+
+Generated two Gaussians in 0.04s. (Total: 0.04s)
+
+Computed 100 distances with 31 samples in 0.85s. (Total: 0.89s)
+
+Computed 100 distances with 32 samples in 0.875s. (Total: 1.765s)
+
+Computed 100 distances with 33 samples in 0.925s. (Total: 2.69s)
+
+Computed 100 distances with 34 samples in 0.984s. (Total: 3.674s)
+
+Computed 100 distances with 35 samples in 1.057s. (Total: 4.731s)
+
+Computed 100 distances with 36 samples in 1.068s. (Total: 5.799s)
+
+Computed 100 distances with 37 samples in 1.133s. (Total: 6.932s)
+
+Computed 100 distances with 38 samples in 1.196s. (Total: 8.128s)
+
+Computed 100 distances with 39 samples in 1.228s. (Total: 9.356s)
+
+Computed 100 distances with 40 samples in 1.254s. (Total: 10.61s)
+
+Computed 100 distances with 41 samples in 1.348s. (Total: 11.958s)
+
+Computed 100 distances with 42 samples in 1.478s. (Total: 13.436s)
+
+Computed 100 distances with 43 samples in 1.431s. (Total: 14.867s)
+
+Computed 100 distances with 44 samples in 1.476s. (Total: 16.343s)
+
+Computed 100 distances with 45 samples in 1.628s. (Total: 17.971s)
+
+Computed 100 distances with 46 samples in 1.57s. (Total: 19.541s)
+
+Computed 100 distances with 47 samples in 1.666s. (Total: 21.207s)
+
+Computed 100 distances with 48 samples in 1.766s. (Total: 22.973s)
+
+Computed 100 distances with 49 samples in 1.93s. (Total: 24.903s)
+
+Computed 100 distances with 50 samples in 1.954s. (Total: 26.857s)
+
+Saved distance matrix and times in 0.008s. (Total: 26.865s)
+
+Plotted Figure in 5.392s. (Total: 32.257s)
+
+Succesfully finished 'Gaussian Wasserstein' in 32.258s
+
+---------------------------------------------------------------------------
+Started 'Gaussian Wasserstein' at 08-09-13-53-03
+
+Generated two Gaussians in 0.04s. (Total: 0.04s)
+
+Computed 100 distances with 31 samples in 0.85s. (Total: 0.89s)
+
+Computed 100 distances with 32 samples in 0.875s. (Total: 1.765s)
+
+Computed 100 distances with 33 samples in 0.925s. (Total: 2.69s)
+
+Computed 100 distances with 34 samples in 0.984s. (Total: 3.674s)
+
+Computed 100 distances with 35 samples in 1.057s. (Total: 4.731s)
+
+Computed 100 distances with 36 samples in 1.068s. (Total: 5.799s)
+
+Computed 100 distances with 37 samples in 1.133s. (Total: 6.932s)
+
+Computed 100 distances with 38 samples in 1.196s. (Total: 8.128s)
+
+Computed 100 distances with 39 samples in 1.228s. (Total: 9.356s)
+
+Computed 100 distances with 40 samples in 1.254s. (Total: 10.61s)
+
+Computed 100 distances with 41 samples in 1.348s. (Total: 11.958s)
+
+Computed 100 distances with 42 samples in 1.478s. (Total: 13.436s)
+
+Computed 100 distances with 43 samples in 1.431s. (Total: 14.867s)
+
+Computed 100 distances with 44 samples in 1.476s. (Total: 16.343s)
+
+Computed 100 distances with 45 samples in 1.628s. (Total: 17.971s)
+
+Computed 100 distances with 46 samples in 1.57s. (Total: 19.541s)
+
+Computed 100 distances with 47 samples in 1.666s. (Total: 21.207s)
+
+Computed 100 distances with 48 samples in 1.766s. (Total: 22.973s)
+
+Computed 100 distances with 49 samples in 1.93s. (Total: 24.903s)
+
+Computed 100 distances with 50 samples in 1.954s. (Total: 26.857s)
+
+Saved distance matrix and times in 0.008s. (Total: 26.865s)
+
+Plotted Figure in 5.392s. (Total: 32.257s)
+
+Plotted Figure in 46.123s. (Total: 78.381s)
+
+Succesfully finished 'Gaussian Wasserstein' in 78.381s
+
+---------------------------------------------------------------------------

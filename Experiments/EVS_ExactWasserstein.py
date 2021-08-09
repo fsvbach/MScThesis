@@ -27,13 +27,13 @@ def calculate(name, maxnum=10000):
     dataset = EVS.data
     
     K = WassersteinDistanceMatrix(dataset, timer=timer)
-    K.to_csv(f'Datasets/EVS2020/Distances/{name}.csv')
-    np.save(f'Datasets/EVS2020/Distances/{name}', K)  
+    K.to_csv(f'Experiments/Distances/EVS_{name}.csv')
+    # np.save(f'Datasets/EVS2020/Distances/{name}', K)  
     
     timer.finish("Plots/.logfile.txt")
     
     ############## PLOTTING #################
-    A = pd.read_csv(f'Datasets/EVS2020/Distances/EVS_{name}.csv', index_col=0)
+    A = pd.read_csv(f'Experiments/Distances/EVS_{name}.csv', index_col=0)
     
     tsne =WassersteinTSNE(seed=13)
     
@@ -57,7 +57,7 @@ def comparison(name, maxnum=10000):
 
     fig, (ax1, ax2) = plt.subplots(1,2, figsize=(40,20))
     
-    A = pd.read_csv(f'Datasets/EVS2020/Distances/EVS_{name}.csv', index_col=0)
+    A = pd.read_csv(f'Experiments/Distances/EVS_{name}.csv', index_col=0)
     tsne =WassersteinTSNE(seed=13)
     embedding = tsne.fit(A)
     embedding['sizes'] = 5

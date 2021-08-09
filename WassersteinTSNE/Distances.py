@@ -35,8 +35,8 @@ def SparseConstraint(n,m):
     M = sp.hstack([sp.dia_matrix((np.ones(m, dtype=int), 0), shape=(m,m))]*n)
     return sp.vstack([N,M], format='csr')
 
-def linprogSolver(U, V):
-    D = EuclideanDistance(U, V)**2
+def linprogSolver(U, V, p=2):
+    D = EuclideanDistance(U, V)**p
     n, m = len(U), len(V)
   
     A = SparseConstraint(n,m)
@@ -96,13 +96,9 @@ class GaussianWassersteinDistance:
         return matrix - matrix.min()
     
     def PairwiseCovarianceDistance(self, cov1, cov2):
-        print(cov1.array(),'\n', cov2.array())
         tmp = cov2.sqrt() @ cov1.array() @ cov2.sqrt()
-        print('tmp\n',tmp)
         tmp = arr2cov(tmp)
-        print(tmp.array())
         tmp = cov1.array() + cov2.array() - 2 * tmp.sqrt()
-        print(tmp)
         return np.sum(np.diag(tmp))
 
     def CovarianceDistanceLoop(self, covs):

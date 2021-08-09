@@ -64,9 +64,9 @@ class Timer:
         return round(self.time() - self.start, self.dec)
     
     def add(self, infomsg):
-        time = self.time()
-        msg  = f'{infomsg} in {round(time-self.last_time, self.dec)}s. (Total: {self.total_time()}s)\n'
-        self.last_time = time
+        time = self.time() - self.last_time
+        msg  = f'{infomsg} in {round(time, self.dec)}s. (Total: {self.total_time()}s)\n'
+        self.last_time = self.time()
         self.log.append(msg)
         print(msg)
     
