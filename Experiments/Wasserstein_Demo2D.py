@@ -26,7 +26,7 @@ dist_e = np.abs(G1['mu'] - G2['mu'])
 dist_c = np.abs(G1['sigma'] - G2['sigma'])
 dist_w = np.sqrt(dist_e**2 + dist_c**2)
 
-fig, (ax, res) = plt.subplots(1, 2, figsize=(20,10))
+fig, axes = plt.subplots(2, 2, figsize=(20,20))
 
 U = norm.rvs(loc=G1['mu'], scale=G1['sigma'], size=1000, random_state=13)
 V = norm.rvs(loc=G2['mu'], scale=G2['sigma'], size=900, random_state=13)

@@ -1,0 +1,61 @@
+
+\chapter{Theory: Methods and Distances}
+
+We have seen in t he introduction that it can be very valueable to visualize structure of datasets in as low dimensional space. However there exist a mutlitude of algorithms that put emphasis on different aspects. I will briefly give an overvierw to the 
+
+\section{Dimension Reduction}
+
+The most basic algorithm has been known since ... 
+
+\subsection{PCA}
+
+Principal Component Analzysis finds the axes of largest variation and projects the whole dataset onto these vectors. 
+
+
+\subsection{t-SNE}
+
+A non-linear alternative in Dimension  Reduction is called t Stochastic Neighbor Embedding. We define a distance measure such as Euclidean distance in the high dimensional space and t
+
+RThe points are then moved along the gradient until it results in a local maximum where no point can be slighlty moved without resulting in a worse embeding than before
+
+When interpreting t-SNE embedding is is important to keep in mind that the choice of distance measure puts emphasis on close points. Points the are embedded far from each other don't need to be far away in the high dimensional dtaset. 
+
+Initilazation
+
+
+
+\section{Wasserstein Distance}
+
+We have learned that for a meaningful embedding it is necessary to have a distance measure in the high diomensional space. When dealing with hierarchical data this becomes non trivial as there is no default distacne measure for probability distribution. A standard way is to collapse the dsitrbition into the mean and then use the Euclidian distance of the means. But one can easily imagine that this technique can loose arbitryily much of the information. A standard metric in computer Science is called the Wasserstein metric and has been widely used to compare distibutions. Its downside is the complex compuation durance. However, for small datasets we have been able to counter this problem and computed Wasserstein distances. I will thus give a brief overview of the theory and then explain the computation.
+
+
+\subsection{Exact Formulation}
+
+The Wasserstein metrix is formally edfined by
+
+\subsection{Special Case: Gaussians}
+
+For multivariate normals there exists a closed form solution of the 2-Wasserstein metric. it reads
+
+formalu
+
+and the derivation can be found in Frechet distance blabla
+
+
+\subsection{Convex Interpolation Method}
+
+We first nore, that the first part of the sum is just the Euclidiean distance of the mean of the distribution. The Wasserstein distance can therfore be seen as an extension of the Euclidiean distance. As Landau etc showed, the second summand in euqation 1 is a proper meric on covarainces. We can therefore combine these two distances in any way other than 
+
+This leads to the convex generalization of the Wasserstein distance which ziels both other distances for $\lambda = 0$ or $\lambda = 1$ respectively.
+ 
+\section{Linear Programming}
+
+We have earlier stated that the Wasserstein distance is hard to compute for continuous distributions. However for discrete distributions it boils down to the linear program described in Equaton 
+
+LINEAR PROGRAMM
+
+
+\subsection{Scalability in Participants}
+
+
+\subsection{Scalability in Features}
