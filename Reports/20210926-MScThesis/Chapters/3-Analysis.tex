@@ -1,16 +1,81 @@
 
 \chapter{Analysis: Is there structure in Covariance?}
 
+We have seen in the Introduction that it can be useful to include difference in correlation into the distance of two distributions. In this section I will show a Proof of Concept and then apply the method to real-world data to show that in practice new insights are won by the inclusion of covariance into the analysis. While I first create synthetic data with a  Hierarchical gaussian Mixture Model to show a proof of conccetp, I will later analyse the Germen Federal Election 2017 as well as the European Values Study. 
+
 \section{Synthetic Data}
 
+I will define in the following what I call the Hierarchical Gaussian Mixture Model as a tool to understand Wasserstein t-SNE on snynthetic data before we apply the method to real world data. Since t-SNE is a cloustering method le's first define the clusters in our model, which the we aim to visualize with the method without providing the cluster membership of each datapoint. 
+
 \subsection{Hierarchical Gaussian Mixture}
+
+A Hierarchical Gaussian Mixture is defined by K classes, from which we have $N_k$ datapoints each. Each class is defined by a meana and Covariance matrix ...
+
+\begin{figure}
+	\centering
+		\includegraphics[width=0.6\textwidth]{HGM/EasyHGM.pdf}
+	\label{EasyHGM}
+	\caption{Example of a HGM}
+\end{figure}
+
 \subsection{Proof of Concept}
+
+It is easy to image an example in which the information about the means is not enough to cluster the data, while a Wasserstein t-SNE approach succesgully does. In Figure \ref{PoC} we can see a HGM that consists of 4 classes, two of which share the mean while two of them share the Scale matrix. The Euclidean embedding expectely doesn't cpature the structuire of the dataset, at the same time the sole information about Coavrarince isn't enough neither. The convex combination of both, the Wasserstein embedding, hoewver sepreates all 4 classes from ach other and can there be considered superioir to the other in this setting. 
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{HGM/CleanExample.pdf}
+	\label{PoC}
+	\caption{Proof of Concept}
+\end{figure}
+
+
+
+\subsection{Distance of Covariances}
+
+In section 2 I introduced the interpolation of Covariance and Mean distances. However it is not intuitive how much contribution each of the two different aspect of distance have, inparticular, how much impact a different Covarince has to the Wasserstein distance. In the follwoing experiment I sampled $N=100$ Covariance matrices from a Wishart distribution and computed the distance to a reference Covariance $\Sigma$ with the above described formula.  
+
+We can see that 
 
 \section{German Election 2017/2021}
 
-\subsection{Finer Structure}
-\subsection{Covariance Embeddings}
-\subsection{Results}
+The Federal German Election is divided into 299 voting districts, each of which consists of roughly 150-850 poll stations (voting by mail excluded). In the following analysis we shall find that certain parties correlate differently within these voting districts, i.e. that
+
+For simplification we exclude any party from the nalysis that hasn't received a minimum share of 5 per cent of the total votes. Otherwise the correlation would be manipulated by parties that only get elected in a specific state.
+
+
+\subsection{Embeddings}
+
+The plain Euclidean t-SNE embedding as well as the Pure Covariance embedding of the GER dataset are givven in Figure xy. In the middle we see the interlpolation of $\lambda = 0.75$. Interestingly the middle one has 4 clusters wheras the outer ones only admit 3 clusters. 
+
+
+
+\subsubsection{Gaussian Wasserstein}
+
+If we look at the legend in the appendix we see that the clusters share certain meta inforamtion: university cities, easetrn germany, southern Germany, western germany. 
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{GER/Embedding_small.pdf}
+	\label{GERembed}
+	\caption{GER embedding}
+\end{figure}
+
+
+\subsubsection{Exact Wasserstein}
+
+
+
+\subsection{Covariance}
+
+It is interesting to analyse if the structure in covariance is due to different correlations or mainly due to variance of each individual feature. In Figure xy we differentiate these two causes and observe that both factores play a role here. 
+
+
+
+\subsection{Correlation}
+
+
+
 
 \section{European Value Study 2017-2020}
 
@@ -18,7 +83,7 @@
 \subsection{Discrete Data}
 \subsection{Comparison to Exact Wasserstein Embedding}
 
-\section{Big5 Personality Traits Survey}
+%\section{Big5 Personality Traits Survey}
 
 
-\subsection{Results}
+%\subsection{Results}

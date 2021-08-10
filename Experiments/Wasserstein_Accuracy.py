@@ -33,31 +33,31 @@ testsize = 50
 
 timer.add(f'Generated two Gaussians')
 
-results = np.zeros(shape=(len(samplesizes),testsize))
-cctimes = np.zeros(shape=(len(samplesizes),testsize))
+# results = np.zeros(shape=(len(samplesizes),testsize))
+# cctimes = np.zeros(shape=(len(samplesizes),testsize))
 
-for i, n in enumerate(samplesizes):
-    for j in range(testsize):
-        time = timer.time()
-        U = G1.samples(size=n)
-        V = G2.samples(size=n)
-        opt_res = linprogSolver(U, V)
-        results[i,j] = np.sqrt(-opt_res.fun )
-        cctimes[i,j] = timer.time() - time
-        print(results[i,j])
-    timer.add(f'Computed {testsize} distances with {n} samples')
+# for i, n in enumerate(samplesizes):
+#     for j in range(testsize):
+#         time = timer.time()
+#         U = G1.samples(size=n)
+#         V = G2.samples(size=n)
+#         opt_res = linprogSolver(U, V)
+#         results[i,j] = np.sqrt(-opt_res.fun )
+#         cctimes[i,j] = timer.time() - time
+#         print(results[i,j])
+#     timer.add(f'Computed {testsize} distances with {n} samples')
 
-np.save('Experiments/Distances/GaussianDistances', results)
-np.save('Experiments/Distances/GaussianTimes', timer)
-# results = np.load('Experiments/Distances/GaussianDistances.npy')
-# cctimes = np.load('Experiments/Distances/GaussianTimes.npy')
+# np.save('Experiments/Distances/GaussianDistances', results)
+# np.save('Experiments/Distances/GaussianTimes', cctimes)
+results = np.load('Experiments/Distances/GaussianDistancesB.npy')
+cctimes = np.load('Experiments/Distances/GaussianTimesB.npy')
 
 means = results.mean(axis=1)
 stds  = results.std(axis=1)
 times = cctimes.mean(axis=1)
 tstds  = cctimes.std(axis=1)
 
-timer.add(f'Saved distance matrix and times')
+# timer.add(f'Saved distance matrix and times')
 
 fig, (ax, res) = plt.subplots(1, 2, figsize=(20,10))
 
@@ -86,8 +86,8 @@ res.set_xlabel('samplesize')
 res2 = res.twinx()
 res2.plot(samplesizes, times, linewidth=5, color='C6', label='Estimated Wasserstein Distance')
 res2.fill_between(samplesizes, times+tstds, times-tstds, color='C6', alpha=0.3)
-res2.set(ylabel='time')
-
+res2.set_ylabel('time [s]', color='C6')
+res2.set_yscale('log')
 res.legend()
 fig.savefig('Plots/WassersteinGaussian.svg')
 plt.show()

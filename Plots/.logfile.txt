@@ -520,3 +520,123 @@ Plotted Figure in 46.123s. (Total: 78.381s)
 Succesfully finished 'Gaussian Wasserstein' in 78.381s
 
 ---------------------------------------------------------------------------
+Started 'Gaussian Wasserstein' at 08-09-12-04-51
+
+Generated two Gaussians in 0.042s. (Total: 0.042s)
+
+Computed 50 distances with 50 samples in 0.886s. (Total: 0.928s)
+
+Computed 50 distances with 100 samples in 4.492s. (Total: 5.42s)
+
+Computed 50 distances with 150 samples in 13.747s. (Total: 19.167s)
+
+Computed 50 distances with 200 samples in 34.24s. (Total: 53.407s)
+
+Computed 50 distances with 250 samples in 70.309s. (Total: 123.716s)
+
+Computed 50 distances with 300 samples in 135.174s. (Total: 258.89s)
+
+Computed 50 distances with 350 samples in 235.323s. (Total: 494.213s)
+
+Computed 50 distances with 400 samples in 382.159s. (Total: 876.372s)
+
+Computed 50 distances with 450 samples in 569.211s. (Total: 1445.583s)
+
+Computed 50 distances with 500 samples in 835.925s. (Total: 2281.508s)
+
+Computed 50 distances with 550 samples in 1161.473s. (Total: 3442.981s)
+
+Computed 50 distances with 600 samples in 1614.133s. (Total: 5057.114s)
+
+Computed 50 distances with 650 samples in 2449.267s. (Total: 7506.381s)
+
+Computed 50 distances with 700 samples in 4738.982s. (Total: 12245.363s)
+
+Computed 50 distances with 750 samples in 6282.736s. (Total: 18528.099s)
+
+Computed 50 distances with 800 samples in 9062.666s. (Total: 27590.765s)
+
+Computed 50 distances with 850 samples in 11867.66s. (Total: 39458.426s)
+
+Computed 50 distances with 900 samples in 14678.538s. (Total: 54136.963s)
+
+Computed 50 distances with 950 samples in 19764.103s. (Total: 73901.066s)
+
+Computed 50 distances with 1000 samples in 23803.4s. (Total: 97704.466s)
+
+Saved distance matrix in 0.004s. (Total: 97704.47s)
+
+Plotted Figure in 1.482s. (Total: 97705.952s)
+
+Succesfully finished 'Gaussian Wasserstein' in 97705.952s
+
+---------------------------------------------------------------------------
+Started 'Gaussian Wasserstein' at 08-09-14-01-56
+
+Generated two Gaussians in 0.041s. (Total: 0.041s)
+
+Computed 50 distances with 50 samples in 0.977s. (Total: 1.018s)
+
+Computed 50 distances with 100 samples in 5.194s. (Total: 6.212s)
+
+Computed 50 distances with 150 samples in 16.797s. (Total: 23.009s)
+
+Computed 50 distances with 200 samples in 51.594s. (Total: 74.603s)
+
+Computed 50 distances with 250 samples in 116.882s. (Total: 191.485s)
+
+Computed 50 distances with 300 samples in 222.288s. (Total: 413.773s)
+
+Computed 50 distances with 350 samples in 382.421s. (Total: 796.194s)
+
+Computed 50 distances with 400 samples in 612.69s. (Total: 1408.884s)
+
+Computed 50 distances with 450 samples in 882.197s. (Total: 2291.081s)
+
+Computed 50 distances with 500 samples in 1316.696s. (Total: 3607.777s)
+
+Computed 50 distances with 550 samples in 1921.432s. (Total: 5529.209s)
+
+Computed 50 distances with 600 samples in 2661.006s. (Total: 8190.215s)
+
+Computed 50 distances with 650 samples in 3444.938s. (Total: 11635.153s)
+
+Computed 50 distances with 700 samples in 4599.585s. (Total: 16234.738s)
+
+Computed 50 distances with 750 samples in 6147.64s. (Total: 22382.378s)
+
+Computed 50 distances with 800 samples in 8733.614s. (Total: 31115.992s)
+
+Computed 50 distances with 850 samples in 11526.652s. (Total: 42642.644s)
+
+Computed 50 distances with 900 samples in 14459.621s. (Total: 57102.265s)
+
+Computed 50 distances with 950 samples in 19485.396s. (Total: 76587.661s)
+
+Computed 50 distances with 1000 samples in 22231.785s. (Total: 98819.446s)
+
+Saved distance matrix and times in 0.007s. (Total: 98819.453s)
+
+Plotted Figure in 1.25s. (Total: 98820.703s)
+
+Succesfully finished 'Gaussian Wasserstein' in 98820.703s
+
+---------------------------------------------------------------------------
+Started 'Gaussian Wasserstein' at 08-10-17-36-09
+
+Generated two Gaussians in 0.001s. (Total: 0.001s)
+
+Plotted Figure in 2.161s. (Total: 2.162s)
+
+Succesfully finished 'Gaussian Wasserstein' in 2.162s
+
+---------------------------------------------------------------------------
+Started 'Gaussian Wasserstein' at 08-10-17-38-16
+
+Generated two Gaussians in 0.001s. (Total: 0.001s)
+
+Plotted Figure in 0.639s. (Total: 0.64s)
+
+Succesfully finished 'Gaussian Wasserstein' in 0.64s
+
+---------------------------------------------------------------------------
