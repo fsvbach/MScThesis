@@ -23,16 +23,14 @@ matplotlib.rcParams.update({
     'text.usetex': True,
     'pgf.rcfonts': False})
 
-def plotMatrix(matrices, titles, name):
+def plotMatrices(matrices, titles):
     n = len(matrices)
     fig, axes = plt.subplots(ncols=n, figsize=(7*n,5))
     for matrix, title, ax in zip(matrices, titles, axes):
         m = ax.imshow(matrix, cmap='Greens')
         ax.set(title=title)
         plt.colorbar(m, ax=ax)
-    fig.savefig(f'Plots/{name}.svg')
-    plt.show()
-    plt.close()
+    return fig
 
    
 def plotGaussian(Gaussian, size=20, STDS=[1,2,3], color='black', ax=None):

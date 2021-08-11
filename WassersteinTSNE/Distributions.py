@@ -71,11 +71,12 @@ class GaussianDistribution:
         self.cov  = cov
 
     def estimate(self, data):
-        assert len(data) > 1
+        N = len(data)
+        assert N > 1
         self.mean = np.mean(data, axis=0)
-        data     -= self.mean
-        self.cov  = arr2cov(data.T @ data / (len(data) - 1))
-
+        self.cov  = arr2cov((data-self.mean).T @ (data-self.mean) / (N-1))
+        return GaussianDistribution(self.mean, self.cov)
+    
     def shape(self, std=1):
         width, height, angle = self.cov.shape(std=std)
         return self.mean, width, height, angle
