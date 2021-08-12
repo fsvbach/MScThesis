@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Sun Aug  8 15:56:30 2021
+Created on Sun Aug  8 12:58:18 2021
 
 @author: fsvbach
 """
@@ -9,43 +9,89 @@ Created on Sun Aug  8 15:56:30 2021
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy.stats import norm, wasserstein_distance
+
+from WassersteinTSNE.utils import Timer
 from WassersteinTSNE.Distances import GaussianWassersteinDistance, linprogSolver
 from WassersteinTSNE.Distributions import GaussianDistribution, CovarianceMatrix, RotationMatrix
 from Experiments.Visualization import utils
 
-G1 = GaussianDistribution(mean= np.array([5,2]),
-                          cov = CovarianceMatrix(RotationMatrix(0), s=[4,0.001]))
-G2 = GaussianDistribution(mean= np.array([12,2]),
-                          cov = CovarianceMatrix(RotationMatrix(0), s=[49,0.001]))
+timer = Timer("Gaussian Wasserstein")
 
-G1 = {'mu':5, 'sigma': 2}
-G2 = {'mu':12, 'sigma': 7}
+G1 = GaussianDistribution(mean= np.array([15,10]),
+                          cov = CovarianceMatrix(RotationMatrix(45), s=[25,3]))
+G2 = GaussianDistribution(mean= np.array([15,20]),
+                          cov = CovarianceMatrix(RotationMatrix(-45), s=[50,5]))
 
-dist_e = np.abs(G1['mu'] - G2['mu'])
-dist_c = np.abs(G1['sigma'] - G2['sigma'])
-dist_w = np.sqrt(dist_e**2 + dist_c**2)
+WSDM = GaussianWassersteinDistance(pd.Series([G1,G2], index=['Blue', 'Orange']))
 
-fig, axes = plt.subplots(2, 2, figsize=(20,20))
+dist_e = WSDM.matrix(w=0)[1,0]
+dist_c = WSDM.matrix(w=1)[1,0]
+dist_w = WSDM.matrix()[1,0]
 
-U = norm.rvs(loc=G1['mu'], scale=G1['sigma'], size=1000, random_state=13)
-V = norm.rvs(loc=G2['mu'], scale=G2['sigma'], size=900, random_state=13)
+samplesizes = np.arange(1,21)*50
+testsize = 50
 
-a,b = min(min(U), min(V)), max(max(U),max(V))
+timer.add(f'Generated two Gaussians')
 
-x    = np.linspace(a,b, 100)
-pdf1 = norm.pdf(x, loc=G1['mu'], scale=G1['sigma'])
-pdf2 = norm.pdf(x, loc=G2['mu'], scale=G2['sigma'])
+# results = np.zeros(shape=(len(samplesizes),testsize))
+# cctimes = np.zeros(shape=(len(samplesizes),testsize))
 
-# n1, bins1, _ = ax.hist(U, density=True, alpha=0.5, bins=x)
-# n2, bins2, _ = ax.hist(V, density=True, alpha=0.5, bins=x)
- 
-ax.bar(x, pdf1, alpha=0.5)
-ax.bar(x, pdf2, alpha=0.5)
-ax.plot(x, pdf1, color='C0')
-ax.plot(x, pdf2, color='C1')
+# for i, n in enumerate(samplesizes):
+#     for j in range(testsize):
+#         time = timer.time()
+#         U = G1.samples(size=n)
+#         V = G2.samples(size=n)
+#         opt_res = linprogSolver(U, V)
+#         results[i,j] = np.sqrt(-opt_res.fun )
+#         cctimes[i,j] = timer.time() - time
+#         print(results[i,j])
+#     timer.add(f'Computed {testsize} distances with {n} samples')
 
-dist_exact = wasserstein_distance(x,x,pdf1,pdf2)
+# np.save('Experiments/Distances/GaussianDistances', results)
+# np.save('Experiments/Distances/GaussianTimes', cctimes)
+results = np.load('Experiments/Distances/GaussianDistances_B.npy')
+cctimes = np.load('Experiments/Distances/GaussianTimes_B.npy')
 
-print(dist_e,dist_w, dist_c, dist_exact)
+means = results.mean(axis=1)
+stds  = results.std(axis=1)
+times = cctimes.mean(axis=1)
+tstds  = cctimes.std(axis=1)
+
+# timer.add(f'Saved distance matrix and times')
+
+fig, (ax, res) = plt.subplots(1, 2, figsize=(20,10))
+
+utils.plotGaussian(G1, ax=ax, STDS=[2], color='C0', size=100)
+utils.plotGaussian(G2, ax=ax, STDS=[2], color='C1', size=100)
+
+ax.set_aspect('equal')
+ax.set_ylim(bottom=0)
+ax.set_xlim(left=0)
+
+ax.scatter(G1.mean[0], G1.mean[1], c='C1', s=200)
+ax.scatter(G2.mean[0], G2.mean[1], c='C0', s=200)
+
+res.plot(samplesizes, [dist_e for i in samplesizes],  color='C3')
+res.plot(samplesizes, 
+         [dist_w for i in samplesizes],  
+         color='C3', 
+         linestyle='dashed',
+         label='Gaussian Wasserstein Distance')
+res.plot(samplesizes, [dist_c for i in samplesizes],  color='C3')
+res.plot(samplesizes, means, linewidth=5, color='C4', label='Estimated Wasserstein Distance')
+res.fill_between(samplesizes, means+stds, means-stds, color='C4', alpha=0.3)
+res.set_ylabel('distance', color='C4')
+res.set_xlabel('samplesize')
+
+res2 = res.twinx()
+res2.plot(samplesizes, times, linewidth=5, color='C6', label='Estimated Wasserstein Distance')
+res2.fill_between(samplesizes, times+tstds, times-tstds, color='C6', alpha=0.3)
+res2.set_ylabel('time [s]', color='C6')
+# res2.set_yscale('log')
+res.legend()
+fig.savefig('Plots/WassersteinGaussian.svg')
 plt.show()
+plt.close()
+
+# timer.add('Plotted Figure')
+# timer.finish('Plots/.logfile.txt')

@@ -47,7 +47,7 @@ def plotGaussian(Gaussian, size=20, STDS=[1,2,3], color='black', ax=None):
     if size:
         samples = Gaussian.samples(size, seed=13)
         x,y = samples.T
-        ax.scatter(x,y)
+        ax.scatter(x,y, c=color)
         
     return ell
 
