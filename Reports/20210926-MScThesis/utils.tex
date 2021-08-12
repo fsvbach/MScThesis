@@ -37,84 +37,10 @@
 \newcommand{\gold}[1]{{\color{TUgold} #1}}   % highlight command 1
 \newcommand{\imprs}[1]{{\color{imprs} #1}}
 \newcommand{\imprsgra}[1]{{\color{imprsgra} #1}}
-
 \newcommand{\filltotal}{\hspace{0pt plus 1 filll}}
 
-
-\newcommand{\divider}{\noindent\makebox[\linewidth]{\rule{\paperwidth}{.4pt}}  }
-
-\newcommand{\paperwhite}{\includegraphics[height=.6\baselineskip]{../text-document_white.png}\hspace{.5em}}
-\newcommand{\paperblack}{\includegraphics[height=.6\baselineskip]{../text-document.png}\hspace{.5em}}
-
-\newcommand{\bookwhite}{\includegraphics[height=.6\baselineskip]{../book-white.png}\hspace{.5em}}
-\newcommand{\bookblack}{\includegraphics[height=.6\baselineskip]{../book-black.png}\hspace{.5em}}
-
-
 %%%% FONTS
-
-% \usepackage{inconsolata}
-% \usepackage[defaultsans]{droidsans}
-% \usepackage[sfdefault,light,condensed]{roboto}
-% \renewcommand*\ttdefault{cmvtt} % use with roboto condensed
-% \usepackage[sfdefault]{universalis}
-% \usepackage[default]{lato}
-% \usepackage{lmodern}
-% \usepackage{paratype}
-% \usepackage{cmbright}
-% \usepackage[default,osfigures,scale=0.95]{opensans}
-% \usepackage{sfmath}
-% \renewcommand*\familydefault{\sfdefault}
 \usepackage[T1]{fontenc}
-
-% special \vneq that works with sfmath
-\makeatletter
-\newcommand*{\vneq}{%
-  \mathrel{%
-    \mathpalette\@vneq{=}%
-  }%
-}
-\newcommand*{\@vneq}[2]{%
-  % #1: math style (\displaystyle, \textstyle, ...)
-  % #2: symbol (=, ...)
-  \sbox0{\raisebox{\depth}{$#1\neq$}}%
-  \sbox2{\raisebox{\depth}{$#1|\m@th$}}%
-  \ifdim\ht2>\ht0 %
-    \sbox2{\resizebox{\vneqxscale\width}{\vneqyscale\ht0}{\unhbox2}}%
-  \fi
-  \sbox2{$\m@th#1\vcenter{\copy2}$}%
-  \ooalign{%
-    \hfil\phantom{\copy2}\hfil\cr
-    \hfil$#1#2\m@th$\hfil\cr
-    \hfil\copy2\hfil\cr
-  }%
-}
-\newcommand*{\vneqxscale}{1}
-\newcommand*{\vneqyscale}{.8}
-\makeatother
-
-% logo in the upper right corner
-% \usepackage{eso-pic}
-% \newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
-% \put(\LenToUnit{0.83\paperwidth},\LenToUnit{0.915\paperheight}){#1}}}
-% \AddToShipoutPictureFG{
-%   \AtPagemyUpperLeft{{\includegraphics[width=2.5cm,keepaspectratio]{assets/UT_WBMW_Weiss_1C.pdf}}}
-% }%
-
-%%%% REDEFINE \emph to COLORS.
-\let\emph\relax % there's no \RedeclareTextFontCommand
-\DeclareTextFontCommand{\emph}{\color{TUred}\bfseries} % } changed from \em
-\DeclareTextFontCommand{\emphgold}{\color{TUgold}\bfseries} % } changed from \em
-
-
-% Paper-specific definitions
-\newcommand{\gp}{\text{\textsc{gp}}}
-\newcommand{\ep}{\text{\textsc{ep}}}
-\newcommand{\ess}{\text{\sc ess}} % Elliptical slice sampling
-\newcommand{\liness}{\text{\sc lin-ess}} % Elliptical slice sampling
-\newcommand{\mcmc}{\text{\sc mcmc}} % MCMC
-\newcommand{\hdr}{\text{\sc hdr}} % Holmes Diaconis Ross
-\newcommand{\dingens}{\text{\sc dingens}} % Holmes Diaconis Ross
-\newcommand{\suppmat}{supp.~mat.}
 
 \newcommand{\norm}[1]{\left\lVert~#1~\right\rVert}
 \newcommand{\ie}{i.e.,} %

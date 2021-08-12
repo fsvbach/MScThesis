@@ -8,6 +8,7 @@ Created on Sat May 22 18:56:14 2021
 
 from Experiments.Visualization import Analysis 
 from Datasets.GER2017 import Bundestagswahl
+from WassersteinTSNE.Distributions import RotationMatrix, MirrorMatrix
 
 GER     = Bundestagswahl(numparty=6)
 labels  = GER.labeldict()
@@ -27,22 +28,21 @@ Analysis._config.update(folder='wappen',
 # fig.savefig("Reports/Figures/GER/Embedding.pdf")
 
 # fig = Analysis.WassersteinEmbedding(dataset, labels, 
-#                               selection=[0,0.75,1], 
-#                               angles=[180,0,0],
-#                               suffix='')
+#                                 selection=[0,0.75,1], 
+#                                 trafos=[RotationMatrix(-90),None,None],
+#                                 suffix='')
 # fig.savefig("Reports/Figures/GER/Embedding_small.pdf")
 
-
-# fig = Analysis.SpecialCovariances(dataset, labels)
-# fig.savefig("Reports/Figures/GER/Covariances.pdf")
+fig = Analysis.SpecialCovariances(dataset, labels)
+fig.savefig("Reports/Figures/GER/Covariances.pdf")
 
 # fig = Analysis.Correlations(dataset, labels, normalize=False)
 # fig.savefig("Reports/Figures/GER/Correlation.pdf")
 
-features = ['CDU', 'AfD', 'GRÜNE']
-means = dataset[features].groupby(level=0).mean()
-figure = Analysis.Features(dataset, labels, means, selection=True, suffix='Means')
-figure.savefig("Reports/Figures/GER/FeatureMeans.pdf")
+# features = ['CDU', 'AfD', 'GRÜNE']
+# means = dataset[features].groupby(level=0).mean()
+# figure = Analysis.Features(dataset, labels, means, selection=True, suffix='Means')
+# figure.savefig("Reports/Figures/GER/FeatureMeans.pdf")
 
 # stds = dataset[features].groupby(level=0).std()
 # figure = Analysis.Features(dataset, labels, stds, selection=True, suffix='Stds')

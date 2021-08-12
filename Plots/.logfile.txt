@@ -1003,3 +1003,31 @@ Completed 44500 of 44551.0 in 510.155s. (Total: 156240.703s)
 Succesfully finished 'GER Exact Wasserstein' in 156335.494s
 
 ---------------------------------------------------------------------------
+Started 'AccuracyPlot' at 08-12-10-49-32
+
+Custom parameters
+
+Created data in 0.156s. (Total: 0.156s)
+
+Computed distance matrices in 11.276s. (Total: 11.432s)
+
+Done TSNE with sklearn=False in 1.229s. (Total: 12.661s)
+
+Done TSNE with sklearn=False in 1.088s. (Total: 13.749s)
+
+Done TSNE with sklearn=False in 1.149s. (Total: 14.898s)
+
+Accuracy (w=0.0): 0.6725%
+Accuracy (w=0.1111111111111111): 0.9325%
+Accuracy (w=0.2222222222222222): 0.9775%
+Accuracy (w=0.3333333333333333): 0.995%
+Accuracy (w=0.4444444444444444): 0.99%
+Accuracy (w=0.5555555555555556): 0.9925%
+Accuracy (w=0.6666666666666666): 0.995%
+Accuracy (w=0.7777777777777777): 0.995%
+Accuracy (w=0.8888888888888888): 0.9975%
+Accuracy (w=1.0): 0.6075%
+Done Final Plot
+Succesfully finished 'AccuracyPlot' in 26.338s
+
+---------------------------------------------------------------------------

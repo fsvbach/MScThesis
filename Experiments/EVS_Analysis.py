@@ -22,8 +22,8 @@ Analysis._config.update(folder='flags',
                        size= (3,15),
                        w=0.5)
 
-figure = Analysis.WassersteinEmbedding(dataset, labels, angles=[0,0,180])
-figure.savefig("Reports/Figures/EVS/Embedding.pdf")
+figure = Analysis.WassersteinEmbedding(dataset, labels)#, angles=[0,0,180])
+# figure.savefig("Reports/Figures/EVS/Embedding.pdf")
 
 # figure = Analysis.SpecialCovariances(dataset, labels)
 # figure.savefig("Reports/Figures/EVS/Covariances.pdf")

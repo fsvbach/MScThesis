@@ -62,7 +62,7 @@ def embedFlags(embedding, title, ax=None):
         flag = plt.imread(f'{PATH}/{embedding.index.name}/{label}.png')
         plotImages(X, Y, flag, s, ax)
 
-    ax.set_title(title, fontsize=50)
+    ax.set_title(title, fontsize=100)
     ax.axis('off')
 
    

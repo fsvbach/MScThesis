@@ -35,7 +35,9 @@ Gaussians = [G.estimate(U), G.estimate(V)]
 
 WSDM = GaussianWassersteinDistance(pd.Series(Gaussians, index=wahlkreise))
 diff_gauss = WSDM.matrix()[1,0]
-
+diff_means = WSDM.matrix(w=0)[1,0]
+diff_covs = WSDM.matrix(w=1)[1,0]    
+                    
 opt_res = linprogSolver(U, V)
 diff_exact = np.sqrt(-opt_res.fun )
 
@@ -61,15 +63,18 @@ ax.set_ylim(bottom=0)
 
 # place a text box in upper left in axes coords
 textstr = '\n'.join((
+    r'$d_{{Covs}}=%.4f$' % (diff_covs, ),
+    r'$d_{{Means}}=%.4f$' % (diff_means, ),
     r'$d_{{Gauss}}=%.4f$' % (diff_gauss, ),
     r'$d_{{Exact}}=%.4f$' % (diff_exact, )))
 props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
-ax.text(0.95, 0.55, textstr, transform=ax.transAxes, fontsize=14,
+ax.text(0.95, 0.75, textstr, transform=ax.transAxes, fontsize=14,
         va='top', ha='right', bbox=props)
 
 ax.legend(loc='best')
 
+fig.tight_layout()
 fig.savefig(f"Plots/GER_Correlation_{''.join(wahlkreise)}.svg")
-# fig.savefig(f"Reports/Figures/GER/JointCorrelation_{''.join(coun+corr)}.pdf")
+fig.savefig(f"Reports/Figures/GER/JointCorrelation_LinksAfD.pdf")
 plt.show()
 plt.close()

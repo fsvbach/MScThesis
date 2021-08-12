@@ -23,21 +23,22 @@ class GaussianTSNE:
         self.sklearn = sklearn
         self.seed    = seed
 
-    def fit(self, w, angle=0):
+    def fit(self, w, trafo=None):
         if self.sklearn:
             tsne = skleTSNE(metric='precomputed', 
                         square_distances=True, 
                         random_state=self.seed)
-            embedding = tsne.fit_transform(self.GWD.matrix(w=w))
+            embedding = tsne.fit_transform(self.GWD.matrix(w=w)**2)
         else:
             tsne = openTSNE(metric='precomputed', 
                         initialization='random', 
                         negative_gradient_method='bh',
                         random_state=self.seed)
-            embedding = tsne.fit(self.GWD.matrix(w=w))
+            embedding = tsne.fit(self.GWD.matrix(w=w)**2)
         
-        # cols = [(f'w={w}','x'), (f'w={w}', 'y')]
-        embedding =  pd.DataFrame( embedding @ RotationMatrix(angle), 
+        if trafo is None:
+            trafo = np.eye(2)
+        embedding =  pd.DataFrame( embedding @ trafo, 
                      index=self.GWD.index,
                      columns = ['x','y'])
         return embedding
@@ -73,20 +74,22 @@ class WassersteinTSNE:
         self.sklearn = sklearn
         self.seed    = seed
         
-    def fit(self, dataset):
+    def fit(self, dataset, trafo=None):
         if self.sklearn:
             tsne = skleTSNE(metric='precomputed', 
                         square_distances=True, 
                         random_state=self.seed)
-            embedding = tsne.fit_transform(dataset.values)
+            embedding = tsne.fit_transform(dataset.values**2)
         else:
             tsne = openTSNE(metric='precomputed', 
                         initialization='random', 
                         negative_gradient_method='bh',
                         random_state=self.seed)
-            embedding = tsne.fit(dataset.values)
+            embedding = tsne.fit(dataset.values**2)
         
-        embedding =  pd.DataFrame(embedding, 
+        if trafo is None:
+            trafo = np.eye(2)
+        embedding =  pd.DataFrame(embedding @ trafo, 
                      index=dataset.index,
                      columns = ['x','y'])
         return embedding

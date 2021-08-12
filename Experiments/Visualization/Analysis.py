@@ -25,22 +25,22 @@ _config = {'folder': None,
            'suffix': '',
            'renaming': lambda name: name}
 
-def WassersteinEmbedding(dataset, labeldict, selection=None, angles=None, **kwargs):
+def WassersteinEmbedding(dataset, labeldict, selection=None, trafos=None, **kwargs):
     config = {**_config, **kwargs}
     
     if not selection:
         selection = [0,0.5,1]
-    if not angles:
-        angles = np.zeros(len(selection))
+    if not trafos:
+        trafos = [None]*len(selection)
         
     M, N = get_rectangle(len(selection))
     fig, axes = plt.subplots(M,N, figsize=(25*N,25*M))
     
-    for ax, w, d in zip(axes.flatten(), selection, angles):
+    for ax, w, d in zip(axes.flatten(), selection, trafos):
         Gaussians = Dataset2Gaussians(dataset)
         WSDM = GaussianWassersteinDistance(Gaussians)
         WT = GaussianTSNE(WSDM, seed=config['seed'])
-        embedding = WT.fit(w=w, angle=d)
+        embedding = WT.fit(w=w, trafo=d)
         embedding.index = embedding.index.to_series(name=config['folder']).map(labeldict)
         embedding['sizes'] = np.mean(config['size'])
         embedFlags(embedding, title=rf"{_naming.get(w, '')} embedding ($\lambda$={w})", ax=ax)
@@ -106,7 +106,7 @@ def Correlations(dataset, labeldict, normalize=True, selection=None, **kwargs):
     selection = list(selection)
     M, N = get_rectangle(len(selection))
     fig, axes = plt.subplots(M,N, figsize=(10*N,10*M))
-    # fig.tight_layout(pad=0.51)
+    # fig.tight_layout(pad=1)
     
     for ax, (feature1, feature2) in zip(axes.flatten(), selection):    
         corr = dataset.groupby(level=0).corr().fillna(0)

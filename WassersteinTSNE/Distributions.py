@@ -15,6 +15,11 @@ def RotationMatrix(degree):
     return np.array([[np.cos(degree),-np.sin(degree)],
                      [np.sin(degree), np.cos(degree)]]) 
 
+def MirrorMatrix(vector):
+    x,y = vector
+    return np.array([[x**2-y**2,2*x*y],
+                     [2*x*y, y**2-x**2]]) / np.linalg.norm(vector)**2
+
 class CovarianceMatrix:
     def __init__(self, P=RotationMatrix(45), s=np.array([1,4])):
         '''

@@ -15,11 +15,11 @@ import pandas as pd
 
 from Datasets.GER2017 import Bundestagswahl
 from WassersteinTSNE.utils import Timer
-from WassersteinTSNE.Distances import WassersteinDistanceMatrix
-from WassersteinTSNE.TSNE import WassersteinTSNE
+from WassersteinTSNE.Distances import WassersteinDistanceMatrix, GaussianWassersteinDistance
+from WassersteinTSNE.TSNE import WassersteinTSNE, GaussianTSNE
+from WassersteinTSNE.Distributions import RotationMatrix, MirrorMatrix, Dataset2Gaussians
 from Experiments.Visualization import utils
 
-from WassersteinTSNE import Dataset2Gaussians, GaussianTSNE, GaussianWassersteinDistance, _naming, RotationMatrix
 
 GER = Bundestagswahl()
 labels  = GER.labeldict()
@@ -29,12 +29,12 @@ def calculate():
     ########### CALCULATING ################
     timer = Timer('GER Exact Wasserstein')
     K = WassersteinDistanceMatrix(dataset, timer=timer)
-    K.to_csv(f'Experiments/Distances/GER_ExactWasserstein.csv')
+    K.to_csv('Experiments/Distances/GER_ExactWasserstein.csv')
     timer.finish("Plots/.logfile.txt")
     
 def embed():
     ############## PLOTTING #################
-    A = pd.read_csv(f'Experiments/Distances/GER_ExactWasserstein.csv', index_col=0)
+    A = pd.read_csv('Experiments/Distances/GER_ExactWasserstein.csv', index_col=0)
     
     tsne =WassersteinTSNE(seed=13)
     embedding = tsne.fit(A)
@@ -43,17 +43,17 @@ def embed():
     
     fig, ax = plt.subplots(figsize=(20,20))
     utils.embedFlags(embedding, 'Exact Wasserstein embedding', ax=ax)
-    fig.savefig(f'Plots/GER_ExactWasserstein.svg')
+    fig.savefig('Plots/GER_ExactWasserstein.svg')
     # fig.savefig(f'Reports/Figures/GER/ExactWasserstein.pdf')
     plt.show()
     
 
 def compareEmbeddings():
-    fig, (ax1, ax2) = plt.subplots(1,2, figsize=(40,20))
+    fig, (ax1, ax2) = plt.subplots(1,2, figsize=(50,25))
     
-    A = pd.read_csv(f'Experiments/Distances/GER_ExactWasserstein_A.csv', index_col=0)
+    A = pd.read_csv('Experiments/Distances/GER_ExactWasserstein_A.csv', index_col=0)
     tsne =WassersteinTSNE(seed=13)
-    embedding = tsne.fit(A)
+    embedding = tsne.fit(A, trafo=MirrorMatrix([1,0])@RotationMatrix(90))
     embedding['sizes'] = 20
     embedding.index =embedding.index.to_series(name='wappen').map(labels)
     utils.embedFlags(embedding, 'Exact Wasserstein embedding', ax=ax1)
@@ -62,29 +62,28 @@ def compareEmbeddings():
     Gaussians = Dataset2Gaussians(dataset)
     WSDM = GaussianWassersteinDistance(Gaussians)
     WT = GaussianTSNE(WSDM, seed=13)
-    embedding = WT.fit(w=w, angle=90)
+    embedding = WT.fit(w=w, trafo=MirrorMatrix([1,0])@RotationMatrix(90))
     embedding.index = embedding.index.to_series(name='wappen').map(labels)
     embedding['sizes'] = 20
     utils.embedFlags(embedding, title=rf"Gaussian embedding ($\lambda$={w})", ax=ax2)
  
-    fig.savefig(f'Plots/GER_WassersteinComparison.svg')
-    fig.savefig(f'Reports/Figures/GER/WassersteinComparison.pdf')
+    fig.savefig('Plots/GER_WassersteinComparison.svg')
+    fig.savefig('Reports/Figures/GER/WassersteinComparison.pdf')
     plt.show()
 
 def compareMatrices():
-    Exact = pd.read_csv(f'Experiments/Distances/GER_ExactWasserstein_A.csv', index_col=0)
+    Exact = pd.read_csv('Experiments/Distances/GER_ExactWasserstein_A.csv', index_col=0)
     Exact.columns = Exact.index
     A = Exact.sort_index(0).sort_index(1).values
 
-    w=0.5
     Gaussians = Dataset2Gaussians(dataset)
     WSDM = GaussianWassersteinDistance(Gaussians)
     B = WSDM.matrix()
 
     fig = utils.plotMatrices([A, B, np.abs(A - B)], 
-                             ['Exact', 'Gaussian', 'Difference'])
+                             ['Exact', 'Gaussian', r'Difference'])
     
-    fig.savefig(f'Plots/GER_WassersteinMatrix.svg')
+    fig.savefig('Plots/GER_WassersteinMatrix.svg')
     # fig.savefig(f'Reports/Figures/GER/WassersteinMatrix.pdf')
     plt.show()
     
@@ -92,4 +91,4 @@ def compareMatrices():
 if __name__ == '__main__':
     # calculate()
     # embed()
-    compareMatrices()
+    compareEmbeddings()
