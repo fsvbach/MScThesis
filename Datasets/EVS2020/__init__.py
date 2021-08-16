@@ -10,6 +10,7 @@ import numpy as np
 import pandas as pd
 
 class EuropeanValueStudy:
+    interval = (0.0,1.0)
     
     UP   = (1,10)
     DOWN = (10,1)
@@ -81,7 +82,12 @@ class EuropeanValueStudy:
         data.drop('c_abrv', axis=1, inplace=True)
         
         sizes = data.groupby(level=0).size() 
-    
+        
+        for key in questions:
+            bottom, top    = self.legend[key][1]
+            minval, maxval = self.interval
+            data[key] = np.round(minval + (data[key]-bottom)*(maxval-minval)/(top-bottom), 2)
+            
         self.data = data.loc[ (min_entries < sizes) & (sizes < max_entries)]
     
     def labeldict(self):

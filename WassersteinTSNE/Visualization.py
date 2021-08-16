@@ -6,6 +6,7 @@ Created on Fri May 14 10:04:54 2021
 @author: fsvbach
 """
 
+import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib.patches import Ellipse
@@ -110,5 +111,29 @@ def plotMixture(mixture, std=1, ax=None):
     # add title
     ax.set_title(mixture.info)
 
+    return fig
+
+def plotWasserstein(Uhist, Vhist, D, opt_res):
+    n,m = len(Uhist), len(Vhist)
+    emd = round( opt_res.fun,3)
+    gamma = opt_res.x.reshape((n, m))
+
+    fig, axes = plt.subplots(2,3, figsize=(13,5), 
+                             gridspec_kw={'width_ratios': (2*n/10,n,n),
+                                          'height_ratios': (m/10,m)})
+    [ax.set_axis_off() for ax in axes.ravel()]
+    
+    axes[0,1].bar(np.arange(n), Uhist, color='C0', alpha=0.5)
+    axes[0,1].set(xlim=(-0.5,n-0.5))
+    axes[1,0].barh(np.arange(m), Vhist, color='C1', alpha=0.5)
+    axes[1,0].set(ylim=(-0.5,m-0.5))
+    axes[1,0].invert_xaxis()
+    axes[1,0].invert_yaxis()
+    
+    axes[1,1].imshow(gamma.T, cmap='Greys', vmin=0)
+    axes[1,2].imshow(D.T, cmap='Greys', vmin=0)
+    
+    axes[0,2].text(0.5,0.5, f"scipy.linprog EMD={emd}", ha='center')
+    fig.tight_layout()
     return fig
 

@@ -9,7 +9,7 @@ Created on Mon Jul 26 13:37:54 2021
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import linprog
-from WassersteinTSNE.Distances import linprogSolver, EuclideanDistance, ConstraintMatrix
+from WassersteinTSNE.Distances import EuclideanDistance, ConstraintMatrix
 from Datasets.EVS2020 import EuropeanValueStudy
 
 EVS = EuropeanValueStudy()
@@ -31,8 +31,6 @@ b = np.concatenate([np.ones(n)/n, np.ones(m)/m])
 c = D.reshape(-1)
     
 opt_res = linprog(c, A_eq=A, b_eq=b, bounds=[0, None], method='highs')
-
-# opt_res = linprogSolver(U,V)
 
 emd = round( opt_res.fun,3)
 gamma = opt_res.x.reshape((n, m))

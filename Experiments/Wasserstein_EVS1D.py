@@ -25,15 +25,16 @@ P2 = np.histogram(dataset.loc['al', feature][:40], bins=10, density=False)
 P1 = P1[0]/P1[0].sum()
 P2 = P2[0]/P2[0].sum()
 
-space = np.arange(1,11)
+minval, maxval = EVS.interval
+space, step  = np.linspace(minval,  maxval, 10, retstep=True)
 dist = round(wasserstein_distance(space, space, P1, P2),3)
 
 fig, ax = plt.subplots()
 
-ax.bar(space, P1, alpha=0.5, label='Germany')
-ax.bar(space, P2, alpha=0.5, label='Albania')
+ax.bar(space, P1, width=0.9*step, alpha=0.5, label='Germany')
+ax.bar(space, P2, width=0.9*step, alpha=0.5, label='Albania')
 
-ax.set(xticks=space,
+ax.set(xticks=np.round(space,2),
        title =rf'scipy.wasserstein\_distance EMD={dist} (only 1D)')
 ax.legend()
 

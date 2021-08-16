@@ -26,8 +26,8 @@ P1 = P1[0]/P1[0].sum()
 P2 = P2[0]/P2[0].sum()
 
 n = len(P1)
-
-space = np.arange(1,n+1)
+minval, maxval = EVS.interval
+space, step  = np.linspace(minval,  maxval, n, retstep=True)
 
 D = EuclideanDistance(space.reshape(-1,1), space.reshape(-1,1))
 
@@ -46,10 +46,10 @@ fig, axes = plt.subplots(2,3, figsize=(9,5),
                                       'height_ratios': (1,4)})
 [ax.set_axis_off() for ax in axes.ravel()]
 
-axes[0,1].bar(space, P1, color='C0', alpha=0.5)
-axes[0,1].set(xlim=(0.5,10.5))
-axes[1,0].barh(space, P2, color='C1', alpha=0.5)
-axes[1,0].set(ylim=(0.5,10.5))
+axes[0,1].bar(space, P1, width=step, color='C0', alpha=0.5)
+axes[0,1].set(xlim=(minval-step/2, maxval+step/2))
+axes[1,0].barh(space, P2, height=step, color='C1', alpha=0.5)
+axes[1,0].set(ylim=(minval-step/2, maxval+step/2))
 axes[1,0].invert_xaxis()
 axes[1,0].invert_yaxis()
 

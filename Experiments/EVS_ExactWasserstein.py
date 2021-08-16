@@ -14,11 +14,10 @@ import pandas as pd
 
 from Datasets.EVS2020 import EuropeanValueStudy
 from WassersteinTSNE.utils import Timer
-from WassersteinTSNE.Distances import WassersteinDistanceMatrix
-from WassersteinTSNE.TSNE import WassersteinTSNE
+from WassersteinTSNE.Distances import WassersteinDistanceMatrix, GaussianWassersteinDistance
+from WassersteinTSNE.TSNE import WassersteinTSNE, GaussianTSNE
+from WassersteinTSNE.Distributions import RotationMatrix, MirrorMatrix, Dataset2Gaussians
 from Experiments.Visualization import utils
-
-from WassersteinTSNE import Dataset2Gaussians, GaussianTSNE, GaussianWassersteinDistance, _naming, RotationMatrix
 
 name = 'complete2W'
 EVS = EuropeanValueStudy(max_entries=1000)
@@ -80,16 +79,20 @@ def compareMatrices():
     Exact = pd.read_csv(f'Experiments/Distances/EVS_{name}.csv', index_col=0)
     A = Exact.loc[WSDM.index, WSDM.index].values
 
-    diff = np.abs(A - B)/np.maximum(A,B)
-    fig = utils.plotMatrices([A, B, diff], 
-                             ['Exact', 'Gaussian', r'Difference'])
+    diff = np.abs(A - B)
+    perc = 100*diff/np.maximum(A,B)
+    np.fill_diagonal(perc, 0)
+    fig = utils.plotMatrices([A, B, diff, perc], 
+                             ['Exact', 'Gaussian', 'Difference (abs)', r'Difference ($\%$)'])
     
     fig.savefig('Plots/EVS_WassersteinMatrix.svg')
     # fig.savefig(f'Reports/Figures/GER/WassersteinMatrix.pdf')
     plt.show()
     
+    return np.unravel_index(perc.argmax(), perc.shape)
+    
 if __name__ == '__main__':
     # calculate()
     # embed()
-    # compareMatrices()
-    compareEmbeddings()
+    compareMatrices()
+    # compareEmbeddings()

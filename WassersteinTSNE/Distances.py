@@ -12,6 +12,7 @@ import scipy.sparse as sp
 
 from scipy.optimize import linprog
 from .Distributions import arr2cov
+from .Visualization import plotWasserstein
 
 def EuclideanDistance(A,B):
     N1 = np.linalg.norm(A, ord=2, axis=1).reshape(-1,1)**2 
@@ -35,14 +36,22 @@ def SparseConstraint(n,m):
     M = sp.hstack([sp.dia_matrix((np.ones(m, dtype=int), 0), shape=(m,m))]*n)
     return sp.vstack([N,M], format='csr')
 
-def linprogSolver(U, V, p=2):
-    D = EuclideanDistance(U, V)**p
-    n, m = len(U), len(V)
+def PairwiseWassersteinDistance(U, V, p=2, visualize=False):
+    uniqueRowsU, occurCountU = np.unique(U, axis=0, return_counts=True)
+    uniqueRowsV, occurCountV = np.unique(V, axis=0, return_counts=True)
+    
+    D = EuclideanDistance(uniqueRowsU, uniqueRowsV)**p
+    n, m = len(uniqueRowsU), len(uniqueRowsV)
   
     A = SparseConstraint(n,m)
-    b = np.concatenate([np.ones(n)/n, np.ones(m)/m])
+    b = np.concatenate([occurCountU/sum(occurCountU), occurCountV/sum(occurCountV)])
     c = D.reshape(-1)
-    
+
+    if visualize:
+        opt_res = linprog(c, A_eq=A, b_eq=b, bounds=[0, None], method='highs')
+        fig = plotWasserstein(occurCountU, occurCountV, D, opt_res)
+        return opt_res, fig
+
     return linprog(-b, A.T, c, bounds=[None, None], method='highs')
     
 def WassersteinDistanceMatrix(dataset, timer=None):
@@ -53,8 +62,8 @@ def WassersteinDistanceMatrix(dataset, timer=None):
     k = 0
     for i in range(N):
         for j in range(i+1, N):
-            opt_res = linprogSolver(dataset.loc[data[i]], 
-                                    dataset.loc[data[j]])
+            opt_res = PairwiseWassersteinDistance(dataset.loc[data[i]], 
+                                                  dataset.loc[data[j]])
             K[i,j] = -opt_res.fun
             
             if k%250 == 0 and timer:
