@@ -49,38 +49,47 @@ def embed():
     plt.show()
     
 
-def comparison(name, maxnum=10000):
-    
-    ########### LOADING ################
-    EVS = EuropeanValueStudy(max_entries=maxnum)
-    labeldict = EVS.labeldict()
-    dataset   = EVS.data
-
+def compareEmbeddings():
     fig, (ax1, ax2) = plt.subplots(1,2, figsize=(40,20))
     
     A = pd.read_csv(f'Experiments/Distances/EVS_{name}.csv', index_col=0)
     tsne =WassersteinTSNE(seed=13)
     embedding = tsne.fit(A)
     embedding['sizes'] = 5
-    embedding.index =embedding.index.to_series(name='flags').map(labeldict)
-    
+    embedding.index =embedding.index.to_series(name='flags').map(labels)
     utils.embedFlags(embedding, 'Exact Wasserstein embedding', ax=ax1)
     
     w=0.5
     Gaussians = Dataset2Gaussians(dataset)
     WSDM = GaussianWassersteinDistance(Gaussians)
     WT = GaussianTSNE(WSDM, seed=13)
-    embedding = WT.fit(w=w, angle=180)
-    
-    embedding.index = embedding.index.to_series(name='flags').map(labeldict)
+    embedding = WT.fit(w=w, trafo=RotationMatrix(180))
+    embedding.index = embedding.index.to_series(name='flags').map(labels)
     embedding['sizes'] = 5
-    
     utils.embedFlags(embedding, title=rf"Gaussian embedding ($\lambda$={w})", ax=ax2)
- 
+    
     fig.savefig(f'Plots/EVS_{name}_WassersteinComparison.svg')
-    fig.savefig(f'Reports/Figures/EVS/WassersteinComparison.pdf')
+    # fig.savefig(f'Reports/Figures/EVS/WassersteinComparison.pdf')
+    plt.show()
+    
+def compareMatrices():
+    Gaussians = Dataset2Gaussians(dataset)
+    WSDM = GaussianWassersteinDistance(Gaussians)
+    B = WSDM.matrix()
+    
+    Exact = pd.read_csv(f'Experiments/Distances/EVS_{name}.csv', index_col=0)
+    A = Exact.loc[WSDM.index, WSDM.index].values
+
+    diff = np.abs(A - B)/np.maximum(A,B)
+    fig = utils.plotMatrices([A, B, diff], 
+                             ['Exact', 'Gaussian', r'Difference'])
+    
+    fig.savefig('Plots/EVS_WassersteinMatrix.svg')
+    # fig.savefig(f'Reports/Figures/GER/WassersteinMatrix.pdf')
     plt.show()
     
 if __name__ == '__main__':
-    calculate()
-    embed()
+    # calculate()
+    # embed()
+    # compareMatrices()
+    compareEmbeddings()

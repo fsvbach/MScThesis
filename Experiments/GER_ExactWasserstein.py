@@ -72,13 +72,12 @@ def compareEmbeddings():
     plt.show()
 
 def compareMatrices():
-    Exact = pd.read_csv('Experiments/Distances/GER_ExactWasserstein_A.csv', index_col=0)
-    Exact.columns = Exact.index
-    A = Exact.sort_index(0).sort_index(1).values
-
     Gaussians = Dataset2Gaussians(dataset)
     WSDM = GaussianWassersteinDistance(Gaussians)
     B = WSDM.matrix()
+    
+    Exact = pd.read_csv('Experiments/Distances/GER_ExactWasserstein_A.csv', index_col=0)
+    A = Exact.loc[WSDM.index, WSDM.index].values
 
     fig = utils.plotMatrices([A, B, np.abs(A - B)], 
                              ['Exact', 'Gaussian', r'Difference'])
