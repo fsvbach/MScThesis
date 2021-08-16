@@ -5,6 +5,9 @@ Created on Tue Jul 13 15:25:29 2021
 
 @author: bachmafy
 """
+import warnings
+warnings.filterwarnings("ignore")
+
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -17,34 +20,32 @@ from Experiments.Visualization import utils
 
 from WassersteinTSNE import Dataset2Gaussians, GaussianTSNE, GaussianWassersteinDistance, _naming, RotationMatrix
 
-def calculate(name, maxnum=10000):
-    
+name = 'complete2W'
+EVS = EuropeanValueStudy(max_entries=1000)
+labels  = EVS.labeldict()
+dataset = EVS.data
+
+def calculate():
     ########### CALCULATING ################
-    timer = Timer('EVS Exact Wasserstein')
-    
-    EVS = EuropeanValueStudy(max_entries=maxnum)
-    labels  = EVS.labeldict()
-    dataset = EVS.data
-    
+    timer = Timer('EVS Exact Wasserstein')  
     K = WassersteinDistanceMatrix(dataset, timer=timer)
     K.to_csv(f'Experiments/Distances/EVS_{name}.csv')
     # np.save(f'Datasets/EVS2020/Distances/{name}', K)  
-    
     timer.finish("Plots/.logfile.txt")
     
+def embed():
     ############## PLOTTING #################
     A = pd.read_csv(f'Experiments/Distances/EVS_{name}.csv', index_col=0)
-    
+
     tsne =WassersteinTSNE(seed=13)
-    
     embedding = tsne.fit(A)
     embedding['sizes'] = 5
     embedding.index =embedding.index.to_series(name='flags').map(labels)
     
     fig, ax = plt.subplots(figsize=(20,20))
     utils.embedFlags(embedding, 'Exact Wasserstein embedding', ax=ax)
-    # fig.savefig(f'Plots/EVS_{name}_ExactWasserstein.svg')
-    fig.savefig(f'Reports/Figures/EVS/ExactWasserstein.pdf')
+    fig.savefig(f'Plots/EVS_{name}_ExactWasserstein.svg')
+    # fig.savefig(f'Reports/Figures/EVS/ExactWasserstein.pdf')
     plt.show()
     
 
@@ -74,7 +75,6 @@ def comparison(name, maxnum=10000):
     embedding.index = embedding.index.to_series(name='flags').map(labeldict)
     embedding['sizes'] = 5
     
-
     utils.embedFlags(embedding, title=rf"Gaussian embedding ($\lambda$={w})", ax=ax2)
  
     fig.savefig(f'Plots/EVS_{name}_WassersteinComparison.svg')
@@ -82,4 +82,5 @@ def comparison(name, maxnum=10000):
     plt.show()
     
 if __name__ == '__main__':
-    comparison('complete')
+    calculate()
+    embed()
