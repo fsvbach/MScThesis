@@ -89,10 +89,16 @@ def compareMatrices():
     # fig.savefig(f'Reports/Figures/GER/WassersteinMatrix.pdf')
     plt.show()
     
-    return np.unravel_index(perc.argmax(), perc.shape)
     
+    res = np.unravel_index(perc.argmax(), perc.shape)
+    np.fill_diagonal(perc, 1000)
+    res = np.unravel_index(perc.argmin(), perc.shape)
+    
+    return res, [WSDM.index[idx] for idx in res], A[res], B[res]
+
 if __name__ == '__main__':
     # calculate()
     # embed()
-    compareMatrices()
+    res = compareMatrices()
     # compareEmbeddings()
+    print(res)

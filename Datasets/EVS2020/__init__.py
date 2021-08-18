@@ -10,7 +10,7 @@ import numpy as np
 import pandas as pd
 
 class EuropeanValueStudy:
-    interval = (0.0,1.0)
+    interval = (1,10)
     
     UP   = (1,10)
     DOWN = (10,1)

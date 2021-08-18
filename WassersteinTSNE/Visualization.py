@@ -118,7 +118,7 @@ def plotWasserstein(Uhist, Vhist, D, opt_res):
     emd = round( opt_res.fun,3)
     gamma = opt_res.x.reshape((n, m))
 
-    fig, axes = plt.subplots(2,3, figsize=(13,5), 
+    fig, axes = plt.subplots(2,3, figsize=(22,11*m/n ), 
                              gridspec_kw={'width_ratios': (2*n/10,n,n),
                                           'height_ratios': (m/10,m)})
     [ax.set_axis_off() for ax in axes.ravel()]
@@ -133,7 +133,7 @@ def plotWasserstein(Uhist, Vhist, D, opt_res):
     axes[1,1].imshow(gamma.T, cmap='Greys', vmin=0)
     axes[1,2].imshow(D.T, cmap='Greys', vmin=0)
     
-    axes[0,2].text(0.5,0.5, f"scipy.linprog EMD={emd}", ha='center')
+    # axes[0,2].text(0.5,0.5, f"scipy.linprog EMD={emd}", ha='center', fontsize=50)
     fig.tight_layout()
     return fig
 

@@ -18,17 +18,18 @@ labels  = EVS.labeldict()
 dataset = EVS.data
 
 counties = ['DK03', 'DK04']
-features = ['v143', 'v187']
+counties = ['AZ-GOR', 'SE32']
+features = ['v107', 'v187']
 # corr = ['v103', 'v107']
 # corr = ['v199', 'v39']
-
 
 U = dataset.loc[counties[0], features]
 V = dataset.loc[counties[1], features]
 
 _, fig = PairwiseWassersteinDistance(U, V, visualize=True)
-fig.savefig("Plots/WassersteinUniformSmart.svg")
-
+fig.savefig(f"Plots/EVS_Wasserstein_{''.join(counties+features)}.svg")
+plt.show()
+plt.close()
 
 def GaussHistogram(cc, val1, val2):
     H, _, _ = np.histogram2d(dataset.loc[cc, val1], dataset.loc[cc, val2], bins=10)
