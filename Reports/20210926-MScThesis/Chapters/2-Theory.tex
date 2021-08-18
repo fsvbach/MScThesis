@@ -52,13 +52,33 @@ This leads to the convex generalization of the Wasserstein distance which ziels 
 
 We have earlier stated that the Wasserstein distance is hard to compute for continuous distributions. However for discrete distributions it boils down to the linear program described in Equaton 
 
-LINEAR PROGRAMM
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{Wasserstein/Experiments1D.pdf}
+	\caption{Linear Program}
+	\label{WT:linprog}
+\end{figure}
 
 
 \subsection{Scalability in Participants}
 
 If the metric space on which the distributions are defined is small, a linear programm can solve the wasserstein distance with unique optimal solution. 
 
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{Wasserstein/ExperimentsHistogram.pdf}
+	\caption{Wasserstein Histogram}
+	\label{WT:histogram}
+\end{figure}
+
+
 \subsection{Scalability in Features}
 
 When dealing with larger spaces the linear program grows exponentially in the number of dimensions. A discrete space with 10 values yields a linear programm with 100 variables, n features yiled a linear programm with $10^{2n}$ variables. However, since every variable must be non negative and every row/column must sum to the respetive marginal distribution, each zero in a marginal distribution forces the whole colum/row to contain zeros as well. Thus we can exclude these variable from the ;linear programm and eventually arrive at an upper bound of $N\cdot M$ variables for marginal distributions with $N$ and $M$ samples respectively. This approach is indifferent to the number of features, since we can compute the pairwise Euclidean distance of the samples efficiently using vectorization. 
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{Wasserstein/ExperimentsUniform.pdf}
+	\caption{Wasserstein Uniform}
+	\label{WT:uniform}
+\end{figure}

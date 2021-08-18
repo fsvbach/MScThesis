@@ -1,0 +1,25 @@
+Dimension Reduction
+The political landscape is usually considered to be one-dimensional. While in the Parliament it may be convenient to place the different parties from left to right, in social sciences it might be a complete misleading that the axis from "left" to "right" is the first principal component of the political landscape. Do studies exist which explore the high dimensional dataset of political opinions? While certain opinions certainly correlate with each other (e.g. social welfare, feminism) others may be falsely perceived to do so. Or worse, certain opinions are enforced to correlate due to the one-dimensional representation of parties; for example in 1D it is not imaginable to be a “climate change denier”, while cheering “refugees welcome”. The limits of this representation are clearly visible in the "Querdenken" movement. I would be curious to find a dataset of political opinions and work out the main k components, to embed the political landscape in a move diverse manner.
+
+
+Jonathan haidt
+has found 6 main comoopnents of morality. I would like to find/produce data to strengethen his point or infer the charakterization from data
+
+
+
+Experiment design
+can design 200 questions that are ansered from 0 to 10 and cover everything. or find out data online that contains the informationa lready nnd is not dsign to contain it
+
+
+
+naming the main components
+tree strucutre of arguments, run down to gerneal opinions that are yes or no like. find setting that lead to certain positions and name the bases
+
+
+Goal
+do certain opinions correlate? if not, why do they in politics (1d not enough). if yes, why- could be that due to the 1d representation people are forcedonto that dimension, could be that there are mutliple causes (i.e. 6 components of jpn haitt)
+
+
+
+what I need:
+first tree structure, and base positions -- then see if i can predict opionions from base positions with good likelihood

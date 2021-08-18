@@ -31,13 +31,66 @@ It is easy to image an example in which the information about the means is not e
 
 
 
+
 \subsection{Distance of Covariances}
 
 In section 2 I introduced the interpolation of Covariance and Mean distances. However it is not intuitive how much contribution each of the two different aspect of distance have, inparticular, how much impact a different Covarince has to the Wasserstein distance. In the follwoing experiment I sampled $N=100$ Covariance matrices from a Wishart distribution and computed the distance to a reference Covariance $\Sigma$ with the above described formula.  
 
 We can see that 
 
+
+\section{European Value Study 2017-2020}
+\label{EVS}
+
+So far we have been looking at synthetic data, \ie we designed the data in a way that they contain structure in the covariance and then showed, that the method is able to integrate this structure into the embedding. In this section however we want to find out, whether a real-world data set contains structure in the covariance. As a first example we analyse the European Values Study. It was collected in ... 
+
+\subsection{Discrete Data}
+
+In contrast to the synthetic data the EVS has discrete data, \ie each feature (question) is answered by a discrete value from 1 to 10. 
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1.1\textwidth]{EVS/Correlation_plchv143v187.pdf}
+	\caption{Discrete Data}
+	\label{EVSoverview}
+\end{figure}
+
+It it easy to see that the Gaussian approximation in Figure \ref{EVSVSoverview} is far from accurate, however we argue that it is still more accurate than taking only the mean. Also we will find in section \ref{WTevs} that the approximation leads to fair results compared to the Exact Wasserstein embedding. Later, in section \ref{GER} we will analyse a continuous dataset that perfectly fits the Gaussian approxmiation.
+
+\subsection{Embeddings}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{EVS/Embedding.pdf}
+	\caption{Embedding}
+	\label{EVSembedding}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{EVS/FeatureMeans.pdf}
+	\caption{Features}
+	\label{EVSfeatures}
+\end{figure}
+
+\subsection{Covariance}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{EVS/Covariances.pdf}
+	\caption{Covariance}
+	\label{EVSembedding}
+\end{figure}
+
+
+
+\subsection{Comparison to Exact Wasserstein Embedding}
+\label{WTevs}
+
+
+
 \section{German Election 2017/2021}
+\label{GER}
 
 The Federal German Election is divided into 299 voting districts, each of which consists of roughly 150-850 poll stations (voting by mail excluded). In the following analysis we shall find that certain parties correlate differently within these voting districts, i.e. that
 
@@ -109,12 +162,4 @@ If we inspect how the correlation exactly looks like we need to look at
 	\label{GERjoint1}
 	\caption{GER correlation}
 \end{figure}
-
-
-\section{European Value Study 2017-2020}
-
-\subsection{Embeddings}
-\subsection{Discrete Data}
-\subsection{Comparison to Exact Wasserstein Embedding}
-
 
