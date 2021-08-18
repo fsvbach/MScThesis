@@ -34,7 +34,7 @@ def calculate():
     
 def embed():
     ############## PLOTTING #################
-    A = pd.read_csv('Experiments/Distances/GER_ExactWasserstein.csv', index_col=0)
+    A = pd.read_csv('Experiments/Distances/GER_ExactWasserstein_A.csv', index_col=0)
     
     tsne =WassersteinTSNE(seed=13)
     embedding = tsne.fit(A)

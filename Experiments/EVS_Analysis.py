@@ -14,7 +14,7 @@ dataset = EVS.data
 labels  = EVS.labels
 
 Analysis._config.update(folder='flags', 
-                       seed=13, 
+                       seed=12, 
                        name='NUTS regions',
                        description='',
                        dataset='EVS',
