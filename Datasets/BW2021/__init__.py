@@ -14,7 +14,7 @@ class Gemeinden:
 
         self.head = 'Baden-Württemberg'
         
-        data = pd.read_csv('Datasets/BW2021/Data/Gemeinden.csv', delimiter=';', encoding='ISO-8859-1', index_col='Gemeinde')
+        data = pd.read_csv('Datasets/BW2021/Gemeinden.csv', delimiter=';', encoding='ISO-8859-1', index_col='Gemeinde')
         data = data.append(pd.Series(data.sum(), name=self.head))
         data = data.loc[~data.index.str.contains('Briefwahl')]
 
@@ -44,7 +44,7 @@ class Wahlkreise:
         self.nonvoters = nonvoters
         self.head = 'Land Baden-Württemberg'
         
-        data = data = pd.read_csv('Datasets/BW2021/Data/Kreise.csv', delimiter=';', encoding='ISO-8859-1', index_col='Wahlkreis')
+        data = data = pd.read_csv('Datasets/BW2021/Kreise.csv', delimiter=';', encoding='ISO-8859-1', index_col='Wahlkreis')
 
         total = data['Gültige Stimmen'] 
         if nonvoters:

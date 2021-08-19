@@ -18,14 +18,14 @@ class plotElection:
               'legend'   : (3, 3, 0, 0),
               'label'    : True}
     
-    def __init__(self, dataset, embedding, total):
+    def __init__(self, dataset, embedding, total, colors):
         self.dataset   = dataset
         self.embedding = embedding
         self.total     = total
         self.dataset.index = self.embedding.index
         
         ### Loading colors
-        colors = pd.read_csv('Experiments/Visualization/Images/parties/Parteifarben.csv', delimiter=';', encoding='utf-8', header=0)
+        colors = pd.read_csv(f'Experiments/Visualization/Images/colors/{colors}.csv', delimiter=';', encoding='utf-8', header=0)
         self.colors = colors.iloc[0].to_dict()
 
     def show(self, ax, **kwargs):
@@ -55,18 +55,18 @@ class plotElection:
                    width=lx*dist, 
                    align='edge')
         
-        if self.params['label']:
-            for name, x, y in zip(self.dataset.index, X, Y):
-                # text = ' '.join(name.split(' ')[1:])
-                text = name
-                sub = self.dataset.loc[name].max()
-                ax.annotate(text, 
-                            (self.params['xstretch']*x-dist/2, 
-                              self.params['ystretch']*y+sub*self.params['barheight']), 
-                            ha='center')
+        # if self.params['label']:
+        #     for name, x, y in zip(self.dataset.index, X, Y):
+        #         # text = ' '.join(name.split(' ')[1:])
+        #         text = name
+        #         sub = self.dataset.loc[name].max()
+        #         ax.annotate(text, 
+        #                     (self.params['xstretch']*x-dist/2, 
+        #                       self.params['ystretch']*y+sub*self.params['barheight']), 
+        #                     ha='center')
         
-        # ax.set_aspect('equal')
-        ax.axis('off')
+        # # ax.set_aspect('equal')
+        # ax.axis('off')
 
     
 # def plotWahlkreis(district):
