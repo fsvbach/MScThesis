@@ -23,8 +23,8 @@ means = dataset.groupby(level=0).mean()
 tsne = NormalTSNE(seed=13)
 embedding = tsne.fit(means)
 embedding['sizes'] = 6
-embedding.index = embedding.index.to_series(name='continents').map(labels)
-# embedding.index.name='continents'
+# embedding.index = embedding.index.to_series(name='continents').map(labels)
+embedding.index.name='continents'
 utils.embedFlags(embedding, 'Merged', ax2)
 
 embedding = tsne.fit(Aligned().groupby(level=0).mean())
@@ -50,7 +50,7 @@ ax.set_title('Psychological Landscape', fontdict={'fontsize': 25})
 
 fig.savefig(f'Plots/infoBIG5.svg')
 
-# fig.savefig(f'Reports/Figures/BIG5/infoBIG5.pdf')
+fig.savefig(f'Reports/Figures/BIG5/infoBIG5.pdf')
 plt.show()
 plt.close()
 

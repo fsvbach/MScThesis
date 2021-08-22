@@ -13,7 +13,7 @@ if nonvoters:
 title  = f'Political Landscape of Baden-Württemberg {suffix}'
 
 from WassersteinTSNE import NormalTSNE
-from Experiments.Visualization.ElectionPlot import plotElection
+from Experiments.Visualization.Legend import plotElection
 from Datasets.BW2021 import Wahlkreise
 
 import matplotlib.pyplot as plt
@@ -25,14 +25,15 @@ tsne = NormalTSNE()
 embedding = tsne.fit(BW.data)
 
 
-figure = plotElection(dataset, embedding, BW.average)
+figure = plotElection(dataset, embedding, BW.average, 'Parteifarben')
 
-fig, ax = plt.subplots(figsize=(15,15))
+fig, ax = plt.subplots(figsize=(10,10))
 
 figure.show(ax)
 
 ax.set_title(title, fontdict={'fontsize': 25})
 
+fig.tight_layout()
 fig.savefig(f'Plots/infoBW2021_NW{nonvoters}.svg')
 
 fig.savefig(f'Reports/Figures/assets/infoBW2021_NW{nonvoters}.pdf')

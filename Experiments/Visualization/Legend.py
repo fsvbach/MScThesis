@@ -55,18 +55,18 @@ class plotElection:
                    width=lx*dist, 
                    align='edge')
         
-        # if self.params['label']:
-        #     for name, x, y in zip(self.dataset.index, X, Y):
-        #         # text = ' '.join(name.split(' ')[1:])
-        #         text = name
-        #         sub = self.dataset.loc[name].max()
-        #         ax.annotate(text, 
-        #                     (self.params['xstretch']*x-dist/2, 
-        #                       self.params['ystretch']*y+sub*self.params['barheight']), 
-        #                     ha='center')
+        if self.params['label']:
+            for name, x, y in zip(self.dataset.index, X, Y):
+                # text = ' '.join(name.split(' ')[1:])
+                text = name
+                sub = self.dataset.loc[name].max()
+                ax.annotate(text, 
+                            (self.params['xstretch']*x-dist/2, 
+                              self.params['ystretch']*y+sub*self.params['barheight']), 
+                            ha='center')
         
-        # # ax.set_aspect('equal')
-        # ax.axis('off')
+        # ax.set_aspect('equal')
+        ax.axis('off')
 
     
 # def plotWahlkreis(district):

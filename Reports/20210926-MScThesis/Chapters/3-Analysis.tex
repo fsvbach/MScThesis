@@ -55,7 +55,7 @@ In contrast to the synthetic data the EVS has discrete data, \ie each feature (q
 	\label{EVSoverview}
 \end{figure}
 
-It it easy to see that the Gaussian approximation in Figure \ref{EVSVSoverview} is far from accurate, however we argue that it is still more accurate than taking only the mean. Also we will find in section \ref{WTevs} that the approximation leads to fair results compared to the Exact Wasserstein embedding. Later, in section \ref{GER} we will analyse a continuous dataset that perfectly fits the Gaussian approxmiation.
+It it easy to see that the Gaussian approximation in Figure \ref{EVSoverview} is far from accurate, however we argue that it is still more accurate than taking only the mean. Also we will find in section \ref{WTevs} that the approximation leads to fair results compared to the Exact Wasserstein embedding. Later, in section \ref{GER} we will analyse a continuous dataset that perfectly fits the Gaussian approxmiation.
 
 \subsection{Embeddings}
 
@@ -79,7 +79,7 @@ It it easy to see that the Gaussian approximation in Figure \ref{EVSVSoverview} 
 	\centering
 	\includegraphics[width=\textwidth]{EVS/Covariances.pdf}
 	\caption{Covariance}
-	\label{EVSembedding}
+	\label{EVSCovariance}
 \end{figure}
 
 
@@ -120,8 +120,8 @@ If we look at the legend in the appendix we see that the clusters share certain 
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{GER/WassersteinComparison.pdf}
-	\label{GERexact}
 	\caption{GER correlation}
+	\label{GERexact}
 \end{figure}
 
 \subsection{Covariance}
@@ -132,8 +132,8 @@ It is interesting to analyse if the structure in covariance is due to different 
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{GER/Covariances.pdf}
-	\label{GERcov}
 	\caption{GER correlation}
+	\label{GERcov}
 \end{figure}
 
 
@@ -150,8 +150,8 @@ Wasserstein t-SNE is useful if and only if there is structure within the correla
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{GER/Correlation.pdf}
-	\label{GERcorr}
 	\caption{GER correlation}
+	\label{GERcorr}
 \end{figure}
 
 If we inspect how the correlation exactly looks like we need to look at 
@@ -159,7 +159,7 @@ If we inspect how the correlation exactly looks like we need to look at
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{GER/JointCorrelation_LinksAfD.pdf}
-	\label{GERjoint1}
 	\caption{GER correlation}
+	\label{GERjoint1}
 \end{figure}
 

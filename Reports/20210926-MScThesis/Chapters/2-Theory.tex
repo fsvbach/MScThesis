@@ -1,19 +1,24 @@
 
 \chapter{Theory: Methods and Distances}
 
-We have seen in t he introduction that it can be very valueable to visualize structure of datasets in as low dimensional space. However there exist a mutlitude of algorithms that put emphasis on different aspects. I will briefly give an overvierw to the 
+A mutlitude of algorithms exist that embed pr project high dimensional data in lower dimensional space. THis thesis down't aim at giving an overview or comparison. I will in the next section rather describe why the chosen t-SNE algorithm works as well as any other to show the main result of this thesis: the Structure in Covaraince of hierarchical data. All visualizations in this report could as well have been plotted using PCA, MDS, UMAP or any other algorithm, in particluar even using  t-SNE but with different hyperparamerters. The contribution of this work shows however, that within one algorithm it makes much of a difference, if we use as distance measure in the high dimensional space only the distance of means or more, potentially full, information. Nevertheless, in order to understand the concept of dimension reduction, I will briely summaraize the relevant details of the most prominent algorithms and show their embedding on the European Values STudy dataset, whcih will be further analyzes in section \ref{EVS}. ALso I will describe the shortcomings and advantages of the Wasserstein distance as a possible metric in the high dimensional space, as well as its computation, in section \ref{WT:histogram}.
 
 \section{Dimension Reduction}
 
-The most basic algorithm has been known since ... 
+Let us consider a dataset $\X$ that contains $N$ datapoints $ \X_n \in \Re^D$. We now want to find a two dimneional dataset $\Y \in \Re^{N\times 2}$ that has similar structure. It is possible to project or embed $\X$ or use other methods for example generative models. In this section I will explain a projection(PCA) and two embeddings (t-SNE, UMAP). 
 
 \subsection{PCA}
+\label{PCA}
 
-Principal Component Analzysis finds the axes of largest variation and projects the whole dataset onto these vectors. 
+Principal Component Analzysis finds the axes of largest variation in the dataset and projects every datapoint onto these vectors. Specifically, we look for two vectors $v_1, v_2 \in \Re^D$ such that the following expression is maximized
+
+\begin{equation}
+\min_{v_1,v_2 \in \Re^D} \var{\X v_1} + \var{\X v_2}
+\end{equation}
 
 
 \subsection{t-SNE}
-
+\label{tSNE}
 A non-linear alternative in Dimension  Reduction is called t Stochastic Neighbor Embedding. We define a distance measure such as Euclidean distance in the high dimensional space and t
 
 RThe points are then moved along the gradient until it results in a local maximum where no point can be slighlty moved without resulting in a worse embeding than before
